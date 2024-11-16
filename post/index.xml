@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Documenting the journey ^_^</title>
+    <link>http://localhost:1313/post/</link>
+    <description>Recent content in Posts on Documenting the journey ^_^</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sat, 16 Nov 2024 20:05:19 +0800</lastBuildDate>
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello</title>
+      <link>http://localhost:1313/post/blog/hello/</link>
+      <pubDate>Sat, 16 Nov 2024 20:05:19 +0800</pubDate>
+      <guid>http://localhost:1313/post/blog/hello/</guid>
+      <description>&lt;h2 id=&#34;搭建博客的原因&#34;&gt;搭建博客的原因&lt;a href=&#34;#%e6%90%ad%e5%bb%ba%e5%8d%9a%e5%ae%a2%e7%9a%84%e5%8e%9f%e5%9b%a0&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;感觉身为搞计算机的人要是没有个个人博客，总是缺少些什么。也是为了增加自己学习的动力吧，带来一些成就感。随便记录一下&amp;quot;lifelong journey&amp;quot;中的一些感受和经历。当然主要用于学习记录。&lt;/p&gt;&#xA;&lt;h2 id=&#34;心得&#34;&gt;心得&lt;a href=&#34;#%e5%bf%83%e5%be%97&#34; class=&#34;post-heading__anchor&#34; aria-hidden=&#34;true&#34;&gt;#&lt;/a&gt;&#xA;&lt;/h2&gt;&#xA;&lt;p&gt;这次搭建这个博客花费的时间成本挺大的，前前后后一个星期左右，从了解到尝试，主题试过好多个，后悔没有先去了解项目特点再去搭建，中途差错不断，改了又改，删了又删，一次次都在放弃的边缘。可能读到这儿的小伙伴可能会有疑问，hugo不是快速建站吗，我觉得建站确实快，但是调整一些个性化的东西可太磨人了，稍不注意就错了，然后可能都不知道为什么崩了。hugo版本也是奇特，建议大家了解清楚自己主题和版本的一些兼容性问题，不然可能要重蹈我的覆辙了。这里也温馨提示大家，了解清楚hugo对目录的设定情况，不然路径对不了。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
