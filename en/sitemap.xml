@@ -5,8 +5,24 @@
     <loc>http://localhost:1313/category/</loc>
     <lastmod>2024-11-18T18:00:00+08:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/tags/blog/</loc>
+    <lastmod>2024-11-21T21:35:04+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/blog/</loc>
     <lastmod>2024-11-21T21:35:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/</loc>
+    <lastmod>2024-11-21T21:35:04+08:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="de"
+                href="http://localhost:1313/de/categories/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh-CN"
+                href="http://localhost:1313/categories/"
+                />
   </url><url>
     <loc>http://localhost:1313/</loc>
     <lastmod>2024-11-21T21:35:04+08:00</lastmod>
@@ -21,33 +37,17 @@
                 href="http://localhost:1313/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/blog/</loc>
-    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="de"
-                href="http://localhost:1313/de/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh-CN"
-                href="http://localhost:1313/categories/"
-                />
+    <loc>http://localhost:1313/blog/io_programming/</loc>
+    <lastmod>2024-11-21T21:35:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/java/</loc>
-    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
+    <lastmod>2024-11-21T21:35:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/java-application-programming/</loc>
-    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/</loc>
-    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
+    <lastmod>2024-11-21T21:35:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
+    <lastmod>2024-11-21T21:35:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -58,6 +58,9 @@
                 hreflang="zh-CN"
                 href="http://localhost:1313/tags/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/</loc>
+    <lastmod>2024-11-20T21:39:44+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/category/java/</loc>
     <lastmod>2024-11-18T18:00:00+08:00</lastmod>
