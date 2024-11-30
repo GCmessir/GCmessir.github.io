@@ -9,6 +9,13 @@
     <lastBuildDate>Thu, 21 Nov 2024 21:35:04 +0800</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>CTF</title>
+      <link>http://localhost:1313/categories/ctf/</link>
+      <pubDate>Thu, 21 Nov 2024 21:35:04 +0800</pubDate>
+      <guid>http://localhost:1313/categories/ctf/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Java</title>
       <link>http://localhost:1313/categories/java/</link>
       <pubDate>Thu, 21 Nov 2024 21:35:04 +0800</pubDate>
