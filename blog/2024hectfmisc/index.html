@@ -1,0 +1,4211 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="light"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-300.woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+  
+  
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+  
+
+
+
+
+<title>2024HECTFmisc</title>
+
+<meta
+  name="description"
+  content="2024HECTFmisc# 恶势力的聊天记录# vol3参考文档
+Volatility 3 — Volatility 3 2.11.0 documentation
+vol3使用参考
+Volatility3内存取证工具使用详解-CSDN博客
+vol2命令格式： volatility -f [image] --profile=[profile] [plugin] 这里需要注意 ：Volatility3和Volatility2用法差不多，但不需要指定profile ，只是插件调用方式改变，特定的操作系统有特定的插件 python3 vol.py [plugin] -f [image]常用插件：layerwriter：列出内存镜像platform信息linux.bash：从内存中恢复bash命令历史记录linux.check_afinfo：验证网络协议的操作功能指针linux.check_syscall：检查系统调用表中的挂钩linux.elfs：列出所有进程的所有内存映射ELF文件linux.lsmod：列出加载的内核模块linux.lsof：列出所有进程的所有内存映射linux.malfind：列出可能包含注入代码的进程内存范围linux.proc：列出所有进程的所有内存映射linux.pslist：列出linux内存映像中存在的进程linux.pstree：列出进程树mac.bash：从内存中恢复bash命令历史记录mac.check_syscall：检查系统调用表中的挂钩mac.check_sysctl：检查sysctl处理程序的挂钩mac.check_trap_table：检查trap表中的挂钩mac.ifconfig：列出网卡信息mac.lsmod：列出加载的内核模块mac.lsof：列出所有进程的所有内存映射mac.malfind：列出可能包含注入代码的进程内存范围mac.netstat：列出所有进程的所有网络连接mac.psaux：恢复程序命令行参数mac.pslist：列出linux内存映像中存在的进程mac.pstree：列出进程树mac.tasks：列出Mac内存映像中存在的进程windows.info：显示正在分析的内存样本的OS和内核详细信息windows.callbacks：列出内核回调和通知例程windows.cmdline：列出进程命令行参数windows.dlldump：将进程内存范围DLL转储windows.dlllist：列出Windows内存映像中已加载的dll模块windows.driverirp：在Windows内存映像中列出驱动程序的IRPwindows.driverscan：扫描Windows内存映像中存在的驱动程序windows.filescan：扫描Windows内存映像中存在的文件对象windows.handles：列出进程打开的句柄windows.malfind：列出可能包含注入代码的进程内存范围windows.moddump：转储内核模块windows.modscan：扫描Windows内存映像中存在的模块windows.mutantscan：扫描Windows内存映像中存在的互斥锁windows.pslist：列出Windows内存映像中存在的进程windows.psscan：扫描Windows内存映像中存在的进程windows.pstree：列出进程树windows.procdump：转储处理可执行映像windows.registry.certificates：列出注册表中存储的证书windows.registry.hivelist：列出内存映像中存在的注册表配置单元windows.registry.hivescan：扫描Windows内存映像中存在的注册表配置单元windows.registry.printkey：在配置单元或特定键值下列出注册表项windows.registry.userassist：打印用户助手注册表项和信息windows.ssdt：列出系统调用表windows.strings：读取字符串命令的输出，并指示每个字符串属于哪个进程windows.svcscan：扫描Windows服务windows.symlinkscan：扫描Windows内存映像中存在的链接 ──(root㉿kali)-[/home/messi/Desktop/vol3]└─# sudo ln -s /home/messi/Desktop/vol3/vol.py /usr/local/bin/vol3//添加一个软连接方便使用 列出所有进程
+"
+/>
+
+<link rel="canonical" href="https://GCmessir.github.io/blog/2024hectfmisc/" />
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2024HECTFmisc">
+  <meta name="twitter:description" content="2024HECTFmisc# 恶势力的聊天记录# vol3参考文档
+Volatility 3 — Volatility 3 2.11.0 documentation
+vol3使用参考
+Volatility3内存取证工具使用详解-CSDN博客
+vol2命令格式： volatility -f [image] --profile=[profile] [plugin] 这里需要注意 ：Volatility3和Volatility2用法差不多，但不需要指定profile ，只是插件调用方式改变，特定的操作系统有特定的插件 python3 vol.py [plugin] -f [image]常用插件：layerwriter：列出内存镜像platform信息linux.bash：从内存中恢复bash命令历史记录linux.check_afinfo：验证网络协议的操作功能指针linux.check_syscall：检查系统调用表中的挂钩linux.elfs：列出所有进程的所有内存映射ELF文件linux.lsmod：列出加载的内核模块linux.lsof：列出所有进程的所有内存映射linux.malfind：列出可能包含注入代码的进程内存范围linux.proc：列出所有进程的所有内存映射linux.pslist：列出linux内存映像中存在的进程linux.pstree：列出进程树mac.bash：从内存中恢复bash命令历史记录mac.check_syscall：检查系统调用表中的挂钩mac.check_sysctl：检查sysctl处理程序的挂钩mac.check_trap_table：检查trap表中的挂钩mac.ifconfig：列出网卡信息mac.lsmod：列出加载的内核模块mac.lsof：列出所有进程的所有内存映射mac.malfind：列出可能包含注入代码的进程内存范围mac.netstat：列出所有进程的所有网络连接mac.psaux：恢复程序命令行参数mac.pslist：列出linux内存映像中存在的进程mac.pstree：列出进程树mac.tasks：列出Mac内存映像中存在的进程windows.info：显示正在分析的内存样本的OS和内核详细信息windows.callbacks：列出内核回调和通知例程windows.cmdline：列出进程命令行参数windows.dlldump：将进程内存范围DLL转储windows.dlllist：列出Windows内存映像中已加载的dll模块windows.driverirp：在Windows内存映像中列出驱动程序的IRPwindows.driverscan：扫描Windows内存映像中存在的驱动程序windows.filescan：扫描Windows内存映像中存在的文件对象windows.handles：列出进程打开的句柄windows.malfind：列出可能包含注入代码的进程内存范围windows.moddump：转储内核模块windows.modscan：扫描Windows内存映像中存在的模块windows.mutantscan：扫描Windows内存映像中存在的互斥锁windows.pslist：列出Windows内存映像中存在的进程windows.psscan：扫描Windows内存映像中存在的进程windows.pstree：列出进程树windows.procdump：转储处理可执行映像windows.registry.certificates：列出注册表中存储的证书windows.registry.hivelist：列出内存映像中存在的注册表配置单元windows.registry.hivescan：扫描Windows内存映像中存在的注册表配置单元windows.registry.printkey：在配置单元或特定键值下列出注册表项windows.registry.userassist：打印用户助手注册表项和信息windows.ssdt：列出系统调用表windows.strings：读取字符串命令的输出，并指示每个字符串属于哪个进程windows.svcscan：扫描Windows服务windows.symlinkscan：扫描Windows内存映像中存在的链接 ──(root㉿kali)-[/home/messi/Desktop/vol3]└─# sudo ln -s /home/messi/Desktop/vol3/vol.py /usr/local/bin/vol3//添加一个软连接方便使用 列出所有进程">
+
+<meta property="og:url" content="https://GCmessir.github.io/blog/2024hectfmisc/">
+  <meta property="og:site_name" content="Documenting the journey ^_^">
+  <meta property="og:title" content="2024HECTFmisc">
+  <meta property="og:description" content="2024HECTFmisc# 恶势力的聊天记录# vol3参考文档
+Volatility 3 — Volatility 3 2.11.0 documentation
+vol3使用参考
+Volatility3内存取证工具使用详解-CSDN博客
+vol2命令格式： volatility -f [image] --profile=[profile] [plugin] 这里需要注意 ：Volatility3和Volatility2用法差不多，但不需要指定profile ，只是插件调用方式改变，特定的操作系统有特定的插件 python3 vol.py [plugin] -f [image]常用插件：layerwriter：列出内存镜像platform信息linux.bash：从内存中恢复bash命令历史记录linux.check_afinfo：验证网络协议的操作功能指针linux.check_syscall：检查系统调用表中的挂钩linux.elfs：列出所有进程的所有内存映射ELF文件linux.lsmod：列出加载的内核模块linux.lsof：列出所有进程的所有内存映射linux.malfind：列出可能包含注入代码的进程内存范围linux.proc：列出所有进程的所有内存映射linux.pslist：列出linux内存映像中存在的进程linux.pstree：列出进程树mac.bash：从内存中恢复bash命令历史记录mac.check_syscall：检查系统调用表中的挂钩mac.check_sysctl：检查sysctl处理程序的挂钩mac.check_trap_table：检查trap表中的挂钩mac.ifconfig：列出网卡信息mac.lsmod：列出加载的内核模块mac.lsof：列出所有进程的所有内存映射mac.malfind：列出可能包含注入代码的进程内存范围mac.netstat：列出所有进程的所有网络连接mac.psaux：恢复程序命令行参数mac.pslist：列出linux内存映像中存在的进程mac.pstree：列出进程树mac.tasks：列出Mac内存映像中存在的进程windows.info：显示正在分析的内存样本的OS和内核详细信息windows.callbacks：列出内核回调和通知例程windows.cmdline：列出进程命令行参数windows.dlldump：将进程内存范围DLL转储windows.dlllist：列出Windows内存映像中已加载的dll模块windows.driverirp：在Windows内存映像中列出驱动程序的IRPwindows.driverscan：扫描Windows内存映像中存在的驱动程序windows.filescan：扫描Windows内存映像中存在的文件对象windows.handles：列出进程打开的句柄windows.malfind：列出可能包含注入代码的进程内存范围windows.moddump：转储内核模块windows.modscan：扫描Windows内存映像中存在的模块windows.mutantscan：扫描Windows内存映像中存在的互斥锁windows.pslist：列出Windows内存映像中存在的进程windows.psscan：扫描Windows内存映像中存在的进程windows.pstree：列出进程树windows.procdump：转储处理可执行映像windows.registry.certificates：列出注册表中存储的证书windows.registry.hivelist：列出内存映像中存在的注册表配置单元windows.registry.hivescan：扫描Windows内存映像中存在的注册表配置单元windows.registry.printkey：在配置单元或特定键值下列出注册表项windows.registry.userassist：打印用户助手注册表项和信息windows.ssdt：列出系统调用表windows.strings：读取字符串命令的输出，并指示每个字符串属于哪个进程windows.svcscan：扫描Windows服务windows.symlinkscan：扫描Windows内存映像中存在的链接 ──(root㉿kali)-[/home/messi/Desktop/vol3]└─# sudo ln -s /home/messi/Desktop/vol3/vol.py /usr/local/bin/vol3//添加一个软连接方便使用 列出所有进程">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-12-13T20:00:04+08:00">
+    <meta property="article:modified_time" content="2024-12-13T20:00:04+08:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="CTF-Misc">
+
+
+  <meta itemprop="name" content="2024HECTFmisc">
+  <meta itemprop="description" content="2024HECTFmisc# 恶势力的聊天记录# vol3参考文档
+Volatility 3 — Volatility 3 2.11.0 documentation
+vol3使用参考
+Volatility3内存取证工具使用详解-CSDN博客
+vol2命令格式： volatility -f [image] --profile=[profile] [plugin] 这里需要注意 ：Volatility3和Volatility2用法差不多，但不需要指定profile ，只是插件调用方式改变，特定的操作系统有特定的插件 python3 vol.py [plugin] -f [image]常用插件：layerwriter：列出内存镜像platform信息linux.bash：从内存中恢复bash命令历史记录linux.check_afinfo：验证网络协议的操作功能指针linux.check_syscall：检查系统调用表中的挂钩linux.elfs：列出所有进程的所有内存映射ELF文件linux.lsmod：列出加载的内核模块linux.lsof：列出所有进程的所有内存映射linux.malfind：列出可能包含注入代码的进程内存范围linux.proc：列出所有进程的所有内存映射linux.pslist：列出linux内存映像中存在的进程linux.pstree：列出进程树mac.bash：从内存中恢复bash命令历史记录mac.check_syscall：检查系统调用表中的挂钩mac.check_sysctl：检查sysctl处理程序的挂钩mac.check_trap_table：检查trap表中的挂钩mac.ifconfig：列出网卡信息mac.lsmod：列出加载的内核模块mac.lsof：列出所有进程的所有内存映射mac.malfind：列出可能包含注入代码的进程内存范围mac.netstat：列出所有进程的所有网络连接mac.psaux：恢复程序命令行参数mac.pslist：列出linux内存映像中存在的进程mac.pstree：列出进程树mac.tasks：列出Mac内存映像中存在的进程windows.info：显示正在分析的内存样本的OS和内核详细信息windows.callbacks：列出内核回调和通知例程windows.cmdline：列出进程命令行参数windows.dlldump：将进程内存范围DLL转储windows.dlllist：列出Windows内存映像中已加载的dll模块windows.driverirp：在Windows内存映像中列出驱动程序的IRPwindows.driverscan：扫描Windows内存映像中存在的驱动程序windows.filescan：扫描Windows内存映像中存在的文件对象windows.handles：列出进程打开的句柄windows.malfind：列出可能包含注入代码的进程内存范围windows.moddump：转储内核模块windows.modscan：扫描Windows内存映像中存在的模块windows.mutantscan：扫描Windows内存映像中存在的互斥锁windows.pslist：列出Windows内存映像中存在的进程windows.psscan：扫描Windows内存映像中存在的进程windows.pstree：列出进程树windows.procdump：转储处理可执行映像windows.registry.certificates：列出注册表中存储的证书windows.registry.hivelist：列出内存映像中存在的注册表配置单元windows.registry.hivescan：扫描Windows内存映像中存在的注册表配置单元windows.registry.printkey：在配置单元或特定键值下列出注册表项windows.registry.userassist：打印用户助手注册表项和信息windows.ssdt：列出系统调用表windows.strings：读取字符串命令的输出，并指示每个字符串属于哪个进程windows.svcscan：扫描Windows服务windows.symlinkscan：扫描Windows内存映像中存在的链接 ──(root㉿kali)-[/home/messi/Desktop/vol3]└─# sudo ln -s /home/messi/Desktop/vol3/vol.py /usr/local/bin/vol3//添加一个软连接方便使用 列出所有进程">
+  <meta itemprop="datePublished" content="2024-12-13T20:00:04+08:00">
+  <meta itemprop="dateModified" content="2024-12-13T20:00:04+08:00">
+  <meta itemprop="wordCount" content="924">
+  <meta itemprop="keywords" content="Blog,CTF-Misc">
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+<style>
+   
+  @font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:100;src:local("Roboto Slab Thin "),local("Roboto Slab-Thin"),url(/fonts/roboto-slab-latin-100.woff2) format("woff2"),url(/fonts/roboto-slab-latin-100.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:200;src:local("Roboto Slab Extra Light "),local("Roboto Slab-Extra Light"),url(/fonts/roboto-slab-latin-200.woff2) format("woff2"),url(/fonts/roboto-slab-latin-200.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:300;src:local("Roboto Slab Light "),local("Roboto Slab-Light"),url(/fonts/roboto-slab-latin-300.woff2) format("woff2"),url(/fonts/roboto-slab-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:400;src:local("Roboto Slab Regular "),local("Roboto Slab-Regular"),url(/fonts/roboto-slab-latin-400.woff2) format("woff2"),url(/fonts/roboto-slab-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:500;src:local("Roboto Slab Medium "),local("Roboto Slab-Medium"),url(/fonts/roboto-slab-latin-500.woff2) format("woff2"),url(/fonts/roboto-slab-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:600;src:local("Roboto Slab SemiBold "),local("Roboto Slab-SemiBold"),url(/fonts/roboto-slab-latin-600.woff2) format("woff2"),url(/fonts/roboto-slab-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:700;src:local("Roboto Slab Bold "),local("Roboto Slab-Bold"),url(/fonts/roboto-slab-latin-700.woff2) format("woff2"),url(/fonts/roboto-slab-latin-700.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:800;src:local("Roboto Slab ExtraBold "),local("Roboto Slab-ExtraBold"),url(/fonts/roboto-slab-latin-800.woff2) format("woff2"),url(/fonts/roboto-slab-latin-800.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:900;src:local("Roboto Slab Black "),local("Roboto Slab-Black"),url(/fonts/roboto-slab-latin-900.woff2) format("woff2"),url(/fonts/roboto-slab-latin-900.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:300;src:local("Fira Code Light "),local("Fira Code-Light"),url(/fonts/fira-code-latin-300.woff2) format("woff2"),url(/fonts/fira-code-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:400;src:local("Fira Code Regular "),local("Fira Code-Regular"),url(/fonts/fira-code-latin-400.woff2) format("woff2"),url(/fonts/fira-code-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:500;src:local("Fira Code Medium "),local("Fira Code-Medium"),url(/fonts/fira-code-latin-500.woff2) format("woff2"),url(/fonts/fira-code-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:600;src:local("Fira Code SemiBold "),local("Fira Code-SemiBold"),url(/fonts/fira-code-latin-600.woff2) format("woff2"),url(/fonts/fira-code-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:700;src:local("Fira Code Bold "),local("Fira Code-Bold"),url(/fonts/fira-code-latin-700.woff2) format("woff2"),url(/fonts/fira-code-latin-700.woff) format("woff")}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+
+/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */@keyframes blink{50%{opacity:0}to{opacity:1}}
+
+/*! MIT License | github.com/schnerring/hugo-theme-gruvbox */:root[data-theme=light]{--bg:var(--bg0);--bg0:#fbf1c7;--bg0_h:#f9f5d7;--bg0_s:#f2e5bc;--bg1:#ebdbb2;--bg2:#d5c4a1;--bg3:#bdae93;--bg4:#a89984;--fg:var(--fg1);--fg0:#282828;--fg1:#3c3836;--fg2:#504945;--fg3:#665c54;--fg4:#7c6f64;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#9d0006;--green1:#98971a;--green2:#797403;--yellow1:#d79921;--yellow2:#b57614;--blue1:#458588;--blue2:#076678;--purple1:#b16286;--purple2:#8f3f71;--aqua1:#689d6a;--aqua2:#427b58;--orange1:#d65d0e;--orange2:#af3a03}[data-theme=light]:root .light--hidden{display:none}:root[data-theme=dark]{--bg:var(--bg0);--bg0:#282828;--bg0_h:#1d2021;--bg0_s:#32302f;--bg1:#3c3836;--bg2:#504945;--bg3:#665c54;--bg4:#7c6f64;--fg:var(--fg1);--fg0:#fbf1c7;--fg1:#ebdbb2;--fg2:#d5c4a1;--fg3:#bdae93;--fg4:#a89984;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#fb4934;--green1:#98971a;--green2:#b8bb26;--yellow1:#d79921;--yellow2:#fabd2f;--blue1:#458588;--blue2:#83a598;--purple1:#b16286;--purple2:#d3869b;--aqua1:#689d6a;--aqua2:#8ec07c;--orange1:#d65d0e;--orange2:#fe8019}[data-theme=dark]:root .dark--hidden{display:none}:root{--primary:var(--blue1);--primary-alt:var(--blue2);--font-monospace:"Fira Code","Lucida Console",Monaco,monospace;--font-sans-serif:Verdana,Helvetica,sans-serif;--font-serif:"Roboto Slab",Georgia,serif}html{font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);font-size:1rem;scroll-behavior:smooth}body{background:var(--bg);color:var(--fg);line-height:1.675;word-wrap:break-word}strong{letter-spacing:.35px}a{color:inherit;-webkit-text-decoration:none;text-decoration:none}a.link--external:after{content:"\2009↗"}img{border:2px solid var(--bg1);height:auto;max-width:100%}::-moz-selection{background:var(--bg4);color:var(--fg0)}::selection{background:var(--bg4);color:var(--fg0)}h1,h2,h3,h4,h5,h6{color:var(--fg0);font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-weight:300;line-height:1.4}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{font-size:1em}h2,h3,h4,h5,h6{border-bottom:1px solid var(--bg1)}h1,h2{font-weight:400}h1{font-size:1.875rem}h2{font-size:1.75rem}h3{font-size:1.625rem}@media (min-width:768px){h1{font-size:2.375rem}h2{font-size:2rem}h3{font-size:1.75rem}}h4{font-size:1.5rem}h5{font-size:1.375rem}h6{font-size:1.25rem}table{border-collapse:collapse;margin:2rem 0;table-layout:fixed;width:100%}table,td,th{border:1px solid var(--bg1);padding:.5rem}hr{background:var(--bg1);border:none;height:1px;margin:3rem auto;width:80%}blockquote,code,pre{border-radius:.2rem;padding:0 .2em}pre code{padding:0}blockquote,code,pre,th{background:var(--bg1)}code,pre,th{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}code code{background:var(--bg2)}blockquote,pre{padding:1rem}pre{background:var(--bg1)!important;overflow:auto}pre code{background:none}blockquote{border-left:5px solid var(--primary-alt);margin:.5rem 0}blockquote:not(.does-not-exist) code{background:var(--bg2)}blockquote:not(.does-not-exist) p:first-of-type{margin-top:0}blockquote:not(.does-not-exist) p:last-of-type{margin-bottom:0}pre::-webkit-scrollbar{height:.5rem;scrollbar-width:auto}pre::-webkit-scrollbar-track{background:var(--bg2);border-radius:.2rem}pre::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:.2rem}.layout{display:grid;grid-template-areas:"header" "main" "footer";grid-template-rows:auto 1fr auto;height:100vh}main{align-items:start;display:grid;grid-area:main;grid-template-areas:"empty content sidebar";grid-template-columns:1fr minmax(0,650px) 4fr}header{background:var(--bg1);grid-area:header}footer{grid-area:footer}footer,main{margin:.5em 1.1em}.content{grid-area:content}.sidebar{display:none;flex-direction:column;grid-area:sidebar;margin-top:3rem;position:sticky;top:2rem}@media (min-width:992px){.sidebar{display:flex}}header{display:grid;font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-size:1.125rem;grid-template-areas:"heading search nav theme-toggle";grid-template-columns:auto auto 1fr auto;padding:.75rem}.logo{color:var(--fg0);display:flex;font-weight:700;grid-area:heading}.logo:hover .logo__cursor{animation:blink 1s infinite;opacity:1}.logo__chevron,.logo__cursor{margin-left:.5rem}.logo__cursor{opacity:0}.logo__text{display:none}@media (min-width:768px){.logo__text{display:block}}.search{display:flex;grid-area:search;margin:0 1rem}#search__text{background:var(--bg2);border:1px solid var(--bg2);border-radius:.2rem;caret-color:var(--fg);color:var(--fg);outline:none;padding:0 .5rem;width:100%}#search__text:hover{border-color:var(--bg3)}#search__text:focus{border-color:var(--bg4)}#search__text::-moz-placeholder{color:var(--fg3)}#search__text::placeholder{color:var(--fg3)}#search__text[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}#search__suggestions{background:var(--bg);border-radius:.2rem;box-shadow:0 .5rem 1rem var(--bg1);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);left:0;margin-top:2rem;position:absolute;width:95vw;z-index:1000}@media (min-width:768px){.search{position:relative}#search__suggestions{width:60vw}}.search__suggestions--hidden{display:none}.search__suggestion-item{border-bottom:1px dashed var(--bg2);display:grid;grid-template-columns:1fr 2fr}.search__suggestion-item:focus,.search__suggestion-item:focus-visible,.search__suggestion-item:hover{background:var(--bg1);cursor:pointer;outline:none}.search__suggestion-item:last-child{border:none}.search__suggestion-description,.search__suggestion-title{margin:1rem 0;padding:0 1rem}.search__suggestion-title{font-weight:700}.search__suggestion-description{border-left:1px solid var(--bg2)}.search__no-results{padding:.75rem}.theme__toggle{align-items:center;background:none;border:none;color:var(--yellow1);cursor:pointer;display:flex;grid-area:theme-toggle;margin:0 1rem}.theme__toggle:hover{color:var(--yellow2)}.theme__toggle svg{height:28px;width:28px}nav#menu{align-items:center;display:flex;grid-area:nav;justify-content:flex-end}nav#menu .menu__item{color:var(--fg)}nav#menu .menu__item:hover{color:var(--fg3);cursor:pointer}nav#menu ul{list-style:none;margin:0;padding:0}nav#menu ul.menu--horizontal{align-items:center;display:none}nav#menu ul.menu--horizontal li{display:inline-block;margin:0 .75rem}@media (min-width:768px){nav#menu ul.menu--horizontal{display:flex}}nav#menu ul.menu--vertical{background:var(--fg0);bottom:0;margin:0;padding:3rem;position:fixed;right:0;top:0;transform:translate(100%);transition:transform .5s cubic-bezier(.9,0,.1,1);width:50%;z-index:10}nav#menu ul.menu--vertical .menu__item{color:var(--bg1)}nav#menu ul.menu--vertical .menu__item:hover{color:var(--bg4)}nav#menu .menu__burger{display:flex;height:24px;width:24px}nav#menu .menu__burger>*{position:absolute}nav#menu .menu__burger svg{height:inherit;width:inherit;z-index:20}nav#menu .menu__burger input{height:inherit;opacity:0;width:inherit;z-index:30}nav#menu .menu__burger input:checked~ul.menu--vertical{transform:none}nav#menu .menu__burger input:checked~svg{stroke:var(--bg1)}@media (min-width:768px){nav#menu .menu__burger{display:none}}.sidebar{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);margin-left:auto;margin-right:auto;max-width:350px;padding-left:2.5rem}.sidebar hr{margin:1.5rem auto}.sidebar svg{fill:var(--fg)}.sidebar__heading{font-size:1.3rem}aside.toc a{color:var(--primary-alt)}aside.toc a:hover{color:var(--primary)}aside.toc ul{list-style:none;margin:0;padding:0}aside.toc ul ul{font-size:.9rem;margin-left:.5rem}aside.toc ul li{line-height:1.1}aside.toc ul li a{display:block;padding:.2rem 0}.jr-basics__image{background:var(--bg1);border:2px solid var(--bg2)}.jr-basics__summary{color:var(--fg3);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);margin:.75rem 0}.jr-basics__profile a:hover{color:var(--fg3)}.jr-basics__profile a:hover svg{fill:var(--fg3)}.tag-cloud{line-height:1.1;text-align:justify}.tag-cloud__tag:hover{color:var(--fg3)}.content-section,.post{border-bottom:2px dotted var(--bg1);padding:2rem 0}.post img:not(figure img){box-sizing:border-box;margin:.5rem 0}.post-content__read-more,.post-header{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}.post-content{margin:1.3rem 0}.post-content__read-more{color:var(--primary-alt);margin-top:1.3rem}.post-content a,.post-header a{color:var(--primary-alt)}.post-content a:hover,.post-header a:hover{color:var(--primary)}.post-tags{align-items:center;display:flex;flex-wrap:wrap;gap:.9rem;margin:1rem 0}.post-tag{font-size:.9rem;line-height:1}.post-tag:before{content:"#"}.post-heading__anchor{display:none}h1:hover .post-heading__anchor,h2:hover .post-heading__anchor,h3:hover .post-heading__anchor,h4:hover .post-heading__anchor,h5:hover .post-heading__anchor,h6:hover .post-heading__anchor{display:inline-block}.jr-basics__image,.jr-basics__item,.jr-basics__profile-icon,.jr-basics__profile-item{align-items:center;display:flex}.jr-basics__name{font-size:1.125rem;font-weight:700}.jr-basics__item{flex-direction:column;text-align:center}.jr-basics__item hr{margin:1.5rem auto}.jr-basics__image{border-radius:50%;height:250px;justify-content:center;overflow:hidden;width:250px}.jr-basics__label,.jr-basics__name,.jr-basics__summary{margin-top:.75rem}.jr-basics__profile svg{height:24px;width:24px}.jr-basics__profile,.jr-basics__profile-item{display:flex}.jr-basics__profile-item{display:flex;padding:.2rem}.jr-basics__profile--row{flex-wrap:wrap;justify-content:space-evenly}.jr-basics__profile-icon{padding:0 .75rem}.social-share{align-items:center;border-top:2px dotted var(--bg1);display:flex;flex-wrap:wrap;gap:.9rem;margin:3rem 0;padding-top:3rem}.social-share svg{fill:var(--fg);height:24px;width:24px}.social-share svg.icon-tabler{fill:none;stroke:var(--fg)}.social-share__item{background:var(--bg1);display:flex;padding:.5rem}
+   
+</style>
+
+<link
+  rel="preload"
+  href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+  
+/>
+
+
+<link
+  id="prism-dark"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-dark.min.54aecc64074623a4f9898544dcbdab9e804f1560ef0b38f4cf8e10fcaaf72264e798cb407c601aca6ecd833ec4eb93d66535581f18d45ba202cf848b70dbc332.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  integrity="sha512-VK7MZAdGI6T5iYVE3L2rnoBPFWDvCzj0z44Q/Kr3ImTnmMtAfGAaym7Ngz7E65PWZTVYHxjUW6ICz4SLcNvDMg=="
+  disabled
+/>
+
+
+<link
+  id="prism-light"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+  
+  
+/>
+
+<noscript>
+  
+    <link
+      rel="stylesheet"
+      href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+      
+        integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+      
+    />
+  
+
+
+  <link
+    rel="stylesheet"
+    href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+    
+      integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+    
+  />
+</noscript>
+
+
+  
+
+  
+
+
+
+
+<script>
+  (()=>{function c(){if(localStorage&&localStorage.getItem("theme"))return localStorage.getItem("theme");if(window.matchMedia)return window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}function n(t){document.documentElement.setAttribute("data-theme",t);let e=document.getElementById("prism-dark"),i=document.getElementById("prism-light");e.toggleAttribute("disabled",t==="light"),i.toggleAttribute("disabled",t==="dark"),localStorage.setItem("theme",t)}var o=c();o&&n(o);function l(t){let e=t.currentTarget.classList.contains("light--hidden")?"light":"dark";n(e)}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".theme__toggle").forEach(e=>{e.addEventListener("click",l)})});})();
+
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#282828" />
+<meta name="msapplication-TileColor" content="#282828" />
+<meta name="theme-color" content="#282828" />
+
+
+
+  
+  
+
+</head>
+
+  <body>
+    <div class="layout">
+      <header>
+  <a
+    class="logo"
+    href="/"
+  >
+    
+      <div class="logo__text">Home</div>
+    
+    <div class="logo__chevron">></div>
+    <div class="logo__cursor">█</div>
+  </a>
+
+  <div class="search">
+    <input
+      id="search__text"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      autocomplete="off"
+    />
+    <div id="search__suggestions" class="search__suggestions--hidden"></div>
+  </div>
+
+  <nav id="menu">
+    <ul class="menu--horizontal">
+      
+        <li class="menu__item">
+          <a href="/blog">Blog</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/friends">Friends</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/about">About</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/categories">Categories</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/tags">Tags</a>
+        </li>
+      
+    </ul>
+
+    <div class="menu__burger">
+      
+      <input class="menu__item" type="checkbox" aria-label="Open main menu" />
+
+      
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+
+
+
+      <ul class="menu--vertical">
+        
+          <li>
+            <a class="menu__item" href="/blog">Blog</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/friends">Friends</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/about">About</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/categories">Categories</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/tags">Tags</a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <button class="theme__toggle light--hidden" aria-label="Toggle light mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-sun"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+</svg>
+
+
+  </button>
+
+  <button class="theme__toggle dark--hidden" aria-label="Toggle dark mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-moon"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+</svg>
+
+
+  </button>
+</header>
+
+      <main>
+        <div class="content">
+          
+  <article class="post">
+    <div class="post-header">
+      <h1>2024HECTFmisc</h1>
+      <div class="post-meta"><span>2024-12-13</span>
+    <div class="post-tags">
+      <a class="post-tag" href="https://GCmessir.github.io/tags/blog">blog</a><a class="post-tag" href="https://GCmessir.github.io/tags/ctf-misc">ctf&#8209;misc</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/jk_hu2053481494412847142.webp 300w,/blog/2024hectfmisc/jk_hu6793141996882245837.webp 500w,/blog/2024hectfmisc/jk_hu2169335617417575160.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/jk.jpg"
+        srcset="/blog/2024hectfmisc/jk_hu5894162609101197966.jpg 300w,/blog/2024hectfmisc/jk_hu8371155154008871039.jpg 500w,/blog/2024hectfmisc/jk_hu12010008222656428702.jpg 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="4000"
+        height="2614"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      <h2 id="2024hectfmisc">2024HECTFmisc<a href="#2024hectfmisc" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="恶势力的聊天记录">恶势力的聊天记录<a href="#%e6%81%b6%e5%8a%bf%e5%8a%9b%e7%9a%84%e8%81%8a%e5%a4%a9%e8%ae%b0%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>vol3参考文档</p>
+<p><a
+  href="https://volatility3.readthedocs.io/en/latest/"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>Volatility 3 — Volatility 3 2.11.0 documentation</a></p>
+<p>vol3使用参考</p>
+<p><a
+  href="https://blog.csdn.net/Aluxian_/article/details/127064750"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>Volatility3内存取证工具使用详解-CSDN博客</a></p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vol2命令格式： volatility -f <span style="color:#f92672">[</span>image<span style="color:#f92672">]</span> --profile<span style="color:#f92672">=[</span>profile<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>plugin<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>这里需要注意 ：Volatility3和Volatility2用法差不多，但不需要指定profile ，只是插件调用方式改变，特定的操作系统有特定的插件
+</span></span></code></pre></div><pre tabindex="0"><code>python3 vol.py [plugin] -f [image]
+ 
+常用插件：
+    layerwriter：列出内存镜像platform信息
+    linux.bash：从内存中恢复bash命令历史记录
+    linux.check_afinfo：验证网络协议的操作功能指针
+    linux.check_syscall：检查系统调用表中的挂钩
+    linux.elfs：列出所有进程的所有内存映射ELF文件
+    linux.lsmod：列出加载的内核模块
+    linux.lsof：列出所有进程的所有内存映射
+    linux.malfind：列出可能包含注入代码的进程内存范围
+    linux.proc：列出所有进程的所有内存映射
+    linux.pslist：列出linux内存映像中存在的进程
+    linux.pstree：列出进程树
+    mac.bash：从内存中恢复bash命令历史记录
+    mac.check_syscall：检查系统调用表中的挂钩
+    mac.check_sysctl：检查sysctl处理程序的挂钩
+    mac.check_trap_table：检查trap表中的挂钩
+    mac.ifconfig：列出网卡信息
+    mac.lsmod：列出加载的内核模块
+    mac.lsof：列出所有进程的所有内存映射
+    mac.malfind：列出可能包含注入代码的进程内存范围
+    mac.netstat：列出所有进程的所有网络连接
+    mac.psaux：恢复程序命令行参数
+    mac.pslist：列出linux内存映像中存在的进程
+    mac.pstree：列出进程树
+    mac.tasks：列出Mac内存映像中存在的进程
+    windows.info：显示正在分析的内存样本的OS和内核详细信息
+    windows.callbacks：列出内核回调和通知例程
+    windows.cmdline：列出进程命令行参数
+    windows.dlldump：将进程内存范围DLL转储
+    windows.dlllist：列出Windows内存映像中已加载的dll模块
+    windows.driverirp：在Windows内存映像中列出驱动程序的IRP
+    windows.driverscan：扫描Windows内存映像中存在的驱动程序
+    windows.filescan：扫描Windows内存映像中存在的文件对象
+    windows.handles：列出进程打开的句柄
+    windows.malfind：列出可能包含注入代码的进程内存范围
+    windows.moddump：转储内核模块
+    windows.modscan：扫描Windows内存映像中存在的模块
+    windows.mutantscan：扫描Windows内存映像中存在的互斥锁
+    windows.pslist：列出Windows内存映像中存在的进程
+    windows.psscan：扫描Windows内存映像中存在的进程
+    windows.pstree：列出进程树
+    windows.procdump：转储处理可执行映像
+    windows.registry.certificates：列出注册表中存储的证书
+    windows.registry.hivelist：列出内存映像中存在的注册表配置单元
+    windows.registry.hivescan：扫描Windows内存映像中存在的注册表配置单元
+    windows.registry.printkey：在配置单元或特定键值下列出注册表项
+    windows.registry.userassist：打印用户助手注册表项和信息
+    windows.ssdt：列出系统调用表
+    windows.strings：读取字符串命令的输出，并指示每个字符串属于哪个进程
+    windows.svcscan：扫描Windows服务
+    windows.symlinkscan：扫描Windows内存映像中存在的链接
+</code></pre><pre tabindex="0"><code>──(root㉿kali)-[/home/messi/Desktop/vol3]
+└─# sudo ln -s /home/messi/Desktop/vol3/vol.py /usr/local/bin/vol3
+//添加一个软连接方便使用
+</code></pre><blockquote>
+<p>列出所有进程</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vol3 -f image.vmem windows.pslist.PsList
+</span></span></code></pre></div><pre tabindex="0"><code>vol3 -f image.vmem windows.pslist.PsList 每个部分都有特定的含义和功能。我将逐个解释这些部分：
+
+-f image.vmem: -f 参数指定了内存镜像文件的位置。在这个例子中，image.vmem 是你想要分析的 Windows 内存转储文件的路径。VMEM 文件通常是 VMware 虚拟机的内存快照。
+
+windows.pslist.PsList: 这部分指定了要运行的插件。Volatility 的插件结构通常遵循以下格式：&lt;操作系统&gt;.&lt;类别&gt;.&lt;插件名称&gt;。在这里，我们有：
+windows: 表示这个插件适用于 Windows 操作系统的内存分析。Volatility 支持多种操作系统（如 Linux 和 macOS），每个操作系统都有自己的一套插件。
+
+pslist: 插件所属的类别，通常表示该插件提供的功能类型。例如，pslist 类别下的插件用于列出进程信息。
+PsList: 这是具体要执行的插件名称。PsList 插件用来从内存镜像中提取正在运行的进程列表。它会显示进程 ID (PID)、父进程 ID (PPID)、创建时间和映像路径等信息。
+
+关于 windows. 后面可以跟哪些内容，这取决于你想要进行什么样的分析。以下是几个常见的插件类别及其作用：
+
+pslist: 列出系统中的所有进程。
+modules: 显示加载到内存中的模块（DLLs）。
+handles: 展示进程句柄，包括文件、注册表键和其他资源。
+cmdline: 提取进程的命令行参数。
+netscan: 扫描网络连接和端口。
+dlllist: 列出每个进程中加载的动态链接库。
+privileges: 查看进程所拥有的特权。
+malfind: 寻找可能的恶意代码，比如隐藏的或注入的代码。
+svcscan: 扫描并显示服务控制管理器数据库中的服务。
+</code></pre><blockquote>
+<p><code>--info</code> 参数来获取更多可用插件的信息</p>
+</blockquote>
+<pre tabindex="0"><code>vol3 --info | grep windows.
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301_hu13437111974008077586.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301_hu17465306551284470428.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301_hu6965054012976757507.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301_hu1561047406406178207.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301_hu616584067464083401.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210533301_hu589601048713138071.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241207210533301"
+        
+        loading="lazy"
+        width="1229"
+        height="789"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725_hu10017704162413553430.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725_hu16081616324759811085.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725_hu11802814332325169286.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725_hu9555380040206413989.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725_hu8047295157113357473.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207210623725_hu17230223405408699129.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241207210623725"
+        
+        loading="lazy"
+        width="1295"
+        height="535"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>发现后台WeChat进程，使用filescan过滤wxid查找微信文件</p>
+</blockquote>
+<pre tabindex="0"><code>vol3 -f image.vmem windows.filescan.FileScan | grep &#34;wxid&#34;
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164_hu15612082737446219873.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164_hu5194262277187238768.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164_hu9773022040719101217.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164_hu14630284619189599569.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164_hu13008607428307858408.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211002164_hu14783394123235945860.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241207211002164"
+        
+        loading="lazy"
+        width="1499"
+        height="629"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>找到微信用户wxid为wxid_ah0tuevc7rbz22</p>
+<p>导出微信聊天记录数据库文件</p>
+</blockquote>
+<pre tabindex="0"><code>vol3 -f image.vmem windows.filescan.FileScan | grep &#34;wxid_ah0tuevc7rbz22.*Msg.*Multi.*db&#34; &gt; filedb.txt
+</code></pre><blockquote>
+<p>MSG.db为存储聊天记录的数据库，导出数据库MSG0.db</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832_hu17144133342818180934.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832_hu3442518942478833214.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832_hu10664992721319950120.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832_hu65069567991914091.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832_hu12034391088367188093.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241207211616832_hu11573351255874740148.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241207211616832"
+        
+        loading="lazy"
+        width="913"
+        height="357"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<pre tabindex="0"><code>                                             
+┌──(root㉿kali)-[/home/messi/Desktop/vol3]
+└─# cat filedb.txt 
+0x247c7b90      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\MultiSearchChatMsg.db
+0x7da66710      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MSG0.db
+0x7db98970      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MSG0.db-shm
+0x7dc9eac0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MSG0.db
+0x7dcb8b20      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\bak\MSG0_1731071567.bakdb-wal
+0x7dcbc7a0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MSG0.db-shm
+0x7dcbcdd0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\bak\MSG0_1731071567.bakdb-shm
+0x7dcf18c0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\MultiSearchChatMsg.db-wal
+0x7dcf1f20      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MSG0.db-wal
+0x7e0dd8d0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\FTSMSG0.db
+0x7f319780      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\MultiSearchChatMsg.db-shm
+0x7fa8bbc0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MediaMSG0.db-shm
+0x7fa8bf20      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MediaMSG0.db-wal
+0x7fb85d40      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\FTSMSG0.db-shm
+0x7fca2a10      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MSG0.db-wal
+0x7fcb8bc0      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\MediaMSG0.db
+0x7fccff20      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\MultiSearchChatMsg.db
+0x7fd40360      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\FTSMSG0.db-wal
+0x7fdb4d10      \Users\aja\Documents\WeChat Files\wxid_ah0tuevc7rbz22\Msg\Multi\FTSMSG0.db
+</code></pre><blockquote>
+<h4 id="下载系统中的文件"><strong>下载系统中的文件</strong><a href="#%e4%b8%8b%e8%bd%bd%e7%b3%bb%e7%bb%9f%e4%b8%ad%e7%9a%84%e6%96%87%e4%bb%b6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p><a
+  href="https://blog.csdn.net/qq_30817059/article/details/134454422"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>【volatality 3】使用说明文档_volatility3-CSDN博客</a></p>
+</blockquote>
+<pre tabindex="0"><code>这个插件和2.6中的差异较大, 在3.0的版本中,已经找不到 memdump procdump等插件了
+
+只有一个dumpfiles 我们可以通过-h 来查看下参数 在3.0的版本中一定要指定物理地址进行下载
+
+可以发现，不仅可以通过虚拟地址还可以通过PID、物理地址进行下载文件. 也不再通过-D 指定保存的路径
+</code></pre><pre tabindex="0"><code>┌──(root㉿kali)-[/home/messi/Desktop/vol3]
+└─# vol3 -f image.vmem windows.dumpfiles.DumpFiles -h                                       
+Volatility 3 Framework 2.12.0
+usage: vol3 windows.dumpfiles.DumpFiles [-h] [--pid PID] [--virtaddr VIRTADDR] [--physaddr PHYSADDR] [--filter FILTER] [--ignore-case]
+
+Dumps cached file contents from Windows memory samples.
+
+options:
+  -h, --help           show this help message and exit
+  --pid PID            Process ID to include (all other processes are excluded)
+  --virtaddr VIRTADDR  Dump a single _FILE_OBJECT at this virtual address
+  --physaddr PHYSADDR  Dump a single _FILE_OBJECT at this physical address
+  --filter FILTER      Dump files matching regular expression FILTER
+  --ignore-case        Ignore case in filter match
+</code></pre><blockquote>
+<p>在 <code>Volatility 3</code> 中，如果你想将转储的文件保存到特定目录，可以直接在命令中指定文件名，而无需使用 <code>-o</code> 参数。以下是更新后的命令：</p>
+</blockquote>
+<pre tabindex="0"><code>python3 vol.py -f image.vmem windows.dumpfiles.DumpFiles --virtaddr 0x000000007da66710
+</code></pre><blockquote>
+<h4 id="输出文件的处理">输出文件的处理<a href="#%e8%be%93%e5%87%ba%e6%96%87%e4%bb%b6%e7%9a%84%e5%a4%84%e7%90%86" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>如果你想将输出文件重定向到某个文件，可以在命令行中使用输出重定向符号（<code>&gt;</code>）来实现。比如：</p>
+</blockquote>
+<pre tabindex="0"><code>python3 vol.py -f image.vmem windows.dumpfiles.DumpFiles --virtaddr 0x000000007da66710 &gt; output.txt
+</code></pre><blockquote>
+<p>dump下MSG.db为存储聊天记录的数据库，导出数据库MSG0.db</p>
+</blockquote>
+<pre tabindex="0"><code>┌──(root㉿kali)-[/home/messi/Desktop/vol3]
+└─# vol3 -f image.vmem windows.dumpfiles.DumpFiles --virtaddr 0x7da66710
+
+Volatility 3 Framework 2.12.0
+WARNING  volatility3.framework.layers.vmware: No metadata file found alongside VMEM file. A VMSS or VMSN file may be required to correctly process a VMEM file. These should be placed in the same directory with the same file name, e.g. image.vmem and image.vmss.
+Progress:  100.00               PDB scanning finished                        
+Cache   FileObject      FileName        Result
+</code></pre><pre tabindex="0"><code>不知道什么原因vol3就是没有转储下来
+</code></pre><p>后续操作就参考其他师傅的wp，用的是vol2</p>
+<blockquote>
+<p>微信数据库是加密的，需要找到密钥才能解密，filescan找到Desktop存在secretkey.zip</p>
+</blockquote>
+<pre tabindex="0"><code>0x000000007e1b7660      5      0 RW---- \Device\HarddiskVolume2\Users\aja\Desktop\secretkey.zip
+</code></pre><p>导出解压后，为64个文件，每个文件内容都是一段md5</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115_hu4400426855247250348.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115_hu1099128588625941181.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115_hu13509383769676392074.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115_hu5480846310855902831.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115_hu13774378212723991647.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212163843115_hu6174460113440392303.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212163843115"
+        
+        loading="lazy"
+        width="1702"
+        height="988"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>批量进行MD5破解，拼接在一起即为64位的微信密钥</p>
+<pre tabindex="0"><code>55e0ab1f18cd42d38e55eeec60f8911a4d22b13f0a154645b6bdc8b41766a58a
+</code></pre><blockquote>
+<p>使用脚本进行数据库解密</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># -*- coding: utf-8 -*-</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> Crypto.Cipher <span style="color:#f92672">import</span> AES
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> hashlib<span style="color:#f92672">,</span> hmac<span style="color:#f92672">,</span> ctypes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SQLITE_FILE_HEADER <span style="color:#f92672">=</span> bytes(<span style="color:#e6db74">&#34;SQLite format 3&#34;</span>, encoding<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;ASCII&#39;</span>) <span style="color:#f92672">+</span> bytes(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>IV_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">16</span>
+</span></span><span style="display:flex;"><span>HMAC_SHA1_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">20</span>
+</span></span><span style="display:flex;"><span>KEY_SIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">32</span>
+</span></span><span style="display:flex;"><span>DEFAULT_PAGESIZE <span style="color:#f92672">=</span> <span style="color:#ae81ff">4096</span>  <span style="color:#75715e"># 4048数据 + 16IV + 20 HMAC + 12</span>
+</span></span><span style="display:flex;"><span>DEFAULT_ITER <span style="color:#f92672">=</span> <span style="color:#ae81ff">64000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># yourkey</span>
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> bytes<span style="color:#f92672">.</span>fromhex(<span style="color:#e6db74">&#34;55e0ab1f18cd42d38e55eeec60f8911a4d22b13f0a154645b6bdc8b41766a58a&#34;</span><span style="color:#f92672">.</span>replace(<span style="color:#e6db74">&#39; &#39;</span>, <span style="color:#e6db74">&#39;&#39;</span>))
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;MSG0.db&#39;</span>, <span style="color:#e6db74">&#39;rb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    blist <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>read()
+</span></span><span style="display:flex;"><span>print(len(blist))
+</span></span><span style="display:flex;"><span>salt <span style="color:#f92672">=</span> blist[:<span style="color:#ae81ff">16</span>]
+</span></span><span style="display:flex;"><span>key <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>pbkdf2_hmac(<span style="color:#e6db74">&#39;sha1&#39;</span>, password, salt, DEFAULT_ITER, KEY_SIZE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>first <span style="color:#f92672">=</span> blist[<span style="color:#ae81ff">16</span>:DEFAULT_PAGESIZE]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># import struct</span>
+</span></span><span style="display:flex;"><span>mac_salt <span style="color:#f92672">=</span> bytes([x <span style="color:#f92672">^</span> <span style="color:#ae81ff">0x3a</span> <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> salt])
+</span></span><span style="display:flex;"><span>mac_key <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>pbkdf2_hmac(<span style="color:#e6db74">&#39;sha1&#39;</span>, key, mac_salt, <span style="color:#ae81ff">2</span>, KEY_SIZE)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>hash_mac <span style="color:#f92672">=</span> hmac<span style="color:#f92672">.</span>new(mac_key, digestmod<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;sha1&#39;</span>)
+</span></span><span style="display:flex;"><span>hash_mac<span style="color:#f92672">.</span>update(first[:<span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>])
+</span></span><span style="display:flex;"><span>hash_mac<span style="color:#f92672">.</span>update(bytes(ctypes<span style="color:#f92672">.</span>c_int(<span style="color:#ae81ff">1</span>)))
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># hash_mac.update(struct.pack(&#39;=I&#39;,1))</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (hash_mac<span style="color:#f92672">.</span>digest() <span style="color:#f92672">==</span> first[<span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">12</span>]):
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Correct Password&#39;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">RuntimeError</span>(<span style="color:#e6db74">&#39;Wrong Password&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>blist <span style="color:#f92672">=</span> [blist[i:i <span style="color:#f92672">+</span> DEFAULT_PAGESIZE] <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(DEFAULT_PAGESIZE, len(blist), DEFAULT_PAGESIZE)]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">r</span><span style="color:#e6db74">&#39;3.db&#39;</span>, <span style="color:#e6db74">&#39;wb&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>write(SQLITE_FILE_HEADER)
+</span></span><span style="display:flex;"><span>    t <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key, AES<span style="color:#f92672">.</span>MODE_CBC, first[<span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>])
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>write(t<span style="color:#f92672">.</span>decrypt(first[:<span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>]))
+</span></span><span style="display:flex;"><span>    f<span style="color:#f92672">.</span>write(first[<span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>:])
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> blist:
+</span></span><span style="display:flex;"><span>        t <span style="color:#f92672">=</span> AES<span style="color:#f92672">.</span>new(key, AES<span style="color:#f92672">.</span>MODE_CBC, i[<span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>:<span style="color:#f92672">-</span><span style="color:#ae81ff">32</span>])
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(t<span style="color:#f92672">.</span>decrypt(i[:<span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>]))
+</span></span><span style="display:flex;"><span>        f<span style="color:#f92672">.</span>write(i[<span style="color:#f92672">-</span><span style="color:#ae81ff">48</span>:])
+</span></span></code></pre></div><blockquote>
+<p>查看解密后文件</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755_hu17608527161136532093.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755_hu3828449720671155627.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755_hu4499834489927551083.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755_hu462777517244776247.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755_hu3336621478827920587.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164021755_hu13416940888510349382.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164021755"
+        
+        loading="lazy"
+        width="1714"
+        height="675"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>发现一段百度网盘的连接https://pan.baidu.com/s/17Bt-vSpRpBLRuhTWaCgb6g?pwd=mfpt 提取</p>
+<p>码: mfpt，百度网盘下载</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738_hu9741121812776539400.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738_hu13110417726213213918.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738_hu6561987446116694341.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738_hu12525839120570607488.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738_hu2493649891648596270.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164056738_hu2800801954407645306.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164056738"
+        
+        loading="lazy"
+        width="1792"
+        height="775"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>下载压缩包并解压，为文本文件，是一段很长的hex数据和key</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419_hu12079151148252883907.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419_hu14841215585865261072.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419_hu17864145429525275645.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419_hu2070510404472158151.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419_hu18036442472099025912.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164143419_hu12751898271186384028.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164143419"
+        
+        loading="lazy"
+        width="1592"
+        height="1283"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>RC4解密</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153_hu7529125618961827.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153_hu10387849801394370545.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153_hu7656829320031314247.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153_hu7796593914575391102.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153_hu6135020166904720880.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164202153_hu3110588079774882296.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164202153"
+        
+        loading="lazy"
+        width="1770"
+        height="705"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>Base64解密结果为图片的MD5，使用网站解码https://tool.jisuapi.com/base642pic.html</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595_hu2619182758997460944.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595_hu15369765015539701358.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595_hu4265629583060566991.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595_hu7827633559541588770.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595_hu3561984866135489203.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164230595_hu7772810024328117415.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164230595"
+        
+        loading="lazy"
+        width="1018"
+        height="1210"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>HXD打开，文件尾部有PK头，并有hectf_[4number].zip的提示</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622_hu10165608451222291386.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622_hu244744158663322906.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622_hu2548259922423571510.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622_hu57747152284619325.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622_hu17512706099782750524.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164254622_hu14931929678551962868.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164254622"
+        
+        loading="lazy"
+        width="989"
+        height="717"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>最后就是根据提示用ARCHPR进行掩码爆破</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667_hu6506862631871666797.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667_hu3798752427992773138.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667_hu12593243654916389076.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667_hu9540670698373933708.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667_hu8037673338172845488.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164348667_hu582153815725534056.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164348667"
+        
+        loading="lazy"
+        width="797"
+        height="946"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>密码hectf_7865</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755_hu7582245130506094938.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755_hu72964640671281349.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755_hu13211884799269537565.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755_hu14787364450963497624.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755_hu11344823280646482972.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212164403755_hu5489091736457489533.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212164403755"
+        
+        loading="lazy"
+        width="877"
+        height="89"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<h3 id="简单的压缩包">简单的压缩包<a href="#%e7%ae%80%e5%8d%95%e7%9a%84%e5%8e%8b%e7%bc%a9%e5%8c%85" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>根据正则表达式⽣成字典爆破密码</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> itertools
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义字符集</span>
+</span></span><span style="display:flex;"><span>lowercase_letters <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>ascii_lowercase  <span style="color:#75715e"># 小写字母 a-z</span>
+</span></span><span style="display:flex;"><span>digits <span style="color:#f92672">=</span> string<span style="color:#f92672">.</span>digits  <span style="color:#75715e"># 数字 0-9</span>
+</span></span><span style="display:flex;"><span>non_lowercase <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(set(string<span style="color:#f92672">.</span>printable[:<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>]) <span style="color:#f92672">-</span> set(lowercase_letters))  <span style="color:#75715e"># 非小写字母</span>
+</span></span><span style="display:flex;"><span>non_digits <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(set(string<span style="color:#f92672">.</span>printable[:<span style="color:#f92672">-</span><span style="color:#ae81ff">6</span>]) <span style="color:#f92672">-</span> set(digits))  <span style="color:#75715e"># 非数字字符</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成符合正则表达式的密码并保存到文件</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_password_dict</span>(filename):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(filename, <span style="color:#e6db74">&#39;w&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> letter1, letter2 <span style="color:#f92672">in</span> itertools<span style="color:#f92672">.</span>product(lowercase_letters, repeat<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>):
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">for</span> digit <span style="color:#f92672">in</span> digits:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> char <span style="color:#f92672">in</span> non_lowercase:
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> last_char <span style="color:#f92672">in</span> non_digits:
+</span></span><span style="display:flex;"><span>                        password <span style="color:#f92672">=</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>letter1<span style="color:#e6db74">}{</span>letter2<span style="color:#e6db74">}{</span>digit<span style="color:#e6db74">}{</span>char<span style="color:#e6db74">}{</span>last_char<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                        f<span style="color:#f92672">.</span>write(password <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>                        <span style="color:#75715e"># print(f&#34;Generated: {password}&#34;)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    output_filename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;generated_passwords.txt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(f&#34;Generating passwords and saving to {output_filename}...&#34;)</span>
+</span></span><span style="display:flex;"><span>    generate_password_dict(output_filename)
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># print(&#34;Password generation complete.&#34;)</span>
+</span></span></code></pre></div><p>爆破后得到密码：np76_</p>
+<p>解压后binwalk直接扫，得到zip.zip</p>
+<p>读getzip.py可以得到AES的key和iv之后直接解密即可拿到flag</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355_hu5501188614434416733.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355_hu3123405506314168566.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355_hu3758225691805032673.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355_hu16706420043257682594.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355_hu5392728592597611699.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212201827355_hu16481812932423872960.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212201827355"
+        
+        loading="lazy"
+        width="1112"
+        height="676"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<h3 id="恶势力的仓库">恶势力的仓库<a href="#%e6%81%b6%e5%8a%bf%e5%8a%9b%e7%9a%84%e4%bb%93%e5%ba%93" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>打开流量包，查看http流量</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807_hu4807928840302885694.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807_hu8335344692510008890.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807_hu16172440878458105025.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807_hu17676093128486608006.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807_hu15739087495456652502.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212204742807_hu4963191684845198020.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212204742807"
+        
+        loading="lazy"
+        width="1360"
+        height="400"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>很明显有login流量，然后追踪tcp流，发现这里有个data传的值为</p>
+<p>{&ldquo;data&rdquo;:{&ldquo;username&rdquo;:&ldquo;hue=8zZvR2YzlWb&rdquo;,&ldquo;password&rdquo;:&ldquo;YI6=ECZvd2YzlWb&rdquo;}}</p>
+<p>一看就是被处理过的</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407_hu14905671088785386773.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407_hu7033683235157554819.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407_hu13254870036690293441.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407_hu18316813425170384809.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407_hu18011000379325881478.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212205304407_hu10680995344115326452.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212205304407"
+        
+        loading="lazy"
+        width="1469"
+        height="594"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>login位置，向前找登录的逻辑</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079_hu16059667220924429514.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079_hu7849958853992772677.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079_hu8593128413020843876.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079_hu9644413212956166680.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079_hu4758348593536517095.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210012079_hu17568095438819256312.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212210012079"
+        
+        loading="lazy"
+        width="1406"
+        height="680"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>有js文件，看了一下居多，没看到什么敏感信息</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022_hu16044784003885268345.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022_hu10806790822448181922.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022_hu763710757318442141.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022_hu8606325578130778914.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022_hu15782314412454152912.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212210246022_hu14569071652170896646.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212210246022"
+        
+        loading="lazy"
+        width="1712"
+        height="353"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>在刚刚login基础上往下看一个流</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251_hu4017692284321679408.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251_hu9982016505583635330.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251_hu18396247698346633110.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251_hu10909516972902676390.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251_hu1353062017691359017.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212027251_hu11742842946018553191.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212212027251"
+        
+        loading="lazy"
+        width="1282"
+        height="1020"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349_hu11623711882099031660.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349_hu12686080821215918401.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349_hu17827161938080093402.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349_hu11272250724361602769.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349_hu6939145402032831877.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212214310349_hu10463165548712954228.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212214310349"
+        
+        loading="lazy"
+        width="1282"
+        height="991"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>找到一些有用的东西</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593_hu3810989712002403665.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593_hu13169677026090581159.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593_hu7057352486357212188.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593_hu6836411687474714643.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593_hu9475781446691921813.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212212427593_hu2065144728026914621.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212212427593"
+        
+        loading="lazy"
+        width="1282"
+        height="1020"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zh-cn&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Login&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;bootstrap.min.css&#34;</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;jquery-3.5.1.min.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;container&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;row justify-content-center&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;col-md-4 mt-5&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">h3</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-center&#34;</span>&gt;..................&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loginForm&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span>&gt;Username&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;username&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-group&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">label</span> <span style="color:#a6e22e">for</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span>&gt;Password&lt;/<span style="color:#f92672">label</span>&gt;
+</span></span><span style="display:flex;"><span>                        &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;form-control&#34;</span> <span style="color:#a6e22e">required</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>                    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn btn-primary btn-block&#34;</span>&gt;Login&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;/<span style="color:#f92672">form</span>&gt;
+</span></span><span style="display:flex;"><span>                &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;loginStatus&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mt-3 text-center&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>            &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>        &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">div</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>	eval(<span style="color:#a6e22e">atob</span>(<span style="color:#e6db74">&#39;ZnVuY3Rpb24gYmFzZTY0X2VuY29kZShzdHIpe3JldHVybiBidG9hKHVuZXNjYXBlKGVuY29kZVVSSUNvbXBvbmVudChzdHIpKSl9ZnVuY3Rpb24gYWRkUmFuZG9tQ2hhcnMoc3RyKXtjb25zdCBjaGFycz0iQUJDREVGR0hJSktMTU5PUFFSU1RVVldYWVphYmNkZWZnaGlqa2xtbm9wcXJzdHV2d3h5ejAxMjM0NTY3ODkiO2xldCByYW5kb21DaGFycz0iIjtmb3IobGV0IGk9MDtpPDM7aSsrKXtyYW5kb21DaGFycys9Y2hhcnMuY2hhckF0KE1hdGguZmxvb3IoTWF0aC5yYW5kb20oKSpjaGFycy5sZW5ndGgpKX1yZXR1cm4gcmFuZG9tQ2hhcnMrc3RyfWZ1bmN0aW9uIHJldmVyc2VTdHJpbmcoc3RyKXtyZXR1cm4gc3RyLnNwbGl0KCIiKS5yZXZlcnNlKCkuam9pbigiIil9JCgiI2xvZ2luRm9ybSIpLm9uKCJzdWJtaXQiLGZ1bmN0aW9uKGUpe2UucHJldmVudERlZmF1bHQoKTt2YXIgdXNlcm5hbWU9JCgiI3VzZXJuYW1lIikudmFsKCk7dmFyIHBhc3N3b3JkPSQoIiNwYXNzd29yZCIpLnZhbCgpO3ZhciBlbmNvZGVkVXNlcm5hbWU9YWRkUmFuZG9tQ2hhcnMocmV2ZXJzZVN0cmluZyhiYXNlNjRfZW5jb2RlKHVzZXJuYW1lKSkpO3ZhciBlbmNvZGVkUGFzc3dvcmQ9YWRkUmFuZG9tQ2hhcnMocmV2ZXJzZVN0cmluZyhiYXNlNjRfZW5jb2RlKHBhc3N3b3JkKSkpO3ZhciBkYXRhPXtkYXRhOnt1c2VybmFtZTplbmNvZGVkVXNlcm5hbWUscGFzc3dvcmQ6ZW5jb2RlZFBhc3N3b3JkfX07JC5hamF4KHt1cmw6ImxvZ2luLnBocCIsdHlwZToiUE9TVCIsY29udGVudFR5cGU6ImFwcGxpY2F0aW9uL2pzb24iLGRhdGFUeXBlOiJqc29uIixkYXRhOkpTT04uc3RyaW5naWZ5KGRhdGEpLHN1Y2Nlc3M6ZnVuY3Rpb24ocmVzcG9uc2Upe2lmKHJlc3BvbnNlLnN1Y2Nlc3Mpe3dpbmRvdy5sb2NhdGlvbi5ocmVmPSJ3YXJlaG91c2UucGhwIn1lbHNleyQoIiNsb2dpblN0YXR1cyIpLmh0bWwoJzxzcGFuIGNsYXNzPSJ0ZXh0LWRhbmdlciI+TG9naW4gZmFpbGVkLCB0cnkgYWdhaW4hPC9zcGFuPicpfX0sZXJyb3I6ZnVuY3Rpb24oKXskKCIjbG9naW5TdGF0dXMiKS5odG1sKCc8c3BhbiBjbGFzcz0idGV4dC1kYW5nZXIiPkVycm9y44CCPC9zcGFuPicpfX0pfSk7&#39;</span>));
+</span></span><span style="display:flex;"><span>    &lt;/<span style="color:#f92672">script</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><pre tabindex="0"><code>JavaScript 中，atob 函数用于解码使用 Base64 编码的字符串。
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">base64_encode</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">btoa</span>(<span style="color:#a6e22e">unescape</span>(encodeURIComponent(<span style="color:#a6e22e">str</span>)));
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">addRandomChars</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">chars</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">randomChars</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">3</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">randomChars</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">chars</span>.<span style="color:#a6e22e">charAt</span>(Math.<span style="color:#a6e22e">floor</span>(Math.<span style="color:#a6e22e">random</span>() <span style="color:#f92672">*</span> <span style="color:#a6e22e">chars</span>.<span style="color:#a6e22e">length</span>));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">randomChars</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">str</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">reverseString</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#34;&#34;</span>).<span style="color:#a6e22e">reverse</span>().<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#loginForm&#34;</span>).<span style="color:#a6e22e">on</span>(<span style="color:#e6db74">&#34;submit&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">e</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">preventDefault</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">username</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#username&#34;</span>).<span style="color:#a6e22e">val</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#password&#34;</span>).<span style="color:#a6e22e">val</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">encodedUsername</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">addRandomChars</span>(<span style="color:#a6e22e">reverseString</span>(<span style="color:#a6e22e">base64_encode</span>(<span style="color:#a6e22e">username</span>)));
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">encodedPassword</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">addRandomChars</span>(<span style="color:#a6e22e">reverseString</span>(<span style="color:#a6e22e">base64_encode</span>(<span style="color:#a6e22e">password</span>)));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">encodedUsername</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">encodedPassword</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">ajax</span>({
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;login.php&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">type</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;POST&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">contentType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;application/json&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">dataType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;json&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">data</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">success</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">response</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">success</span>) {
+</span></span><span style="display:flex;"><span>                window.<span style="color:#a6e22e">location</span>.<span style="color:#a6e22e">href</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;warehouse.php&#34;</span>;
+</span></span><span style="display:flex;"><span>            } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#loginStatus&#34;</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">&#39;&lt;span class=&#34;text-danger&#34;&gt;Login failed, try again!&lt;/span&gt;&#39;</span>);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">error</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#loginStatus&#34;</span>).<span style="color:#a6e22e">html</span>(<span style="color:#e6db74">&#39;&lt;span class=&#34;text-danger&#34;&gt;Error。&lt;/span&gt;&#39;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><blockquote>
+<p>查看eval内base64编码的JavaScript，可看到，密码和用户名都是把</p>
+<p>明文base64编码后，倒置了一下，然后在字符串前加了三个随机字符</p>
+<p>YI6=ECZvd2YzlWb</p>
+</blockquote>
+<p>可以解出密码为 miscgod! ，这个也是后续压缩包密码</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513_hu7694927557879174384.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513_hu2431812466937000564.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513_hu17615044953590795604.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513_hu15787590979652761568.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513_hu16616661471212744209.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215301513_hu7456616890289772094.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212215301513"
+        
+        loading="lazy"
+        width="901"
+        height="639"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>流11上传了一句话木马</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428_hu7478551854286162186.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428_hu2563628512108872378.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428_hu6774328234673944303.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428_hu18016237924403831068.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428_hu17215701578267191770.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215515428_hu2726040831929920821.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212215515428"
+        
+        loading="lazy"
+        width="1282"
+        height="991"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>流 17 18 19 为 蚁 剑 下 载 文 件 的 流 量 ， 下 载 的 文 件 为 机 密 文 件 .7z</p>
+<p>nothingnoflag.gif 破防小王.png 三个文件</p>
+<p>流16列目录，流17提取出gif图，流18提取出png图，结尾有base64字符串</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827_hu7646669305352742338.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827_hu2577990176888485957.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827_hu2350220051613854791.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827_hu5986289160293539543.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827_hu4016917488990757450.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212215604827_hu9013827810452900630.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212215604827"
+        
+        loading="lazy"
+        width="1282"
+        height="991"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426_hu1771829413504713246.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426_hu4514168030805488810.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426_hu12655975627017177485.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426_hu12778750032111019976.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426_hu4520232331736186696.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220109426_hu18123142275693661132.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212220109426"
+        
+        loading="lazy"
+        width="1282"
+        height="991"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592_hu3107815803787087962.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592_hu9145641437859055176.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592_hu11924078947819867168.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592_hu3307256955593514837.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592_hu15923181844904036892.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220157592_hu6555097729814408378.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212220157592"
+        
+        loading="lazy"
+        width="1530"
+        height="578"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>用之前的密码 miscgod! 解开7z压缩包，然后得到execl，execl中有0和1两种单元</p>
+<p>格，都是被隐藏的，将行列设置一样的大小，全选搜索所有1，涂黑后是二维码，扫</p>
+<p>码得到flag</p>
+<p>ctrl+F 搜索所有的1，然后</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756_hu377739342326696812.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756_hu16999738305634746137.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756_hu15322919753918765746.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756_hu15048968899790056872.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756_hu2168670526502833603.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194752756_hu11673208927607979521.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241213194752756"
+        
+        loading="lazy"
+        width="1577"
+        height="692"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191_hu10346659568563627426.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191_hu5996410020953783048.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191_hu14795094293770139262.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191_hu15074956258084534836.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191_hu293063013959529688.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194922191_hu1694330159845151254.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241213194922191"
+        
+        loading="lazy"
+        width="1029"
+        height="591"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672_hu5172463649064401341.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672_hu3680103920042315860.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672_hu9927359673783997634.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672_hu16885439634931570251.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672_hu4849247703473720480.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213194958672_hu4874931586629617410.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241213194958672"
+        
+        loading="lazy"
+        width="1435"
+        height="618"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>选择全部替换</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990_hu17306116391026194254.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990_hu13388871650243149583.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990_hu2275809417302100886.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990_hu17057120089522079380.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990_hu11660648334098074267.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241213195113990_hu16618971955577611513.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241213195113990"
+        
+        loading="lazy"
+        width="812"
+        height="445"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165_hu17309264291945318228.webp 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165_hu4947957397948556723.webp 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165_hu11709285882667146811.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165.png"
+        srcset="/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165_hu13633816020057741693.png 300w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165_hu11910078318961033229.png 500w,/blog/2024hectfmisc/2024HECTFmisc.assets/image-20241212220231165_hu16591192390659682520.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241212220231165"
+        
+        loading="lazy"
+        width="1164"
+        height="1207"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+
+    </div>
+
+    
+      
+
+
+  <div class="social-share">
+    <strong class="social-share__heading">Share this post: </strong>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.facebook.com/sharer.php?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://reddit.com/submit?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F&amp;title=2024HECTFmisc"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Reddit</title><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://x.com/intent/post?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F&amp;text=2024HECTFmisc"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="whatsapp://send/?text=2024HECTFmisc%20https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F&amp;title=2024HECTFmisc&amp;caption=2024HECTFmisc"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tumblr</title><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F&amp;t=2024HECTFmisc"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Y Combinator</title><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://vk.com/share.php?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F&amp;title=2024HECTFmisc&amp;comment=2024HECTFmisc"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>VK</title><path d="m9.489.004.729-.003h3.564l.73.003.914.01.433.007.418.011.403.014.388.016.374.021.36.025.345.03.333.033c1.74.196 2.933.616 3.833 1.516.9.9 1.32 2.092 1.516 3.833l.034.333.029.346.025.36.02.373.025.588.012.41.013.644.009.915.004.98-.001 3.313-.003.73-.01.914-.007.433-.011.418-.014.403-.016.388-.021.374-.025.36-.03.345-.033.333c-.196 1.74-.616 2.933-1.516 3.833-.9.9-2.092 1.32-3.833 1.516l-.333.034-.346.029-.36.025-.373.02-.588.025-.41.012-.644.013-.915.009-.98.004-3.313-.001-.73-.003-.914-.01-.433-.007-.418-.011-.403-.014-.388-.016-.374-.021-.36-.025-.345-.03-.333-.033c-1.74-.196-2.933-.616-3.833-1.516-.9-.9-1.32-2.092-1.516-3.833l-.034-.333-.029-.346-.025-.36-.02-.373-.025-.588-.012-.41-.013-.644-.009-.915-.004-.98.001-3.313.003-.73.01-.914.007-.433.011-.418.014-.403.016-.388.021-.374.025-.36.03-.345.033-.333c.196-1.74.616-2.933 1.516-3.833.9-.9 2.092-1.32 3.833-1.516l.333-.034.346-.029.36-.025.373-.02.588-.025.41-.012.644-.013.915-.009ZM6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.xing.com/spi/shares/new?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Xing</title><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://telegram.me/share/url?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F&amp;text=2024HECTFmisc"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="mailto:?subject=2024HECTFmisc&amp;body=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024hectfmisc%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+  <path d="M3 7l9 6l9 -6" />
+</svg>
+
+
+      </a>
+    
+  </div>
+
+
+    
+
+    
+      
+
+    
+  </article>
+
+        </div>
+        <div class="sidebar">
+  
+    
+      <aside class="toc">
+        <nav>
+          <p class="sidebar__heading">Table Of Contents</p>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#2024hectfmisc">2024HECTFmisc</a>
+      <ul>
+        <li><a href="#恶势力的聊天记录">恶势力的聊天记录</a></li>
+        <li><a href="#简单的压缩包">简单的压缩包</a></li>
+        <li><a href="#恶势力的仓库">恶势力的仓库</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </nav>
+      </aside>
+      <hr />
+    
+  
+
+  
+  
+    <aside class="bio">
+      
+
+  <div class="jr__item jr-basics__item">
+    
+  <div class="jr-basics__image">
+    <img
+      src="/p.jpg"
+      alt="Picture of Stephen Messir"
+      width="250"
+      height="250"
+    />
+  </div>
+
+
+
+    
+      <div class="jr-basics__name">Stephen Messir</div>
+    
+
+    
+      <div class="jr-basics__label">A Software noviciate and CTF newcomer</div>
+    
+
+    
+
+    
+
+    
+
+    
+      <div class="jr-basics__summary">Those who hasten towards the sun and brightness shall not be obscured.</div>
+    
+
+    
+      
+
+      
+
+      
+        <div class="jr-basics__location-city">NC</div>
+      
+
+      
+
+      
+    
+
+    
+
+    
+      <hr />
+      <div class="jr-basics__profile jr-basics__profile--row">
+        
+          
+
+<a href="https://github.com/GCmessir" target="_blank" rel="noreferrer me">
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+
+  
+</div>
+
+
+</a>
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>RSS</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+      </div>
+    
+  </div>
+
+
+
+      
+        <hr />
+      
+    </aside>
+  
+
+  
+    <aside>
+      
+
+
+  
+  
+  
+  
+  
+  
+
+
+  <div class="tag-cloud">
+    
+      
+      
+      
+      <a
+        href="/tags/blog"
+        style="font-size:1.9229419688230418rem"
+        class="tag-cloud__tag"
+        >blog</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-misc"
+        style="font-size:1.4339850002884624rem"
+        class="tag-cloud__tag"
+        >ctf-misc</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-web"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >ctf-web</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java-application-programming"
+        style="font-size:1.2000000000000002rem"
+        class="tag-cloud__tag"
+        >java application programming</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java_base"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >java_base</a
+      >
+    
+  </div>
+
+
+    </aside>
+  
+</div>
+
+      </main>
+      <footer>
+  <div class="copyright">
+    
+  </div>
+</footer>
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+<script src="/js/main.e56d444a26643bc2029afe6eb5b967bf9f252efee7f61c853d2d2e3a0c330fc81a2f42f89da721c6c1201a7278bc5affe231c5998ea2e7688518093ed91b0130.js" integrity="sha512-5W1ESiZkO8ICmv5utblnv58lLv7n9hyFPS0uOgwzD8gaL0L4nachxsEgGnJ4vFr/4jHFmY6i52iFGAk&#43;2RsBMA=="></script>
+<script src="/js/flexsearch.1ab5b109bf2ed66903ae10907394415caa12f5c0ee66bc80088ba135ec4a751f62e4961d6a7303b562e4db724392da85945b763b8e1858ea3fd05cc36f9b8156.js" integrity="sha512-GrWxCb8u1mkDrhCQc5RBXKoS9cDuZryACIuhNexKdR9i5JYdanMDtWLk23JDktqFlFt2O44YWOo/0FzDb5uBVg=="></script>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,3327 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="light"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-300.woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+  
+  
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+  
+
+
+
+
+<title>Io Programming</title>
+
+<meta
+  name="description"
+  content="输入流和输出流# 输入流（InputStream）
+输入流用于从数据源读取数据。常见的数据源包括文件、网络连接、内存中的字节数组等。InputStream 是所有字节输入流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的数据源。
+输出流（OutputStream）
+输出流用于将数据写入目标位置。常见的目标位置包括文件、网络连接、内存中的字节数组等。OutputStream 是所有字节输出流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的目标位置。
+File文件操作# 初识# java.io.File类是一个与文件本身操作有关的类，此类可以实现文件创建、删除、重命名、取得文件大小、修改日期等常见系统文件操作
+如果要使用File类则必须提供完整的文件操作路径，对于文件路径的设置可以通过File类的构造方法完成，当获取了正确的文件路径后就可以进行文件创建于删除操作、File类文件基本操作方法
+No. 方法 类型 描述 1 public File(String pathname) 构造 给定一个要操作文件的完整路径 2 public File(File parent,String child) 构造 给定要操作文件的父路径和子文件名称 3 public boolean createNewFile() throws IOException 普通 创建文件 4 public boolean delete() 普通 删除文件 5 public boolean exists() 普通 判断给定路径是否存在 示例
+import java.io.File; public class JavaIODemo{ public static void main(String[] args) throws Exception{ File file = new File(&#34;D:\\1.txt&#34;); //文件路径: &#34;\\&#34;转义为&#34;\&#34; if(file.exists()){ file.delete(); } else{ System.out.println(file.createNewFile()); } } } 分隔符# windows中是&quot;\&quot; 而在UNIX或类UNIX操作系统中路径分隔符是&quot;/&quot;
+"
+/>
+
+<link rel="canonical" href="https://GCmessir.github.io/blog/io_programming/" />
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Io Programming">
+  <meta name="twitter:description" content="输入流和输出流# 输入流（InputStream）
+输入流用于从数据源读取数据。常见的数据源包括文件、网络连接、内存中的字节数组等。InputStream 是所有字节输入流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的数据源。
+输出流（OutputStream）
+输出流用于将数据写入目标位置。常见的目标位置包括文件、网络连接、内存中的字节数组等。OutputStream 是所有字节输出流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的目标位置。
+File文件操作# 初识# java.io.File类是一个与文件本身操作有关的类，此类可以实现文件创建、删除、重命名、取得文件大小、修改日期等常见系统文件操作
+如果要使用File类则必须提供完整的文件操作路径，对于文件路径的设置可以通过File类的构造方法完成，当获取了正确的文件路径后就可以进行文件创建于删除操作、File类文件基本操作方法
+No. 方法 类型 描述 1 public File(String pathname) 构造 给定一个要操作文件的完整路径 2 public File(File parent,String child) 构造 给定要操作文件的父路径和子文件名称 3 public boolean createNewFile() throws IOException 普通 创建文件 4 public boolean delete() 普通 删除文件 5 public boolean exists() 普通 判断给定路径是否存在 示例
+import java.io.File; public class JavaIODemo{ public static void main(String[] args) throws Exception{ File file = new File(&#34;D:\\1.txt&#34;); //文件路径: &#34;\\&#34;转义为&#34;\&#34; if(file.exists()){ file.delete(); } else{ System.out.println(file.createNewFile()); } } } 分隔符# windows中是&#34;\&#34; 而在UNIX或类UNIX操作系统中路径分隔符是&#34;/&#34;">
+
+<meta property="og:url" content="https://GCmessir.github.io/blog/io_programming/">
+  <meta property="og:site_name" content="Documenting the journey ^_^">
+  <meta property="og:title" content="Io Programming">
+  <meta property="og:description" content="输入流和输出流# 输入流（InputStream）
+输入流用于从数据源读取数据。常见的数据源包括文件、网络连接、内存中的字节数组等。InputStream 是所有字节输入流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的数据源。
+输出流（OutputStream）
+输出流用于将数据写入目标位置。常见的目标位置包括文件、网络连接、内存中的字节数组等。OutputStream 是所有字节输出流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的目标位置。
+File文件操作# 初识# java.io.File类是一个与文件本身操作有关的类，此类可以实现文件创建、删除、重命名、取得文件大小、修改日期等常见系统文件操作
+如果要使用File类则必须提供完整的文件操作路径，对于文件路径的设置可以通过File类的构造方法完成，当获取了正确的文件路径后就可以进行文件创建于删除操作、File类文件基本操作方法
+No. 方法 类型 描述 1 public File(String pathname) 构造 给定一个要操作文件的完整路径 2 public File(File parent,String child) 构造 给定要操作文件的父路径和子文件名称 3 public boolean createNewFile() throws IOException 普通 创建文件 4 public boolean delete() 普通 删除文件 5 public boolean exists() 普通 判断给定路径是否存在 示例
+import java.io.File; public class JavaIODemo{ public static void main(String[] args) throws Exception{ File file = new File(&#34;D:\\1.txt&#34;); //文件路径: &#34;\\&#34;转义为&#34;\&#34; if(file.exists()){ file.delete(); } else{ System.out.println(file.createNewFile()); } } } 分隔符# windows中是&#34;\&#34; 而在UNIX或类UNIX操作系统中路径分隔符是&#34;/&#34;">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-11-21T21:35:04+08:00">
+    <meta property="article:modified_time" content="2024-11-21T21:35:04+08:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="Java Application Programming">
+
+
+  <meta itemprop="name" content="Io Programming">
+  <meta itemprop="description" content="输入流和输出流# 输入流（InputStream）
+输入流用于从数据源读取数据。常见的数据源包括文件、网络连接、内存中的字节数组等。InputStream 是所有字节输入流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的数据源。
+输出流（OutputStream）
+输出流用于将数据写入目标位置。常见的目标位置包括文件、网络连接、内存中的字节数组等。OutputStream 是所有字节输出流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的目标位置。
+File文件操作# 初识# java.io.File类是一个与文件本身操作有关的类，此类可以实现文件创建、删除、重命名、取得文件大小、修改日期等常见系统文件操作
+如果要使用File类则必须提供完整的文件操作路径，对于文件路径的设置可以通过File类的构造方法完成，当获取了正确的文件路径后就可以进行文件创建于删除操作、File类文件基本操作方法
+No. 方法 类型 描述 1 public File(String pathname) 构造 给定一个要操作文件的完整路径 2 public File(File parent,String child) 构造 给定要操作文件的父路径和子文件名称 3 public boolean createNewFile() throws IOException 普通 创建文件 4 public boolean delete() 普通 删除文件 5 public boolean exists() 普通 判断给定路径是否存在 示例
+import java.io.File; public class JavaIODemo{ public static void main(String[] args) throws Exception{ File file = new File(&#34;D:\\1.txt&#34;); //文件路径: &#34;\\&#34;转义为&#34;\&#34; if(file.exists()){ file.delete(); } else{ System.out.println(file.createNewFile()); } } } 分隔符# windows中是&#34;\&#34; 而在UNIX或类UNIX操作系统中路径分隔符是&#34;/&#34;">
+  <meta itemprop="datePublished" content="2024-11-21T21:35:04+08:00">
+  <meta itemprop="dateModified" content="2024-11-21T21:35:04+08:00">
+  <meta itemprop="wordCount" content="2160">
+  <meta itemprop="keywords" content="Blog,Java Application Programming">
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+<style>
+   
+  @font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:100;src:local("Roboto Slab Thin "),local("Roboto Slab-Thin"),url(/fonts/roboto-slab-latin-100.woff2) format("woff2"),url(/fonts/roboto-slab-latin-100.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:200;src:local("Roboto Slab Extra Light "),local("Roboto Slab-Extra Light"),url(/fonts/roboto-slab-latin-200.woff2) format("woff2"),url(/fonts/roboto-slab-latin-200.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:300;src:local("Roboto Slab Light "),local("Roboto Slab-Light"),url(/fonts/roboto-slab-latin-300.woff2) format("woff2"),url(/fonts/roboto-slab-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:400;src:local("Roboto Slab Regular "),local("Roboto Slab-Regular"),url(/fonts/roboto-slab-latin-400.woff2) format("woff2"),url(/fonts/roboto-slab-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:500;src:local("Roboto Slab Medium "),local("Roboto Slab-Medium"),url(/fonts/roboto-slab-latin-500.woff2) format("woff2"),url(/fonts/roboto-slab-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:600;src:local("Roboto Slab SemiBold "),local("Roboto Slab-SemiBold"),url(/fonts/roboto-slab-latin-600.woff2) format("woff2"),url(/fonts/roboto-slab-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:700;src:local("Roboto Slab Bold "),local("Roboto Slab-Bold"),url(/fonts/roboto-slab-latin-700.woff2) format("woff2"),url(/fonts/roboto-slab-latin-700.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:800;src:local("Roboto Slab ExtraBold "),local("Roboto Slab-ExtraBold"),url(/fonts/roboto-slab-latin-800.woff2) format("woff2"),url(/fonts/roboto-slab-latin-800.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:900;src:local("Roboto Slab Black "),local("Roboto Slab-Black"),url(/fonts/roboto-slab-latin-900.woff2) format("woff2"),url(/fonts/roboto-slab-latin-900.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:300;src:local("Fira Code Light "),local("Fira Code-Light"),url(/fonts/fira-code-latin-300.woff2) format("woff2"),url(/fonts/fira-code-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:400;src:local("Fira Code Regular "),local("Fira Code-Regular"),url(/fonts/fira-code-latin-400.woff2) format("woff2"),url(/fonts/fira-code-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:500;src:local("Fira Code Medium "),local("Fira Code-Medium"),url(/fonts/fira-code-latin-500.woff2) format("woff2"),url(/fonts/fira-code-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:600;src:local("Fira Code SemiBold "),local("Fira Code-SemiBold"),url(/fonts/fira-code-latin-600.woff2) format("woff2"),url(/fonts/fira-code-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:700;src:local("Fira Code Bold "),local("Fira Code-Bold"),url(/fonts/fira-code-latin-700.woff2) format("woff2"),url(/fonts/fira-code-latin-700.woff) format("woff")}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+
+/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */@keyframes blink{50%{opacity:0}to{opacity:1}}
+
+/*! MIT License | github.com/schnerring/hugo-theme-gruvbox */:root[data-theme=light]{--bg:var(--bg0);--bg0:#fbf1c7;--bg0_h:#f9f5d7;--bg0_s:#f2e5bc;--bg1:#ebdbb2;--bg2:#d5c4a1;--bg3:#bdae93;--bg4:#a89984;--fg:var(--fg1);--fg0:#282828;--fg1:#3c3836;--fg2:#504945;--fg3:#665c54;--fg4:#7c6f64;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#9d0006;--green1:#98971a;--green2:#797403;--yellow1:#d79921;--yellow2:#b57614;--blue1:#458588;--blue2:#076678;--purple1:#b16286;--purple2:#8f3f71;--aqua1:#689d6a;--aqua2:#427b58;--orange1:#d65d0e;--orange2:#af3a03}[data-theme=light]:root .light--hidden{display:none}:root[data-theme=dark]{--bg:var(--bg0);--bg0:#282828;--bg0_h:#1d2021;--bg0_s:#32302f;--bg1:#3c3836;--bg2:#504945;--bg3:#665c54;--bg4:#7c6f64;--fg:var(--fg1);--fg0:#fbf1c7;--fg1:#ebdbb2;--fg2:#d5c4a1;--fg3:#bdae93;--fg4:#a89984;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#fb4934;--green1:#98971a;--green2:#b8bb26;--yellow1:#d79921;--yellow2:#fabd2f;--blue1:#458588;--blue2:#83a598;--purple1:#b16286;--purple2:#d3869b;--aqua1:#689d6a;--aqua2:#8ec07c;--orange1:#d65d0e;--orange2:#fe8019}[data-theme=dark]:root .dark--hidden{display:none}:root{--primary:var(--blue1);--primary-alt:var(--blue2);--font-monospace:"Fira Code","Lucida Console",Monaco,monospace;--font-sans-serif:Verdana,Helvetica,sans-serif;--font-serif:"Roboto Slab",Georgia,serif}html{font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);font-size:1rem;scroll-behavior:smooth}body{background:var(--bg);color:var(--fg);line-height:1.675;word-wrap:break-word}strong{letter-spacing:.35px}a{color:inherit;-webkit-text-decoration:none;text-decoration:none}a.link--external:after{content:"\2009↗"}img{border:2px solid var(--bg1);height:auto;max-width:100%}::-moz-selection{background:var(--bg4);color:var(--fg0)}::selection{background:var(--bg4);color:var(--fg0)}h1,h2,h3,h4,h5,h6{color:var(--fg0);font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-weight:300;line-height:1.4}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{font-size:1em}h2,h3,h4,h5,h6{border-bottom:1px solid var(--bg1)}h1,h2{font-weight:400}h1{font-size:1.875rem}h2{font-size:1.75rem}h3{font-size:1.625rem}@media (min-width:768px){h1{font-size:2.375rem}h2{font-size:2rem}h3{font-size:1.75rem}}h4{font-size:1.5rem}h5{font-size:1.375rem}h6{font-size:1.25rem}table{border-collapse:collapse;margin:2rem 0;table-layout:fixed;width:100%}table,td,th{border:1px solid var(--bg1);padding:.5rem}hr{background:var(--bg1);border:none;height:1px;margin:3rem auto;width:80%}blockquote,code,pre{border-radius:.2rem;padding:0 .2em}pre code{padding:0}blockquote,code,pre,th{background:var(--bg1)}code,pre,th{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}code code{background:var(--bg2)}blockquote,pre{padding:1rem}pre{background:var(--bg1)!important;overflow:auto}pre code{background:none}blockquote{border-left:5px solid var(--primary-alt);margin:.5rem 0}blockquote:not(.does-not-exist) code{background:var(--bg2)}blockquote:not(.does-not-exist) p:first-of-type{margin-top:0}blockquote:not(.does-not-exist) p:last-of-type{margin-bottom:0}pre::-webkit-scrollbar{height:.5rem;scrollbar-width:auto}pre::-webkit-scrollbar-track{background:var(--bg2);border-radius:.2rem}pre::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:.2rem}.layout{display:grid;grid-template-areas:"header" "main" "footer";grid-template-rows:auto 1fr auto;height:100vh}main{align-items:start;display:grid;grid-area:main;grid-template-areas:"empty content sidebar";grid-template-columns:1fr minmax(0,650px) 4fr}header{background:var(--bg1);grid-area:header}footer{grid-area:footer}footer,main{margin:.5em 1.1em}.content{grid-area:content}.sidebar{display:none;flex-direction:column;grid-area:sidebar;margin-top:3rem;position:sticky;top:2rem}@media (min-width:992px){.sidebar{display:flex}}header{display:grid;font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-size:1.125rem;grid-template-areas:"heading search nav theme-toggle";grid-template-columns:auto auto 1fr auto;padding:.75rem}.logo{color:var(--fg0);display:flex;font-weight:700;grid-area:heading}.logo:hover .logo__cursor{animation:blink 1s infinite;opacity:1}.logo__chevron,.logo__cursor{margin-left:.5rem}.logo__cursor{opacity:0}.logo__text{display:none}@media (min-width:768px){.logo__text{display:block}}.search{display:flex;grid-area:search;margin:0 1rem}#search__text{background:var(--bg2);border:1px solid var(--bg2);border-radius:.2rem;caret-color:var(--fg);color:var(--fg);outline:none;padding:0 .5rem;width:100%}#search__text:hover{border-color:var(--bg3)}#search__text:focus{border-color:var(--bg4)}#search__text::-moz-placeholder{color:var(--fg3)}#search__text::placeholder{color:var(--fg3)}#search__text[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}#search__suggestions{background:var(--bg);border-radius:.2rem;box-shadow:0 .5rem 1rem var(--bg1);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);left:0;margin-top:2rem;position:absolute;width:95vw;z-index:1000}@media (min-width:768px){.search{position:relative}#search__suggestions{width:60vw}}.search__suggestions--hidden{display:none}.search__suggestion-item{border-bottom:1px dashed var(--bg2);display:grid;grid-template-columns:1fr 2fr}.search__suggestion-item:focus,.search__suggestion-item:focus-visible,.search__suggestion-item:hover{background:var(--bg1);cursor:pointer;outline:none}.search__suggestion-item:last-child{border:none}.search__suggestion-description,.search__suggestion-title{margin:1rem 0;padding:0 1rem}.search__suggestion-title{font-weight:700}.search__suggestion-description{border-left:1px solid var(--bg2)}.search__no-results{padding:.75rem}.theme__toggle{align-items:center;background:none;border:none;color:var(--yellow1);cursor:pointer;display:flex;grid-area:theme-toggle;margin:0 1rem}.theme__toggle:hover{color:var(--yellow2)}.theme__toggle svg{height:28px;width:28px}nav#menu{align-items:center;display:flex;grid-area:nav;justify-content:flex-end}nav#menu .menu__item{color:var(--fg)}nav#menu .menu__item:hover{color:var(--fg3);cursor:pointer}nav#menu ul{list-style:none;margin:0;padding:0}nav#menu ul.menu--horizontal{align-items:center;display:none}nav#menu ul.menu--horizontal li{display:inline-block;margin:0 .75rem}@media (min-width:768px){nav#menu ul.menu--horizontal{display:flex}}nav#menu ul.menu--vertical{background:var(--fg0);bottom:0;margin:0;padding:3rem;position:fixed;right:0;top:0;transform:translate(100%);transition:transform .5s cubic-bezier(.9,0,.1,1);width:50%;z-index:10}nav#menu ul.menu--vertical .menu__item{color:var(--bg1)}nav#menu ul.menu--vertical .menu__item:hover{color:var(--bg4)}nav#menu .menu__burger{display:flex;height:24px;width:24px}nav#menu .menu__burger>*{position:absolute}nav#menu .menu__burger svg{height:inherit;width:inherit;z-index:20}nav#menu .menu__burger input{height:inherit;opacity:0;width:inherit;z-index:30}nav#menu .menu__burger input:checked~ul.menu--vertical{transform:none}nav#menu .menu__burger input:checked~svg{stroke:var(--bg1)}@media (min-width:768px){nav#menu .menu__burger{display:none}}.sidebar{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);margin-left:auto;margin-right:auto;max-width:350px;padding-left:2.5rem}.sidebar hr{margin:1.5rem auto}.sidebar svg{fill:var(--fg)}.sidebar__heading{font-size:1.3rem}aside.toc a{color:var(--primary-alt)}aside.toc a:hover{color:var(--primary)}aside.toc ul{list-style:none;margin:0;padding:0}aside.toc ul ul{font-size:.9rem;margin-left:.5rem}aside.toc ul li{line-height:1.1}aside.toc ul li a{display:block;padding:.2rem 0}.jr-basics__image{background:var(--bg1);border:2px solid var(--bg2)}.jr-basics__summary{color:var(--fg3);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);margin:.75rem 0}.jr-basics__profile a:hover{color:var(--fg3)}.jr-basics__profile a:hover svg{fill:var(--fg3)}.tag-cloud{line-height:1.1;text-align:justify}.tag-cloud__tag:hover{color:var(--fg3)}.content-section,.post{border-bottom:2px dotted var(--bg1);padding:2rem 0}.post img:not(figure img){box-sizing:border-box;margin:.5rem 0}.post-content__read-more,.post-header{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}.post-content{margin:1.3rem 0}.post-content__read-more{color:var(--primary-alt);margin-top:1.3rem}.post-content a,.post-header a{color:var(--primary-alt)}.post-content a:hover,.post-header a:hover{color:var(--primary)}.post-tags{align-items:center;display:flex;flex-wrap:wrap;gap:.9rem;margin:1rem 0}.post-tag{font-size:.9rem;line-height:1}.post-tag:before{content:"#"}.post-heading__anchor{display:none}h1:hover .post-heading__anchor,h2:hover .post-heading__anchor,h3:hover .post-heading__anchor,h4:hover .post-heading__anchor,h5:hover .post-heading__anchor,h6:hover .post-heading__anchor{display:inline-block}.jr-basics__image,.jr-basics__item,.jr-basics__profile-icon,.jr-basics__profile-item{align-items:center;display:flex}.jr-basics__name{font-size:1.125rem;font-weight:700}.jr-basics__item{flex-direction:column;text-align:center}.jr-basics__item hr{margin:1.5rem auto}.jr-basics__image{border-radius:50%;height:250px;justify-content:center;overflow:hidden;width:250px}.jr-basics__label,.jr-basics__name,.jr-basics__summary{margin-top:.75rem}.jr-basics__profile svg{height:24px;width:24px}.jr-basics__profile,.jr-basics__profile-item{display:flex}.jr-basics__profile-item{display:flex;padding:.2rem}.jr-basics__profile--row{flex-wrap:wrap;justify-content:space-evenly}.jr-basics__profile-icon{padding:0 .75rem}.social-share{align-items:center;border-top:2px dotted var(--bg1);display:flex;flex-wrap:wrap;gap:.9rem;margin:3rem 0;padding-top:3rem}.social-share svg{fill:var(--fg);height:24px;width:24px}.social-share svg.icon-tabler{fill:none;stroke:var(--fg)}.social-share__item{background:var(--bg1);display:flex;padding:.5rem}
+   
+</style>
+
+<link
+  rel="preload"
+  href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+  
+/>
+
+
+<link
+  id="prism-dark"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-dark.min.54aecc64074623a4f9898544dcbdab9e804f1560ef0b38f4cf8e10fcaaf72264e798cb407c601aca6ecd833ec4eb93d66535581f18d45ba202cf848b70dbc332.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  integrity="sha512-VK7MZAdGI6T5iYVE3L2rnoBPFWDvCzj0z44Q/Kr3ImTnmMtAfGAaym7Ngz7E65PWZTVYHxjUW6ICz4SLcNvDMg=="
+  disabled
+/>
+
+
+<link
+  id="prism-light"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+  
+  
+/>
+
+<noscript>
+  
+    <link
+      rel="stylesheet"
+      href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+      
+        integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+      
+    />
+  
+
+
+  <link
+    rel="stylesheet"
+    href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+    
+      integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+    
+  />
+</noscript>
+
+
+  
+
+  
+
+
+
+
+<script>
+  (()=>{function c(){if(localStorage&&localStorage.getItem("theme"))return localStorage.getItem("theme");if(window.matchMedia)return window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}function n(t){document.documentElement.setAttribute("data-theme",t);let e=document.getElementById("prism-dark"),i=document.getElementById("prism-light");e.toggleAttribute("disabled",t==="light"),i.toggleAttribute("disabled",t==="dark"),localStorage.setItem("theme",t)}var o=c();o&&n(o);function l(t){let e=t.currentTarget.classList.contains("light--hidden")?"light":"dark";n(e)}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".theme__toggle").forEach(e=>{e.addEventListener("click",l)})});})();
+
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#282828" />
+<meta name="msapplication-TileColor" content="#282828" />
+<meta name="theme-color" content="#282828" />
+
+
+
+  
+  
+
+</head>
+
+  <body>
+    <div class="layout">
+      <header>
+  <a
+    class="logo"
+    href="/"
+  >
+    
+      <div class="logo__text">Home</div>
+    
+    <div class="logo__chevron">></div>
+    <div class="logo__cursor">█</div>
+  </a>
+
+  <div class="search">
+    <input
+      id="search__text"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      autocomplete="off"
+    />
+    <div id="search__suggestions" class="search__suggestions--hidden"></div>
+  </div>
+
+  <nav id="menu">
+    <ul class="menu--horizontal">
+      
+        <li class="menu__item">
+          <a href="/blog">Blog</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/friends">Friends</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/about">About</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/categories">Categories</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/tags">Tags</a>
+        </li>
+      
+    </ul>
+
+    <div class="menu__burger">
+      
+      <input class="menu__item" type="checkbox" aria-label="Open main menu" />
+
+      
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+
+
+
+      <ul class="menu--vertical">
+        
+          <li>
+            <a class="menu__item" href="/blog">Blog</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/friends">Friends</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/about">About</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/categories">Categories</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/tags">Tags</a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <button class="theme__toggle light--hidden" aria-label="Toggle light mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-sun"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+</svg>
+
+
+  </button>
+
+  <button class="theme__toggle dark--hidden" aria-label="Toggle dark mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-moon"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+</svg>
+
+
+  </button>
+</header>
+
+      <main>
+        <div class="content">
+          
+  <article class="post">
+    <div class="post-header">
+      <h1>Io Programming</h1>
+      <div class="post-meta"><span>2024-11-21</span>
+    <div class="post-tags">
+      <a class="post-tag" href="https://GCmessir.github.io/tags/blog">blog</a><a class="post-tag" href="https://GCmessir.github.io/tags/java-application-programming">java&#8209;application&#8209;programming</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/bikeCouple_hu18416253049769786138.webp 300w,/blog/io_programming/bikeCouple_hu487644454766770626.webp 500w,/blog/io_programming/bikeCouple_hu9895371755604181511.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/bikeCouple.jpg"
+        srcset="/blog/io_programming/bikeCouple_hu9753292042846378179.jpg 300w,/blog/io_programming/bikeCouple_hu13326103645390976819.jpg 500w,/blog/io_programming/bikeCouple_hu7710594270134881065.jpg 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="2560"
+        height="1440"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      <h3 id="输入流和输出流">输入流和输出流<a href="#%e8%be%93%e5%85%a5%e6%b5%81%e5%92%8c%e8%be%93%e5%87%ba%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p><strong>输入流（InputStream）</strong></p>
+<p>输入流用于从数据源读取数据。常见的数据源包括文件、网络连接、内存中的字节数组等。<code>InputStream</code> 是所有字节输入流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的数据源。</p>
+<p><strong>输出流（OutputStream）</strong></p>
+<p>输出流用于将数据写入目标位置。常见的目标位置包括文件、网络连接、内存中的字节数组等。<code>OutputStream</code> 是所有字节输出流的基类，它定义了一些基本的方法，具体的子类实现了这些方法以适应不同的目标位置。</p>
+<h3 id="file文件操作">File文件操作<a href="#file%e6%96%87%e4%bb%b6%e6%93%8d%e4%bd%9c" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h3 id="初识">初识<a href="#%e5%88%9d%e8%af%86" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>java.io.File类是一个与文件本身操作有关的类，此类可以实现文件创建、删除、重命名、取得文件大小、修改日期等常见系统文件操作</p>
+</blockquote>
+<blockquote>
+<p>如果要使用File类则必须提供完整的文件操作路径，对于文件路径的设置可以通过File类的构造方法完成，当获取了正确的文件路径后就可以进行文件创建于删除操作、File类文件基本操作方法</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public File(String pathname)</td>
+          <td>构造</td>
+          <td>给定一个要操作文件的完整路径</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public File(File parent,String child)</td>
+          <td>构造</td>
+          <td>给定要操作文件的父路径和子文件名称</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public boolean createNewFile() throws IOException</td>
+          <td>普通</td>
+          <td>创建文件</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public boolean delete()</td>
+          <td>普通</td>
+          <td>删除文件</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public boolean exists()</td>
+          <td>普通</td>
+          <td>判断给定路径是否存在</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaIODemo</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception{
+</span></span><span style="display:flex;"><span>		File file <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;D:\\1.txt&#34;</span>); <span style="color:#75715e">//文件路径: &#34;\\&#34;转义为&#34;\&#34;</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(file.<span style="color:#a6e22e">exists</span>()){
+</span></span><span style="display:flex;"><span>			file.<span style="color:#a6e22e">delete</span>();
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>			System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(file.<span style="color:#a6e22e">createNewFile</span>());
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="分隔符">分隔符<a href="#%e5%88%86%e9%9a%94%e7%ac%a6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>windows中是&quot;\&quot; 而在UNIX或类UNIX操作系统中路径分隔符是&quot;/&quot;</p>
+<p>为了解决不同操作系统的路径分隔符问题，在java.io.File类中提供了一个路径分隔符常量。</p>
+</blockquote>
+<p><strong>路径分隔符：public static final String separator，在不同操作系统可以获取不同的分隔符</strong></p>
+<p>在实际项目开发中建议使用以下方法定义：</p>
+<pre tabindex="0"><code>File file = new File(&#34;d:&#34; + File.separator + &#34;1.txt&#34;);
+</code></pre><blockquote>
+<p>在使用File类创建文件时必须保证父路径存在，当前程序是直接在根路径下进行文件创建的，所以用户可以直接使用createNewFile()方法创建文件。</p>
+<p>如果文件需要保存在特定的目录中，则必须先创建父目录而后才可以进行文件创建。</p>
+</blockquote>
+<h3 id="file类父路径操作方法">File类父路径操作方法<a href="#file%e7%b1%bb%e7%88%b6%e8%b7%af%e5%be%84%e6%93%8d%e4%bd%9c%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public File getParentFile()</td>
+          <td>普通</td>
+          <td>找到一个指定路径的父路径</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public boolean mkdirs()</td>
+          <td>普通</td>
+          <td>创建指定目录</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>创建带目录的文件</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDemo</span>{
+</span></span><span style="display:flex;"><span>     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception{
+</span></span><span style="display:flex;"><span>         File file <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;F:&#34;</span> <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;hello&#34;</span> <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;hh&#34;</span> <span style="color:#f92672">+</span> 							File.<span style="color:#a6e22e">separator</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;word.txt&#34;</span>);
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>file.<span style="color:#a6e22e">getParentFile</span>().<span style="color:#a6e22e">exists</span>()){
+</span></span><span style="display:flex;"><span>             file.<span style="color:#a6e22e">getParentFile</span>().<span style="color:#a6e22e">mkdirs</span>();
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">if</span>(file.<span style="color:#a6e22e">exists</span>()){
+</span></span><span style="display:flex;"><span>             file.<span style="color:#a6e22e">delete</span>();
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>         <span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>             System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(file.<span style="color:#a6e22e">createNewFile</span>());
+</span></span><span style="display:flex;"><span>         }
+</span></span><span style="display:flex;"><span>     }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><pre tabindex="0"><code>确保父路径存在：当你尝试创建一个新文件时，如果该文件所在的目录（父路径）不存在，那么调用 createNewFile() 方法会失败。这是因为文件系统不允许在一个不存在的目录中创建文件。
+
+直接在根路径下创建文件：如果你是在根路径（如 / 或 C:\）下创建文件，因为根路径总是存在的，所以你可以直接调用 createNewFile() 而无需担心父路径的问题。
+
+创建特定目录下的文件：如果文件需要保存在一个特定的目录中，你需要首先确保这个目录已经存在。如果目录不存在，你需要先创建它。可以使用 File 类的 mkdir() 或 mkdirs() 方法来创建单个或多个层级的目录。
+</code></pre><h3 id="获取文件元数据信息方法">获取文件元数据信息方法<a href="#%e8%8e%b7%e5%8f%96%e6%96%87%e4%bb%b6%e5%85%83%e6%95%b0%e6%8d%ae%e4%bf%a1%e6%81%af%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public boolean canRead()</td>
+          <td>普通</td>
+          <td>文件是否能读</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public boolean canWrite()</td>
+          <td>普通</td>
+          <td>文件是否能写</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public boolean canExecute()</td>
+          <td>普通</td>
+          <td>文件是否能执行</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public long length()</td>
+          <td>普通</td>
+          <td>获取文件大小(返回字节长度)</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public long lastModified()</td>
+          <td>普通</td>
+          <td>获取最后一次修改日期</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>public boolean isDirectory()</td>
+          <td>普通</td>
+          <td>是否是目录</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>public boolean isFile()</td>
+          <td>普通</td>
+          <td>是否是文件</td>
+      </tr>
+      <tr>
+          <td>8</td>
+          <td>public boolean isHidden()</td>
+          <td>普通</td>
+          <td>是否隐藏</td>
+      </tr>
+      <tr>
+          <td>9</td>
+          <td>public File[] listFiles()</td>
+          <td>普通</td>
+          <td>列出目录中的所有文件信息</td>
+      </tr>
+  </tbody>
+</table>
+<p>**注：**listFile()方法返回的是File型对象数组，即在获取数组中的每一个File类实例后可以继续进行各个子路径处理。</p>
+<blockquote>
+<p>一个目录非常庞大，经常会出现目录嵌套，可以用递归处理</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDemo</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception{
+</span></span><span style="display:flex;"><span>        File file <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> File(<span style="color:#e6db74">&#34;D: &#34;</span> <span style="color:#f92672">+</span> File.<span style="color:#a6e22e">separator</span>);
+</span></span><span style="display:flex;"><span>        listDir(file);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">listDir</span>(File file){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(file.<span style="color:#a6e22e">isDirectory</span>){
+</span></span><span style="display:flex;"><span>            File results<span style="color:#f92672">[]</span> <span style="color:#f92672">=</span> file.<span style="color:#a6e22e">listFiles</span>();
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span>(results <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>){
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> x <span style="color:#f92672">=</span> 0;x<span style="color:#f92672">&lt;</span>results.<span style="color:#a6e22e">length</span>;x<span style="color:#f92672">++</span>){
+</span></span><span style="display:flex;"><span>                    listDir(results<span style="color:#f92672">[</span>x<span style="color:#f92672">]</span>);<span style="color:#75715e">//不断递归至不是目录</span>
+</span></span><span style="display:flex;"><span>                }
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/j_hu12216820148986688729.webp 300w,/blog/io_programming/IO_programming.assets/j_hu13554349348652026933.webp 500w,/blog/io_programming/IO_programming.assets/j_hu13836774930706916723.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/j.jpg"
+        srcset="/blog/io_programming/IO_programming.assets/j_hu3653193206776609784.jpg 300w,/blog/io_programming/IO_programming.assets/j_hu1980174935019130199.jpg 500w,/blog/io_programming/IO_programming.assets/j_hu270892439916131475.jpg 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="j"
+        
+        loading="lazy"
+        width="960"
+        height="720"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<h3 id="字节流与字符流">字节流与字符流<a href="#%e5%ad%97%e8%8a%82%e6%b5%81%e4%b8%8e%e5%ad%97%e7%ac%a6%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>流是I/O的基本操作单元，在流的设计中都会有输入和输出两方面支持。</p>
+<p>在程序中所有数据都是以流的方式进行传输和储存的。</p>
+<p>程序需要通过数据文件读取数据时就可以利用输入流来完成，而当程序需要将数据保存到问文件时，就可以使用输出流完成。</p>
+</blockquote>
+<pre tabindex="0"><code>字节操作流：OutputStream、InputStream
+
+字符操作流:Writer、Reader
+</code></pre><blockquote>
+<p>执行数据流资源操作一般要按照以下几个步骤进行，下面以文件操作例子</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>(1)如果要操作的是文件<span style="color:#960050;background-color:#1e0010">，</span>首先通过File类对象找到一个要操作的文件路径<span style="color:#960050;background-color:#1e0010">（</span>路径不存在就要创建路径<span style="color:#960050;background-color:#1e0010">）</span>
+</span></span><span style="display:flex;"><span>(2)通过字节流或者字符流的子类为字节流或字符流的对象实例化(向上转型)
+</span></span><span style="display:flex;"><span>(3)执行读写操作
+</span></span><span style="display:flex;"><span>(4)一定要关闭操作的资源(close()),不管随后代码如何操作<span style="color:#960050;background-color:#1e0010">，</span>资源永远要关闭
+</span></span></code></pre></div><h4 id="outputstream类常用方法">OutputStream类常用方法<a href="#outputstream%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public abstract void write(int b) throws IOException</td>
+          <td>普通</td>
+          <td>输出单个字节数据</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public void write(byte[] b) throws IOException</td>
+          <td>普通</td>
+          <td>输出一组字节数据</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public void write(byte[] b,int off,int len) throws IOException</td>
+          <td>普通</td>
+          <td>输出部分字节数据</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public void close() throws IOException</td>
+          <td>普通</td>
+          <td>关闭输出流</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public void flush() throws IOException</td>
+          <td>普通</td>
+          <td>刷新缓冲区</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>FileOutputStream类主要目的是为OutputStream 父类实例化(FileOutputStream是其子类)</p>
+</blockquote>
+<h4 id="fileoutputsteam类常用方法">FileOutputSteam类常用方法<a href="#fileoutputsteam%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public FileOutputStream(File file) throws FileNotFoundException</td>
+          <td>构造</td>
+          <td>采用覆盖的形式创建文件输出流</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public FileOutputStream(File file,boolean append) throws FileNotFoundException</td>
+          <td>构造</td>
+          <td>采用覆盖或追加的形式创建文件输出流</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="是否选择向上转型">是否选择向上转型<a href="#%e6%98%af%e5%90%a6%e9%80%89%e6%8b%a9%e5%90%91%e4%b8%8a%e8%bd%ac%e5%9e%8b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<pre tabindex="0"><code>向上转型使得代码更加灵活和通用，但同时也限制了对子类特有方法的访问。选择哪种方式取决于你的具体需求。如果你只需要调用 OutputStream 接口中的方法，那么使用 OutputStream 类型的变量是更好的选择。如果你需要调用 FileOutputStream 特有的方法，那么应该使用 FileOutputStream 类型的变量。
+</code></pre><p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/pic__out_hu3118406956271490881.webp 300w,/blog/io_programming/IO_programming.assets/pic__out_hu7266292444160919487.webp 500w,/blog/io_programming/IO_programming.assets/pic__out_hu16134755158922765355.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/pic__out.png"
+        srcset="/blog/io_programming/IO_programming.assets/pic__out_hu3892035233755828467.png 300w,/blog/io_programming/IO_programming.assets/pic__out_hu12141270734354180215.png 500w,/blog/io_programming/IO_programming.assets/pic__out_hu1140147997790923175.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="pic"
+        
+        loading="lazy"
+        width="1520"
+        height="614"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>通过AutoCloseable自动关闭接口</p>
+<p>Closeable继承AutoCloseable</p>
+</blockquote>
+<p>通过OutputStream的继承结构可以发现，OutputStream是AutoCloseable接口子类，所以此时就可以利用try&hellip;catch实现自动关闭操作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//自动关闭输出流</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>(OutputStream output <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(file,<span style="color:#66d9ef">true</span>)){
+</span></span><span style="display:flex;"><span>	String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hello word\r\n&#34;</span>;   <span style="color:#75715e">//&#34;\r\n为文件换行&#34;</span>
+</span></span><span style="display:flex;"><span>	output..<span style="color:#a6e22e">write</span>(str.<span style="color:#a6e22e">getBytes</span>());
+</span></span><span style="display:flex;"><span>}<span style="color:#66d9ef">catch</span>(IOException e){
+</span></span><span style="display:flex;"><span>	e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//这个每一次执行代码实际上会导致新的内容替换掉已有的文件数据，如果想追加内容则可以更换FileOutputStream类的构造方法</span>
+</span></span></code></pre></div><blockquote>
+<p>文件追加内容</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>OutputStream output <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(file,<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>String str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hh&#34;</span>;
+</span></span><span style="display:flex;"><span>output.<span style="color:#a6e22e">write</span>(str.<span style="color:#a6e22e">getBytes</span>());
+</span></span><span style="display:flex;"><span>output.<span style="color:#a6e22e">close</span>();
+</span></span></code></pre></div><h4 id="inputstream字节输入流">InputStream字节输入流<a href="#inputstream%e5%ad%97%e8%8a%82%e8%be%93%e5%85%a5%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<blockquote>
+<p>常用方法</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public abstract int read() throws IOException</td>
+          <td>普通</td>
+          <td>读取单个字节数据，如果现在已经读取到底了，返回-1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public int read(byte[] b) throws IOException</td>
+          <td>普通</td>
+          <td>读取一组字节数据，返回的是读取的个数；如果没有数据，且已经读取到底则返回-1</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public int read(byte[] b,int off,int len) throws IOException</td>
+          <td>普通</td>
+          <td>读取一组字节数据(只占数组的部分)</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public void close() throws IOException</td>
+          <td>普通</td>
+          <td>关闭输出流</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public byte[] readAllBytes() throws IOException</td>
+          <td>普通</td>
+          <td>读取输入流全部字节数据，JDK1.9后</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>public long transferTo(OutputStream out) throws IOException</td>
+          <td>普通</td>
+          <td>输入流转存到输出流，JDK1.9后</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>InputStream类提供的主要方法为read()，可以实现单个字节或一组字节数据的读取操作</p>
+</blockquote>
+<blockquote>
+<p>InputStream属于抽象类，对于文件的读取可以通过FileInputStream子类进行实例化</p>
+</blockquote>
+<blockquote>
+<p>使用readAllBytes()方法可以一次性返回输入流中的所有字节数据，这样开发者在将字节数据内容转为字符串数据的时候就可以不需要进行长度控制了，如（ new String(data,0,len) ）。</p>
+<p>但是使用这个方法需要注意读取的数据内容的字节数据不要过大，否则程序可能出现问题。</p>
+</blockquote>
+<h3 id="writer字符输出流">Writer字符输出流<a href="#writer%e5%ad%97%e7%ac%a6%e8%be%93%e5%87%ba%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>在使用OutputStream进行字节数据输出，这类数据适合网络传输，但在操作时需要进行字节数组转换操作。</p>
+<p>为了简化输出操作，java提供有字符输出流，直接支持字符串输出</p>
+<p>底层通信处理都是依靠字节实现数据交互</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/W_hu13633536923729794119.webp 300w,/blog/io_programming/IO_programming.assets/W_hu10214004770300714664.webp 500w,/blog/io_programming/IO_programming.assets/W_hu2516382577793931532.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/W.png"
+        srcset="/blog/io_programming/IO_programming.assets/W_hu1927661580000889103.png 300w,/blog/io_programming/IO_programming.assets/W_hu3420272933595745672.png 500w,/blog/io_programming/IO_programming.assets/W_hu17935099101313591102.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="关系"
+        
+        loading="lazy"
+        width="1397"
+        height="569"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>字符流的最大特点就是可以直接进行字符串输出。</p>
+</blockquote>
+<h4 id="writer类的常用方法">Writer类的常用方法<a href="#writer%e7%b1%bb%e7%9a%84%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public Writer append(CharSequence csq) throws IOException</td>
+          <td>普通</td>
+          <td>追加输出内容</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public void write(char[] cbuf) throws IOException</td>
+          <td>普通</td>
+          <td>输出字符数组</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public void write(int c) throws IOException</td>
+          <td>普通</td>
+          <td>输出单个字符</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public void write(String str) throws IOException</td>
+          <td>普通</td>
+          <td>输出字符串</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public abstract void flush() throws IOException</td>
+          <td>普通</td>
+          <td>刷新缓冲区</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>public abstract void close() throws IOException</td>
+          <td>普通</td>
+          <td>关闭输入流</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Writer类进行文件操作时可以利用FileWriter子类进行对象实例化</p>
+</blockquote>
+<h4 id="filewriter常用方法">FileWriter常用方法<a href="#filewriter%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public FileWriter(File file) throws IOException</td>
+          <td>构造</td>
+          <td>采用覆盖的形式创建文件输出流</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public FileWriter(File file,boolean append) throws IOException</td>
+          <td>构造</td>
+          <td>采用覆盖或追加的形式创建文件输出流</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="reader字符输入流">Reader字符输入流<a href="#reader%e5%ad%97%e7%ac%a6%e8%be%93%e5%85%a5%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>Reader是实现字符输入流的操作类，可以实现char数据类型的读取。</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/W_hu13633536923729794119.webp 300w,/blog/io_programming/IO_programming.assets/W_hu10214004770300714664.webp 500w,/blog/io_programming/IO_programming.assets/W_hu2516382577793931532.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/W.png"
+        srcset="/blog/io_programming/IO_programming.assets/W_hu1927661580000889103.png 300w,/blog/io_programming/IO_programming.assets/W_hu3420272933595745672.png 500w,/blog/io_programming/IO_programming.assets/W_hu17935099101313591102.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="R"
+        
+        loading="lazy"
+        width="1397"
+        height="569"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<h4 id="常用类方法">常用类方法<a href="#%e5%b8%b8%e7%94%a8%e7%b1%bb%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public int read() throws IOException</td>
+          <td>普通</td>
+          <td>读取单个字符，无数据读取时返回-1</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public int read(char[] cbuf) throws IOException</td>
+          <td>普通</td>
+          <td>读取多个字符，并返回读取个数</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public long skip(long n) throws IOException</td>
+          <td>普通</td>
+          <td>跳过指定的字符个数后读取</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public boolean ready() throws IOException</td>
+          <td>普通</td>
+          <td>是否可以开始读取数据</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public abstract void close() throws IOException</td>
+          <td>普通</td>
+          <td>关闭输入流</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>Reader是抽象类，通过文件读取数据可以使用FileReader子类进行实例化</p>
+</blockquote>
+<blockquote>
+<p>在Writer类输出是使用flush方法，刷新缓冲区，更新内容保存在文件中。</p>
+<p>字符流关闭自动清空缓冲区</p>
+<p>close()方法进行输出流关闭，在关闭的时候会自动进行缓冲区的强制刷新，所以程序内容也可以正常的保存到文件中。</p>
+</blockquote>
+<h4 id="flush"><code>flush()</code><a href="#flush" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p><code>flush()</code> 方法是 <code>OutputStream</code> 接口中的一个重要方法，用于确保所有缓冲的输出数据都被立即写入目标位置。在某些情况下，输出流可能会缓冲数据以提高性能，但这可能导致数据不是立即写入目标位置。调用 <code>flush()</code> 方法可以强制将缓冲区中的数据写入目标位置，从而确保数据的一致性和完整性。</p>
+<p><strong>主要用途</strong></p>
+<ol>
+<li><strong>确保数据立即写入</strong>：在某些情况下，你可能希望确保数据立即写入目标位置，而不是等待缓冲区满或流关闭。例如，在网络通信中，你可能希望确保数据立即发送到服务器。</li>
+<li><strong>避免数据丢失</strong>：在关闭流之前调用 <code>flush()</code> 可以确保所有缓冲的数据都被写入目标位置，避免因意外中断而导致数据丢失。</li>
+</ol>
+<p><strong>示例</strong></p>
+<p>以下是一个简单的示例，展示了如何在使用 <code>FileOutputStream</code> 写入数据时调用 <code>flush()</code> 方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileOutputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">FlushExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 定义文件路径</span>
+</span></span><span style="display:flex;"><span>        String filePath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;example.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 FileOutputStream 对象</span>
+</span></span><span style="display:flex;"><span>            FileOutputStream fos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(filePath);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 要写入的数据</span>
+</span></span><span style="display:flex;"><span>            String data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World! This is a test message.&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 将字符串转换为字节数组</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> data.<span style="color:#a6e22e">getBytes</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 写入数据到文件</span>
+</span></span><span style="display:flex;"><span>            fos.<span style="color:#a6e22e">write</span>(bytes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 强制将缓冲区中的数据写入文件</span>
+</span></span><span style="display:flex;"><span>            fos.<span style="color:#a6e22e">flush</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            fos.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;数据已成功写入文件: &#34;</span> <span style="color:#f92672">+</span> filePath);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>解释</strong></p>
+<ol>
+<li><strong>创建 <code>FileOutputStream</code> 对象</strong>：使用 <code>new FileOutputStream(filePath)</code> 创建一个 <code>FileOutputStream</code> 对象。</li>
+<li><strong>写入数据</strong>：使用 <code>fos.write(bytes)</code> 方法将字节数组写入文件。</li>
+<li><strong>调用 <code>flush()</code> 方法</strong>：使用 <code>fos.flush()</code> 方法强制将缓冲区中的数据写入文件。</li>
+<li><strong>关闭流</strong>：使用 <code>fos.close()</code> 方法关闭文件输出流，释放系统资源。</li>
+</ol>
+<p><strong>注意事项</strong></p>
+<ul>
+<li><strong>性能影响</strong>：频繁调用 <code>flush()</code> 方法可能会降低性能，因为每次调用都会导致系统 I/O 操作。因此，通常在关键点调用 <code>flush()</code> 方法，而不是频繁调用。</li>
+<li><strong>异常处理</strong>：调用 <code>flush()</code> 方法可能会抛出 <code>IOException</code>，因此需要在 <code>try-catch</code> 块中处理异常。</li>
+</ul>
+<p><strong>其他流的 <code>flush()</code> 方法</strong></p>
+<p>不仅仅是 <code>FileOutputStream</code>，其他继承自 <code>OutputStream</code> 的类也提供了 <code>flush()</code> 方法。例如：</p>
+<ul>
+<li><strong><code>BufferedOutputStream</code></strong>：用于缓冲输出流，调用 <code>flush()</code> 方法会将缓冲区中的数据写入底层输出流。</li>
+<li><strong><code>PrintStream</code></strong>：用于格式化输出，调用 <code>flush()</code> 方法会将缓冲区中的数据写入目标位置。</li>
+</ul>
+<h3 id="转换流">转换流<a href="#%e8%bd%ac%e6%8d%a2%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/conversion_hu8055829528576471455.webp 300w,/blog/io_programming/IO_programming.assets/conversion_hu17273603170226133132.webp 500w,/blog/io_programming/IO_programming.assets/conversion_hu13472505062145796408.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/conversion.png"
+        srcset="/blog/io_programming/IO_programming.assets/conversion_hu5687708785369827261.png 300w,/blog/io_programming/IO_programming.assets/conversion_hu6191663471309180754.png 500w,/blog/io_programming/IO_programming.assets/conversion_hu5359227286787020124.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="R"
+        
+        loading="lazy"
+        width="863"
+        height="464"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/two_hu14194226928390695863.webp 300w,/blog/io_programming/IO_programming.assets/two_hu8480673685627277344.webp 500w,/blog/io_programming/IO_programming.assets/two_hu763691484740954644.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/two.png"
+        srcset="/blog/io_programming/IO_programming.assets/two_hu16323183141495314711.png 300w,/blog/io_programming/IO_programming.assets/two_hu9694195801208976059.png 500w,/blog/io_programming/IO_programming.assets/two_hu17367529515870939206.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="p"
+        
+        loading="lazy"
+        width="2059"
+        height="813"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>每一种流程处理都有一个文件处理类</p>
+<p>字节文件流都是字节流的直接子类，而字符流中的两个文件操作留都是转换流的子类</p>
+</blockquote>
+<blockquote>
+<p>JDK1.9后，使用transferTo()可以很方便的将输入流的数据保存到输出流</p>
+</blockquote>
+<h3 id="内存操作流">内存操作流<a href="#%e5%86%85%e5%ad%98%e6%93%8d%e4%bd%9c%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>输入流</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/input_neicun_hu13639416928068839820.webp 300w,/blog/io_programming/IO_programming.assets/input_neicun_hu14480985332121487986.webp 500w,/blog/io_programming/IO_programming.assets/input_neicun_hu5160054300785924411.webp 699w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,699px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/input_neicun.png"
+        srcset="/blog/io_programming/IO_programming.assets/input_neicun_hu11903844032178529228.png 300w,/blog/io_programming/IO_programming.assets/input_neicun_hu6371354502429038817.png 500w,/blog/io_programming/IO_programming.assets/input_neicun_hu8703083003684065613.png 699w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,699px"
+        alt="i"
+        
+        loading="lazy"
+        width="699"
+        height="368"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>输出流</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/output_neicun_hu6342350569280642335.webp 300w,/blog/io_programming/IO_programming.assets/output_neicun_hu8063103309975440369.webp 500w,/blog/io_programming/IO_programming.assets/output_neicun_hu11311593726275365605.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/output_neicun.png"
+        srcset="/blog/io_programming/IO_programming.assets/output_neicun_hu14521595805679653869.png 300w,/blog/io_programming/IO_programming.assets/output_neicun_hu17088001217673293396.png 500w,/blog/io_programming/IO_programming.assets/output_neicun_hu4229604519329583674.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="o"
+        
+        loading="lazy"
+        width="1098"
+        height="444"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>内存操作流是 Java 中用于在内存中读写数据的流。这些流允许你在内存中创建和操作数据，而不需要与文件系统或其他外部资源进行交互。内存操作流特别适用于临时数据处理和缓存数据。</p>
+<h4 id="常见的内存操作流">常见的内存操作流<a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e5%86%85%e5%ad%98%e6%93%8d%e4%bd%9c%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong><code>ByteArrayInputStream</code></strong>：从内存中的字节数组读取数据。</li>
+<li><strong><code>ByteArrayOutputStream</code></strong>：将数据写入内存中的字节数组。</li>
+<li><strong><code>CharArrayReader</code></strong>：从内存中的字符数组读取数据。</li>
+<li><strong><code>CharArrayWriter</code></strong>：将数据写入内存中的字符数组。</li>
+</ol>
+<h4 id="示例代码">示例代码<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<h4 id="使用-bytearrayinputstream-和-bytearrayoutputstream">使用 <code>ByteArrayInputStream</code> 和 <code>ByteArrayOutputStream</code><a href="#%e4%bd%bf%e7%94%a8-bytearrayinputstream-%e5%92%8c-bytearrayoutputstream" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>以下是一个简单的示例，展示了如何使用 <code>ByteArrayInputStream</code> 和 <code>ByteArrayOutputStream</code> 在内存中读写数据。</p>
+<h5 id="示例-1使用-bytearrayoutputstream-写入数据">示例 1：使用 <code>ByteArrayOutputStream</code> 写入数据<a href="#%e7%a4%ba%e4%be%8b-1%e4%bd%bf%e7%94%a8-bytearrayoutputstream-%e5%86%99%e5%85%a5%e6%95%b0%e6%8d%ae" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.ByteArrayOutputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ByteArrayOutputStreamExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 ByteArrayOutputStream 对象</span>
+</span></span><span style="display:flex;"><span>            ByteArrayOutputStream baos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ByteArrayOutputStream();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 要写入的数据</span>
+</span></span><span style="display:flex;"><span>            String data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World! This is a test message.&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 将字符串转换为字节数组</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> bytes <span style="color:#f92672">=</span> data.<span style="color:#a6e22e">getBytes</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 写入数据到内存</span>
+</span></span><span style="display:flex;"><span>            baos.<span style="color:#a6e22e">write</span>(bytes);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 获取内存中的数据</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">byte</span><span style="color:#f92672">[]</span> result <span style="color:#f92672">=</span> baos.<span style="color:#a6e22e">toByteArray</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 打印结果</span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#66d9ef">new</span> String(result));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            baos.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="示例-2使用-bytearrayinputstream-读取数据">示例 2：使用 <code>ByteArrayInputStream</code> 读取数据<a href="#%e7%a4%ba%e4%be%8b-2%e4%bd%bf%e7%94%a8-bytearrayinputstream-%e8%af%bb%e5%8f%96%e6%95%b0%e6%8d%ae" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<pre tabindex="0"><code>import java.io.ByteArrayInputStream;
+import java.io.IOException;
+
+public class ByteArrayInputStreamExample {
+    public static void main(String[] args) {
+        try {
+            // 要读取的数据
+            String data = &#34;Hello, World! This is a test message.&#34;;
+
+            // 将字符串转换为字节数组
+            byte[] bytes = data.getBytes();
+
+            // 创建 ByteArrayInputStream 对象
+            ByteArrayInputStream bais = new ByteArrayInputStream(bytes);
+
+            // 读取数据
+            int byteRead;
+            while ((byteRead = bais.read()) != -1) {
+                // 打印读取的字符
+                System.out.print((char) byteRead);
+            }
+
+            // 关闭流
+            bais.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre><h4 id="解释">解释<a href="#%e8%a7%a3%e9%87%8a" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<h4 id="bytearrayoutputstream"><code>ByteArrayOutputStream</code><a href="#bytearrayoutputstream" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong>创建 <code>ByteArrayOutputStream</code> 对象</strong>：使用 <code>new ByteArrayOutputStream()</code> 创建一个 <code>ByteArrayOutputStream</code> 对象。</li>
+<li><strong>写入数据</strong>：使用 <code>baos.write(bytes)</code> 方法将字节数组写入内存。</li>
+<li><strong>获取内存中的数据</strong>：使用 <code>baos.toByteArray()</code> 方法将内存中的数据转换为字节数组。</li>
+<li><strong>关闭流</strong>：使用 <code>baos.close()</code> 方法关闭输出流，释放系统资源。</li>
+</ol>
+<h4 id="bytearrayinputstream"><code>ByteArrayInputStream</code><a href="#bytearrayinputstream" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong>创建 <code>ByteArrayInputStream</code> 对象</strong>：使用 <code>new ByteArrayInputStream(bytes)</code> 创建一个 <code>ByteArrayInputStream</code> 对象。</li>
+<li><strong>读取数据</strong>：使用 <code>bais.read()</code> 方法从内存中读取一个字节，直到返回 <code>-1</code> 表示数据读取完毕。</li>
+<li><strong>关闭流</strong>：使用 <code>bais.close()</code> 方法关闭输入流，释放系统资源。</li>
+</ol>
+<h4 id="其他内存操作流">其他内存操作流<a href="#%e5%85%b6%e4%bb%96%e5%86%85%e5%ad%98%e6%93%8d%e4%bd%9c%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<h4 id="chararrayreader-和-chararraywriter"><code>CharArrayReader</code> 和 <code>CharArrayWriter</code><a href="#chararrayreader-%e5%92%8c-chararraywriter" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>这些类类似于 <code>ByteArrayInputStream</code> 和 <code>ByteArrayOutputStream</code>，但它们操作的是字符数组而不是字节数组。</p>
+<h5 id="示例使用-chararraywriter-写入数据">示例：使用 <code>CharArrayWriter</code> 写入数据<a href="#%e7%a4%ba%e4%be%8b%e4%bd%bf%e7%94%a8-chararraywriter-%e5%86%99%e5%85%a5%e6%95%b0%e6%8d%ae" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.CharArrayWriter;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CharArrayWriterExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 CharArrayWriter 对象</span>
+</span></span><span style="display:flex;"><span>            CharArrayWriter caw <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CharArrayWriter();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 要写入的数据</span>
+</span></span><span style="display:flex;"><span>            String data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World! This is a test message.&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 写入数据到内存</span>
+</span></span><span style="display:flex;"><span>            caw.<span style="color:#a6e22e">write</span>(data);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 获取内存中的数据</span>
+</span></span><span style="display:flex;"><span>            String result <span style="color:#f92672">=</span> caw.<span style="color:#a6e22e">toString</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 打印结果</span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(result);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            caw.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="示例使用-chararrayreader-读取数据">示例：使用 <code>CharArrayReader</code> 读取数据<a href="#%e7%a4%ba%e4%be%8b%e4%bd%bf%e7%94%a8-chararrayreader-%e8%af%bb%e5%8f%96%e6%95%b0%e6%8d%ae" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.CharArrayReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CharArrayReaderExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 要读取的数据</span>
+</span></span><span style="display:flex;"><span>            String data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello, World! This is a test message.&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 将字符串转换为字符数组</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">char</span><span style="color:#f92672">[]</span> chars <span style="color:#f92672">=</span> data.<span style="color:#a6e22e">toCharArray</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 CharArrayReader 对象</span>
+</span></span><span style="display:flex;"><span>            CharArrayReader car <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> CharArrayReader(chars);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 读取数据</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">int</span> charRead;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> ((charRead <span style="color:#f92672">=</span> car.<span style="color:#a6e22e">read</span>()) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span>1) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 打印读取的字符</span>
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>((<span style="color:#66d9ef">char</span>) charRead);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            car.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="system类对io的支持">System类对I/O的支持<a href="#system%e7%b1%bb%e5%af%b9io%e7%9a%84%e6%94%af%e6%8c%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>System类的3个I/O常量</p>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>常量</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public static final PrintStream err</td>
+          <td>常量</td>
+          <td>错误输出</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public static final PrintStream out</td>
+          <td>常量</td>
+          <td>系统输出</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public static final InputStream in</td>
+          <td>常量</td>
+          <td>系统输入</td>
+      </tr>
+  </tbody>
+</table>
+<h3 id="bufferedreader缓冲输入流">BufferedReader缓冲输入流<a href="#bufferedreader%e7%bc%93%e5%86%b2%e8%be%93%e5%85%a5%e6%b5%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public BufferedReader(Reader in)</td>
+          <td>构造</td>
+          <td>接取一个Reader类的实例</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public String readLine() throws IOException</td>
+          <td>普通</td>
+          <td>一次性从缓冲区中将内容全部读取出来</td>
+      </tr>
+  </tbody>
+</table>
+<pre tabindex="0"><code>BufferedReader定义的构造方法只能接受字符输入的实例，所以必须使用字符输入转换成inputStreamReader类将字节输入流System.in变成字符流
+</code></pre><p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/Bufferedxx_hu15409193864166040628.webp 300w,/blog/io_programming/IO_programming.assets/Bufferedxx_hu7550185500247649457.webp 500w,/blog/io_programming/IO_programming.assets/Bufferedxx_hu14411561485231571982.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/Bufferedxx.png"
+        srcset="/blog/io_programming/IO_programming.assets/Bufferedxx_hu9779316864264923980.png 300w,/blog/io_programming/IO_programming.assets/Bufferedxx_hu11827839227734030434.png 500w,/blog/io_programming/IO_programming.assets/Bufferedxx_hu13872697053185451341.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="b"
+        
+        loading="lazy"
+        width="2317"
+        height="1244"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+    
+    
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96_hu3158906198890629663.webp 300w,/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96_hu10478430897167262072.webp 500w,/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96_hu160988906631061069.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96.png"
+        srcset="/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96_hu12525787988547428715.png 300w,/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96_hu3365662113524539817.png 500w,/blog/io_programming/IO_programming.assets/BffereReader%E5%AE%9E%E4%BE%8B%E5%8C%96_hu9628022014362199908.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="b"
+        
+        loading="lazy"
+        width="1080"
+        height="360"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p><code>BufferedReader</code> 是 Java 标准库中的一个类，用于从字符输入流中高效地读取文本数据。它通过内部缓冲来提高读取效率，特别是对于大量文本数据的读取非常有用。<code>BufferedReader</code> 继承自 <code>Reader</code> 类，并提供了额外的方法来方便地读取行数据。</p>
+<h4 id="主要特点">主要特点<a href="#%e4%b8%bb%e8%a6%81%e7%89%b9%e7%82%b9" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong>缓冲机制</strong>：<code>BufferedReader</code> 使用内部缓冲区来减少对底层输入流的读取次数，从而提高读取效率。</li>
+<li><strong>读取行数据</strong>：提供了 <code>readLine()</code> 方法，可以方便地按行读取文本数据。</li>
+<li><strong>读取单个字符</strong>：提供了 <code>read()</code> 方法，可以读取单个字符。</li>
+<li><strong>读取多个字符</strong>：提供了 <code>read(char[] cbuf, int off, int len)</code> 方法，可以读取多个字符到字符数组中。</li>
+</ol>
+<h4 id="常见的构造方法">常见的构造方法<a href="#%e5%b8%b8%e8%a7%81%e7%9a%84%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong><code>BufferedReader(Reader in)</code></strong>：创建一个新的缓冲读取器，使用默认大小的缓冲区。</li>
+<li><strong><code>BufferedReader(Reader in, int size)</code></strong>：创建一个新的缓冲读取器，使用指定大小的缓冲区。</li>
+</ol>
+<h4 id="示例代码-1">示例代码<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>以下是一个简单的示例，展示了如何使用 <code>BufferedReader</code> 从文件中读取文本数据。</p>
+<h4 id="示例使用-bufferedreader-读取文件">示例：使用 <code>BufferedReader</code> 读取文件<a href="#%e7%a4%ba%e4%be%8b%e4%bd%bf%e7%94%a8-bufferedreader-%e8%af%bb%e5%8f%96%e6%96%87%e4%bb%b6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.BufferedReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BufferedReaderExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 定义文件路径</span>
+</span></span><span style="display:flex;"><span>        String filePath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;example.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 FileReader 对象</span>
+</span></span><span style="display:flex;"><span>            FileReader fr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileReader(filePath);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 包装成 BufferedReader 对象</span>
+</span></span><span style="display:flex;"><span>            BufferedReader br <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(fr);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 读取文件内容，按行读取</span>
+</span></span><span style="display:flex;"><span>            String line;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> ((line <span style="color:#f92672">=</span> br.<span style="color:#a6e22e">readLine</span>()) <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 打印读取的每一行</span>
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(line);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            br.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="解释-1">解释<a href="#%e8%a7%a3%e9%87%8a-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li>
+<p><strong>创建 <code>FileReader</code> 对象</strong>：使用 <code>new FileReader(filePath)</code> 创建一个 <code>FileReader</code> 对象，用于从文件中读取字符数据。</p>
+</li>
+<li>
+<p><strong>包装成 <code>BufferedReader</code> 对象</strong>：使用 <code>new BufferedReader(fr)</code> 创建一个 <code>BufferedReader</code> 对象，以提高读取效率。</p>
+</li>
+<li>
+<p>读取文件内容</p>
+<p>：</p>
+<ul>
+<li>使用 <code>br.readLine()</code> 方法按行读取文件内容。该方法返回读取的行，如果到达文件末尾则返回 <code>null</code>。</li>
+<li>使用 <code>while</code> 循环不断读取行数据，直到读取到 <code>null</code> 表示文件结束。</li>
+</ul>
+</li>
+<li>
+<p><strong>关闭流</strong>：使用 <code>br.close()</code> 方法关闭缓冲读取器，释放系统资源。</p>
+</li>
+</ol>
+<h4 id="常用方法">常用方法<a href="#%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong><code>String readLine()</code></strong>：读取一行文本。返回的字符串不包含任何行终止符（如 <code>\n</code> 或 <code>\r\n</code>）。如果到达文件末尾则返回 <code>null</code>。</li>
+<li><strong><code>int read()</code></strong>：读取一个字符，返回读取的字符值，如果到达文件末尾则返回 <code>-1</code>。</li>
+<li><strong><code>int read(char[] cbuf, int off, int len)</code></strong>：读取最多 <code>len</code> 个字符，并将其存储在字符数组 <code>cbuf</code> 中，从偏移量 <code>off</code> 开始。</li>
+<li><strong><code>void close()</code></strong>：关闭此缓冲读取器并释放与之关联的所有系统资源。</li>
+<li><strong><code>long skip(long n)</code></strong>：跳过并丢弃此输入流中的 <code>n</code> 个字符。</li>
+</ol>
+<h4 id="注意事项">注意事项<a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong>异常处理</strong>：调用 <code>readLine()</code>、<code>read()</code> 等方法可能会抛出 <code>IOException</code>，因此需要在 <code>try-catch</code> 块中处理异常。</li>
+<li><strong>资源管理</strong>：务必在不再需要时关闭流，以释放系统资源。可以使用 <code>try-with-resources</code> 语句来自动管理资源。</li>
+</ol>
+<h4 id="使用-try-with-resources-语句">使用 <code>try-with-resources</code> 语句<a href="#%e4%bd%bf%e7%94%a8-try-with-resources-%e8%af%ad%e5%8f%a5" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.BufferedReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileReader;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">BufferedReaderExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 定义文件路径</span>
+</span></span><span style="display:flex;"><span>        String filePath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;example.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (FileReader fr <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileReader(filePath);
+</span></span><span style="display:flex;"><span>             BufferedReader br <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedReader(fr)) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 读取文件内容，按行读取</span>
+</span></span><span style="display:flex;"><span>            String line;
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> ((line <span style="color:#f92672">=</span> br.<span style="color:#a6e22e">readLine</span>()) <span style="color:#f92672">!=</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>                <span style="color:#75715e">// 打印读取的每一行</span>
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(line);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="heading"><a href="#heading" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<h3 id="scanner">Scanner<a href="#scanner" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p><code>Scanner</code> 是 Java 标准库中的一个类，用于解析基本类型和字符串的输入。它可以从标准输入（如键盘输入）、文件、字符串等输入源读取数据，并提供了丰富的解析方法，使得输入处理变得更加方便和灵活。</p>
+<h4 id="构造方法">构造方法<a href="#%e6%9e%84%e9%80%a0%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong><code>Scanner(InputStream source)</code></strong>：从输入流中读取数据。</li>
+<li><strong><code>Scanner(File source)</code></strong>：从文件中读取数据。</li>
+<li><strong><code>Scanner(Path source)</code></strong>：从路径中读取数据。</li>
+<li><strong><code>Scanner(String source)</code></strong>：从字符串中读取数据。</li>
+<li><strong><code>Scanner(Readable source)</code></strong>：从可读对象中读取数据。</li>
+</ol>
+<h4 id="常用方法-1">常用方法<a href="#%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong><code>next()</code></strong>：读取下一个完整的标记（token），默认分隔符是空白字符（空格、制表符、换行符等）。</li>
+<li><strong><code>nextLine()</code></strong>：读取下一行文本，包括换行符。</li>
+<li><strong><code>nextInt()</code></strong>：读取下一个整数。</li>
+<li><strong><code>nextDouble()</code></strong>：读取下一个双精度浮点数。</li>
+<li><strong><code>nextBoolean()</code></strong>：读取下一个布尔值。</li>
+<li><strong><code>hasNext()</code></strong>：判断是否还有下一个标记。</li>
+<li><strong><code>hasNextLine()</code></strong>：判断是否还有下一行文本。</li>
+<li><strong><code>hasNextInt()</code></strong>：判断是否还有下一个整数。</li>
+<li><strong><code>hasNextDouble()</code></strong>：判断是否还有下一个双精度浮点数。</li>
+<li><strong><code>hasNextBoolean()</code></strong>：判断是否还有下一个布尔值。</li>
+<li><strong><code>useDelimiter(Pattern pattern)</code></strong>：设置分隔符模式。</li>
+<li><strong><code>close()</code></strong>：关闭扫描器，释放相关资源。</li>
+</ol>
+<h4 id="示例代码-2">示例代码<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81-2" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>以下是一些使用 <code>Scanner</code> 的示例，展示了如何从不同输入源读取数据。</p>
+<p><strong>示例 1：从标准输入读取数据</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScannerExample1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建 Scanner 对象，从标准输入读取数据</span>
+</span></span><span style="display:flex;"><span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(System.<span style="color:#a6e22e">in</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;请输入您的姓名：&#34;</span>);
+</span></span><span style="display:flex;"><span>        String name <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextLine</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;请输入您的年龄：&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> age <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextInt</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;请输入您的身高（米）：&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> height <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextDouble</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;您好，&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;，您今年 &#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; 岁，身高 &#34;</span> <span style="color:#f92672">+</span> height <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; 米。&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 关闭扫描器</span>
+</span></span><span style="display:flex;"><span>        scanner.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>示例 2：从文件读取数据</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileNotFoundException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScannerExample2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 定义文件路径</span>
+</span></span><span style="display:flex;"><span>        String filePath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;data.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 Scanner 对象，从文件读取数据</span>
+</span></span><span style="display:flex;"><span>            Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(<span style="color:#66d9ef">new</span> File(filePath));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 读取文件内容</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (scanner.<span style="color:#a6e22e">hasNextLine</span>()) {
+</span></span><span style="display:flex;"><span>                String line <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextLine</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(line);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭扫描器</span>
+</span></span><span style="display:flex;"><span>            scanner.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (FileNotFoundException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="示例-3从字符串读取数据">示例 3：从字符串读取数据<a href="#%e7%a4%ba%e4%be%8b-3%e4%bb%8e%e5%ad%97%e7%ac%a6%e4%b8%b2%e8%af%bb%e5%8f%96%e6%95%b0%e6%8d%ae" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScannerExample3</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 定义字符串</span>
+</span></span><span style="display:flex;"><span>        String input <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;John Doe 25 1.75&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建 Scanner 对象，从字符串读取数据</span>
+</span></span><span style="display:flex;"><span>        Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(input);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 读取数据</span>
+</span></span><span style="display:flex;"><span>        String name <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>        String lastName <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">next</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">int</span> age <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextInt</span>();
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">double</span> height <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextDouble</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;姓名：&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span> <span style="color:#f92672">+</span> lastName);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;年龄：&#34;</span> <span style="color:#f92672">+</span> age);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;身高：&#34;</span> <span style="color:#f92672">+</span> height);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 关闭扫描器</span>
+</span></span><span style="display:flex;"><span>        scanner.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="解释-2">解释<a href="#%e8%a7%a3%e9%87%8a-2" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong>创建 <code>Scanner</code> 对象</strong>：
+<ul>
+<li><strong>从标准输入读取数据</strong>：使用 <code>new Scanner(System.in)</code> 创建一个 <code>Scanner</code> 对象，从标准输入读取数据。</li>
+<li><strong>从文件读取数据</strong>：使用 <code>new Scanner(new File(filePath))</code> 创建一个 <code>Scanner</code> 对象，从文件读取数据。</li>
+<li><strong>从字符串读取数据</strong>：使用 <code>new Scanner(input)</code> 创建一个 <code>Scanner</code> 对象，从字符串读取数据。</li>
+</ul>
+</li>
+<li><strong>读取数据</strong>：
+<ul>
+<li><strong><code>nextLine()</code></strong>：读取下一行文本。</li>
+<li><strong><code>nextInt()</code></strong>：读取下一个整数。</li>
+<li><strong><code>nextDouble()</code></strong>：读取下一个双精度浮点数。</li>
+<li><strong><code>next()</code></strong>：读取下一个完整的标记（token）。</li>
+</ul>
+</li>
+<li><strong>判断是否有更多数据</strong>：
+<ul>
+<li><strong><code>hasNextLine()</code></strong>：判断是否还有下一行文本。</li>
+<li><strong><code>hasNextInt()</code></strong>：判断是否还有下一个整数。</li>
+<li><strong><code>hasNextDouble()</code></strong>：判断是否还有下一个双精度浮点数。</li>
+</ul>
+</li>
+<li><strong>关闭扫描器</strong>：使用 <code>scanner.close()</code> 方法关闭扫描器，释放相关资源。</li>
+</ol>
+<h4 id="注意事项-1">注意事项<a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li><strong>异常处理</strong>：在从文件读取数据时，可能会抛出 <code>FileNotFoundException</code>，因此需要在 <code>try-catch</code> 块中处理异常。</li>
+<li><strong>资源管理</strong>：务必在不再需要时关闭扫描器，以释放系统资源。可以使用 <code>try-with-resources</code> 语句来自动管理资源。</li>
+</ol>
+<h4 id="使用-try-with-resources-语句-1">使用 <code>try-with-resources</code> 语句<a href="#%e4%bd%bf%e7%94%a8-try-with-resources-%e8%af%ad%e5%8f%a5-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.File;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileNotFoundException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScannerExample2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 定义文件路径</span>
+</span></span><span style="display:flex;"><span>        String filePath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;data.txt&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> (Scanner scanner <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(<span style="color:#66d9ef">new</span> File(filePath))) {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 读取文件内容</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span> (scanner.<span style="color:#a6e22e">hasNextLine</span>()) {
+</span></span><span style="display:flex;"><span>                String line <span style="color:#f92672">=</span> scanner.<span style="color:#a6e22e">nextLine</span>();
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(line);
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (FileNotFoundException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="注">注：<a href="#%e6%b3%a8" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>Scanner可以接收File,InputStream、Readable类型的输入实例，这样就可以使用统一标准实现数据的读取操作</p>
+<blockquote>
+<p>Scanner默认将空字符作为分隔符，然而.txt文件中的内容是以换行符作为分隔符，所以为了正常数据读取，就必须利用useDelimiter()方法指定数据读取的分隔符。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.Scanner
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDemo</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) <span style="color:#66d9ef">throws</span> Exception{
+</span></span><span style="display:flex;"><span>            Scanner scan <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Scanner(<span style="color:#66d9ef">new</span> File(xxx.<span style="color:#a6e22e">txt</span>));
+</span></span><span style="display:flex;"><span>            scan.<span style="color:#a6e22e">useDelimiter</span>(<span style="color:#e6db74">&#34;\n&#34;</span>);
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">while</span>(scan.<span style="color:#a6e22e">hasNext</span>()){
+</span></span><span style="display:flex;"><span>                System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(scan.<span style="color:#a6e22e">next</span>());
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h3 id="对象序列化">对象序列化<a href="#%e5%af%b9%e8%b1%a1%e5%ba%8f%e5%88%97%e5%8c%96" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>对象序列化就是把一个变成二进制数据留的一种方法</p>
+<p>一个类的对象要想实现序列化，则对象所在的类必须实现java.io.Serializable接口。然而这个接口没有提供任何抽象方法，只是一个标识接口，表示一种对象可以被序列化的能力&mdash;&ndash;</p>
+</blockquote>
+<p>Java 序列化和反序列化是将对象的状态保存到文件或传输到网络，并从文件或网络中恢复对象状态的过程。序列化将对象转换为字节流，而反序列化则是将字节流还原为对象。这在分布式系统、持久化存储和对象传输中非常有用。</p>
+<h4 id="序列化">序列化<a href="#%e5%ba%8f%e5%88%97%e5%8c%96" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>序列化是指将对象的状态信息转换为可以存储或传输的形式。在 Java 中，可以通过实现 <code>Serializable</code> 接口来使对象支持序列化。</p>
+<p><strong>实现 <code>Serializable</code> 接口</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.Serializable;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L; <span style="color:#75715e">// 可选，用于版本控制</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span>(String name, <span style="color:#66d9ef">int</span> age) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters and Setters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setName</span>(String name) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> age;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setAge</span>(<span style="color:#66d9ef">int</span> age) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Person{name=&#39;&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;, age=&#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;}&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="序列化对象">序列化对象<a href="#%e5%ba%8f%e5%88%97%e5%8c%96%e5%af%b9%e8%b1%a1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>使用 <code>ObjectOutputStream</code> 将对象写入文件或输出流。</p>
+<p><strong>示例：将对象序列化到文件</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileOutputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.ObjectOutputStream;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SerializationExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// 创建一个 Person 对象</span>
+</span></span><span style="display:flex;"><span>        Person person <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Person(<span style="color:#e6db74">&#34;John Doe&#34;</span>, 30);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 FileOutputStream 对象</span>
+</span></span><span style="display:flex;"><span>            FileOutputStream fos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileOutputStream(<span style="color:#e6db74">&#34;person.ser&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 ObjectOutputStream 对象</span>
+</span></span><span style="display:flex;"><span>            ObjectOutputStream oos <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectOutputStream(fos);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 序列化对象</span>
+</span></span><span style="display:flex;"><span>            oos.<span style="color:#a6e22e">writeObject</span>(person);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            oos.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>            fos.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;对象已成功序列化到文件: person.ser&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="反序列化">反序列化<a href="#%e5%8f%8d%e5%ba%8f%e5%88%97%e5%8c%96" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>反序列化是指将字节流还原为对象。在 Java 中，可以通过 <code>ObjectInputStream</code> 从文件或输入流中读取对象。</p>
+<p><strong>示例：从文件反序列化对象</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.FileInputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.IOException;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.ObjectInputStream;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DeserializationExample</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 FileInputStream 对象</span>
+</span></span><span style="display:flex;"><span>            FileInputStream fis <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> FileInputStream(<span style="color:#e6db74">&#34;person.ser&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 创建 ObjectInputStream 对象</span>
+</span></span><span style="display:flex;"><span>            ObjectInputStream ois <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ObjectInputStream(fis);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 反序列化对象</span>
+</span></span><span style="display:flex;"><span>            Person person <span style="color:#f92672">=</span> (Person) ois.<span style="color:#a6e22e">readObject</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// 关闭流</span>
+</span></span><span style="display:flex;"><span>            ois.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>            fis.<span style="color:#a6e22e">close</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;对象已成功反序列化: &#34;</span> <span style="color:#f92672">+</span> person);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        } <span style="color:#66d9ef">catch</span> (IOException <span style="color:#f92672">|</span> ClassNotFoundException e) {
+</span></span><span style="display:flex;"><span>            e.<span style="color:#a6e22e">printStackTrace</span>();
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="注意事项-2">注意事项<a href="#%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9-2" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li>
+<p><strong><code>serialVersionUID</code></strong>：建议为每个实现 <code>Serializable</code> 接口的类定义一个 <code>serialVersionUID</code>，用于版本控制。如果不定义，默认会根据类的结构生成一个唯一的 <code>serialVersionUID</code>，这可能导致在类结构发生变化时无法正确反序列化。</p>
+</li>
+<li>
+<p><strong>瞬态字段</strong>：使用 <code>transient</code> 关键字标记的字段不会被序列化。例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">transient</span> String password;
+</span></span></code></pre></div></li>
+<li>
+<p><strong>自定义序列化和反序列化</strong>：可以通过实现 <code>writeObject</code> 和 <code>readObject</code> 方法来自定义序列化和反序列化过程。例如：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.ObjectInputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.ObjectOutputStream;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.io.Serializable;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> <span style="color:#66d9ef">implements</span> Serializable {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> <span style="color:#66d9ef">long</span> serialVersionUID <span style="color:#f92672">=</span> 1L;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">transient</span> String password;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span>(String name, <span style="color:#66d9ef">int</span> age, String password) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> password;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Getters and Setters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">writeObject</span>(ObjectOutputStream out) <span style="color:#66d9ef">throws</span> IOException {
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">defaultWriteObject</span>();
+</span></span><span style="display:flex;"><span>        out.<span style="color:#a6e22e">writeObject</span>(password);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">readObject</span>(ObjectInputStream in) <span style="color:#66d9ef">throws</span> IOException, ClassNotFoundException {
+</span></span><span style="display:flex;"><span>        in.<span style="color:#a6e22e">defaultReadObject</span>();
+</span></span><span style="display:flex;"><span>        password <span style="color:#f92672">=</span> (String) in.<span style="color:#a6e22e">readObject</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Person{name=&#39;&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;, age=&#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;, password=&#39;&#34;</span> <span style="color:#f92672">+</span> password <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;}&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ol>
+<blockquote>
+<p>ObjectOutputStream类可以将对象转为特定格式的二进制数据输出</p>
+<p>ObjectInputStream可以读取ObjectOutputStream类输出的二进制对象数据，并将其转为具体类型的对象返回。</p>
+</blockquote>
+<h4 id="objectoutputstream类常用方法">ObjectOutputStream类常用方法<a href="#objectoutputstream%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public ObjectOutputStream(OutputStream out) throws IOException</td>
+          <td>构造</td>
+          <td>传入输出的对象</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public final void writeObject(Object obj) throws IOException</td>
+          <td>普通</td>
+          <td>输出对象</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="objectinputstream类常用方法">ObjectInputStream类常用方法<a href="#objectinputstream%e7%b1%bb%e5%b8%b8%e7%94%a8%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public ObjectInputStream(InputStream in) throws IOException</td>
+          <td>构造</td>
+          <td>构造输入对象</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public final Object readObject() throws IOException,ClassNotFoundException</td>
+          <td>普通</td>
+          <td>从指定位置读取对象</td>
+      </tr>
+  </tbody>
+</table>
+<h4 id="拓展">拓展：<a href="#%e6%8b%93%e5%b1%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<h5 id="java">Java<a href="#java" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<ul>
+<li><strong>企业级应用</strong>：Java 序列化常用于企业级应用，如分布式系统、RPC（远程过程调用）和消息队列。</li>
+<li><strong>持久化存储</strong>：用于将对象状态保存到文件或数据库。</li>
+</ul>
+<h5 id="php">PHP<a href="#php" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<ul>
+<li><strong>Web 应用</strong>：PHP 序列化常用于 Web 应用，如会话管理、缓存和配置文件。</li>
+<li><strong>数据交换</strong>：用于在不同系统之间传递数据。</li>
+</ul>
+
+    </div>
+
+    
+      
+
+
+  <div class="social-share">
+    <strong class="social-share__heading">Share this post: </strong>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.facebook.com/sharer.php?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://reddit.com/submit?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F&amp;title=Io&#43;Programming"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Reddit</title><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://x.com/intent/post?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F&amp;text=Io&#43;Programming"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="whatsapp://send/?text=Io&#43;Programming%20https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F&amp;title=Io&#43;Programming&amp;caption=Io&#43;Programming"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tumblr</title><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F&amp;t=Io&#43;Programming"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Y Combinator</title><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://vk.com/share.php?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F&amp;title=Io&#43;Programming&amp;comment=Io&#43;Programming"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>VK</title><path d="m9.489.004.729-.003h3.564l.73.003.914.01.433.007.418.011.403.014.388.016.374.021.36.025.345.03.333.033c1.74.196 2.933.616 3.833 1.516.9.9 1.32 2.092 1.516 3.833l.034.333.029.346.025.36.02.373.025.588.012.41.013.644.009.915.004.98-.001 3.313-.003.73-.01.914-.007.433-.011.418-.014.403-.016.388-.021.374-.025.36-.03.345-.033.333c-.196 1.74-.616 2.933-1.516 3.833-.9.9-2.092 1.32-3.833 1.516l-.333.034-.346.029-.36.025-.373.02-.588.025-.41.012-.644.013-.915.009-.98.004-3.313-.001-.73-.003-.914-.01-.433-.007-.418-.011-.403-.014-.388-.016-.374-.021-.36-.025-.345-.03-.333-.033c-1.74-.196-2.933-.616-3.833-1.516-.9-.9-1.32-2.092-1.516-3.833l-.034-.333-.029-.346-.025-.36-.02-.373-.025-.588-.012-.41-.013-.644-.009-.915-.004-.98.001-3.313.003-.73.01-.914.007-.433.011-.418.014-.403.016-.388.021-.374.025-.36.03-.345.033-.333c.196-1.74.616-2.933 1.516-3.833.9-.9 2.092-1.32 3.833-1.516l.333-.034.346-.029.36-.025.373-.02.588-.025.41-.012.644-.013.915-.009ZM6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.xing.com/spi/shares/new?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Xing</title><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://telegram.me/share/url?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F&amp;text=Io&#43;Programming"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="mailto:?subject=Io&#43;Programming&amp;body=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fio_programming%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+  <path d="M3 7l9 6l9 -6" />
+</svg>
+
+
+      </a>
+    
+  </div>
+
+
+    
+
+    
+      
+
+    
+  </article>
+
+        </div>
+        <div class="sidebar">
+  
+    
+      <aside class="toc">
+        <nav>
+          <p class="sidebar__heading">Table Of Contents</p>
+          <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#输入流和输出流">输入流和输出流</a></li>
+        <li><a href="#file文件操作">File文件操作</a></li>
+        <li><a href="#初识">初识</a></li>
+        <li><a href="#分隔符">分隔符</a></li>
+        <li><a href="#file类父路径操作方法">File类父路径操作方法</a></li>
+        <li><a href="#获取文件元数据信息方法">获取文件元数据信息方法</a></li>
+        <li><a href="#字节流与字符流">字节流与字符流</a></li>
+        <li><a href="#writer字符输出流">Writer字符输出流</a></li>
+        <li><a href="#reader字符输入流">Reader字符输入流</a></li>
+        <li><a href="#转换流">转换流</a></li>
+        <li><a href="#内存操作流">内存操作流</a></li>
+        <li><a href="#system类对io的支持">System类对I/O的支持</a></li>
+        <li><a href="#bufferedreader缓冲输入流">BufferedReader缓冲输入流</a></li>
+        <li><a href="#scanner">Scanner</a></li>
+        <li><a href="#对象序列化">对象序列化</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </nav>
+      </aside>
+      <hr />
+    
+  
+
+  
+  
+    <aside class="bio">
+      
+
+  <div class="jr__item jr-basics__item">
+    
+  <div class="jr-basics__image">
+    <img
+      src="/p.jpg"
+      alt="Picture of Stephen Messir"
+      width="250"
+      height="250"
+    />
+  </div>
+
+
+
+    
+      <div class="jr-basics__name">Stephen Messir</div>
+    
+
+    
+      <div class="jr-basics__label">A Software noviciate and CTF newcomer</div>
+    
+
+    
+
+    
+
+    
+
+    
+      <div class="jr-basics__summary">Those who hasten towards the sun and brightness shall not be obscured.</div>
+    
+
+    
+      
+
+      
+
+      
+        <div class="jr-basics__location-city">NC</div>
+      
+
+      
+
+      
+    
+
+    
+
+    
+      <hr />
+      <div class="jr-basics__profile jr-basics__profile--row">
+        
+          
+
+<a href="https://github.com/GCmessir" target="_blank" rel="noreferrer me">
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+
+  
+</div>
+
+
+</a>
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>RSS</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+      </div>
+    
+  </div>
+
+
+
+      
+        <hr />
+      
+    </aside>
+  
+
+  
+    <aside>
+      
+
+
+  
+  
+  
+  
+  
+  
+
+
+  <div class="tag-cloud">
+    
+      
+      
+      
+      <a
+        href="/tags/blog"
+        style="font-size:1.9229419688230418rem"
+        class="tag-cloud__tag"
+        >blog</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-misc"
+        style="font-size:1.4339850002884624rem"
+        class="tag-cloud__tag"
+        >ctf-misc</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-web"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >ctf-web</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java-application-programming"
+        style="font-size:1.2000000000000002rem"
+        class="tag-cloud__tag"
+        >java application programming</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java_base"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >java_base</a
+      >
+    
+  </div>
+
+
+    </aside>
+  
+</div>
+
+      </main>
+      <footer>
+  <div class="copyright">
+    
+  </div>
+</footer>
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+<script src="/js/main.e56d444a26643bc2029afe6eb5b967bf9f252efee7f61c853d2d2e3a0c330fc81a2f42f89da721c6c1201a7278bc5affe231c5998ea2e7688518093ed91b0130.js" integrity="sha512-5W1ESiZkO8ICmv5utblnv58lLv7n9hyFPS0uOgwzD8gaL0L4nachxsEgGnJ4vFr/4jHFmY6i52iFGAk&#43;2RsBMA=="></script>
+<script src="/js/flexsearch.1ab5b109bf2ed66903ae10907394415caa12f5c0ee66bc80088ba135ec4a751f62e4961d6a7303b562e4db724392da85945b763b8e1858ea3fd05cc36f9b8156.js" integrity="sha512-GrWxCb8u1mkDrhCQc5RBXKoS9cDuZryACIuhNexKdR9i5JYdanMDtWLk23JDktqFlFt2O44YWOo/0FzDb5uBVg=="></script>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

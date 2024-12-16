@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Documenting the journey ^_^</title>
+    <link>https://GCmessir.github.io/tags/</link>
+    <description>Recent content in Tags on Documenting the journey ^_^</description>
+    <generator>Hugo</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Mon, 16 Dec 2024 17:00:04 +0800</lastBuildDate>
+    <atom:link href="https://GCmessir.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Blog</title>
+      <link>https://GCmessir.github.io/tags/blog/</link>
+      <pubDate>Mon, 16 Dec 2024 17:00:04 +0800</pubDate>
+      <guid>https://GCmessir.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CTF-Web</title>
+      <link>https://GCmessir.github.io/tags/ctf-web/</link>
+      <pubDate>Mon, 16 Dec 2024 17:00:04 +0800</pubDate>
+      <guid>https://GCmessir.github.io/tags/ctf-web/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>CTF-Misc</title>
+      <link>https://GCmessir.github.io/tags/ctf-misc/</link>
+      <pubDate>Fri, 13 Dec 2024 20:00:04 +0800</pubDate>
+      <guid>https://GCmessir.github.io/tags/ctf-misc/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java Application Programming</title>
+      <link>https://GCmessir.github.io/tags/java-application-programming/</link>
+      <pubDate>Thu, 21 Nov 2024 21:35:04 +0800</pubDate>
+      <guid>https://GCmessir.github.io/tags/java-application-programming/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Java_base</title>
+      <link>https://GCmessir.github.io/tags/java_base/</link>
+      <pubDate>Sun, 17 Nov 2024 15:19:37 +0800</pubDate>
+      <guid>https://GCmessir.github.io/tags/java_base/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,4074 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="light"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-300.woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+  
+  
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+  
+
+
+
+
+<title>2024强网杯—谍影重重5.0</title>
+
+<meta
+  name="description"
+  content="😉🌃⛅😉
+乍一看，有arp、smb、tls等协议流量
+先过滤出smb2流量看看
+smb协议主要用于在计算机间共享文件、打印机、串口等
+NTLM是一种身份验证机制
+smb2爆破
+Wireshark分析&ndash;SMB2协议包及hashcat爆破_wireshark smb-CSDN博客
+通过文章了解到需要构造hash文件
+username::domain:NTLM Server Challenge:ntproofstr:不包含ntproofstr的ntlmv2_response值 双击打开这条流量
+"
+/>
+
+<link rel="canonical" href="https://GCmessir.github.io/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/" />
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="2024强网杯—谍影重重5.0">
+  <meta name="twitter:description" content="😉🌃⛅😉
+乍一看，有arp、smb、tls等协议流量
+先过滤出smb2流量看看
+smb协议主要用于在计算机间共享文件、打印机、串口等
+NTLM是一种身份验证机制
+smb2爆破
+Wireshark分析–SMB2协议包及hashcat爆破_wireshark smb-CSDN博客
+通过文章了解到需要构造hash文件
+username::domain:NTLM Server Challenge:ntproofstr:不包含ntproofstr的ntlmv2_response值 双击打开这条流量">
+
+<meta property="og:url" content="https://GCmessir.github.io/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/">
+  <meta property="og:site_name" content="Documenting the journey ^_^">
+  <meta property="og:title" content="2024强网杯—谍影重重5.0">
+  <meta property="og:description" content="😉🌃⛅😉
+乍一看，有arp、smb、tls等协议流量
+先过滤出smb2流量看看
+smb协议主要用于在计算机间共享文件、打印机、串口等
+NTLM是一种身份验证机制
+smb2爆破
+Wireshark分析–SMB2协议包及hashcat爆破_wireshark smb-CSDN博客
+通过文章了解到需要构造hash文件
+username::domain:NTLM Server Challenge:ntproofstr:不包含ntproofstr的ntlmv2_response值 双击打开这条流量">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-11-21T21:35:04+08:00">
+    <meta property="article:modified_time" content="2024-11-21T21:35:04+08:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="CTF-Misc">
+
+
+  <meta itemprop="name" content="2024强网杯—谍影重重5.0">
+  <meta itemprop="description" content="😉🌃⛅😉
+乍一看，有arp、smb、tls等协议流量
+先过滤出smb2流量看看
+smb协议主要用于在计算机间共享文件、打印机、串口等
+NTLM是一种身份验证机制
+smb2爆破
+Wireshark分析–SMB2协议包及hashcat爆破_wireshark smb-CSDN博客
+通过文章了解到需要构造hash文件
+username::domain:NTLM Server Challenge:ntproofstr:不包含ntproofstr的ntlmv2_response值 双击打开这条流量">
+  <meta itemprop="datePublished" content="2024-11-21T21:35:04+08:00">
+  <meta itemprop="dateModified" content="2024-11-21T21:35:04+08:00">
+  <meta itemprop="wordCount" content="888">
+  <meta itemprop="keywords" content="Blog,CTF-Misc">
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+<style>
+   
+  @font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:100;src:local("Roboto Slab Thin "),local("Roboto Slab-Thin"),url(/fonts/roboto-slab-latin-100.woff2) format("woff2"),url(/fonts/roboto-slab-latin-100.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:200;src:local("Roboto Slab Extra Light "),local("Roboto Slab-Extra Light"),url(/fonts/roboto-slab-latin-200.woff2) format("woff2"),url(/fonts/roboto-slab-latin-200.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:300;src:local("Roboto Slab Light "),local("Roboto Slab-Light"),url(/fonts/roboto-slab-latin-300.woff2) format("woff2"),url(/fonts/roboto-slab-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:400;src:local("Roboto Slab Regular "),local("Roboto Slab-Regular"),url(/fonts/roboto-slab-latin-400.woff2) format("woff2"),url(/fonts/roboto-slab-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:500;src:local("Roboto Slab Medium "),local("Roboto Slab-Medium"),url(/fonts/roboto-slab-latin-500.woff2) format("woff2"),url(/fonts/roboto-slab-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:600;src:local("Roboto Slab SemiBold "),local("Roboto Slab-SemiBold"),url(/fonts/roboto-slab-latin-600.woff2) format("woff2"),url(/fonts/roboto-slab-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:700;src:local("Roboto Slab Bold "),local("Roboto Slab-Bold"),url(/fonts/roboto-slab-latin-700.woff2) format("woff2"),url(/fonts/roboto-slab-latin-700.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:800;src:local("Roboto Slab ExtraBold "),local("Roboto Slab-ExtraBold"),url(/fonts/roboto-slab-latin-800.woff2) format("woff2"),url(/fonts/roboto-slab-latin-800.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:900;src:local("Roboto Slab Black "),local("Roboto Slab-Black"),url(/fonts/roboto-slab-latin-900.woff2) format("woff2"),url(/fonts/roboto-slab-latin-900.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:300;src:local("Fira Code Light "),local("Fira Code-Light"),url(/fonts/fira-code-latin-300.woff2) format("woff2"),url(/fonts/fira-code-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:400;src:local("Fira Code Regular "),local("Fira Code-Regular"),url(/fonts/fira-code-latin-400.woff2) format("woff2"),url(/fonts/fira-code-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:500;src:local("Fira Code Medium "),local("Fira Code-Medium"),url(/fonts/fira-code-latin-500.woff2) format("woff2"),url(/fonts/fira-code-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:600;src:local("Fira Code SemiBold "),local("Fira Code-SemiBold"),url(/fonts/fira-code-latin-600.woff2) format("woff2"),url(/fonts/fira-code-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:700;src:local("Fira Code Bold "),local("Fira Code-Bold"),url(/fonts/fira-code-latin-700.woff2) format("woff2"),url(/fonts/fira-code-latin-700.woff) format("woff")}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+
+/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */@keyframes blink{50%{opacity:0}to{opacity:1}}
+
+/*! MIT License | github.com/schnerring/hugo-theme-gruvbox */:root[data-theme=light]{--bg:var(--bg0);--bg0:#fbf1c7;--bg0_h:#f9f5d7;--bg0_s:#f2e5bc;--bg1:#ebdbb2;--bg2:#d5c4a1;--bg3:#bdae93;--bg4:#a89984;--fg:var(--fg1);--fg0:#282828;--fg1:#3c3836;--fg2:#504945;--fg3:#665c54;--fg4:#7c6f64;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#9d0006;--green1:#98971a;--green2:#797403;--yellow1:#d79921;--yellow2:#b57614;--blue1:#458588;--blue2:#076678;--purple1:#b16286;--purple2:#8f3f71;--aqua1:#689d6a;--aqua2:#427b58;--orange1:#d65d0e;--orange2:#af3a03}[data-theme=light]:root .light--hidden{display:none}:root[data-theme=dark]{--bg:var(--bg0);--bg0:#282828;--bg0_h:#1d2021;--bg0_s:#32302f;--bg1:#3c3836;--bg2:#504945;--bg3:#665c54;--bg4:#7c6f64;--fg:var(--fg1);--fg0:#fbf1c7;--fg1:#ebdbb2;--fg2:#d5c4a1;--fg3:#bdae93;--fg4:#a89984;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#fb4934;--green1:#98971a;--green2:#b8bb26;--yellow1:#d79921;--yellow2:#fabd2f;--blue1:#458588;--blue2:#83a598;--purple1:#b16286;--purple2:#d3869b;--aqua1:#689d6a;--aqua2:#8ec07c;--orange1:#d65d0e;--orange2:#fe8019}[data-theme=dark]:root .dark--hidden{display:none}:root{--primary:var(--blue1);--primary-alt:var(--blue2);--font-monospace:"Fira Code","Lucida Console",Monaco,monospace;--font-sans-serif:Verdana,Helvetica,sans-serif;--font-serif:"Roboto Slab",Georgia,serif}html{font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);font-size:1rem;scroll-behavior:smooth}body{background:var(--bg);color:var(--fg);line-height:1.675;word-wrap:break-word}strong{letter-spacing:.35px}a{color:inherit;-webkit-text-decoration:none;text-decoration:none}a.link--external:after{content:"\2009↗"}img{border:2px solid var(--bg1);height:auto;max-width:100%}::-moz-selection{background:var(--bg4);color:var(--fg0)}::selection{background:var(--bg4);color:var(--fg0)}h1,h2,h3,h4,h5,h6{color:var(--fg0);font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-weight:300;line-height:1.4}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{font-size:1em}h2,h3,h4,h5,h6{border-bottom:1px solid var(--bg1)}h1,h2{font-weight:400}h1{font-size:1.875rem}h2{font-size:1.75rem}h3{font-size:1.625rem}@media (min-width:768px){h1{font-size:2.375rem}h2{font-size:2rem}h3{font-size:1.75rem}}h4{font-size:1.5rem}h5{font-size:1.375rem}h6{font-size:1.25rem}table{border-collapse:collapse;margin:2rem 0;table-layout:fixed;width:100%}table,td,th{border:1px solid var(--bg1);padding:.5rem}hr{background:var(--bg1);border:none;height:1px;margin:3rem auto;width:80%}blockquote,code,pre{border-radius:.2rem;padding:0 .2em}pre code{padding:0}blockquote,code,pre,th{background:var(--bg1)}code,pre,th{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}code code{background:var(--bg2)}blockquote,pre{padding:1rem}pre{background:var(--bg1)!important;overflow:auto}pre code{background:none}blockquote{border-left:5px solid var(--primary-alt);margin:.5rem 0}blockquote:not(.does-not-exist) code{background:var(--bg2)}blockquote:not(.does-not-exist) p:first-of-type{margin-top:0}blockquote:not(.does-not-exist) p:last-of-type{margin-bottom:0}pre::-webkit-scrollbar{height:.5rem;scrollbar-width:auto}pre::-webkit-scrollbar-track{background:var(--bg2);border-radius:.2rem}pre::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:.2rem}.layout{display:grid;grid-template-areas:"header" "main" "footer";grid-template-rows:auto 1fr auto;height:100vh}main{align-items:start;display:grid;grid-area:main;grid-template-areas:"empty content sidebar";grid-template-columns:1fr minmax(0,650px) 4fr}header{background:var(--bg1);grid-area:header}footer{grid-area:footer}footer,main{margin:.5em 1.1em}.content{grid-area:content}.sidebar{display:none;flex-direction:column;grid-area:sidebar;margin-top:3rem;position:sticky;top:2rem}@media (min-width:992px){.sidebar{display:flex}}header{display:grid;font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-size:1.125rem;grid-template-areas:"heading search nav theme-toggle";grid-template-columns:auto auto 1fr auto;padding:.75rem}.logo{color:var(--fg0);display:flex;font-weight:700;grid-area:heading}.logo:hover .logo__cursor{animation:blink 1s infinite;opacity:1}.logo__chevron,.logo__cursor{margin-left:.5rem}.logo__cursor{opacity:0}.logo__text{display:none}@media (min-width:768px){.logo__text{display:block}}.search{display:flex;grid-area:search;margin:0 1rem}#search__text{background:var(--bg2);border:1px solid var(--bg2);border-radius:.2rem;caret-color:var(--fg);color:var(--fg);outline:none;padding:0 .5rem;width:100%}#search__text:hover{border-color:var(--bg3)}#search__text:focus{border-color:var(--bg4)}#search__text::-moz-placeholder{color:var(--fg3)}#search__text::placeholder{color:var(--fg3)}#search__text[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}#search__suggestions{background:var(--bg);border-radius:.2rem;box-shadow:0 .5rem 1rem var(--bg1);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);left:0;margin-top:2rem;position:absolute;width:95vw;z-index:1000}@media (min-width:768px){.search{position:relative}#search__suggestions{width:60vw}}.search__suggestions--hidden{display:none}.search__suggestion-item{border-bottom:1px dashed var(--bg2);display:grid;grid-template-columns:1fr 2fr}.search__suggestion-item:focus,.search__suggestion-item:focus-visible,.search__suggestion-item:hover{background:var(--bg1);cursor:pointer;outline:none}.search__suggestion-item:last-child{border:none}.search__suggestion-description,.search__suggestion-title{margin:1rem 0;padding:0 1rem}.search__suggestion-title{font-weight:700}.search__suggestion-description{border-left:1px solid var(--bg2)}.search__no-results{padding:.75rem}.theme__toggle{align-items:center;background:none;border:none;color:var(--yellow1);cursor:pointer;display:flex;grid-area:theme-toggle;margin:0 1rem}.theme__toggle:hover{color:var(--yellow2)}.theme__toggle svg{height:28px;width:28px}nav#menu{align-items:center;display:flex;grid-area:nav;justify-content:flex-end}nav#menu .menu__item{color:var(--fg)}nav#menu .menu__item:hover{color:var(--fg3);cursor:pointer}nav#menu ul{list-style:none;margin:0;padding:0}nav#menu ul.menu--horizontal{align-items:center;display:none}nav#menu ul.menu--horizontal li{display:inline-block;margin:0 .75rem}@media (min-width:768px){nav#menu ul.menu--horizontal{display:flex}}nav#menu ul.menu--vertical{background:var(--fg0);bottom:0;margin:0;padding:3rem;position:fixed;right:0;top:0;transform:translate(100%);transition:transform .5s cubic-bezier(.9,0,.1,1);width:50%;z-index:10}nav#menu ul.menu--vertical .menu__item{color:var(--bg1)}nav#menu ul.menu--vertical .menu__item:hover{color:var(--bg4)}nav#menu .menu__burger{display:flex;height:24px;width:24px}nav#menu .menu__burger>*{position:absolute}nav#menu .menu__burger svg{height:inherit;width:inherit;z-index:20}nav#menu .menu__burger input{height:inherit;opacity:0;width:inherit;z-index:30}nav#menu .menu__burger input:checked~ul.menu--vertical{transform:none}nav#menu .menu__burger input:checked~svg{stroke:var(--bg1)}@media (min-width:768px){nav#menu .menu__burger{display:none}}.sidebar{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);margin-left:auto;margin-right:auto;max-width:350px;padding-left:2.5rem}.sidebar hr{margin:1.5rem auto}.sidebar svg{fill:var(--fg)}.sidebar__heading{font-size:1.3rem}aside.toc a{color:var(--primary-alt)}aside.toc a:hover{color:var(--primary)}aside.toc ul{list-style:none;margin:0;padding:0}aside.toc ul ul{font-size:.9rem;margin-left:.5rem}aside.toc ul li{line-height:1.1}aside.toc ul li a{display:block;padding:.2rem 0}.jr-basics__image{background:var(--bg1);border:2px solid var(--bg2)}.jr-basics__summary{color:var(--fg3);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);margin:.75rem 0}.jr-basics__profile a:hover{color:var(--fg3)}.jr-basics__profile a:hover svg{fill:var(--fg3)}.tag-cloud{line-height:1.1;text-align:justify}.tag-cloud__tag:hover{color:var(--fg3)}.content-section,.post{border-bottom:2px dotted var(--bg1);padding:2rem 0}.post img:not(figure img){box-sizing:border-box;margin:.5rem 0}.post-content__read-more,.post-header{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}.post-content{margin:1.3rem 0}.post-content__read-more{color:var(--primary-alt);margin-top:1.3rem}.post-content a,.post-header a{color:var(--primary-alt)}.post-content a:hover,.post-header a:hover{color:var(--primary)}.post-tags{align-items:center;display:flex;flex-wrap:wrap;gap:.9rem;margin:1rem 0}.post-tag{font-size:.9rem;line-height:1}.post-tag:before{content:"#"}.post-heading__anchor{display:none}h1:hover .post-heading__anchor,h2:hover .post-heading__anchor,h3:hover .post-heading__anchor,h4:hover .post-heading__anchor,h5:hover .post-heading__anchor,h6:hover .post-heading__anchor{display:inline-block}.jr-basics__image,.jr-basics__item,.jr-basics__profile-icon,.jr-basics__profile-item{align-items:center;display:flex}.jr-basics__name{font-size:1.125rem;font-weight:700}.jr-basics__item{flex-direction:column;text-align:center}.jr-basics__item hr{margin:1.5rem auto}.jr-basics__image{border-radius:50%;height:250px;justify-content:center;overflow:hidden;width:250px}.jr-basics__label,.jr-basics__name,.jr-basics__summary{margin-top:.75rem}.jr-basics__profile svg{height:24px;width:24px}.jr-basics__profile,.jr-basics__profile-item{display:flex}.jr-basics__profile-item{display:flex;padding:.2rem}.jr-basics__profile--row{flex-wrap:wrap;justify-content:space-evenly}.jr-basics__profile-icon{padding:0 .75rem}.social-share{align-items:center;border-top:2px dotted var(--bg1);display:flex;flex-wrap:wrap;gap:.9rem;margin:3rem 0;padding-top:3rem}.social-share svg{fill:var(--fg);height:24px;width:24px}.social-share svg.icon-tabler{fill:none;stroke:var(--fg)}.social-share__item{background:var(--bg1);display:flex;padding:.5rem}
+   
+</style>
+
+<link
+  rel="preload"
+  href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+  
+/>
+
+
+<link
+  id="prism-dark"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-dark.min.54aecc64074623a4f9898544dcbdab9e804f1560ef0b38f4cf8e10fcaaf72264e798cb407c601aca6ecd833ec4eb93d66535581f18d45ba202cf848b70dbc332.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  integrity="sha512-VK7MZAdGI6T5iYVE3L2rnoBPFWDvCzj0z44Q/Kr3ImTnmMtAfGAaym7Ngz7E65PWZTVYHxjUW6ICz4SLcNvDMg=="
+  disabled
+/>
+
+
+<link
+  id="prism-light"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+  
+  
+/>
+
+<noscript>
+  
+    <link
+      rel="stylesheet"
+      href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+      
+        integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+      
+    />
+  
+
+
+  <link
+    rel="stylesheet"
+    href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+    
+      integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+    
+  />
+</noscript>
+
+
+  
+
+  
+
+
+
+
+<script>
+  (()=>{function c(){if(localStorage&&localStorage.getItem("theme"))return localStorage.getItem("theme");if(window.matchMedia)return window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}function n(t){document.documentElement.setAttribute("data-theme",t);let e=document.getElementById("prism-dark"),i=document.getElementById("prism-light");e.toggleAttribute("disabled",t==="light"),i.toggleAttribute("disabled",t==="dark"),localStorage.setItem("theme",t)}var o=c();o&&n(o);function l(t){let e=t.currentTarget.classList.contains("light--hidden")?"light":"dark";n(e)}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".theme__toggle").forEach(e=>{e.addEventListener("click",l)})});})();
+
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#282828" />
+<meta name="msapplication-TileColor" content="#282828" />
+<meta name="theme-color" content="#282828" />
+
+
+
+  
+  
+
+</head>
+
+  <body>
+    <div class="layout">
+      <header>
+  <a
+    class="logo"
+    href="/"
+  >
+    
+      <div class="logo__text">Home</div>
+    
+    <div class="logo__chevron">></div>
+    <div class="logo__cursor">█</div>
+  </a>
+
+  <div class="search">
+    <input
+      id="search__text"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      autocomplete="off"
+    />
+    <div id="search__suggestions" class="search__suggestions--hidden"></div>
+  </div>
+
+  <nav id="menu">
+    <ul class="menu--horizontal">
+      
+        <li class="menu__item">
+          <a href="/blog">Blog</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/friends">Friends</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/about">About</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/categories">Categories</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/tags">Tags</a>
+        </li>
+      
+    </ul>
+
+    <div class="menu__burger">
+      
+      <input class="menu__item" type="checkbox" aria-label="Open main menu" />
+
+      
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+
+
+
+      <ul class="menu--vertical">
+        
+          <li>
+            <a class="menu__item" href="/blog">Blog</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/friends">Friends</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/about">About</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/categories">Categories</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/tags">Tags</a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <button class="theme__toggle light--hidden" aria-label="Toggle light mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-sun"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+</svg>
+
+
+  </button>
+
+  <button class="theme__toggle dark--hidden" aria-label="Toggle dark mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-moon"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+</svg>
+
+
+  </button>
+</header>
+
+      <main>
+        <div class="content">
+          
+  <article class="post">
+    <div class="post-header">
+      <h1>2024强网杯—谍影重重5.0</h1>
+      <div class="post-meta"><span>2024-11-21</span>
+    <div class="post-tags">
+      <a class="post-tag" href="https://GCmessir.github.io/tags/blog">blog</a><a class="post-tag" href="https://GCmessir.github.io/tags/ctf-misc">ctf&#8209;misc</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu1128527911040115714.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu12626052780210173620.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu16155201250812360378.webp 600w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,600px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu10425704511572553079.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu14942826716200947533.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu2788887792218887448.png 600w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,600px"
+        alt=""
+        
+        
+        width="600"
+        height="338"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      <p>😉🌃⛅😉</p>
+<blockquote>
+<p>乍一看，有arp、smb、tls等协议流量</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu9800888644822544776.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu578084286021447862.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu10969375510139454078.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu16682716559524951807.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu3434879189039180929.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu9006378844287911329.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130102444496"
+        
+        loading="lazy"
+        width="1302"
+        height="694"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>先过滤出smb2流量看看</p>
+<p>smb协议主要用于在计算机间共享文件、打印机、串口等</p>
+<p>NTLM是一种身份验证机制</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu15785230462260875486.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu16541133201433629481.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu1219271686193763935.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu5481919004509919801.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu10706498272393430346.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu4095339330437139116.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130104443093"
+        
+        loading="lazy"
+        width="1872"
+        height="649"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>smb2爆破</p>
+</blockquote>
+<p><a
+  href="https://blog.csdn.net/hapenl/article/details/126816047"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>Wireshark分析&ndash;SMB2协议包及hashcat爆破_wireshark smb-CSDN博客</a></p>
+<blockquote>
+<p>通过文章了解到需要构造hash文件</p>
+</blockquote>
+<pre tabindex="0"><code>username::domain:NTLM Server Challenge:ntproofstr:不包含ntproofstr的ntlmv2_response值
+</code></pre><blockquote>
+<p>双击打开这条流量</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu5240127376476489642.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu1714473045441225181.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu12160618999275977680.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu16294083744582567603.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu2879443338579072657.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu4709346995297581058.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130105942945"
+        
+        loading="lazy"
+        width="1826"
+        height="96"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu13144594974813083868.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu7226058592492524996.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu950800830555805390.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu12742039100656728641.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu17576869531687489967.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu2283354835065216942.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130111843833"
+        
+        loading="lazy"
+        width="1822"
+        height="800"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674_hu8932324350811067672.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674_hu2018086843960259386.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674_hu10681250548588608613.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674_hu2898562026755909431.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674_hu2767135020167892505.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130145430674_hu17240197273886015676.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130145430674"
+        
+        loading="lazy"
+        width="1679"
+        height="810"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>session id 在header里面</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968_hu16497777853360378372.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968_hu16423995510800028019.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968_hu5199568588829299427.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968_hu15113495955606758863.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968_hu12779861087953604718.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151434968_hu17722199666743223958.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130151434968"
+        
+        loading="lazy"
+        width="1211"
+        height="734"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>上一条流量</p>
+<p>拿到NTLM Server Challenge</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084_hu17316902216014160316.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084_hu4884666761870592120.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084_hu4651247822066636302.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084_hu17184237891368632418.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084_hu11868963663490754675.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130123031084_hu15192079754377406458.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130123031084"
+        
+        loading="lazy"
+        width="1712"
+        height="701"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<pre tabindex="0"><code>ntlmssp.ntlmv2_response：ca32f9b5b48c04ccfa96f35213d63d75010100000000000040d0731fb92adb01221434d6e24970170000000002001e004400450053004b0054004f0050002d004a0030004500450039004d00520001001e004400450053004b0054004f0050002d004a0030004500450039004d00520004001e004400450053004b0054004f0050002d004a0030004500450039004d00520003001e004400450053004b0054004f0050002d004a0030004500450039004d0052000700080040d0731fb92adb0106000400020000000800300030000000000000000100000000200000bd69d88e01f6425e6c1d7f796d55f11bd4bdcb27c845c6ebfac35b8a3acc42c20a001000000000000000000000000000000000000900260063006900660073002f003100370032002e00310036002e003100300035002e003100320039000000000000000000
+</code></pre><pre tabindex="0"><code>ntlmssp.ntlmv2_response.ntproofstr：
+ca32f9b5b48c04ccfa96f35213d63d75
+</code></pre><blockquote>
+<p>Server response challenge</p>
+</blockquote>
+<pre tabindex="0"><code>ntlmssp.ntlmserverchallenge:
+c1dec53240124487
+</code></pre><pre tabindex="0"><code>ntlmssp.ntlmv2_response.challenge:
+221434d6e2497017
+</code></pre><pre tabindex="0"><code>ntlmssp.auth.domain:
+.
+</code></pre><pre tabindex="0"><code>ntlmssp.auth.username:
+tom
+</code></pre><blockquote>
+<p>组合</p>
+</blockquote>
+<pre tabindex="0"><code>tom::.:c1dec53240124487:ca32f9b5b48c04ccfa96f35213d63d75:010100000000000040d0731fb92adb01221434d6e24970170000000002001e004400450053004b0054004f0050002d004a0030004500450039004d00520001001e004400450053004b0054004f0050002d004a0030004500450039004d00520004001e004400450053004b0054004f0050002d004a0030004500450039004d00520003001e004400450053004b0054004f0050002d004a0030004500450039004d0052000700080040d0731fb92adb0106000400020000000800300030000000000000000100000000200000bd69d88e01f6425e6c1d7f796d55f11bd4bdcb27c845c6ebfac35b8a3acc42c20a001000000000000000000000000000000000000900260063006900660073002f003100370032002e00310036002e003100300035002e003100320039000000000000000000
+</code></pre><blockquote>
+<p>hashcat爆破</p>
+</blockquote>
+<pre tabindex="0"><code>hashcat -O -a 0 -m 5600 1.hash rockyou.txt
+
+字典大家随意
+
+#解释
+攻击模式 (-a 0): 使用字典攻击模式，逐个尝试字典文件中的密码。
+哈希类型 (-m 5600): 指定哈希类型为 NTLMv2，这是 Windows 系统中常用的一种哈希类型。
+哈希文件 (1.hash): 指定要破解的哈希文件。
+字典文件 (rockyou.txt): 指定用于破解的字典文件，这个文件通常包含大量的常见密码。
+#这里当个破解用不着--show
+显示结果 (--show): 在破解过程中实时显示破解进度和结果。
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805_hu17575481788839469241.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805_hu13380882764616329446.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805_hu12800165486533442395.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805_hu12969852873461766064.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805_hu17446745560600390520.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130132749805_hu3902496672340051640.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130132749805"
+        
+        loading="lazy"
+        width="770"
+        height="440"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<pre tabindex="0"><code>babygirl233
+</code></pre><blockquote>
+<p>要获取这些字段值</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694_hu17245216651313213981.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694_hu4371573951129257181.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694_hu7204684250367595590.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694_hu4886928877897975951.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694_hu18051495860292871381.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130134959694_hu15864047988107800317.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130134959694"
+        
+        loading="lazy"
+        width="1120"
+        height="802"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>必要的信息</p>
+</blockquote>
+<pre tabindex="0"><code>用户的明文密码。
+用户名 (username) 和域名 (domain)。
+捕获的网络包中的 ntProofStr（客户端提供的证明字符串）和 serverChallenge（服务器挑战值）。
+加密的会话密钥 (sessionKey)。
+</code></pre><blockquote>
+<p>获取到了密码然后破解出session key</p>
+<p>脚本利用</p>
+<p>上面得到sessionkey:5643a37f253b00b2f52df1afd48c1514</p>
+</blockquote>
+<pre tabindex="0"><code>from Crypto.Cipher import ARC4
+from Crypto.Hash import MD4, MD5, HMAC
+
+password = &#39;babygirl233&#39;
+passwordHash = MD4.new(password.encode(&#39;utf-16-le&#39;)).hexdigest()
+username = &#39;tom&#39;
+domain = &#39;.&#39;
+ntProofStr = &#39;ca32f9b5b48c04ccfa96f35213d63d75&#39;
+serverChallenge = &#39;c1dec53240124487&#39;
+sessionKey = &#39;5643a37f253b00b2f52df1afd48c1514&#39;
+
+responseKey = HMAC.new(bytes.fromhex(passwordHash), (username.upper()+domain.upper()).encode(&#39;utf-16-le&#39;), MD5).digest()
+keyExchangeKey = HMAC.new(responseKey, bytes.fromhex(ntProofStr), MD5).digest()
+decryptedSessionKey = ARC4.new(keyExchangeKey).decrypt(bytes.fromhex(sessionKey))
+print(&#39;Decrypted SMB Session Key is: {}&#39;.format(decryptedSessionKey.hex()))
+</code></pre><blockquote>
+<p>大致思路</p>
+</blockquote>
+<pre tabindex="0"><code>从密码到哈希
+用户的明文密码通过特定算法（如MD4）转换成一个固定的哈希值。
+这个哈希值将作为后续计算的基础。
+生成响应密钥 (Response Key)
+使用用户密码的哈希值作为密钥，结合用户名和域名生成一个新的密钥——响应密钥。
+生成密钥交换密钥 (Key Exchange Key)
+使用上一步生成的响应密钥，结合客户端提供的证明字符串（ntProofStr），生成用于解密会话密钥的密钥——密钥交换密钥。
+解密会话密钥 (Session Key)
+使用密钥交换密钥作为解密密钥，对加密的会话密钥进行解密，得到最终的明文会话密钥。
+</code></pre><pre tabindex="0"><code>#基于对称加密和哈希函数
+明文密码 → 哈希
+将用户的明文密码通过特定算法（如MD4）转换为一个固定长度的哈希值。
+这个哈希值用于后续步骤中的密钥生成。
+
+哈希 → 响应密钥
+使用用户密码的哈希值作为输入，结合用户名和域名等信息，通过HMAC-MD5算法生成响应密钥。
+响应密钥是一个临时密钥，用于进一步的密钥交换。
+
+响应密钥 → 密钥交换密钥
+使用响应密钥和客户端提供的证明字符串（ntProofStr），通过HMAC-MD5算法生成密钥交换密钥。
+密钥交换密钥用于解密会话密钥。
+
+密钥交换密钥 → 解密会话密钥
+使用密钥交换密钥作为解密密钥，对加密的会话密钥进行解密，得到最终的明文会话密钥。
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816_hu9053019089479575757.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816_hu8835069044568594993.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816_hu5553948163396993007.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816_hu4080371338722138299.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816_hu13479141601581847919.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151130816_hu270335380101232791.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130151130816"
+        
+        loading="lazy"
+        width="855"
+        height="193"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>注意wireshark里面的大小端问题</p>
+</blockquote>
+<pre tabindex="0"><code>session key:a3abe4d64394909a641062342ffe291b
+
+session id:0900000000100000
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728_hu5831811091808260145.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728_hu10326367646457529182.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728_hu6765132599546963467.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728_hu15276266069283883092.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728_hu18023943916959566455.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151642728_hu1279917146179088215.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130151642728"
+        
+        loading="lazy"
+        width="1075"
+        height="671"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>smb流量解密了</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149_hu16786394779712565165.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149_hu9862430968058952046.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149_hu16707421502954562624.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149_hu13688409861519492088.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149_hu7900757264042848830.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151719149_hu15250634651229692926.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130151719149"
+        
+        loading="lazy"
+        width="1625"
+        height="446"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>发现敏感文件flag.7z</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766_hu11505118960966859062.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766_hu9437354207990431672.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766_hu17115373571704823905.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766_hu5954412306967296599.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766_hu12723766279253580879.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130151822766_hu6250828008981131378.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130151822766"
+        
+        loading="lazy"
+        width="1664"
+        height="386"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>右键追踪tcp流</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148_hu8164262789447419078.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148_hu7502153066720079196.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148_hu14963046659114328040.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148_hu4868852738170314463.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148_hu5918236262026483623.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152926148_hu1612753956961121707.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130152926148"
+        
+        loading="lazy"
+        width="1554"
+        height="686"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638_hu17885583339045435930.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638_hu13024701274555108339.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638_hu4133887775066411142.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638_hu838438130721695593.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638_hu5657511741471111026.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130152941638_hu8688419424711494192.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130152941638"
+        
+        loading="lazy"
+        width="940"
+        height="689"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>全部导出</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377_hu7730956848709332079.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377_hu622025013284593926.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377_hu1635946985619349953.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377_hu12195386051333527306.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377_hu3885496279520071782.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153106377_hu7241049205165809748.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130153106377"
+        
+        loading="lazy"
+        width="868"
+        height="253"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>压缩包要密码</p>
+<p>还有证书没用上，所以返回去看看rdp和tls流量</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716_hu18234284051893700738.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716_hu3221451862898978822.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716_hu15355165389649424821.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716_hu511882109309846968.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716_hu5029335178277914579.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130153129716_hu13868723332905659265.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130153129716"
+        
+        loading="lazy"
+        width="851"
+        height="479"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<pre tabindex="0"><code>1. RDP 中的证书
+目的：当您连接到一台 RDP 服务器时，服务器会向客户端发送一个数字证书以证明其身份。如果客户端信任该证书，则可以安全地建立连接。
+操作：如果您是服务器管理员，需要将有效的证书安装到 RDP 服务器上，以便客户端能够验证服务器的身份。这通常涉及到从受信任的证书颁发机构（CA）获取证书，并将其安装到服务器的证书存储中。
+2. TLS 中的证书
+目的：在 TLS 握手过程中，服务器会向客户端发送一个数字证书以证明其身份。客户端会检查该证书是否由可信的 CA 签发，并且证书中的信息是否匹配预期的服务器。
+操作：对于 TLS 服务（如 Web 服务器），您需要将证书安装到服务器上，并配置服务以使用这些证书进行 TLS 握手。对于客户端（如浏览器），则需要确保操作系统或应用程序的信任库中包含所有必要的根证书。
+</code></pre><blockquote>
+<p>注意wireshark的tls证书支持的是.pem格式，用openssl转换</p>
+<p>一个 PEM 文件，其中包含用于 RDP 会话的 TLS 加密的 SSL/TLS 证书。</p>
+</blockquote>
+<blockquote>
+<p>参考文章
+<a
+  href="https://www.haxor.no/en/article/analyzing-captured-rdp-sessions"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>分析捕获的 RDP 会话 |haxor.no</a></p>
+</blockquote>
+<blockquote>
+<p><strong>更改文件所有者</strong>： 你可以将文件的所有者更改为自己，这样就可以导出到windows中了</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511_hu5361821534986906804.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511_hu14392147279814608780.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511_hu17355703769445719597.webp 591w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,591px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511_hu7582543776919452512.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511_hu9245595078308104797.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160608511_hu1997834259157025880.png 591w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,591px"
+        alt="image-20241130160608511"
+        
+        loading="lazy"
+        width="591"
+        height="178"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p><strong><code>Enter Import Password:</code></strong>：当您创建或导出 <code>.pfx</code> 文件时，通常会设置一个导入/导出密码以保护其中的私钥。在这里，系统提示您输入这个密码，以便能够读取并转换 <code>.pfx</code> 文件的内容。</p>
+</blockquote>
+<pre tabindex="0"><code>密码尝试后mimikatz是对的
+#不清楚为什么
+有位师傅这么说：通过阅读其他师傅的wp，知道这里出题人是用了mimikatz一把梭，所以用mimikatz来作为密码得到密钥文件
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252_hu9056722356151824273.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252_hu16882826847147443347.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252_hu17226749881931862009.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252_hu12529992518537209244.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252_hu15201036036535559330.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130160930252_hu12636128869923773150.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130160930252"
+        
+        loading="lazy"
+        width="1051"
+        height="616"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>可以查看rdp流量了</p>
+</blockquote>
+<blockquote>
+<p>未解密的状态</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527_hu8511154612913998149.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527_hu7455973268361888124.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527_hu8660872517988612440.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527_hu17414259934642816669.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527_hu4944696164651959198.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162816527_hu9414090109283893128.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130162816527"
+        
+        loading="lazy"
+        width="1920"
+        height="991"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>解密后状态</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510_hu6660845882966404966.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510_hu6112051346418944806.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510_hu11124730729093368684.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510_hu16454879237048481617.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510_hu8744901928269188690.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130162620510_hu18182995563288167018.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130162620510"
+        
+        loading="lazy"
+        width="1384"
+        height="350"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756_hu16333735112957641950.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756_hu283232281550753194.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756_hu4397828459656013152.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756_hu906186580212340160.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756_hu10445351400012794337.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130161227756_hu7878832287160586236.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="									"
+        
+        loading="lazy"
+        width="1738"
+        height="808"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588_hu12269063064727895057.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588_hu12014569733939313607.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588_hu10101134241660347681.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588_hu6536393599874827795.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588_hu2831622754280548159.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130163405588_hu8216979138690451824.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130163405588"
+        
+        loading="lazy"
+        width="978"
+        height="670"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+      
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130164653721_hu13310949083883608244.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130164653721_hu12008325402545191060.webp 395w"
+        sizes="(max-width: 499px) 300px,395px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130164653721.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130164653721_hu10350648219388218277.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130164653721_hu15703420469513140463.png 395w"
+        sizes="(max-width: 499px) 300px,395px"
+        alt="image-20241130164653721"
+        
+        loading="lazy"
+        width="395"
+        height="428"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>可以使用pyrdp工具</p>
+<p>但是我没有装成功所以用其他方法，提取加脚本分析</p>
+<p>参考链接如下</p>
+<p><a
+  href="https://www.haxor.no/en/article/analyzing-captured-rdp-sessions"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>分析捕获的 RDP 会话 |haxor.no</a></p>
+<p><a
+  href="https://github.com/GoSecure/pyrdp/tree/main/pyrdp"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>github.com</a></p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934_hu13442685528738320026.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934_hu5943676532112655737.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934_hu829133168990539206.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934_hu9670278276016425478.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934_hu12123695297718925062.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130171029934_hu20547897439581974.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130171029934"
+        
+        loading="lazy"
+        width="1095"
+        height="531"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>例如这里的，可以右键scancode，复制，选里面的列出选中树的所有项目</p>
+<p>里面的 rdp.fastpath.scancode.keycode 是对应的键盘码</p>
+<p>rdp.fastpath.scancode.release是是否按着，true代表是</p>
+<pre tabindex="0"><code>tshark -r 1.pcapng -Y &#34;rdp.fastpath.action == 0&#34; -o &#34;tls.keylog_file:./rdp.pem&#34; -T fields -e frame.time -e rdp.fastpath.scancode.keycode -e rdp.fastpath.scancode.release &gt; keyboard_data.txt
+</code></pre><blockquote>
+<p>解析脚本</p>
+</blockquote>
+<pre tabindex="0"><code>def map_keycode(key_code):
+    &#34;&#34;&#34;根据扫描码返回相应的字符或描述&#34;&#34;&#34;
+    # 特殊键的映射
+    special_keys = {
+        0x00: &#39;None&#39;,              # No key
+        0x01: &#39;Esc&#39;,               # Esc
+        0x02: &#39;1&#39;,                 # 1
+        0x03: &#39;2&#39;,                 # 2
+        0x04: &#39;3&#39;,                 # 3
+        0x05: &#39;4&#39;,                 # 4
+        0x06: &#39;5&#39;,                 # 5
+        0x07: &#39;6&#39;,                 # 6
+        0x08: &#39;7&#39;,                 # 7
+        0x09: &#39;8&#39;,                 # 8
+        0x0A: &#39;9&#39;,                 # 9
+        0x0B: &#39;0&#39;,                 # 0
+        0x0C: &#39;-&#39;,                 # -
+        0x0D: &#39;=&#39;,                 # =
+        0x0E: &#39;Backspace&#39;,         # Backspace
+        0x0F: &#39;Tab&#39;,               # Tab
+        0x10: &#39;Q&#39;,                 # Q
+        0x11: &#39;W&#39;,                 # W
+        0x12: &#39;E&#39;,                 # E
+        0x13: &#39;R&#39;,                 # R
+        0x14: &#39;T&#39;,                 # T
+        0x15: &#39;Y&#39;,                 # Y
+        0x16: &#39;U&#39;,                 # U
+        0x17: &#39;I&#39;,                 # I
+        0x18: &#39;O&#39;,                 # O
+        0x19: &#39;P&#39;,                 # P
+        0x1A: &#39;[&#39;,                 # [
+        0x1B: &#39;]&#39;,                 # ]
+        0x1C: &#39;Enter&#39;,             # Enter
+        0x1D: &#39;Left Ctrl&#39;,         # Left Control
+        0x1E: &#39;A&#39;,                 # A
+        0x1F: &#39;S&#39;,                 # S
+        0x20: &#39;D&#39;,                 # D
+        0x21: &#39;F&#39;,                 # F
+        0x22: &#39;G&#39;,                 # G
+        0x23: &#39;H&#39;,                 # H
+        0x24: &#39;J&#39;,                 # J
+        0x25: &#39;K&#39;,                 # K
+        0x26: &#39;L&#39;,                 # L
+        0x27: &#39;;&#39;,                 # ;
+        0x28: &#34;&#39;&#34;,                 # &#39;
+        0x29: &#39;Grave&#39;,             # `
+        0x2A: &#39;Left Shift&#39;,        # Left Shift
+        0x2B: &#39;Backslash&#39;,         # \
+        0x2C: &#39;Z&#39;,                 # Z
+        0x2D: &#39;X&#39;,                 # X
+        0x2E: &#39;C&#39;,                 # C
+        0x2F: &#39;V&#39;,                 # V
+        0x30: &#39;B&#39;,                 # B
+        0x31: &#39;N&#39;,                 # N
+        0x32: &#39;M&#39;,                 # M
+        0x33: &#39;,&#39;,                 # ,
+        0x34: &#39;.&#39;,                 # .
+        0x35: &#39;/&#39;,                 # /
+        0x36: &#39;Right Shift&#39;,       # Right Shift
+        0x37: &#39;Keypad *&#39;,          # Keypad *
+        0x38: &#39;Alt&#39;,               # Alt
+        0x39: &#39;Space&#39;,             # Space
+        0x3A: &#39;Caps Lock&#39;,         # Caps Lock
+        0x3B: &#39;F1&#39;,                # F1
+        0x3C: &#39;F2&#39;,                # F2
+        0x3D: &#39;F3&#39;,                # F3
+        0x3E: &#39;F4&#39;,                # F4
+        0x3F: &#39;F5&#39;,                # F5
+        0x40: &#39;F6&#39;,                # F6
+        0x41: &#39;F7&#39;,                # F7
+        0x42: &#39;F8&#39;,                # F8
+        0x43: &#39;F9&#39;,                # F9
+        0x44: &#39;F10&#39;,               # F10
+        0x45: &#39;F11&#39;,               # F11
+        0x46: &#39;F12&#39;,               # F12
+        0x47: &#39;Num Lock&#39;,          # Num Lock
+        0x48: &#39;Keypad 7&#39;,          # Keypad 7
+        0x49: &#39;Keypad 8&#39;,          # Keypad 8
+        0x4A: &#39;Keypad 9&#39;,          # Keypad 9
+        0x4B: &#39;Keypad -&#39;,          # Keypad -
+        0x4C: &#39;Keypad 4&#39;,          # Keypad 4
+        0x4D: &#39;Keypad 5&#39;,          # Keypad 5
+        0x4E: &#39;Keypad 6&#39;,          # Keypad 6
+        0x4F: &#39;Keypad +&#39;,          # Keypad +
+        0x50: &#39;Keypad 1&#39;,          # Keypad 1
+        0x51: &#39;Keypad 2&#39;,          # Keypad 2
+        0x52: &#39;Keypad 3&#39;,          # Keypad 3
+        0x53: &#39;Keypad 0&#39;,          # Keypad 0
+        0x54: &#39;Keypad .&#39;,          # Keypad .
+        0x5B: &#39;Left Win&#39;,          # Left Windows
+        0x5C: &#39;Right Win&#39;,         # Right Windows
+        0x5D: &#39;Menu&#39;,              # Menu
+        0x5E: &#39;Right Ctrl&#39;,        # Right Control
+        0x5F: &#39;Right Alt&#39;,         # Right Alt
+    }
+
+    return special_keys.get(key_code, f&#34;Unknown key code: {key_code}&#34;)
+
+def process_keyboard_data(data):
+    &#34;&#34;&#34;处理键盘输入数据，返回对应的按键描述&#34;&#34;&#34;
+    output = []
+    for entry in data:
+        # 分割扫描码并转换为整数
+        key_codes = entry.split(&#39;,&#39;)
+        mapped_keys = [map_keycode(int(code, 16)) for code in key_codes]
+        output.append(&#39; &#39;.join(mapped_keys))
+    return output
+
+# 示例键盘输入数据
+keyboard_data = [
+    &#34;0x0f,0x2a,0x36,0x1d,0x1d,0x0f,0x38,0x0f,0x38,0x0f&#34;,
+    &#34;0x0f,0x2a,0x36,0x1d,0x1d,0x0f,0x38,0x0f,0x38,0x0f&#34;,
+    &#34;0x0f,0x5b,0x5c,0x2a,0x36,0x1d,0x1d,0x0f,0x38,0x0f,0x38,0x0f&#34;,
+    &#34;0x14&#34;,
+    &#34;0x23&#34;,
+    &#34;0x12&#34;,
+    &#34;0x2a&#34;,
+    &#34;0x39&#34;,
+    &#34;0x08&#34;,
+    &#34;0x2c&#34;,
+    &#34;0x39&#34;,
+    &#34;0x19&#34;,
+    &#34;0x1e&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x11&#34;,
+    &#34;0x18&#34;,
+    &#34;0x13&#34;,
+    &#34;0x20&#34;,
+    &#34;0x39&#34;,
+    &#34;0x17&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x39&#34;,
+    &#34;0x21&#34;,
+    &#34;0x28&#34;,
+    &#34;0x1a&#34;,
+    &#34;0x2a&#34;,
+    &#34;0x11&#34;,
+    &#34;0x17&#34;,
+    &#34;0x31&#34;,
+    &#34;0x20&#34;,
+    &#34;0x18&#34;,
+    &#34;0x11&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x0c&#34;,
+    &#34;0x2a&#34;,
+    &#34;0x19&#34;,
+    &#34;0x1e&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x11&#34;,
+    &#34;0x18&#34;,
+    &#34;0x13&#34;,
+    &#34;0x20&#34;,
+    &#34;0x1b&#34;,
+    &#34;0x2a&#34;,
+    &#34;0x0a&#34;,
+    &#34;0x04&#34;,
+    &#34;0x05&#34;,
+    &#34;0x08&#34;,
+    &#34;0x0b&#34;,
+    &#34;0x02&#34;,
+    &#34;0x04&#34;,
+    &#34;0x02&#34;,
+    &#34;0x09&#34;,
+    &#34;0x03&#34;,
+    &#34;0x28&#34;,
+    &#34;0x1f&#34;,
+    &#34;0x1d&#34;,
+    &#34;0x0f,0x2a,0x36,0x1d,0x1d,0x0f,0x38,0x0f,0x38,0x0f&#34;
+]
+
+# 处理每行数据
+keyboard_output = process_keyboard_data(keyboard_data)
+
+# 将结果写入文本文件
+with open(&#39;keyboard_output.txt&#39;, &#39;w&#39;) as file:
+    for entry in keyboard_output:
+        file.write(entry + &#39;\n&#39;)
+
+print(&#34;结果已写入 keyboard_output.txt&#34;)
+</code></pre><blockquote>
+<p>不知道为什么我的kali上的wireshark解析不了证书，rdp流量一直处于加密状态，所以我用windows</p>
+</blockquote>
+<pre tabindex="0"><code>tshark -r &#34;1.pcapng&#34; -Y &#34;rdp.fastpath.action == 0&#34; -o &#34;tls.keylog_file:rdp.pem&#34; -T fields -e frame.time -e rdp.fastpath.scancode.keycode -e rdp.fastpath.scancode.release &gt; &#34;keyboard_data.txt&#34;
+</code></pre><pre tabindex="0"><code>tshark.exe -r &#34;D:\桌面\1.pcapng&#34; -Y &#34;rdp.fastpath.action == 0&#34; -o &#34;tls.keylog_file:&#34;D:\桌面\rdp.pem&#34;&#34; -T fields -e frame.time -e rdp.fastpath.scancode.keycode -e rdp.fastpath.scancode.release &gt; &#34;D:\桌面\keyboard_data.txt&#34;
+
+#注意路径一定要写对
+</code></pre><p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898_hu1894025143346921775.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898_hu15142018729920140100.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898_hu9632264680406418910.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898_hu7743270156745575294.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898_hu12811228996621604686.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180007898_hu14647190647554923223.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130180007898"
+        
+        loading="lazy"
+        width="1656"
+        height="364"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261_hu5322307852429649873.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261_hu14564213677052249013.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261_hu4091092997000948985.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261_hu14468323763902095100.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261_hu4151084403171722474.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130180052261_hu4519419261776956602.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130180052261"
+        
+        loading="lazy"
+        width="1424"
+        height="868"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525_hu17332241138669933519.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525_hu17019967852137744990.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525_hu2477182825222047443.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525_hu6525778430517232378.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525_hu2759374484170245366.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130181447525_hu17525727620426521168.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130181447525"
+        
+        loading="lazy"
+        width="1424"
+        height="868"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<blockquote>
+<p>处理一下，不要时间</p>
+</blockquote>
+<p>
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467_hu12291612822455971989.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467_hu8848932561658449593.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467_hu1460171573837445750.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467.png"
+        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467_hu3810974668686915015.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467_hu18031176928326699010.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130182051467_hu11686949851226787793.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt="image-20241130182051467"
+        
+        loading="lazy"
+        width="763"
+        height="823"
+      />
+    </picture>
+  
+
+
+
+
+
+
+</p>
+<p>成功拿到</p>
+<p>最后的答案就是7z的密码是之前windows的密码加上这一串，也就是babygirl2339347013182</p>
+<p>花了很久才复现了这道题，只能说菜就多练吧。</p>
+<p>环境一直是最烦的，哭了😣😣😣</p>
+<h4 id="参考链接">参考链接👇🏻<a href="#%e5%8f%82%e8%80%83%e9%93%be%e6%8e%a5" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p><a
+  href="https://xz.aliyun.com/t/16100?time__1311=GuD%3D7KiK0KYKAKDsD7%2B%3D0%3DfMfBILm4dx"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>2024 强网杯 谍影重重5.0 超详解 - 先知社区</a></p>
+<p><a
+  href="https://blog.xmcve.com/2024/11/04/%e5%bc%ba%e7%bd%91%e6%9d%af2024-Writeup/#title-19"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>强网杯2024 Writeup - 星盟安全团队</a></p>
+<p><a
+  href="https://malwarelab.eu/posts/tryhackme-smb-decryption/"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>SMB Decryption - TryHackMe :: MWLab — Ladislav&rsquo;s Malware Lab</a></p>
+<p><a
+  href="https://blog.csdn.net/2301_79200709/article/details/143518195"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>2024强网杯-谍影重重5.0_2024强网杯wp-CSDN博客</a></p>
+<p><a
+  href="https://www.haxor.no/en/article/analyzing-captured-rdp-sessions"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>Analyzing captured RDP sessions | haxor.no</a></p>
+<blockquote>
+<p>工具安装</p>
+</blockquote>
+<p><a
+  href="https://www.freebuf.com/articles/network/357183.html"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>RDPY：一款功能强大的RDP远程桌面协议实现工具 - FreeBuf网络安全行业门户</a></p>
+<p><a
+  href="https://github.com/GoSecure/pyrdp/tree/main/pyrdp/convert"
+  
+  
+    class="link--external" target="_blank" rel="noreferrer"
+  
+>pyrdp/pyrdp/convert at main · GoSecure/pyrdp</a></p>
+
+    </div>
+
+    
+      
+
+
+  <div class="social-share">
+    <strong class="social-share__heading">Share this post: </strong>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.facebook.com/sharer.php?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://reddit.com/submit?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F&amp;title=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Reddit</title><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://x.com/intent/post?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F&amp;text=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="whatsapp://send/?text=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0%20https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F&amp;title=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0&amp;caption=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tumblr</title><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F&amp;t=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Y Combinator</title><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://vk.com/share.php?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F&amp;title=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0&amp;comment=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>VK</title><path d="m9.489.004.729-.003h3.564l.73.003.914.01.433.007.418.011.403.014.388.016.374.021.36.025.345.03.333.033c1.74.196 2.933.616 3.833 1.516.9.9 1.32 2.092 1.516 3.833l.034.333.029.346.025.36.02.373.025.588.012.41.013.644.009.915.004.98-.001 3.313-.003.73-.01.914-.007.433-.011.418-.014.403-.016.388-.021.374-.025.36-.03.345-.033.333c-.196 1.74-.616 2.933-1.516 3.833-.9.9-2.092 1.32-3.833 1.516l-.333.034-.346.029-.36.025-.373.02-.588.025-.41.012-.644.013-.915.009-.98.004-3.313-.001-.73-.003-.914-.01-.433-.007-.418-.011-.403-.014-.388-.016-.374-.021-.36-.025-.345-.03-.333-.033c-1.74-.196-2.933-.616-3.833-1.516-.9-.9-1.32-2.092-1.516-3.833l-.034-.333-.029-.346-.025-.36-.02-.373-.025-.588-.012-.41-.013-.644-.009-.915-.004-.98.001-3.313.003-.73.01-.914.007-.433.011-.418.014-.403.016-.388.021-.374.025-.36.03-.345.033-.333c.196-1.74.616-2.933 1.516-3.833.9-.9 2.092-1.32 3.833-1.516l.333-.034.346-.029.36-.025.373-.02.588-.025.41-.012.644-.013.915-.009ZM6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.xing.com/spi/shares/new?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Xing</title><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://telegram.me/share/url?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F&amp;text=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="mailto:?subject=2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0&amp;body=https%3A%2F%2FGCmessir.github.io%2Fblog%2F2024%25E5%25BC%25BA%25E7%25BD%2591%25E6%259D%25AF%25E8%25B0%258D%25E5%25BD%25B1%25E9%2587%258D%25E9%2587%258D5.0%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+  <path d="M3 7l9 6l9 -6" />
+</svg>
+
+
+      </a>
+    
+  </div>
+
+
+    
+
+    
+      
+
+    
+  </article>
+
+        </div>
+        <div class="sidebar">
+  
+    
+      <aside class="toc">
+        <nav>
+          <p class="sidebar__heading">Table Of Contents</p>
+          <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </nav>
+      </aside>
+      <hr />
+    
+  
+
+  
+  
+    <aside class="bio">
+      
+
+  <div class="jr__item jr-basics__item">
+    
+  <div class="jr-basics__image">
+    <img
+      src="/p.jpg"
+      alt="Picture of Stephen Messir"
+      width="250"
+      height="250"
+    />
+  </div>
+
+
+
+    
+      <div class="jr-basics__name">Stephen Messir</div>
+    
+
+    
+      <div class="jr-basics__label">A Software noviciate and CTF newcomer</div>
+    
+
+    
+
+    
+
+    
+
+    
+      <div class="jr-basics__summary">Those who hasten towards the sun and brightness shall not be obscured.</div>
+    
+
+    
+      
+
+      
+
+      
+        <div class="jr-basics__location-city">NC</div>
+      
+
+      
+
+      
+    
+
+    
+
+    
+      <hr />
+      <div class="jr-basics__profile jr-basics__profile--row">
+        
+          
+
+<a href="https://github.com/GCmessir" target="_blank" rel="noreferrer me">
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+
+  
+</div>
+
+
+</a>
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>RSS</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+      </div>
+    
+  </div>
+
+
+
+      
+        <hr />
+      
+    </aside>
+  
+
+  
+    <aside>
+      
+
+
+  
+  
+  
+  
+  
+  
+
+
+  <div class="tag-cloud">
+    
+      
+      
+      
+      <a
+        href="/tags/blog"
+        style="font-size:1.9229419688230418rem"
+        class="tag-cloud__tag"
+        >blog</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-misc"
+        style="font-size:1.4339850002884624rem"
+        class="tag-cloud__tag"
+        >ctf-misc</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-web"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >ctf-web</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java-application-programming"
+        style="font-size:1.2000000000000002rem"
+        class="tag-cloud__tag"
+        >java application programming</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java_base"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >java_base</a
+      >
+    
+  </div>
+
+
+    </aside>
+  
+</div>
+
+      </main>
+      <footer>
+  <div class="copyright">
+    
+  </div>
+</footer>
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+<script src="/js/main.e56d444a26643bc2029afe6eb5b967bf9f252efee7f61c853d2d2e3a0c330fc81a2f42f89da721c6c1201a7278bc5affe231c5998ea2e7688518093ed91b0130.js" integrity="sha512-5W1ESiZkO8ICmv5utblnv58lLv7n9hyFPS0uOgwzD8gaL0L4nachxsEgGnJ4vFr/4jHFmY6i52iFGAk&#43;2RsBMA=="></script>
+<script src="/js/flexsearch.1ab5b109bf2ed66903ae10907394415caa12f5c0ee66bc80088ba135ec4a751f62e4961d6a7303b562e4db724392da85945b763b8e1858ea3fd05cc36f9b8156.js" integrity="sha512-GrWxCb8u1mkDrhCQc5RBXKoS9cDuZryACIuhNexKdR9i5JYdanMDtWLk23JDktqFlFt2O44YWOo/0FzDb5uBVg=="></script>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>

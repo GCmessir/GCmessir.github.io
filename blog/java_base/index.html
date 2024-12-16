@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html
+  lang="en"
+  data-theme="light"
+>
+  <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/roboto-slab-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-300.woff2"
+  crossorigin="anonymous"
+/>
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-400.woff2"
+  crossorigin="anonymous"
+/>
+
+<link
+  rel="preload"
+  as="font"
+  type="font/woff2"
+  href="/fonts/fira-code-latin-700.woff2"
+  crossorigin="anonymous"
+/>
+
+  
+  
+    <meta
+      name="robots"
+      content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"
+    />
+  
+
+
+
+
+<title>Java Base</title>
+
+<meta
+  name="description"
+  content="java文件结构快速了解# Java 文件的基本结构# 一个简单的Java文件通常包含以下几个部分：
+包声明：
+每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。 示例：package com.example; 导入语句：
+导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。 示例：import java.util.ArrayList; 类声明：
+类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。
+示例：
+public class HelloWorld { // 类体 } 构造方法：
+构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。
+示例：
+public HelloWorld() { // 初始化代码 } 属性（成员变量）：
+属性是类中存储数据的变量。
+示例：
+private String name; 方法：
+方法是执行特定任务的代码块。
+示例：
+public void sayHello() { System.out.println(&#34;Hello, World!&#34;); } 主方法（main方法）：
+主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。
+示例：
+java深色版本
+public static void main(String[] args) { HelloWorld hello = new HelloWorld(); hello.sayHello(); } 示例代码# 以下是一个完整的Java文件示例，结合了上述各个部分：
+"
+/>
+
+<link rel="canonical" href="https://GCmessir.github.io/blog/java_base/" />
+
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Java Base">
+  <meta name="twitter:description" content="java文件结构快速了解# Java 文件的基本结构# 一个简单的Java文件通常包含以下几个部分：
+包声明：
+每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。 示例：package com.example; 导入语句：
+导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。 示例：import java.util.ArrayList; 类声明：
+类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。
+示例：
+public class HelloWorld { // 类体 } 构造方法：
+构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。
+示例：
+public HelloWorld() { // 初始化代码 } 属性（成员变量）：
+属性是类中存储数据的变量。
+示例：
+private String name; 方法：
+方法是执行特定任务的代码块。
+示例：
+public void sayHello() { System.out.println(&#34;Hello, World!&#34;); } 主方法（main方法）：
+主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。
+示例：
+java深色版本
+public static void main(String[] args) { HelloWorld hello = new HelloWorld(); hello.sayHello(); } 示例代码# 以下是一个完整的Java文件示例，结合了上述各个部分：">
+
+<meta property="og:url" content="https://GCmessir.github.io/blog/java_base/">
+  <meta property="og:site_name" content="Documenting the journey ^_^">
+  <meta property="og:title" content="Java Base">
+  <meta property="og:description" content="java文件结构快速了解# Java 文件的基本结构# 一个简单的Java文件通常包含以下几个部分：
+包声明：
+每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。 示例：package com.example; 导入语句：
+导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。 示例：import java.util.ArrayList; 类声明：
+类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。
+示例：
+public class HelloWorld { // 类体 } 构造方法：
+构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。
+示例：
+public HelloWorld() { // 初始化代码 } 属性（成员变量）：
+属性是类中存储数据的变量。
+示例：
+private String name; 方法：
+方法是执行特定任务的代码块。
+示例：
+public void sayHello() { System.out.println(&#34;Hello, World!&#34;); } 主方法（main方法）：
+主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。
+示例：
+java深色版本
+public static void main(String[] args) { HelloWorld hello = new HelloWorld(); hello.sayHello(); } 示例代码# 以下是一个完整的Java文件示例，结合了上述各个部分：">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2024-11-17T15:19:37+08:00">
+    <meta property="article:modified_time" content="2024-11-17T15:19:37+08:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="Java_base">
+
+
+  <meta itemprop="name" content="Java Base">
+  <meta itemprop="description" content="java文件结构快速了解# Java 文件的基本结构# 一个简单的Java文件通常包含以下几个部分：
+包声明：
+每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。 示例：package com.example; 导入语句：
+导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。 示例：import java.util.ArrayList; 类声明：
+类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。
+示例：
+public class HelloWorld { // 类体 } 构造方法：
+构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。
+示例：
+public HelloWorld() { // 初始化代码 } 属性（成员变量）：
+属性是类中存储数据的变量。
+示例：
+private String name; 方法：
+方法是执行特定任务的代码块。
+示例：
+public void sayHello() { System.out.println(&#34;Hello, World!&#34;); } 主方法（main方法）：
+主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。
+示例：
+java深色版本
+public static void main(String[] args) { HelloWorld hello = new HelloWorld(); hello.sayHello(); } 示例代码# 以下是一个完整的Java文件示例，结合了上述各个部分：">
+  <meta itemprop="datePublished" content="2024-11-17T15:19:37+08:00">
+  <meta itemprop="dateModified" content="2024-11-17T15:19:37+08:00">
+  <meta itemprop="wordCount" content="1544">
+  <meta itemprop="keywords" content="Blog,Java_base">
+
+
+
+
+
+
+
+
+  
+  
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+
+
+<style>
+   
+  @font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:100;src:local("Roboto Slab Thin "),local("Roboto Slab-Thin"),url(/fonts/roboto-slab-latin-100.woff2) format("woff2"),url(/fonts/roboto-slab-latin-100.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:200;src:local("Roboto Slab Extra Light "),local("Roboto Slab-Extra Light"),url(/fonts/roboto-slab-latin-200.woff2) format("woff2"),url(/fonts/roboto-slab-latin-200.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:300;src:local("Roboto Slab Light "),local("Roboto Slab-Light"),url(/fonts/roboto-slab-latin-300.woff2) format("woff2"),url(/fonts/roboto-slab-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:400;src:local("Roboto Slab Regular "),local("Roboto Slab-Regular"),url(/fonts/roboto-slab-latin-400.woff2) format("woff2"),url(/fonts/roboto-slab-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:500;src:local("Roboto Slab Medium "),local("Roboto Slab-Medium"),url(/fonts/roboto-slab-latin-500.woff2) format("woff2"),url(/fonts/roboto-slab-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:600;src:local("Roboto Slab SemiBold "),local("Roboto Slab-SemiBold"),url(/fonts/roboto-slab-latin-600.woff2) format("woff2"),url(/fonts/roboto-slab-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:700;src:local("Roboto Slab Bold "),local("Roboto Slab-Bold"),url(/fonts/roboto-slab-latin-700.woff2) format("woff2"),url(/fonts/roboto-slab-latin-700.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:800;src:local("Roboto Slab ExtraBold "),local("Roboto Slab-ExtraBold"),url(/fonts/roboto-slab-latin-800.woff2) format("woff2"),url(/fonts/roboto-slab-latin-800.woff) format("woff")}@font-face{font-display:swap;font-family:Roboto Slab;font-style:normal;font-weight:900;src:local("Roboto Slab Black "),local("Roboto Slab-Black"),url(/fonts/roboto-slab-latin-900.woff2) format("woff2"),url(/fonts/roboto-slab-latin-900.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:300;src:local("Fira Code Light "),local("Fira Code-Light"),url(/fonts/fira-code-latin-300.woff2) format("woff2"),url(/fonts/fira-code-latin-300.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:400;src:local("Fira Code Regular "),local("Fira Code-Regular"),url(/fonts/fira-code-latin-400.woff2) format("woff2"),url(/fonts/fira-code-latin-400.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:500;src:local("Fira Code Medium "),local("Fira Code-Medium"),url(/fonts/fira-code-latin-500.woff2) format("woff2"),url(/fonts/fira-code-latin-500.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:600;src:local("Fira Code SemiBold "),local("Fira Code-SemiBold"),url(/fonts/fira-code-latin-600.woff2) format("woff2"),url(/fonts/fira-code-latin-600.woff) format("woff")}@font-face{font-display:swap;font-family:Fira Code;font-style:normal;font-weight:700;src:local("Fira Code Bold "),local("Fira Code-Bold"),url(/fonts/fira-code-latin-700.woff2) format("woff2"),url(/fonts/fira-code-latin-700.woff) format("woff")}
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;-webkit-text-decoration:underline;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+
+/*! CC BY-SA 3.0 License | https://stackoverflow.com/a/36118384/1154965 */@keyframes blink{50%{opacity:0}to{opacity:1}}
+
+/*! MIT License | github.com/schnerring/hugo-theme-gruvbox */:root[data-theme=light]{--bg:var(--bg0);--bg0:#fbf1c7;--bg0_h:#f9f5d7;--bg0_s:#f2e5bc;--bg1:#ebdbb2;--bg2:#d5c4a1;--bg3:#bdae93;--bg4:#a89984;--fg:var(--fg1);--fg0:#282828;--fg1:#3c3836;--fg2:#504945;--fg3:#665c54;--fg4:#7c6f64;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#9d0006;--green1:#98971a;--green2:#797403;--yellow1:#d79921;--yellow2:#b57614;--blue1:#458588;--blue2:#076678;--purple1:#b16286;--purple2:#8f3f71;--aqua1:#689d6a;--aqua2:#427b58;--orange1:#d65d0e;--orange2:#af3a03}[data-theme=light]:root .light--hidden{display:none}:root[data-theme=dark]{--bg:var(--bg0);--bg0:#282828;--bg0_h:#1d2021;--bg0_s:#32302f;--bg1:#3c3836;--bg2:#504945;--bg3:#665c54;--bg4:#7c6f64;--fg:var(--fg1);--fg0:#fbf1c7;--fg1:#ebdbb2;--fg2:#d5c4a1;--fg3:#bdae93;--fg4:#a89984;--gray1:var(--fg4);--gray2:#928374;--red1:#cc241d;--red2:#fb4934;--green1:#98971a;--green2:#b8bb26;--yellow1:#d79921;--yellow2:#fabd2f;--blue1:#458588;--blue2:#83a598;--purple1:#b16286;--purple2:#d3869b;--aqua1:#689d6a;--aqua2:#8ec07c;--orange1:#d65d0e;--orange2:#fe8019}[data-theme=dark]:root .dark--hidden{display:none}:root{--primary:var(--blue1);--primary-alt:var(--blue2);--font-monospace:"Fira Code","Lucida Console",Monaco,monospace;--font-sans-serif:Verdana,Helvetica,sans-serif;--font-serif:"Roboto Slab",Georgia,serif}html{font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);font-size:1rem;scroll-behavior:smooth}body{background:var(--bg);color:var(--fg);line-height:1.675;word-wrap:break-word}strong{letter-spacing:.35px}a{color:inherit;-webkit-text-decoration:none;text-decoration:none}a.link--external:after{content:"\2009↗"}img{border:2px solid var(--bg1);height:auto;max-width:100%}::-moz-selection{background:var(--bg4);color:var(--fg0)}::selection{background:var(--bg4);color:var(--fg0)}h1,h2,h3,h4,h5,h6{color:var(--fg0);font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-weight:300;line-height:1.4}h1 code,h2 code,h3 code,h4 code,h5 code,h6 code{font-size:1em}h2,h3,h4,h5,h6{border-bottom:1px solid var(--bg1)}h1,h2{font-weight:400}h1{font-size:1.875rem}h2{font-size:1.75rem}h3{font-size:1.625rem}@media (min-width:768px){h1{font-size:2.375rem}h2{font-size:2rem}h3{font-size:1.75rem}}h4{font-size:1.5rem}h5{font-size:1.375rem}h6{font-size:1.25rem}table{border-collapse:collapse;margin:2rem 0;table-layout:fixed;width:100%}table,td,th{border:1px solid var(--bg1);padding:.5rem}hr{background:var(--bg1);border:none;height:1px;margin:3rem auto;width:80%}blockquote,code,pre{border-radius:.2rem;padding:0 .2em}pre code{padding:0}blockquote,code,pre,th{background:var(--bg1)}code,pre,th{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}code code{background:var(--bg2)}blockquote,pre{padding:1rem}pre{background:var(--bg1)!important;overflow:auto}pre code{background:none}blockquote{border-left:5px solid var(--primary-alt);margin:.5rem 0}blockquote:not(.does-not-exist) code{background:var(--bg2)}blockquote:not(.does-not-exist) p:first-of-type{margin-top:0}blockquote:not(.does-not-exist) p:last-of-type{margin-bottom:0}pre::-webkit-scrollbar{height:.5rem;scrollbar-width:auto}pre::-webkit-scrollbar-track{background:var(--bg2);border-radius:.2rem}pre::-webkit-scrollbar-thumb{background:var(--bg4);border-radius:.2rem}.layout{display:grid;grid-template-areas:"header" "main" "footer";grid-template-rows:auto 1fr auto;height:100vh}main{align-items:start;display:grid;grid-area:main;grid-template-areas:"empty content sidebar";grid-template-columns:1fr minmax(0,650px) 4fr}header{background:var(--bg1);grid-area:header}footer{grid-area:footer}footer,main{margin:.5em 1.1em}.content{grid-area:content}.sidebar{display:none;flex-direction:column;grid-area:sidebar;margin-top:3rem;position:sticky;top:2rem}@media (min-width:992px){.sidebar{display:flex}}header{display:grid;font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);font-size:1.125rem;grid-template-areas:"heading search nav theme-toggle";grid-template-columns:auto auto 1fr auto;padding:.75rem}.logo{color:var(--fg0);display:flex;font-weight:700;grid-area:heading}.logo:hover .logo__cursor{animation:blink 1s infinite;opacity:1}.logo__chevron,.logo__cursor{margin-left:.5rem}.logo__cursor{opacity:0}.logo__text{display:none}@media (min-width:768px){.logo__text{display:block}}.search{display:flex;grid-area:search;margin:0 1rem}#search__text{background:var(--bg2);border:1px solid var(--bg2);border-radius:.2rem;caret-color:var(--fg);color:var(--fg);outline:none;padding:0 .5rem;width:100%}#search__text:hover{border-color:var(--bg3)}#search__text:focus{border-color:var(--bg4)}#search__text::-moz-placeholder{color:var(--fg3)}#search__text::placeholder{color:var(--fg3)}#search__text[type=search]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}#search__suggestions{background:var(--bg);border-radius:.2rem;box-shadow:0 .5rem 1rem var(--bg1);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);left:0;margin-top:2rem;position:absolute;width:95vw;z-index:1000}@media (min-width:768px){.search{position:relative}#search__suggestions{width:60vw}}.search__suggestions--hidden{display:none}.search__suggestion-item{border-bottom:1px dashed var(--bg2);display:grid;grid-template-columns:1fr 2fr}.search__suggestion-item:focus,.search__suggestion-item:focus-visible,.search__suggestion-item:hover{background:var(--bg1);cursor:pointer;outline:none}.search__suggestion-item:last-child{border:none}.search__suggestion-description,.search__suggestion-title{margin:1rem 0;padding:0 1rem}.search__suggestion-title{font-weight:700}.search__suggestion-description{border-left:1px solid var(--bg2)}.search__no-results{padding:.75rem}.theme__toggle{align-items:center;background:none;border:none;color:var(--yellow1);cursor:pointer;display:flex;grid-area:theme-toggle;margin:0 1rem}.theme__toggle:hover{color:var(--yellow2)}.theme__toggle svg{height:28px;width:28px}nav#menu{align-items:center;display:flex;grid-area:nav;justify-content:flex-end}nav#menu .menu__item{color:var(--fg)}nav#menu .menu__item:hover{color:var(--fg3);cursor:pointer}nav#menu ul{list-style:none;margin:0;padding:0}nav#menu ul.menu--horizontal{align-items:center;display:none}nav#menu ul.menu--horizontal li{display:inline-block;margin:0 .75rem}@media (min-width:768px){nav#menu ul.menu--horizontal{display:flex}}nav#menu ul.menu--vertical{background:var(--fg0);bottom:0;margin:0;padding:3rem;position:fixed;right:0;top:0;transform:translate(100%);transition:transform .5s cubic-bezier(.9,0,.1,1);width:50%;z-index:10}nav#menu ul.menu--vertical .menu__item{color:var(--bg1)}nav#menu ul.menu--vertical .menu__item:hover{color:var(--bg4)}nav#menu .menu__burger{display:flex;height:24px;width:24px}nav#menu .menu__burger>*{position:absolute}nav#menu .menu__burger svg{height:inherit;width:inherit;z-index:20}nav#menu .menu__burger input{height:inherit;opacity:0;width:inherit;z-index:30}nav#menu .menu__burger input:checked~ul.menu--vertical{transform:none}nav#menu .menu__burger input:checked~svg{stroke:var(--bg1)}@media (min-width:768px){nav#menu .menu__burger{display:none}}.sidebar{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace);margin-left:auto;margin-right:auto;max-width:350px;padding-left:2.5rem}.sidebar hr{margin:1.5rem auto}.sidebar svg{fill:var(--fg)}.sidebar__heading{font-size:1.3rem}aside.toc a{color:var(--primary-alt)}aside.toc a:hover{color:var(--primary)}aside.toc ul{list-style:none;margin:0;padding:0}aside.toc ul ul{font-size:.9rem;margin-left:.5rem}aside.toc ul li{line-height:1.1}aside.toc ul li a{display:block;padding:.2rem 0}.jr-basics__image{background:var(--bg1);border:2px solid var(--bg2)}.jr-basics__summary{color:var(--fg3);font-family:Roboto Slab,Georgia,serif;font-family:var(--font-serif);margin:.75rem 0}.jr-basics__profile a:hover{color:var(--fg3)}.jr-basics__profile a:hover svg{fill:var(--fg3)}.tag-cloud{line-height:1.1;text-align:justify}.tag-cloud__tag:hover{color:var(--fg3)}.content-section,.post{border-bottom:2px dotted var(--bg1);padding:2rem 0}.post img:not(figure img){box-sizing:border-box;margin:.5rem 0}.post-content__read-more,.post-header{font-family:Fira Code,Lucida Console,Monaco,monospace;font-family:var(--font-monospace)}.post-content{margin:1.3rem 0}.post-content__read-more{color:var(--primary-alt);margin-top:1.3rem}.post-content a,.post-header a{color:var(--primary-alt)}.post-content a:hover,.post-header a:hover{color:var(--primary)}.post-tags{align-items:center;display:flex;flex-wrap:wrap;gap:.9rem;margin:1rem 0}.post-tag{font-size:.9rem;line-height:1}.post-tag:before{content:"#"}.post-heading__anchor{display:none}h1:hover .post-heading__anchor,h2:hover .post-heading__anchor,h3:hover .post-heading__anchor,h4:hover .post-heading__anchor,h5:hover .post-heading__anchor,h6:hover .post-heading__anchor{display:inline-block}.jr-basics__image,.jr-basics__item,.jr-basics__profile-icon,.jr-basics__profile-item{align-items:center;display:flex}.jr-basics__name{font-size:1.125rem;font-weight:700}.jr-basics__item{flex-direction:column;text-align:center}.jr-basics__item hr{margin:1.5rem auto}.jr-basics__image{border-radius:50%;height:250px;justify-content:center;overflow:hidden;width:250px}.jr-basics__label,.jr-basics__name,.jr-basics__summary{margin-top:.75rem}.jr-basics__profile svg{height:24px;width:24px}.jr-basics__profile,.jr-basics__profile-item{display:flex}.jr-basics__profile-item{display:flex;padding:.2rem}.jr-basics__profile--row{flex-wrap:wrap;justify-content:space-evenly}.jr-basics__profile-icon{padding:0 .75rem}.social-share{align-items:center;border-top:2px dotted var(--bg1);display:flex;flex-wrap:wrap;gap:.9rem;margin:3rem 0;padding-top:3rem}.social-share svg{fill:var(--fg);height:24px;width:24px}.social-share svg.icon-tabler{fill:none;stroke:var(--fg)}.social-share__item{background:var(--bg1);display:flex;padding:.5rem}
+   
+</style>
+
+<link
+  rel="preload"
+  href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+  
+/>
+
+
+<link
+  id="prism-dark"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-dark.min.54aecc64074623a4f9898544dcbdab9e804f1560ef0b38f4cf8e10fcaaf72264e798cb407c601aca6ecd833ec4eb93d66535581f18d45ba202cf848b70dbc332.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  integrity="sha512-VK7MZAdGI6T5iYVE3L2rnoBPFWDvCzj0z44Q/Kr3ImTnmMtAfGAaym7Ngz7E65PWZTVYHxjUW6ICz4SLcNvDMg=="
+  disabled
+/>
+
+
+<link
+  id="prism-light"
+  rel="preload"
+  href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+  
+    integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+  
+  
+/>
+
+<noscript>
+  
+    <link
+      rel="stylesheet"
+      href="/prism-themes/prism-gruvbox-light.min.42a221741efe997fcc94187c39d63c555560678789ac9ca856c74a5f0ddb2aa6c50d38b2ffbecc7a99038cbbd2efa99746e862267f781c559e0cfec10b88a5fc.css"
+      
+        integrity="sha512-QqIhdB7&#43;mX/MlBh8OdY8VVVgZ4eJrJyoVsdKXw3bKqbFDTiy/77MepkDjLvS76mXRuhiJn94HFWeDP7BC4il/A=="
+      
+    />
+  
+
+
+  <link
+    rel="stylesheet"
+    href="/css/non-critical.87ac706938e0c00a3fb552f9b90055bc0bf6a482d0e959cefab44415a88cfdc7fb4abda6c3890c70d535c5dfeebae2c696bfe84be5caaf7ed87452922b11cd22.css"
+    
+      integrity="sha512-h6xwaTjgwAo/tVL5uQBVvAv2pILQ6VnO+rREFaiM/cf7Sr2mw4kMcNU1xd/uuuLGlr/oS+XKr37YdFKSKxHNIg=="
+    
+  />
+</noscript>
+
+
+  
+
+  
+
+
+
+
+<script>
+  (()=>{function c(){if(localStorage&&localStorage.getItem("theme"))return localStorage.getItem("theme");if(window.matchMedia)return window.matchMedia("(prefers-color-scheme: light)").matches?"light":"dark"}function n(t){document.documentElement.setAttribute("data-theme",t);let e=document.getElementById("prism-dark"),i=document.getElementById("prism-light");e.toggleAttribute("disabled",t==="light"),i.toggleAttribute("disabled",t==="dark"),localStorage.setItem("theme",t)}var o=c();o&&n(o);function l(t){let e=t.currentTarget.classList.contains("light--hidden")?"light":"dark";n(e)}document.addEventListener("DOMContentLoaded",function(){document.querySelectorAll(".theme__toggle").forEach(e=>{e.addEventListener("click",l)})});})();
+
+</script>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#282828" />
+<meta name="msapplication-TileColor" content="#282828" />
+<meta name="theme-color" content="#282828" />
+
+
+
+  
+  
+
+</head>
+
+  <body>
+    <div class="layout">
+      <header>
+  <a
+    class="logo"
+    href="/"
+  >
+    
+      <div class="logo__text">Home</div>
+    
+    <div class="logo__chevron">></div>
+    <div class="logo__cursor">█</div>
+  </a>
+
+  <div class="search">
+    <input
+      id="search__text"
+      type="search"
+      placeholder="Search..."
+      aria-label="Search"
+      autocomplete="off"
+    />
+    <div id="search__suggestions" class="search__suggestions--hidden"></div>
+  </div>
+
+  <nav id="menu">
+    <ul class="menu--horizontal">
+      
+        <li class="menu__item">
+          <a href="/blog">Blog</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/friends">Friends</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/about">About</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/categories">Categories</a>
+        </li>
+      
+        <li class="menu__item">
+          <a href="/tags">Tags</a>
+        </li>
+      
+    </ul>
+
+    <div class="menu__burger">
+      
+      <input class="menu__item" type="checkbox" aria-label="Open main menu" />
+
+      
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-menu-2"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 6l16 0" />
+  <path d="M4 12l16 0" />
+  <path d="M4 18l16 0" />
+</svg>
+
+
+
+
+      <ul class="menu--vertical">
+        
+          <li>
+            <a class="menu__item" href="/blog">Blog</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/friends">Friends</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/about">About</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/categories">Categories</a>
+          </li>
+        
+          <li>
+            <a class="menu__item" href="/tags">Tags</a>
+          </li>
+        
+      </ul>
+    </div>
+  </nav>
+
+  <button class="theme__toggle light--hidden" aria-label="Toggle light mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-sun"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 12m-4 0a4 4 0 1 0 8 0a4 4 0 1 0 -8 0" />
+  <path d="M3 12h1m8 -9v1m8 8h1m-9 8v1m-6.4 -15.4l.7 .7m12.1 -.7l-.7 .7m0 11.4l.7 .7m-12.1 -.7l-.7 .7" />
+</svg>
+
+
+  </button>
+
+  <button class="theme__toggle dark--hidden" aria-label="Toggle dark mode">
+    
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-moon"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+</svg>
+
+
+  </button>
+</header>
+
+      <main>
+        <div class="content">
+          
+  <article class="post">
+    <div class="post-header">
+      <h1>Java Base</h1>
+      <div class="post-meta"><span>2024-11-17</span>
+    <div class="post-tags">
+      <a class="post-tag" href="https://GCmessir.github.io/tags/blog">blog</a><a class="post-tag" href="https://GCmessir.github.io/tags/java_base">java_base</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/java_base/tianqi_hu14614646162389604959.webp 300w,/blog/java_base/tianqi_hu1220691003197479028.webp 500w,/blog/java_base/tianqi_hu13138204193734874843.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/java_base/tianqi.png"
+        srcset="/blog/java_base/tianqi_hu15652377758934521664.png 300w,/blog/java_base/tianqi_hu2355889855711734465.png 500w,/blog/java_base/tianqi_hu17797375527159893925.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="1024"
+        height="576"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      <h2 id="java文件结构快速了解">java文件结构快速了解<a href="#java%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84%e5%bf%ab%e9%80%9f%e4%ba%86%e8%a7%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="java-文件的基本结构">Java 文件的基本结构<a href="#java-%e6%96%87%e4%bb%b6%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>一个简单的Java文件通常包含以下几个部分：</p>
+<ol>
+<li>
+<p><strong>包声明</strong>：</p>
+<ul>
+<li>每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。</li>
+<li>示例：<code>package com.example;</code></li>
+</ul>
+</li>
+<li>
+<p><strong>导入语句</strong>：</p>
+<ul>
+<li>导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。</li>
+<li>示例：<code>import java.util.ArrayList;</code></li>
+</ul>
+</li>
+<li>
+<p><strong>类声明</strong>：</p>
+<ul>
+<li>
+<p>类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorld</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 类体</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>构造方法</strong>：</p>
+<ul>
+<li>
+<p>构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">HelloWorld</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化代码</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>属性（成员变量）</strong>：</p>
+<ul>
+<li>
+<p>属性是类中存储数据的变量。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String name;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>方法</strong>：</p>
+<ul>
+<li>
+<p>方法是执行特定任务的代码块。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span>() {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>主方法（main方法）</strong>：</p>
+<ul>
+<li>
+<p>主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。</p>
+</li>
+<li>
+<p>示例：</p>
+<p>java深色版本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    HelloWorld hello <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HelloWorld();
+</span></span><span style="display:flex;"><span>    hello.<span style="color:#a6e22e">sayHello</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h3 id="示例代码">示例代码<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>以下是一个完整的Java文件示例，结合了上述各个部分：</p>
+<p>java深色版本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">// 包声明</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 导入语句</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 类声明</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorld</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 成员变量</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 构造方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">HelloWorld</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;World&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 普通方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span>() {
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello, &#34;</span> <span style="color:#f92672">+</span> name);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 主方法</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        HelloWorld hello <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HelloWorld();
+</span></span><span style="display:flex;"><span>        hello.<span style="color:#a6e22e">sayHello</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="使用-intellij-idea-ij">使用 IntelliJ IDEA (IJ)<a href="#%e4%bd%bf%e7%94%a8-intellij-idea-ij" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<ol>
+<li><strong>创建新项目</strong>：
+<ul>
+<li>打开IJ，选择“File” -&gt; “New” -&gt; “Project”，选择Java项目，点击“Next”完成项目创建。</li>
+</ul>
+</li>
+<li><strong>创建新类</strong>：
+<ul>
+<li>在项目的src目录下右键，选择“New” -&gt; “Java Class”，输入类名（如<code>HelloWorld</code>），然后点击“OK”。</li>
+</ul>
+</li>
+<li><strong>编写代码</strong>：
+<ul>
+<li>在打开的编辑器窗口中，输入上述示例代码。</li>
+</ul>
+</li>
+<li><strong>运行程序</strong>：
+<ul>
+<li>右键点击编辑器中的类文件，选择“Run &lsquo;HelloWorld.main()&rsquo;”来运行程序。</li>
+<li>或者点击工具栏上的绿色三角形按钮运行程序。</li>
+</ul>
+</li>
+</ol>
+<h2 id="包和import">包和import<a href="#%e5%8c%85%e5%92%8cimport" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<p>在Java中，包（package）是用来组织类和接口的一种机制，类似于文件系统的文件夹结构。导入（import）语句则允许你在当前类中使用其他包中的类或接口。下面详细介绍如何声明包和导入其他包中的类，并附带例子。</p>
+<p><strong>如果一个保重的类要想被其他包中的类所使用，那么这个类一定要定义为public class，而不嫩使用class声明，因为class声明的类只能够在同一个包中使用 。</strong></p>
+<p><em><em>public class：文件名称和类名称保持一致，在一个</em>.java文件中只能存在一个public class定义，如果一个类要想被外部的包所访问必须定义为public。</em>*</p>
+<p>*<em>class:文件名称可以和类名称不一致，在一个*java中可以同时存在多个class定义，并且编译完成之后会形成多个 <em>.class文件，使用class定义的类只能够在一个包中访问，不同包无法访问</em></em></p>
+<p><strong>包的本质是目录</strong></p>
+<h3 id="1-声明包">1. 声明包<a href="#1-%e5%a3%b0%e6%98%8e%e5%8c%85" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>每个Java源文件都可以属于一个包。包声明必须是源文件中的第一行非注释代码。语法如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> 包名;
+</span></span></code></pre></div><p>例如，如果你希望将你的类放在 <code>com.example</code> 这个包中，可以在文件的开头这样声明：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example;
+</span></span></code></pre></div><h3 id="2-导入其他包中的类">2. 导入其他包中的类<a href="#2-%e5%af%bc%e5%85%a5%e5%85%b6%e4%bb%96%e5%8c%85%e4%b8%ad%e7%9a%84%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="单个类导入">单个类导入<a href="#%e5%8d%95%e4%b8%aa%e7%b1%bb%e5%af%bc%e5%85%a5" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>如果你想导入某个包中的单个类，可以使用以下语法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> 包名.类名;
+</span></span></code></pre></div><p>例如，如果你想导入 <code>java.util</code> 包中的 <code>ArrayList</code> 类，可以这样写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.ArrayList;
+</span></span></code></pre></div><h4 id="多个类导入">多个类导入<a href="#%e5%a4%9a%e4%b8%aa%e7%b1%bb%e5%af%bc%e5%85%a5" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>如果你想导入某个包中的多个类，可以逐个导入，也可以使用通配符 <code>*</code> 导入整个包中的所有类。语法如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> 包名.*;
+</span></span></code></pre></div><p>例如，如果你想导入 <code>java.util</code> 包中的所有类，可以这样写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.*;
+</span></span></code></pre></div><h4 id="注">注：<a href="#%e6%b3%a8" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>在java中无论使用<span style="color:#e6db74">&#34;import 包.*&#34;</span> 导入或者是单独导入<span style="color:#960050;background-color:#1e0010">，</span>从实际的操作性能上来讲是没有任何区别的<span style="color:#960050;background-color:#1e0010">，</span>因为即使使用了<span style="color:#e6db74">&#34;*&#34;</span>也表示只导入所需要的类<span style="color:#960050;background-color:#1e0010">，</span>不需要的并不导入<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><h3 id="3-静态导入">3. 静态导入<a href="#3-%e9%9d%99%e6%80%81%e5%af%bc%e5%85%a5" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>静态导入允许你直接使用类中的静态成员（方法或变量），而不需要指定类名。语法如下：</p>
+<pre tabindex="0"><code class="language-javajava" data-lang="javajava">import static 包名.类名.静态成员名;
+</code></pre><p>例如，如果你想导入 <code>Math</code> 类中的 <code>PI</code> 常量和 <code>sqrt</code> 方法，可以这样写：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">import static</span> java.lang.Math.PI;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import static</span> java.lang.Math.sqrt;
+</span></span></code></pre></div><p>然后你可以在代码中直接使用 <code>PI</code> 和 <code>sqrt</code>，而不需要前缀 <code>Math</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">double</span> result <span style="color:#f92672">=</span> sqrt(16) <span style="color:#f92672">*</span> PI;
+</span></span></code></pre></div><h3 id="完整示例">完整示例<a href="#%e5%ae%8c%e6%95%b4%e7%a4%ba%e4%be%8b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>假设你有一个项目结构如下：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>src/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">├──</span> com/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>   <span style="color:#960050;background-color:#1e0010">└──</span> example/
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>       <span style="color:#960050;background-color:#1e0010">├──</span> Main.java
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">│</span>       <span style="color:#960050;background-color:#1e0010">└──</span> Person.java
+</span></span></code></pre></div><h4 id="personjava"><code>Person.java</code><a href="#personjava" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Person</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String name;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">int</span> age;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Person</span>(String name, <span style="color:#66d9ef">int</span> age) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">=</span> name;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">age</span> <span style="color:#f92672">=</span> age;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getName</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> name;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> <span style="color:#a6e22e">getAge</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> age;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">toString</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Person{name=&#39;&#34;</span> <span style="color:#f92672">+</span> name <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;&#39;, age=&#34;</span> <span style="color:#f92672">+</span> age <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;}&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="mainjava"><code>Main.java</code><a href="#mainjava" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#f92672">package</span> com.example;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.ArrayList;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> java.util.List;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Main</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Person<span style="color:#f92672">&gt;</span> people <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        people.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">new</span> Person(<span style="color:#e6db74">&#34;Alice&#34;</span>, 30));
+</span></span><span style="display:flex;"><span>        people.<span style="color:#a6e22e">add</span>(<span style="color:#66d9ef">new</span> Person(<span style="color:#e6db74">&#34;Bob&#34;</span>, 25));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (Person person : people) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(person);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="解释">解释<a href="#%e8%a7%a3%e9%87%8a" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<ol>
+<li><strong>包声明</strong>：
+<ul>
+<li><code>Person.java</code> 和 <code>Main.java</code> 都声明了 <code>package com.example;</code>，表示它们属于 <code>com.example</code> 包。</li>
+</ul>
+</li>
+<li><strong>导入语句</strong>：
+<ul>
+<li><code>Main.java</code> 中导入了 <code>java.util.ArrayList</code> 和 <code>java.util.List</code>，以便在代码中使用这些类。</li>
+</ul>
+</li>
+<li><strong>类和方法</strong>：
+<ul>
+<li><code>Person</code> 类定义了一个简单的 <code>Person</code> 对象，包含姓名和年龄。</li>
+<li><code>Main</code> 类中的 <code>main</code> 方法创建了一个 <code>Person</code> 对象列表，并打印每个对象的信息。</li>
+</ul>
+</li>
+</ol>
+<h3 id="总结注">总结注：<a href="#%e6%80%bb%e7%bb%93%e6%b3%a8" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>如果同时导入了不同包中名称相同的类，这时候就使用的时候就需要使用这个类的完整名称。</p>
+<p>如：hh.gg.util.Message msg = new hh.gg.util.Message();</p>
+</blockquote>
+<blockquote>
+<p>利用静态导入的优点在于，不同类的静态方法就好像在主类定义的一样，不需要类名称就可以直接进行调用。</p>
+</blockquote>
+<h3 id="jar文件">jar文件<a href="#jar%e6%96%87%e4%bb%b6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>java中的压缩文件格式，即可以将*class文件以 *jar压缩包的形式给用户。</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span>jar --help
+</span></span><span style="display:flex;"><span>用法<span style="color:#960050;background-color:#1e0010">:</span> jar [<span style="color:#66d9ef">OPTION...</span>] [ [--release VERSION] [-C dir] files] ...
+</span></span><span style="display:flex;"><span>jar 创建类和资源的档案, 并且可以处理档案中的
+</span></span><span style="display:flex;"><span>单个类或资源或者从档案中还原单个类或资源<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 示例<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># 创建包含两个类文件的名为 classes.jar 的档案:</span>
+</span></span><span style="display:flex;"><span> jar --create -<span style="color:#f92672">-file</span> classes.jar Foo.class Bar.class
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># 使用现有的清单创建档案, 其中包含 foo/ 中的所有文件:</span>
+</span></span><span style="display:flex;"><span> jar --create -<span style="color:#f92672">-file</span> classes.jar --manifest mymanifest -C foo/ .
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># 创建模块化 jar 档案, 其中模块描述符位于</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># classes/module-info.class:</span>
+</span></span><span style="display:flex;"><span> jar --create -<span style="color:#f92672">-file</span> foo.jar --main-class com.foo.Main --module-version <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>     -C foo/ classes resources
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># 将现有的非模块化 jar 更新为模块化 jar:</span>
+</span></span><span style="display:flex;"><span> jar --update -<span style="color:#f92672">-file</span> foo.jar --main-class com.foo.Main --module-version <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>     -C foo/ module-info.class
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># 创建包含多个发行版的 jar, 并将一些文件放在 META-INF/versions/9 目录中:</span>
+</span></span><span style="display:flex;"><span> jar --create -<span style="color:#f92672">-file</span> mr.jar -C foo classes --release <span style="color:#ae81ff">9</span> -C foo9 classes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>要缩短或简化 jar 命令, 可以在单独的文本文件中指定参数,
+</span></span><span style="display:flex;"><span>并使用 @ 符号作为前缀将此文件传递给 jar 命令<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 示例<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span> <span style="color:#75715e"># 从文件 classes.list 读取附加选项和类文件列表</span>
+</span></span><span style="display:flex;"><span> jar --create -<span style="color:#f92672">-file</span> my.jar @classes.list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 主操作模式<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  -c, --create               创建档案
+</span></span><span style="display:flex;"><span>  -i, --generate-index=FILE  为指定的 jar 档案生成
+</span></span><span style="display:flex;"><span>                             索引信息
+</span></span><span style="display:flex;"><span>  -t, --list                 列出档案的目录
+</span></span><span style="display:flex;"><span>  -u, --update               更新现有 jar 档案
+</span></span><span style="display:flex;"><span>  -x, --extract              从档案中提取指定的 (或全部) 文件
+</span></span><span style="display:flex;"><span>  -d, --describe-module      输出模块描述符或自动模块名称
+</span></span><span style="display:flex;"><span>      --validate             Validate the contents of the jar archive. This option
+</span></span><span style="display:flex;"><span>                             will validate that the API exported by a multi-release
+</span></span><span style="display:flex;"><span>                             jar archive is consistent across all different release
+</span></span><span style="display:flex;"><span>                             versions.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 在任意模式下有效的操作修饰符<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  -C DIR                     更改为指定的目录并包含
+</span></span><span style="display:flex;"><span>                             以下文件
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">-f</span>, -<span style="color:#f92672">-file</span>=FILE            档案文件名<span style="color:#960050;background-color:#1e0010">。</span>省略时, 基于操作
+</span></span><span style="display:flex;"><span>                             使用 stdin 或 stdout
+</span></span><span style="display:flex;"><span>      --release VERSION      将下面的所有文件都放在
+</span></span><span style="display:flex;"><span>                             jar 的版本化目录中 (即 META-INF/versions/VERSION/)
+</span></span><span style="display:flex;"><span>  -v, --verbose              在标准输出中生成详细输出
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 在创建和更新模式下有效的操作修饰符<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  -e, --main-class=CLASSNAME 捆绑到模块化或可执行
+</span></span><span style="display:flex;"><span>                             jar 档案的独立应用程序
+</span></span><span style="display:flex;"><span>                             的应用程序入口点
+</span></span><span style="display:flex;"><span>  -m, --manifest=FILE        包含指定清单文件中的
+</span></span><span style="display:flex;"><span>                             清单信息
+</span></span><span style="display:flex;"><span>  -M, --no-manifest          不为条目创建清单文件
+</span></span><span style="display:flex;"><span>      --module-version=VERSION    创建模块化 jar 或更新
+</span></span><span style="display:flex;"><span>                             非模块化 jar 时的模块版本
+</span></span><span style="display:flex;"><span>      --hash-modules=PATTERN 计算和记录模块的散列,
+</span></span><span style="display:flex;"><span>                             这些模块按指定模式匹配并直接或
+</span></span><span style="display:flex;"><span>                             间接依赖于所创建的模块化 jar 或
+</span></span><span style="display:flex;"><span>                             所更新的非模块化 jar
+</span></span><span style="display:flex;"><span>  -p, --module-path          模块被依赖对象的位置, 用于生成
+</span></span><span style="display:flex;"><span>                             散列
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 只在创建, 更新和生成索引模式下有效的操作修饰符<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">-0</span>, --no-compress          仅存储; 不使用 ZIP 压缩
+</span></span><span style="display:flex;"><span>      --date=TIMESTAMP       The timestamp <span style="color:#66d9ef">in</span> ISO-<span style="color:#ae81ff">8601</span> extended offset date-time with
+</span></span><span style="display:flex;"><span>                             optional time-zone format, to use <span style="color:#66d9ef">for</span> the timestamps of
+</span></span><span style="display:flex;"><span>                             entries, e.g. <span style="color:#e6db74">&#34;2022-02-12T12:30:00-05:00&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 其他选项<span style="color:#960050;background-color:#1e0010">:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  -?, -h, --help[<span style="color:#960050;background-color:#1e0010">:</span>compat]    提供此帮助<span style="color:#960050;background-color:#1e0010">，</span>也可以选择性地提供兼容性帮助
+</span></span><span style="display:flex;"><span>      --help-extra           提供额外选项的帮助
+</span></span><span style="display:flex;"><span>      --version              输出程序版本
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 如果模块描述符 <span style="color:#e6db74">&#39;module-info.class&#39;</span> 位于指定目录的
+</span></span><span style="display:flex;"><span> 根目录中, 或者位于 jar 档案本身的根目录中, 则
+</span></span><span style="display:flex;"><span> 该档案是一个模块化 jar<span style="color:#960050;background-color:#1e0010">。</span>以下操作只在创建模块化 jar,
+</span></span><span style="display:flex;"><span> 或更新现有的非模块化 jar 时有效<span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#39;--module-version&#39;</span>,
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#39;--hash-modules&#39;</span> 和 <span style="color:#e6db74">&#39;--module-path&#39;</span><span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span> 如果为长选项提供了必需参数或可选参数, 则它们对于
+</span></span><span style="display:flex;"><span> 任何对应的短选项也是必需或可选的
+</span></span></code></pre></div><h2 id="抽象类">抽象类<a href="#%e6%8a%bd%e8%b1%a1%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h4 id="一关键字及定义">一.关键字及定义<a href="#%e4%b8%80%e5%85%b3%e9%94%ae%e5%ad%97%e5%8f%8a%e5%ae%9a%e4%b9%89" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<pre><code>抽象类使用abstrat class进行定义，并且在一个抽象类中也可以利用abstract关键词定义若干个抽象方法，这样抽象类的子类就必须在继承抽象类时强制覆写全部抽象方法。
+</code></pre>
+<p>抽象类并不是一个完整的类，对于抽象类的使用需要按照以下原则进行。</p>
+<p>​	&mdash;-抽象类必须提供有子类，子类使用extends继承一个抽象类</p>
+<p>​	&mdash;-抽象类的子类（不是抽象类）一定要覆写抽象类的全部抽象方法。</p>
+<p>​	&mdash;-抽象类的对象实例化可以利用对象多态性通过子类向上转型的方法完成</p>
+<h4 id="二抽象类的相关说明有参无参构造">二.抽象类的相关说明（有参无参构造）<a href="#%e4%ba%8c%e6%8a%bd%e8%b1%a1%e7%b1%bb%e7%9a%84%e7%9b%b8%e5%85%b3%e8%af%b4%e6%98%8e%e6%9c%89%e5%8f%82%e6%97%a0%e5%8f%82%e6%9e%84%e9%80%a0" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>​	(1) 抽象类必须由子类继承，所以在定义时，不允许使用final关键字定义抽象类或抽象方法。</p>
+<blockquote>
+<p>补充final关键字</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>final修饰的类不能被继承<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>final修饰的方法不能被子类重写<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>final修饰的变量只能被赋值一次<span style="color:#960050;background-color:#1e0010">，</span>且对于引用类型来说<span style="color:#960050;background-color:#1e0010">，</span>是指向的地址不能变<span style="color:#960050;background-color:#1e0010">，</span>但对象的状态可以改变<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>final变量可以提高并发程序的安全性和性能<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><p>​	(2) 抽象类中可以定义成员属性与普通方法，为了可以为抽象类中的成员属性初始化，可以在抽象类中提供构造方法。子类在继承抽象类时会默认调用父类的无参构造，如果抽象类没有提供无参构造方法，则子类必须通过super()的形式调用指定参数的构造方法。</p>
+<blockquote>
+<p>代码示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Message</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> String type;<span style="color:#75715e">//消息类型</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Message</span>(String type) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">type</span> <span style="color:#f92672">=</span> type;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> String <span style="color:#a6e22e">getConnectionInfo</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getType</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> type;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DatabaseMessage</span> <span style="color:#66d9ef">extends</span> Message{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">DatabaseMessage</span>(String type){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">super</span>(type);<span style="color:#75715e">//调用单参构造。</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getConnectionInfo</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;[&#34;</span> <span style="color:#f92672">+</span> <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">getType</span>() <span style="color:#f92672">+</span><span style="color:#e6db74">&#34;]数据库连接信息。&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDome</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Message message <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> DatabaseMessage(<span style="color:#e6db74">&#34;Java&#34;</span>);<span style="color:#75715e">//向上转型</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(message.<span style="color:#a6e22e">getConnectionInfo</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><blockquote>
+<p>这里补充些有参无参构造知识</p>
+</blockquote>
+<p><strong>抽象类：</strong>
+抽象类是不能被实例化的类，它通常包含一个或多个抽象方法（没有具体实现的方法）。
+抽象类可以包含成员属性、普通方法和构造方法。</p>
+<p><strong>构造方法：</strong>
+构造方法用于初始化对象的属性。
+抽象类中的构造方法可以用于初始化抽象类中的成员属性。</p>
+<p><strong>子类继承抽象类</strong>
+<strong>当一个子类继承抽象类时，子类的构造方法会自动调用父类的构造方法。具体规则如下：</strong></p>
+<p>​	默认调用无参构造方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>如果父类有无参构造方法<span style="color:#960050;background-color:#1e0010">，</span>子类的构造方法会默认调用父类的无参构造方法<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>如果父类没有无参构造方法<span style="color:#960050;background-color:#1e0010">，</span>子类必须显式调用父类的有参构造方法<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><p>​	显式调用有参构造方法：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>如果父类只有有参构造方法<span style="color:#960050;background-color:#1e0010">，</span>子类必须在构造方法中使用 <span style="color:#a6e22e">super</span>() 显式调用父类的有参构造方法<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">super</span>() 必须是子类构造方法中的第一条语句<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><p><strong>注：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>  如果你在抽象类中定义了有参构造方法<span style="color:#960050;background-color:#1e0010">，</span>而没有定义无参构造方法<span style="color:#960050;background-color:#1e0010">，</span>那么编译器不会自动生成默认的无参构造方法<span style="color:#960050;background-color:#1e0010">。</span>这意味着子类在继承该抽象类时<span style="color:#960050;background-color:#1e0010">，</span>必须显式调用父类的有参构造方法<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>默认无参构造方法<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>  在Java中<span style="color:#960050;background-color:#1e0010">，</span>如果你没有定义任何构造方法<span style="color:#960050;background-color:#1e0010">，</span>编译器会自动为你生成一个无参构造方法<span style="color:#960050;background-color:#1e0010">。</span>这个无参构造方法是默认的<span style="color:#960050;background-color:#1e0010">，</span>不带任何参数<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>自定义构造方法<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>  一旦你定义了任何一个构造方法<span style="color:#960050;background-color:#1e0010">（</span>无论是有参还是无参<span style="color:#960050;background-color:#1e0010">），</span>编译器就不会再生成默认的无参构造方法<span style="color:#960050;background-color:#1e0010">。</span>因此<span style="color:#960050;background-color:#1e0010">，</span>如果你需要无参构造方法<span style="color:#960050;background-color:#1e0010">，</span>必须显式地定义它<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><p>​	(3) 抽象类中允许没有抽象方法，即便没有抽象方法。也无法直接使用关键字new直接实例化抽象类对象</p>
+<p>​	(4) 抽象类中可以提供static方法，并且该类方法不受到抽象类实例化对象的限制。</p>
+<blockquote>
+<p>代码示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">abstract</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Message</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> String <span style="color:#a6e22e">getInfo</span>();
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> Message <span style="color:#a6e22e">getInstance</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> DatabaseMessage();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DatabaseMessage</span> <span style="color:#66d9ef">extends</span> Message{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getInfo</span>(){
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDome1</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Message msg <span style="color:#f92672">=</span> Message.<span style="color:#a6e22e">getInstance</span>();<span style="color:#75715e">//静态直接调用</span>
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(msg.<span style="color:#a6e22e">getInfo</span>());
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="包装类">包装类<a href="#%e5%8c%85%e8%a3%85%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>这里就演示一个double类型的装箱和拆箱</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDemo</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>){
+</span></span><span style="display:flex;"><span>		Double obj <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Double(10.<span style="color:#a6e22e">1</span>);<span style="color:#75715e">//装箱</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">double</span> num <span style="color:#f92672">=</span> obj.<span style="color:#a6e22e">doubleValue</span>();<span style="color:#75715e">//拆箱</span>
+</span></span><span style="display:flex;"><span>		System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(num<span style="color:#f92672">*</span>num);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//其他包装的基本数据类型是同理</span>
+</span></span></code></pre></div><p><strong>注：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>JDK1.<span style="color:#a6e22e">5以前是必须的操作</span><span style="color:#960050;background-color:#1e0010">，</span>JDK1.<span style="color:#a6e22e">5之后</span><span style="color:#960050;background-color:#1e0010">，</span>java提供了自动装箱和拆箱机制<span style="color:#960050;background-color:#1e0010">，</span>并且包装类的对象可以自动进行数学计算了<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>JDK1.<span style="color:#a6e22e">9出现了过期声明</span><span style="color:#960050;background-color:#1e0010">。</span>也就说明后面的都是自动装箱<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><blockquote>
+<p>自动装箱</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDome</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>){
+</span></span><span style="display:flex;"><span>		Integer obj <span style="color:#f92672">=</span> 10;<span style="color:#75715e">//自动装箱，无需关注构造方法了。</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">int</span> num <span style="color:#f92672">=</span> obj;<span style="color:#75715e">//自动拆箱，等价于调用了intValue()方法。</span>
+</span></span><span style="display:flex;"><span>		obj<span style="color:#f92672">++</span>;<span style="color:#75715e">//包装类对象可以直接参与数学运算。</span>
+</span></span><span style="display:flex;"><span>		System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(num<span style="color:#f92672">*</span>obj);
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="接口">接口<a href="#%e6%8e%a5%e5%8f%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="定义">定义<a href="#%e5%ae%9a%e4%b9%89" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>​	接口在实际开发中是由一种比抽象类更为重要的结构组成，接口的主要特点在于其用于定义开发标准，同时接口在JDK1.8之后也发生了重大变革。</p>
+<h3 id="关键字">关键字<a href="#%e5%85%b3%e9%94%ae%e5%ad%97" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>interface</p>
+</blockquote>
+<p>java中接口属于一种特殊的类，需要通过interface关键字进行定义，在接口中可以定义全局常量、抽象方法（必须是public访问权限）、default方法以及static方法。</p>
+<p>接口中的方法默认是抽象的。</p>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#75715e">//由于类名称与接口名称的定义要求相同，所以为了区分出接口，往往会在接口名称前加入字母I（interface）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IMessage</span>{							<span style="color:#75715e">//定义接口</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String INFO <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hh&#34;</span>;<span style="color:#75715e">//全局变量</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> String <span style="color:#a6e22e">getInfo</span>();<span style="color:#75715e">//抽象方法</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>本程序定义一个IMessage接口<span style="color:#960050;background-color:#1e0010">，</span>由于接口中存在有抽象方法<span style="color:#960050;background-color:#1e0010">，</span>所以无法被直接实例化<span style="color:#960050;background-color:#1e0010">。</span>其使用规则如下<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>	接口需要被子类实现<span style="color:#960050;background-color:#1e0010">，</span>子类利用implements关键字可以实现多个父接口
+</span></span><span style="display:flex;"><span>	子类如果不是抽象类<span style="color:#960050;background-color:#1e0010">，</span>那么一定要覆写接口中的全部抽象方法
+</span></span><span style="display:flex;"><span>	接口对象可以利用子类对象的向上转型进行实例化
+</span></span></code></pre></div><h4 id="注-1">注：<a href="#%e6%b3%a8-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>子类可以继承父类也可以实现父接口<span style="color:#960050;background-color:#1e0010">，</span>其基本语法如下:
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">子类</span><span style="color:#f92672">[</span><span style="color:#66d9ef">extends</span> 父类<span style="color:#f92672">][</span><span style="color:#66d9ef">implements</span> 接口1,接口2<span style="color:#960050;background-color:#1e0010">，</span>...<span style="color:#f92672">]</span>{}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>如果出现混合应用<span style="color:#960050;background-color:#1e0010">，</span>则要采用先继承(<span style="color:#66d9ef">extends</span>)再实现(<span style="color:#66d9ef">implements</span>)的顺序完成<span style="color:#960050;background-color:#1e0010">，</span>同时一定要记住<span style="color:#960050;background-color:#1e0010">，</span>子类接口的最大特点在于可以同时实现多个父接口<span style="color:#960050;background-color:#1e0010">，</span>而每一个子类只能通过extends继承一个父类
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>感觉写法上跟继承差不多
+</span></span></code></pre></div><h3 id="接口的转型">接口的转型<a href="#%e6%8e%a5%e5%8f%a3%e7%9a%84%e8%bd%ac%e5%9e%8b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>​	接口和Object之间没有任何关系，但是如果有子类实现了这些接口和默认继承了Object父类，所以该子类向上转型的实例就可以进行任意父类接口转型。</p>
+<h3 id="接口的简化定义">接口的简化定义<a href="#%e6%8e%a5%e5%8f%a3%e7%9a%84%e7%ae%80%e5%8c%96%e5%ae%9a%e4%b9%89" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>​	在进行接口定义时，对于全局常量和抽象方法可以按照一下形式简化</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IMessage</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String INFO <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gg&#34;</span>;
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> String <span style="color:#a6e22e">getInfo</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//简化定义</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IMessage</span>{
+</span></span><span style="display:flex;"><span>	String INFO <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gg&#34;</span>;
+</span></span><span style="display:flex;"><span>	String <span style="color:#a6e22e">getInfo</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>作用完全相同<span style="color:#960050;background-color:#1e0010">，</span>但是建议保留public<span style="color:#960050;background-color:#1e0010">，</span>这样定义会更清楚
+</span></span></code></pre></div><p>​	在面向对象的设计中，抽象类是一种必不可少的结构，利用抽象类可以实现一些公共方法的定义。可以利用extends先继承父类再利用implements实现若干父接口的顺序完成子类的定义。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>在Java中<span style="color:#960050;background-color:#1e0010">，</span>接口中的成员属性<span style="color:#960050;background-color:#1e0010">（</span>字段<span style="color:#960050;background-color:#1e0010">）</span>默认是 <span style="color:#66d9ef">public</span><span style="color:#960050;background-color:#1e0010">、</span><span style="color:#66d9ef">static</span> 和 <span style="color:#66d9ef">final</span> 的<span style="color:#960050;background-color:#1e0010">。</span>这意味着<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>公共的<span style="color:#960050;background-color:#1e0010">（</span><span style="color:#66d9ef">public</span><span style="color:#960050;background-color:#1e0010">）：</span>可以在任何地方访问<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>静态的<span style="color:#960050;background-color:#1e0010">（</span><span style="color:#66d9ef">static</span><span style="color:#960050;background-color:#1e0010">）：</span>属于接口本身<span style="color:#960050;background-color:#1e0010">，</span>而不是接口的实例<span style="color:#960050;background-color:#1e0010">。</span>可以通过接口名称直接访问这些字段<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>最终的<span style="color:#960050;background-color:#1e0010">（</span><span style="color:#66d9ef">final</span><span style="color:#960050;background-color:#1e0010">）：</span>一旦赋值后不能更改<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span>因此<span style="color:#960050;background-color:#1e0010">，</span>接口中的成员属性实际上是常量<span style="color:#960050;background-color:#1e0010">，</span>通常用于定义一些固定的值<span style="color:#960050;background-color:#1e0010">，</span>供实现该接口的类使用<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><h3 id="extends继承多个父接口">extends继承多个父接口<a href="#extends%e7%bb%a7%e6%89%bf%e5%a4%9a%e4%b8%aa%e7%88%b6%e6%8e%a5%e5%8f%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>​	java中的extends关键字除了具有类继承作用以外，也可以在接口上使用以实现接口的继承关系，并且可以同时实现多个父接口。</p>
+<blockquote>
+<p>示例</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Imessage</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">final</span> String INFO <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;hh&#34;</span>;<span style="color:#75715e">//全局常量</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">abstract</span> String <span style="color:#a6e22e">getInfo</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IChannel</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">connect</span>();<span style="color:#75715e">//抽象方法</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//extends在类继承上只能够继承一个父类，但是接口上可以继承多个。</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IService</span> <span style="color:#66d9ef">extends</span> IMessage,IChannel{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">service</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageService</span> implement IService{
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">getInfo</span>(){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> IMessage.<span style="color:#a6e22e">INFo</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">connect</span>(){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">service</span>(){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hello&#34;</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="接口定义的加强defaultstatic">接口定义的加强（default、static）<a href="#%e6%8e%a5%e5%8f%a3%e5%ae%9a%e4%b9%89%e7%9a%84%e5%8a%a0%e5%bc%badefaultstatic" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>JDK1.8以后，接口中的组成出了提供全局常量和抽象方法之外。还可以使用default定义普通方法或者使用static定义静态方法</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IMessage</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">message</span>();<span style="color:#75715e">//抽象方法</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">boolean</span> <span style="color:#a6e22e">connect</span>(){	<span style="color:#75715e">//普通方法，可以被子类继承和覆写</span>
+</span></span><span style="display:flex;"><span>		System..<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;建立&#34;</span>);
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MessageImpl</span> <span style="color:#66d9ef">implements</span> IMessage{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> String <span style="color:#a6e22e">message</span>(){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;hh&#34;</span>;
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDome</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(){
+</span></span><span style="display:flex;"><span>		IMessage msg <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> MessageImpl();
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span>(msg.<span style="color:#a6e22e">connect</span>()){
+</span></span><span style="display:flex;"><span>			System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(msg.<span style="color:#a6e22e">message</span>());
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="static">static<a href="#static" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<blockquote>
+<p>使用default定义的普通方法需要通过接口实例化对象才可以调用，而为了避免实例化对象的依赖。在接口中也可以使用static定义的方法，此方法可以直接利用接口名称调用。</p>
+</blockquote>
+<h4 id="注-2">注：<a href="#%e6%b3%a8-2" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>接口在整体设计上是针对类的进一步抽象<span style="color:#960050;background-color:#1e0010">，</span>其设计层次也要高于抽象类99
+</span></span></code></pre></div><h3 id="设计模式">设计模式<a href="#%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h5 id="工厂设计模式">工厂设计模式<a href="#%e5%b7%a5%e5%8e%82%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<blockquote>
+<p>最终最好都是用工厂设计模式来获取实例对象</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Factory</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IEat <span style="color:#a6e22e">getInstance</span>(){
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> EatProxy(<span style="color:#66d9ef">new</span> EatReal());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDome</span>{
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(Sring arg<span style="color:#f92672">[]</span>){
+</span></span><span style="display:flex;"><span>		IEat eat <span style="color:#f92672">=</span> Factory.<span style="color:#a6e22e">getInstance</span>();
+</span></span><span style="display:flex;"><span>		eat.<span style="color:#a6e22e">get</span>();
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="代理设计模式">代理设计模式<a href="#%e4%bb%a3%e7%90%86%e8%ae%be%e8%ae%a1%e6%a8%a1%e5%bc%8f" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>区别</th>
+          <th>抽象类</th>
+          <th>接口</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>关键字</td>
+          <td>abstract、class</td>
+          <td>interface</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>组成</td>
+          <td>常量、变量、抽象方法、普通方法、构造方法</td>
+          <td>全局常量、抽象方法、普通方法、静态方法</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>权限</td>
+          <td>可以使用各种权限</td>
+          <td>只能是public</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>关系</td>
+          <td>一个抽象类可以实现多个接口</td>
+          <td>接口不能够继承抽象类，却可以继承多接口</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>使用</td>
+          <td>子类使用extends继承抽象类、抽象类和接口的对象都是利用对象多态性的向上转型，进行接口或者抽象类的实例化操作</td>
+          <td>子类使用implements实现接口、抽象类和接口的对象都是利用对象多态性的向上转型，进行接口或者抽象类的实例化操作</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>设计模式</td>
+          <td>模版设计模式</td>
+          <td>工厂设计模式、代理设计模式</td>
+      </tr>
+      <tr>
+          <td>7</td>
+          <td>局限</td>
+          <td>一个子类只能继承一个抽象类</td>
+          <td>一个子类可以实现多个接口</td>
+      </tr>
+  </tbody>
+</table>
+<h2 id="泛型">泛型<a href="#%e6%b3%9b%e5%9e%8b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>泛型设计的核心思想在于：类中的属性或方法的参数与返回值的类型采用动态标记，在对象实例化的时候动态配置于鏊使用的数据类型</p>
+<p>泛型可以定义在任意的程序结构体中</p>
+</blockquote>
+<p>泛型是Java中的一种强大特性，它允许你在定义类、接口和方法时使用类型参数，从而提高代码的复用性和类型安全性。以下是关于泛型的一些关键点和示例：</p>
+<h3 id="泛型的基本概念">泛型的基本概念<a href="#%e6%b3%9b%e5%9e%8b%e7%9a%84%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<ol>
+<li><strong>类型参数</strong>：用大写字母表示，如 <code>T</code>、<code>E</code>、<code>K</code>、<code>V</code> 等。</li>
+<li><strong>泛型类</strong>：使用类型参数定义类。</li>
+<li><strong>泛型接口</strong>：使用类型参数定义接口。</li>
+<li><strong>泛型方法</strong>：使用类型参数定义方法。</li>
+<li><strong>泛型集合</strong>：使用泛型来指定集合中存储的元素类型。</li>
+</ol>
+<h3 id="泛型类">泛型类<a href="#%e6%b3%9b%e5%9e%8b%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> T item;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Box</span>(T item) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getItem</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setItem</span>(T item) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Box<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> stringBox <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Box<span style="color:#f92672">&lt;&gt;</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(stringBox.<span style="color:#a6e22e">getItem</span>()); <span style="color:#75715e">// 输出: Hello</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Box<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> integerBox <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Box<span style="color:#f92672">&lt;&gt;</span>(123);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(integerBox.<span style="color:#a6e22e">getItem</span>()); <span style="color:#75715e">// 输出: 123</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="泛型接口">泛型接口<a href="#%e6%b3%9b%e5%9e%8b%e6%8e%a5%e5%8f%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Container</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(T item);
+</span></span><span style="display:flex;"><span>    T <span style="color:#a6e22e">get</span>(<span style="color:#66d9ef">int</span> index);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ArrayListContainer</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">implements</span> Container<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> List<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> list <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">add</span>(T item) {
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(item);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@Override</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">get</span>(<span style="color:#66d9ef">int</span> index) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> list.<span style="color:#a6e22e">get</span>(index);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Container<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> stringContainer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayListContainer<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        stringContainer.<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;Hello&#34;</span>);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(stringContainer.<span style="color:#a6e22e">get</span>(0)); <span style="color:#75715e">// 输出: Hello</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Container<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> integerContainer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayListContainer<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        integerContainer.<span style="color:#a6e22e">add</span>(123);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(integerContainer.<span style="color:#a6e22e">get</span>(0)); <span style="color:#75715e">// 输出: 123</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="泛型方法">泛型方法<a href="#%e6%b3%9b%e5%9e%8b%e6%96%b9%e6%b3%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Util</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printArray</span>(T<span style="color:#f92672">[]</span> array) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (T item : array) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(item <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        String<span style="color:#f92672">[]</span> stringArray <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Hello&#34;</span>, <span style="color:#e6db74">&#34;World&#34;</span>};
+</span></span><span style="display:flex;"><span>        Util.<span style="color:#a6e22e">printArray</span>(stringArray); <span style="color:#75715e">// 输出: Hello World</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        Integer<span style="color:#f92672">[]</span> integerArray <span style="color:#f92672">=</span> {1, 2, 3};
+</span></span><span style="display:flex;"><span>        Util.<span style="color:#a6e22e">printArray</span>(integerArray); <span style="color:#75715e">// 输出: 1 2 3</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="泛型约束">泛型约束<a href="#%e6%b3%9b%e5%9e%8b%e7%ba%a6%e6%9d%9f" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>你可以使用泛型约束来限制类型参数的范围，确保传入的类型满足某些条件。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Box</span><span style="color:#f92672">&lt;</span>T <span style="color:#66d9ef">extends</span> Number<span style="color:#f92672">&gt;</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">private</span> T item;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Box</span>(T item) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> T <span style="color:#a6e22e">getItem</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">setItem</span>(T item) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">item</span> <span style="color:#f92672">=</span> item;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">double</span> <span style="color:#a6e22e">getDoubleValue</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> item.<span style="color:#a6e22e">doubleValue</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        Box<span style="color:#f92672">&lt;</span>Integer<span style="color:#f92672">&gt;</span> integerBox <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Box<span style="color:#f92672">&lt;&gt;</span>(123);
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(integerBox.<span style="color:#a6e22e">getDoubleValue</span>()); <span style="color:#75715e">// 输出: 123.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Box&lt;String&gt; stringBox = new Box&lt;&gt;(&#34;Hello&#34;); // 编译错误，String 不是 Number 的子类</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="通配符">通配符<a href="#%e9%80%9a%e9%85%8d%e7%ac%a6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>通配符 <code>?</code> 用于表示未知类型，可以进一步限定其范围。</p>
+<ul>
+<li><strong>无界通配符</strong>：<!-- raw HTML omitted -->表示未知类型。</li>
+<li><strong>上界通配符</strong>：&lt;? extends T&gt;表示类型是<code>T</code> 或其子类。</li>
+<li><strong>下界通配符</strong>：&lt;? super T&gt;表示类型是<code>T</code> 或其父类。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Util</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">printList</span>(List<span style="color:#f92672">&lt;?&gt;</span> list) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (Object item : list) {
+</span></span><span style="display:flex;"><span>            System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">print</span>(item <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34; &#34;</span>);
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addNumbers</span>(List<span style="color:#f92672">&lt;?</span> <span style="color:#66d9ef">super</span> Integer<span style="color:#f92672">&gt;</span> list) {
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(1);
+</span></span><span style="display:flex;"><span>        list.<span style="color:#a6e22e">add</span>(2);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Test</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> objectList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        Util.<span style="color:#a6e22e">addNumbers</span>(objectList);
+</span></span><span style="display:flex;"><span>        Util.<span style="color:#a6e22e">printList</span>(objectList); <span style="color:#75715e">// 输出: 1 2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        List<span style="color:#f92672">&lt;</span>Number<span style="color:#f92672">&gt;</span> numberList <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> ArrayList<span style="color:#f92672">&lt;&gt;</span>();
+</span></span><span style="display:flex;"><span>        Util.<span style="color:#a6e22e">addNumbers</span>(numberList);
+</span></span><span style="display:flex;"><span>        Util.<span style="color:#a6e22e">printList</span>(numberList); <span style="color:#75715e">// 输出: 1 2</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="总结">总结<a href="#%e6%80%bb%e7%bb%93" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li><strong>泛型类</strong>：使用类型参数定义类，提高代码复用性和类型安全性。</li>
+<li><strong>泛型接口</strong>：使用类型参数定义接口，增强接口的灵活性。</li>
+<li><strong>泛型方法</strong>：使用类型参数定义方法，使方法更加通用。</li>
+<li><strong>泛型约束</strong>：限制类型参数的范围，确保类型安全。</li>
+<li><strong>通配符</strong>：处理不确定类型的场景，增强代码的灵活性。</li>
+</ul>
+<h4 id="注-3">注：<a href="#%e6%b3%a8-3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>在面向对象的程序设计中,Object类可以接收一切的数据类型<span style="color:#960050;background-color:#1e0010">。</span>但是在泛型的概念中<span style="color:#960050;background-color:#1e0010">：</span>Message<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span>与Message<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span>属于两个不同的类型<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span></code></pre></div><h4 id="辨析两种细节"><strong>辨析两种细节：</strong><a href="#%e8%be%a8%e6%9e%90%e4%b8%a4%e7%a7%8d%e7%bb%86%e8%8a%82" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>1.<span style="color:#a6e22e">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fun</span>(Message<span style="color:#f92672">&lt;</span>Object<span style="color:#f92672">&gt;</span> temp){}
+</span></span><span style="display:flex;"><span>2.<span style="color:#a6e22e">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fun</span>(Message temp){}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用1这种方式定义接收参数，表示fun()方法只能够接收Message&lt;Object&gt;类型的引用</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">//使用2这种方式定义接收参数，不在fun()方法上设置泛型类型，实际上可以解决不同泛型类型的对象传递问题，但同时也会有新的问题产生：允许随意修改数据</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">---</span>示例<span style="color:#960050;background-color:#1e0010">：</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">JavaDemo</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String args<span style="color:#f92672">[]</span>){
+</span></span><span style="display:flex;"><span>			Message<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span> msg <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> Message<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;</span>();
+</span></span><span style="display:flex;"><span>			msg.<span style="color:#a6e22e">setContent</span>(<span style="color:#e6db74">&#34;hh&#34;</span>);
+</span></span><span style="display:flex;"><span>			fun(msg);
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//不设置泛型类型，表示可以接收任意的泛型类型对象</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//默认泛型类型为Object,但不等同于Message&lt;Object&gt;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">fun</span>(Message temp){
+</span></span><span style="display:flex;"><span>		<span style="color:#75715e">//原始类型为String,现在设置Interger</span>
+</span></span><span style="display:flex;"><span>		temp.<span style="color:#a6e22e">setContent</span>(18);
+</span></span><span style="display:flex;"><span>		System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(temp.<span style="color:#a6e22e">getContent</span>());
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">//虽然可以接收，但是无法对修改做出控制，而使用通配符&#34;?&#34;的泛型只允许获取，不允许修改。</span>
+</span></span></code></pre></div><h4 id="泛型约束-1">泛型约束<a href="#%e6%b3%9b%e5%9e%8b%e7%ba%a6%e6%9d%9f-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<blockquote>
+<p>类和方法</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>设置泛型的上限(<span style="color:#f92672">?</span>extends类)<span style="color:#960050;background-color:#1e0010">：</span>只能够使用当前类或者当前类的子类设置泛型类型<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">?</span><span style="color:#66d9ef">extends</span> Number:可以设置Number或Number子类<span style="color:#960050;background-color:#1e0010">（</span>例如Integer<span style="color:#960050;background-color:#1e0010">、</span>Double<span style="color:#960050;background-color:#1e0010">）</span>
+</span></span></code></pre></div><blockquote>
+<p>方法</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>设置泛型的下线(<span style="color:#f92672">?</span>super类)<span style="color:#960050;background-color:#1e0010">：</span>只能够设置指定的类或者指定类的父类<span style="color:#960050;background-color:#1e0010">。</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">?</span><span style="color:#66d9ef">super</span> String:只能够设置String或String的父类Object
+</span></span></code></pre></div><h4 id="泛型接口-1">泛型接口<a href="#%e6%b3%9b%e5%9e%8b%e6%8e%a5%e5%8f%a3-1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span>泛型接口在进行子类定义时就有两种实现方式<span style="color:#960050;background-color:#1e0010">：</span>在子类中继续声明泛型和子类中为父类设置泛型类型
+</span></span></code></pre></div>
+    </div>
+
+    
+      
+
+
+  <div class="social-share">
+    <strong class="social-share__heading">Share this post: </strong>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.facebook.com/sharer.php?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://reddit.com/submit?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F&amp;title=Java&#43;Base"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Reddit</title><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://x.com/intent/post?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F&amp;text=Java&#43;Base"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="whatsapp://send/?text=Java&#43;Base%20https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F&amp;title=Java&#43;Base&amp;caption=Java&#43;Base"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tumblr</title><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://pinterest.com/pin/create/button/?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://news.ycombinator.com/submitlink?u=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F&amp;t=Java&#43;Base"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Y Combinator</title><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://vk.com/share.php?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F&amp;title=Java&#43;Base&amp;comment=Java&#43;Base"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>VK</title><path d="m9.489.004.729-.003h3.564l.73.003.914.01.433.007.418.011.403.014.388.016.374.021.36.025.345.03.333.033c1.74.196 2.933.616 3.833 1.516.9.9 1.32 2.092 1.516 3.833l.034.333.029.346.025.36.02.373.025.588.012.41.013.644.009.915.004.98-.001 3.313-.003.73-.01.914-.007.433-.011.418-.014.403-.016.388-.021.374-.025.36-.03.345-.033.333c-.196 1.74-.616 2.933-1.516 3.833-.9.9-2.092 1.32-3.833 1.516l-.333.034-.346.029-.36.025-.373.02-.588.025-.41.012-.644.013-.915.009-.98.004-3.313-.001-.73-.003-.914-.01-.433-.007-.418-.011-.403-.014-.388-.016-.374-.021-.36-.025-.345-.03-.333-.033c-1.74-.196-2.933-.616-3.833-1.516-.9-.9-1.32-2.092-1.516-3.833l-.034-.333-.029-.346-.025-.36-.02-.373-.025-.588-.012-.41-.013-.644-.009-.915-.004-.98.001-3.313.003-.73.01-.914.007-.433.011-.418.014-.403.016-.388.021-.374.025-.36.03-.345.033-.333c.196-1.74.616-2.933 1.516-3.833.9-.9 2.092-1.32 3.833-1.516l.333-.034.346-.029.36-.025.373-.02.588-.025.41-.012.644-.013.915-.009ZM6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.xing.com/spi/shares/new?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Xing</title><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://telegram.me/share/url?url=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F&amp;text=Java&#43;Base"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="mailto:?subject=Java&#43;Base&amp;body=https%3A%2F%2FGCmessir.github.io%2Fblog%2Fjava_base%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+  <path d="M3 7l9 6l9 -6" />
+</svg>
+
+
+      </a>
+    
+  </div>
+
+
+    
+
+    
+      
+
+    
+  </article>
+
+        </div>
+        <div class="sidebar">
+  
+    
+      <aside class="toc">
+        <nav>
+          <p class="sidebar__heading">Table Of Contents</p>
+          <nav id="TableOfContents">
+  <ul>
+    <li><a href="#java文件结构快速了解">java文件结构快速了解</a>
+      <ul>
+        <li><a href="#java-文件的基本结构">Java 文件的基本结构</a></li>
+        <li><a href="#示例代码">示例代码</a></li>
+        <li><a href="#使用-intellij-idea-ij">使用 IntelliJ IDEA (IJ)</a></li>
+      </ul>
+    </li>
+    <li><a href="#包和import">包和import</a>
+      <ul>
+        <li><a href="#1-声明包">1. 声明包</a></li>
+        <li><a href="#2-导入其他包中的类">2. 导入其他包中的类</a></li>
+        <li><a href="#3-静态导入">3. 静态导入</a></li>
+        <li><a href="#完整示例">完整示例</a></li>
+        <li><a href="#解释">解释</a></li>
+        <li><a href="#总结注">总结注：</a></li>
+        <li><a href="#jar文件">jar文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#抽象类">抽象类</a>
+      <ul>
+        <li></li>
+      </ul>
+    </li>
+    <li><a href="#包装类">包装类</a></li>
+    <li><a href="#接口">接口</a>
+      <ul>
+        <li><a href="#定义">定义</a></li>
+        <li><a href="#关键字">关键字</a></li>
+        <li><a href="#接口的转型">接口的转型</a></li>
+        <li><a href="#接口的简化定义">接口的简化定义</a></li>
+        <li><a href="#extends继承多个父接口">extends继承多个父接口</a></li>
+        <li><a href="#接口定义的加强defaultstatic">接口定义的加强（default、static）</a></li>
+        <li><a href="#设计模式">设计模式</a></li>
+      </ul>
+    </li>
+    <li><a href="#泛型">泛型</a>
+      <ul>
+        <li><a href="#泛型的基本概念">泛型的基本概念</a></li>
+        <li><a href="#泛型类">泛型类</a></li>
+        <li><a href="#泛型接口">泛型接口</a></li>
+        <li><a href="#泛型方法">泛型方法</a></li>
+        <li><a href="#泛型约束">泛型约束</a></li>
+        <li><a href="#通配符">通配符</a></li>
+        <li><a href="#总结">总结</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </nav>
+      </aside>
+      <hr />
+    
+  
+
+  
+  
+    <aside class="bio">
+      
+
+  <div class="jr__item jr-basics__item">
+    
+  <div class="jr-basics__image">
+    <img
+      src="/p.jpg"
+      alt="Picture of Stephen Messir"
+      width="250"
+      height="250"
+    />
+  </div>
+
+
+
+    
+      <div class="jr-basics__name">Stephen Messir</div>
+    
+
+    
+      <div class="jr-basics__label">A Software noviciate and CTF newcomer</div>
+    
+
+    
+
+    
+
+    
+
+    
+      <div class="jr-basics__summary">Those who hasten towards the sun and brightness shall not be obscured.</div>
+    
+
+    
+      
+
+      
+
+      
+        <div class="jr-basics__location-city">NC</div>
+      
+
+      
+
+      
+    
+
+    
+
+    
+      <hr />
+      <div class="jr-basics__profile jr-basics__profile--row">
+        
+          
+
+<a href="https://github.com/GCmessir" target="_blank" rel="noreferrer me">
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+  </div>
+
+  
+</div>
+
+
+</a>
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Mastodon</title><path d="M23.268 5.313c-.35-2.578-2.617-4.61-5.304-5.004C17.51.242 15.792 0 11.813 0h-.03c-3.98 0-4.835.242-5.288.309C3.882.692 1.496 2.518.917 5.127.64 6.412.61 7.837.661 9.143c.074 1.874.088 3.745.26 5.611.118 1.24.325 2.47.62 3.68.55 2.237 2.777 4.098 4.96 4.857 2.336.792 4.849.923 7.256.38.265-.061.527-.132.786-.213.585-.184 1.27-.39 1.774-.753a.057.057 0 0 0 .023-.043v-1.809a.052.052 0 0 0-.02-.041.053.053 0 0 0-.046-.01 20.282 20.282 0 0 1-4.709.545c-2.73 0-3.463-1.284-3.674-1.818a5.593 5.593 0 0 1-.319-1.433.053.053 0 0 1 .066-.054c1.517.363 3.072.546 4.632.546.376 0 .75 0 1.125-.01 1.57-.044 3.224-.124 4.768-.422.038-.008.077-.015.11-.024 2.435-.464 4.753-1.92 4.989-5.604.008-.145.03-1.52.03-1.67.002-.512.167-3.63-.024-5.545zm-3.748 9.195h-2.561V8.29c0-1.309-.55-1.976-1.67-1.976-1.23 0-1.846.79-1.846 2.35v3.403h-2.546V8.663c0-1.56-.617-2.35-1.848-2.35-1.112 0-1.668.668-1.67 1.977v6.218H4.822V8.102c0-1.31.337-2.35 1.011-3.12.696-.77 1.608-1.164 2.74-1.164 1.311 0 2.302.5 2.962 1.498l.638 1.06.638-1.06c.66-.999 1.65-1.498 2.96-1.498 1.13 0 2.043.395 2.74 1.164.675.77 1.012 1.81 1.012 3.12z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+          
+
+
+
+<div class="jr-basics__profile-item">
+  <div class="jr-basics__profile-icon">
+    
+    <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>RSS</title><path d="M19.199 24C19.199 13.467 10.533 4.8 0 4.8V0c13.165 0 24 10.835 24 24h-4.801zM3.291 17.415c1.814 0 3.293 1.479 3.293 3.295 0 1.813-1.485 3.29-3.301 3.29C1.47 24 0 22.526 0 20.71s1.475-3.294 3.291-3.295zM15.909 24h-4.665c0-6.169-5.075-11.245-11.244-11.245V8.09c8.727 0 15.909 7.184 15.909 15.91z"/></svg>
+  </div>
+
+  
+</div>
+
+
+
+
+        
+      </div>
+    
+  </div>
+
+
+
+      
+        <hr />
+      
+    </aside>
+  
+
+  
+    <aside>
+      
+
+
+  
+  
+  
+  
+  
+  
+
+
+  <div class="tag-cloud">
+    
+      
+      
+      
+      <a
+        href="/tags/blog"
+        style="font-size:1.9229419688230418rem"
+        class="tag-cloud__tag"
+        >blog</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-misc"
+        style="font-size:1.4339850002884624rem"
+        class="tag-cloud__tag"
+        >ctf-misc</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/ctf-web"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >ctf-web</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java-application-programming"
+        style="font-size:1.2000000000000002rem"
+        class="tag-cloud__tag"
+        >java application programming</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/java_base"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >java_base</a
+      >
+    
+  </div>
+
+
+    </aside>
+  
+</div>
+
+      </main>
+      <footer>
+  <div class="copyright">
+    
+  </div>
+</footer>
+
+
+
+  
+
+
+
+
+
+
+
+  
+  
+
+
+
+<script src="/js/main.e56d444a26643bc2029afe6eb5b967bf9f252efee7f61c853d2d2e3a0c330fc81a2f42f89da721c6c1201a7278bc5affe231c5998ea2e7688518093ed91b0130.js" integrity="sha512-5W1ESiZkO8ICmv5utblnv58lLv7n9hyFPS0uOgwzD8gaL0L4nachxsEgGnJ4vFr/4jHFmY6i52iFGAk&#43;2RsBMA=="></script>
+<script src="/js/flexsearch.1ab5b109bf2ed66903ae10907394415caa12f5c0ee66bc80088ba135ec4a751f62e4961d6a7303b562e4db724392da85945b763b8e1858ea3fd05cc36f9b8156.js" integrity="sha512-GrWxCb8u1mkDrhCQc5RBXKoS9cDuZryACIuhNexKdR9i5JYdanMDtWLk23JDktqFlFt2O44YWOo/0FzDb5uBVg=="></script>
+
+
+
+
+
+
+    </div>
+  </body>
+</html>
