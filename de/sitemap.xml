@@ -2,40 +2,40 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://GCmessir.github.io/de/categories/</loc>
+    <loc>http://localhost:1313/de/categories/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
-                href="https://GCmessir.github.io/categories/"
+                href="http://localhost:1313/categories/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
-                href="https://GCmessir.github.io/de/categories/"
+                href="http://localhost:1313/de/categories/"
                 />
   </url><url>
-    <loc>https://GCmessir.github.io/de/</loc>
+    <loc>http://localhost:1313/de/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
-                href="https://GCmessir.github.io/"
+                href="http://localhost:1313/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
-                href="https://GCmessir.github.io/de/"
+                href="http://localhost:1313/de/"
                 />
   </url><url>
-    <loc>https://GCmessir.github.io/de/tags/</loc>
+    <loc>http://localhost:1313/de/tags/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="zh-CN"
-                href="https://GCmessir.github.io/tags/"
+                href="http://localhost:1313/tags/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
-                href="https://GCmessir.github.io/de/tags/"
+                href="http://localhost:1313/de/tags/"
                 />
   </url>
 </urlset>
