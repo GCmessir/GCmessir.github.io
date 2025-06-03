@@ -6,13 +6,13 @@
     <lastmod>2024-11-18T18:00:00+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/blog/</loc>
-    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -24,8 +24,17 @@
                 href="http://localhost:1313/categories/"
                 />
   </url><url>
+    <loc>http://localhost:1313/tags/deploy/</loc>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/deploy/</loc>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/</loc>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -38,7 +47,7 @@
                 />
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -50,13 +59,13 @@
                 href="http://localhost:1313/tags/"
                 />
   </url><url>
+    <loc>http://localhost:1313/tags/feeling_thought/</loc>
+    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/categories/thought/</loc>
     <lastmod>2025-05-24T18:13:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/</loc>
-    <lastmod>2025-05-24T18:13:04+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/tags/%E6%84%9F%E5%8F%97%E4%B8%8E%E6%80%9D%E8%80%83/</loc>
     <lastmod>2025-05-24T18:13:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/2024hectfweb/</loc>
