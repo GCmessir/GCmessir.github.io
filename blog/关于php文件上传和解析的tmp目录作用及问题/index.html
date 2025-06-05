@@ -61,78 +61,66 @@
 
 
 
-<title>低迷中走来</title>
+<title>关于php文件上传和解析的tmp目录作用及问题</title>
 
 <meta
   name="description"
-  content=" 迷茫不会毁掉一个人，堕落才会。我不后悔自己浪费的时间和放纵，因为我并不是一无所获，可惜但不遗憾。--题记	已经大二下了，自我感觉进入大二下相比以往的第一年和上个学期，这个学期放松了很多，懈怠了很多。并没有按照预期一样努力和学习，前前后后吧，几个月，具体可以从寒假追溯到近些日子。
-可以先细数做了些什么吧，总体来说就是娱乐和放松。刷视频、打游戏、看各种好玩东西，睡觉，聊天，然后不干这些的时候可能就是放空或运动。总体上来说很轻松，哈哈，说难听点就是摆烂。学习上吧，零零碎碎，安全上面并没有进步，会的还是以前会的东西，算法嘛，垃圾，不看答案写不出的那种，当然有些看了也看不懂。非要说学了点什么，只能说学了点人工智能方面的东西，不过也是纸上谈兵，没深究，还有各种新闻变化和行业分析吧，总的来说感觉AI真的要改变很多东西，coze和dify这种集成各种大模型的AI应用开发平台令我叹为观止，方便简洁，可用性高，主要是提升效率和事务。Agent也让我感觉到了未来产品的发展方向，感觉AI时代普通产品是没有技术壁垒的，真正要做的是用户、市场、营销，感觉能否洞察需求才是关键，也开始明白和理解最近看到的话，百分之八十的市场和营销，百分之二十的技术。
-学的杂了，了解多了，但却什么水平也不行，我也顺理成章的陷入了迷茫，老是思考，我学历这么差，又没技术，是考研还是就业，就业又该做什么，有人会要吗，反正奇奇怪怪。看到了就业和失业的文章，也知道留给自己的时间不多了，但是为什么我还是选择娱乐和放纵，哈哈。😶‍🌫️😶‍🌫️😶‍🌫️
-因为我觉得从小到大，我基本上都在做我认为正确的选择或者他人认为正确的选择，可是是否真的正确，在现在的我看来，并非如此。所以本质上，同时空同条件下的我，会做的选择，与隔时空的我很难相同，也自然没有正确与否。所以我打算让自己也做一个快乐的决定，最起码身为大学生和大二的我来说，沉默成本可以接受。主要确实不想学，很不想学，所以自然而然就干脆随性一把。允许自己调整怎么能算一个错误呢，嘿嘿，大不了后面多努力些呗，虽然还可能摆，哈哈哈，但是应该不会像这么长了。
-这段时间我也大胆的进入了一个我从未涉猎的领域，至于什么领域，懂得都懂。我发掘人与人之间是不能强行建立联系的，主动的那一方往往要承担巨大的风险，总得来说感悟颇多，一生受益吧，但是自己内心的美好还是没有改变的，只不过是丰富自己的见识罢了，我还是那个热爱生活和充满热情的中二少年，哈哈哈哈。🤐🤐🤐
-写下这篇文章说明我也开始正常坐在陪伴我最久的伙伴面前，曾经流过口水的桌子，大一冷飕飕对着我寒暄的空调大哥，熟悉的环境，熟悉的码字，开始展望未来的日子，虽然马上放暑假了，爽，哈哈哈。
-后续的计划吧，把想学的东西都学了，管他有没有用，未来怎么样，在过程中清晰吧，但是有一点我越来越坚定了，我想优秀，想更有实力。
-好久操作hugo gitpages了，还得查查 哈哈哈😆😆😆
-要是有缘看到这篇文章，希望你的生活和事业如你所愿，健康喜乐！❣️❣️❣️
-✌️✌️✌️生活中的困难和不如意就是🤏🏼🤏🏼🤏🏼，加油，一切都在为美好铺垫🫵
+  content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
+$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
+&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
+if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
+当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
+一旦你得到了临时路径，就可以对文件进行各种操作：
+✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：
 "
 />
 
-<link rel="canonical" href="http://localhost:1313/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/" />
+<link rel="canonical" href="http://localhost:1313/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/" />
 
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="低迷中走来">
-  <meta name="twitter:description" content="迷茫不会毁掉一个人，堕落才会。我不后悔自己浪费的时间和放纵，因为我并不是一无所获，可惜但不遗憾。--题记	已经大二下了，自我感觉进入大二下相比以往的第一年和上个学期，这个学期放松了很多，懈怠了很多。并没有按照预期一样努力和学习，前前后后吧，几个月，具体可以从寒假追溯到近些日子。
-可以先细数做了些什么吧，总体来说就是娱乐和放松。刷视频、打游戏、看各种好玩东西，睡觉，聊天，然后不干这些的时候可能就是放空或运动。总体上来说很轻松，哈哈，说难听点就是摆烂。学习上吧，零零碎碎，安全上面并没有进步，会的还是以前会的东西，算法嘛，垃圾，不看答案写不出的那种，当然有些看了也看不懂。非要说学了点什么，只能说学了点人工智能方面的东西，不过也是纸上谈兵，没深究，还有各种新闻变化和行业分析吧，总的来说感觉AI真的要改变很多东西，coze和dify这种集成各种大模型的AI应用开发平台令我叹为观止，方便简洁，可用性高，主要是提升效率和事务。Agent也让我感觉到了未来产品的发展方向，感觉AI时代普通产品是没有技术壁垒的，真正要做的是用户、市场、营销，感觉能否洞察需求才是关键，也开始明白和理解最近看到的话，百分之八十的市场和营销，百分之二十的技术。
-学的杂了，了解多了，但却什么水平也不行，我也顺理成章的陷入了迷茫，老是思考，我学历这么差，又没技术，是考研还是就业，就业又该做什么，有人会要吗，反正奇奇怪怪。看到了就业和失业的文章，也知道留给自己的时间不多了，但是为什么我还是选择娱乐和放纵，哈哈。😶‍🌫️😶‍🌫️😶‍🌫️
-因为我觉得从小到大，我基本上都在做我认为正确的选择或者他人认为正确的选择，可是是否真的正确，在现在的我看来，并非如此。所以本质上，同时空同条件下的我，会做的选择，与隔时空的我很难相同，也自然没有正确与否。所以我打算让自己也做一个快乐的决定，最起码身为大学生和大二的我来说，沉默成本可以接受。主要确实不想学，很不想学，所以自然而然就干脆随性一把。允许自己调整怎么能算一个错误呢，嘿嘿，大不了后面多努力些呗，虽然还可能摆，哈哈哈，但是应该不会像这么长了。
-这段时间我也大胆的进入了一个我从未涉猎的领域，至于什么领域，懂得都懂。我发掘人与人之间是不能强行建立联系的，主动的那一方往往要承担巨大的风险，总得来说感悟颇多，一生受益吧，但是自己内心的美好还是没有改变的，只不过是丰富自己的见识罢了，我还是那个热爱生活和充满热情的中二少年，哈哈哈哈。🤐🤐🤐
-写下这篇文章说明我也开始正常坐在陪伴我最久的伙伴面前，曾经流过口水的桌子，大一冷飕飕对着我寒暄的空调大哥，熟悉的环境，熟悉的码字，开始展望未来的日子，虽然马上放暑假了，爽，哈哈哈。
-后续的计划吧，把想学的东西都学了，管他有没有用，未来怎么样，在过程中清晰吧，但是有一点我越来越坚定了，我想优秀，想更有实力。
-好久操作hugo gitpages了，还得查查 哈哈哈😆😆😆
-要是有缘看到这篇文章，希望你的生活和事业如你所愿，健康喜乐！❣️❣️❣️
-✌️✌️✌️生活中的困难和不如意就是🤏🏼🤏🏼🤏🏼，加油，一切都在为美好铺垫🫵">
+  <meta name="twitter:title" content="关于php文件上传和解析的tmp目录作用及问题">
+  <meta name="twitter:description" content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
+$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
+&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
+if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
+当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
+一旦你得到了临时路径，就可以对文件进行各种操作：
+✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：">
 
-<meta property="og:url" content="http://localhost:1313/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/">
+<meta property="og:url" content="http://localhost:1313/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/">
   <meta property="og:site_name" content="Documenting the journey ^_^">
-  <meta property="og:title" content="低迷中走来">
-  <meta property="og:description" content="迷茫不会毁掉一个人，堕落才会。我不后悔自己浪费的时间和放纵，因为我并不是一无所获，可惜但不遗憾。--题记	已经大二下了，自我感觉进入大二下相比以往的第一年和上个学期，这个学期放松了很多，懈怠了很多。并没有按照预期一样努力和学习，前前后后吧，几个月，具体可以从寒假追溯到近些日子。
-可以先细数做了些什么吧，总体来说就是娱乐和放松。刷视频、打游戏、看各种好玩东西，睡觉，聊天，然后不干这些的时候可能就是放空或运动。总体上来说很轻松，哈哈，说难听点就是摆烂。学习上吧，零零碎碎，安全上面并没有进步，会的还是以前会的东西，算法嘛，垃圾，不看答案写不出的那种，当然有些看了也看不懂。非要说学了点什么，只能说学了点人工智能方面的东西，不过也是纸上谈兵，没深究，还有各种新闻变化和行业分析吧，总的来说感觉AI真的要改变很多东西，coze和dify这种集成各种大模型的AI应用开发平台令我叹为观止，方便简洁，可用性高，主要是提升效率和事务。Agent也让我感觉到了未来产品的发展方向，感觉AI时代普通产品是没有技术壁垒的，真正要做的是用户、市场、营销，感觉能否洞察需求才是关键，也开始明白和理解最近看到的话，百分之八十的市场和营销，百分之二十的技术。
-学的杂了，了解多了，但却什么水平也不行，我也顺理成章的陷入了迷茫，老是思考，我学历这么差，又没技术，是考研还是就业，就业又该做什么，有人会要吗，反正奇奇怪怪。看到了就业和失业的文章，也知道留给自己的时间不多了，但是为什么我还是选择娱乐和放纵，哈哈。😶‍🌫️😶‍🌫️😶‍🌫️
-因为我觉得从小到大，我基本上都在做我认为正确的选择或者他人认为正确的选择，可是是否真的正确，在现在的我看来，并非如此。所以本质上，同时空同条件下的我，会做的选择，与隔时空的我很难相同，也自然没有正确与否。所以我打算让自己也做一个快乐的决定，最起码身为大学生和大二的我来说，沉默成本可以接受。主要确实不想学，很不想学，所以自然而然就干脆随性一把。允许自己调整怎么能算一个错误呢，嘿嘿，大不了后面多努力些呗，虽然还可能摆，哈哈哈，但是应该不会像这么长了。
-这段时间我也大胆的进入了一个我从未涉猎的领域，至于什么领域，懂得都懂。我发掘人与人之间是不能强行建立联系的，主动的那一方往往要承担巨大的风险，总得来说感悟颇多，一生受益吧，但是自己内心的美好还是没有改变的，只不过是丰富自己的见识罢了，我还是那个热爱生活和充满热情的中二少年，哈哈哈哈。🤐🤐🤐
-写下这篇文章说明我也开始正常坐在陪伴我最久的伙伴面前，曾经流过口水的桌子，大一冷飕飕对着我寒暄的空调大哥，熟悉的环境，熟悉的码字，开始展望未来的日子，虽然马上放暑假了，爽，哈哈哈。
-后续的计划吧，把想学的东西都学了，管他有没有用，未来怎么样，在过程中清晰吧，但是有一点我越来越坚定了，我想优秀，想更有实力。
-好久操作hugo gitpages了，还得查查 哈哈哈😆😆😆
-要是有缘看到这篇文章，希望你的生活和事业如你所愿，健康喜乐！❣️❣️❣️
-✌️✌️✌️生活中的困难和不如意就是🤏🏼🤏🏼🤏🏼，加油，一切都在为美好铺垫🫵">
+  <meta property="og:title" content="关于php文件上传和解析的tmp目录作用及问题">
+  <meta property="og:description" content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
+$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
+&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
+if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
+当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
+一旦你得到了临时路径，就可以对文件进行各种操作：
+✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-05-24T18:13:04+08:00">
-    <meta property="article:modified_time" content="2025-05-24T18:13:04+08:00">
+    <meta property="article:published_time" content="2025-06-05T22:00:04+08:00">
+    <meta property="article:modified_time" content="2025-06-05T22:00:04+08:00">
     <meta property="article:tag" content="Blog">
-    <meta property="article:tag" content="Feeling_Thought">
+    <meta property="article:tag" content="PHP">
 
 
-  <meta itemprop="name" content="低迷中走来">
-  <meta itemprop="description" content="迷茫不会毁掉一个人，堕落才会。我不后悔自己浪费的时间和放纵，因为我并不是一无所获，可惜但不遗憾。--题记	已经大二下了，自我感觉进入大二下相比以往的第一年和上个学期，这个学期放松了很多，懈怠了很多。并没有按照预期一样努力和学习，前前后后吧，几个月，具体可以从寒假追溯到近些日子。
-可以先细数做了些什么吧，总体来说就是娱乐和放松。刷视频、打游戏、看各种好玩东西，睡觉，聊天，然后不干这些的时候可能就是放空或运动。总体上来说很轻松，哈哈，说难听点就是摆烂。学习上吧，零零碎碎，安全上面并没有进步，会的还是以前会的东西，算法嘛，垃圾，不看答案写不出的那种，当然有些看了也看不懂。非要说学了点什么，只能说学了点人工智能方面的东西，不过也是纸上谈兵，没深究，还有各种新闻变化和行业分析吧，总的来说感觉AI真的要改变很多东西，coze和dify这种集成各种大模型的AI应用开发平台令我叹为观止，方便简洁，可用性高，主要是提升效率和事务。Agent也让我感觉到了未来产品的发展方向，感觉AI时代普通产品是没有技术壁垒的，真正要做的是用户、市场、营销，感觉能否洞察需求才是关键，也开始明白和理解最近看到的话，百分之八十的市场和营销，百分之二十的技术。
-学的杂了，了解多了，但却什么水平也不行，我也顺理成章的陷入了迷茫，老是思考，我学历这么差，又没技术，是考研还是就业，就业又该做什么，有人会要吗，反正奇奇怪怪。看到了就业和失业的文章，也知道留给自己的时间不多了，但是为什么我还是选择娱乐和放纵，哈哈。😶‍🌫️😶‍🌫️😶‍🌫️
-因为我觉得从小到大，我基本上都在做我认为正确的选择或者他人认为正确的选择，可是是否真的正确，在现在的我看来，并非如此。所以本质上，同时空同条件下的我，会做的选择，与隔时空的我很难相同，也自然没有正确与否。所以我打算让自己也做一个快乐的决定，最起码身为大学生和大二的我来说，沉默成本可以接受。主要确实不想学，很不想学，所以自然而然就干脆随性一把。允许自己调整怎么能算一个错误呢，嘿嘿，大不了后面多努力些呗，虽然还可能摆，哈哈哈，但是应该不会像这么长了。
-这段时间我也大胆的进入了一个我从未涉猎的领域，至于什么领域，懂得都懂。我发掘人与人之间是不能强行建立联系的，主动的那一方往往要承担巨大的风险，总得来说感悟颇多，一生受益吧，但是自己内心的美好还是没有改变的，只不过是丰富自己的见识罢了，我还是那个热爱生活和充满热情的中二少年，哈哈哈哈。🤐🤐🤐
-写下这篇文章说明我也开始正常坐在陪伴我最久的伙伴面前，曾经流过口水的桌子，大一冷飕飕对着我寒暄的空调大哥，熟悉的环境，熟悉的码字，开始展望未来的日子，虽然马上放暑假了，爽，哈哈哈。
-后续的计划吧，把想学的东西都学了，管他有没有用，未来怎么样，在过程中清晰吧，但是有一点我越来越坚定了，我想优秀，想更有实力。
-好久操作hugo gitpages了，还得查查 哈哈哈😆😆😆
-要是有缘看到这篇文章，希望你的生活和事业如你所愿，健康喜乐！❣️❣️❣️
-✌️✌️✌️生活中的困难和不如意就是🤏🏼🤏🏼🤏🏼，加油，一切都在为美好铺垫🫵">
-  <meta itemprop="datePublished" content="2025-05-24T18:13:04+08:00">
-  <meta itemprop="dateModified" content="2025-05-24T18:13:04+08:00">
-  <meta itemprop="wordCount" content="14">
-  <meta itemprop="keywords" content="Blog,Feeling_Thought">
+  <meta itemprop="name" content="关于php文件上传和解析的tmp目录作用及问题">
+  <meta itemprop="description" content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
+$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
+&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
+if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
+当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
+一旦你得到了临时路径，就可以对文件进行各种操作：
+✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：">
+  <meta itemprop="datePublished" content="2025-06-05T22:00:04+08:00">
+  <meta itemprop="dateModified" content="2025-06-05T22:00:04+08:00">
+  <meta itemprop="wordCount" content="276">
+  <meta itemprop="keywords" content="Blog,PHP">
 
 
 
@@ -1982,10 +1970,10 @@ aside.toc ul {
           
   <article class="post">
     <div class="post-header">
-      <h1>低迷中走来</h1>
-      <div class="post-meta"><span>2025-05-24</span>
+      <h1>关于php文件上传和解析的tmp目录作用及问题</h1>
+      <div class="post-meta"><span>2025-06-05</span>
     <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/feeling_thought">feeling_thought</a>
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/php">php</a>
     </div>
   
 
@@ -2060,18 +2048,18 @@ aside.toc ul {
     <picture>
       <source
         type="image/webp"
-        srcset="/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine_hu4338191955420835687.webp 300w,/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine_hu5515080983081766808.webp 500w,/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine_hu8365889310575414455.webp 700w"
+        srcset="/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu4015533741167660605.webp 300w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu15852244649050414549.webp 500w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu7470260727466904231.webp 700w"
         sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
       />
       <img
-        src="/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine.jpg"
-        srcset="/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine_hu156120453572379298.jpg 300w,/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine_hu7081373331356436579.jpg 500w,/blog/%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5/sunshine_hu2263201066309879674.jpg 700w"
+        src="/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe.jpg"
+        srcset="/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu11263231422385152778.jpg 300w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu1948112064160216433.jpg 500w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu2210139070416764498.jpg 700w"
         sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
         alt=""
         
         
-        width="2314"
-        height="1280"
+        width="1920"
+        height="1080"
       />
     </picture>
   
@@ -2087,18 +2075,135 @@ aside.toc ul {
     </div>
 
     <div class="post-content">
-      <pre tabindex="0"><code>  迷茫不会毁掉一个人，堕落才会。我不后悔自己浪费的时间和放纵，因为我并不是一无所获，可惜但不遗憾。
-                                                          --题记						          
-</code></pre><p>已经大二下了，自我感觉进入大二下相比以往的第一年和上个学期，这个学期放松了很多，懈怠了很多。并没有按照预期一样努力和学习，前前后后吧，几个月，具体可以从寒假追溯到近些日子。</p>
-<p>可以先细数做了些什么吧，总体来说就是娱乐和放松。刷视频、打游戏、看各种好玩东西，睡觉，聊天，然后不干这些的时候可能就是放空或运动。总体上来说很轻松，哈哈，说难听点就是摆烂。学习上吧，零零碎碎，安全上面并没有进步，会的还是以前会的东西，算法嘛，垃圾，不看答案写不出的那种，当然有些看了也看不懂。非要说学了点什么，只能说学了点人工智能方面的东西，不过也是纸上谈兵，没深究，还有各种新闻变化和行业分析吧，总的来说感觉AI真的要改变很多东西，coze和dify这种集成各种大模型的AI应用开发平台令我叹为观止，方便简洁，可用性高，主要是提升效率和事务。Agent也让我感觉到了未来产品的发展方向，感觉AI时代普通产品是没有技术壁垒的，真正要做的是用户、市场、营销，感觉能否洞察需求才是关键，也开始明白和理解最近看到的话，百分之八十的市场和营销，百分之二十的技术。</p>
-<p>学的杂了，了解多了，但却什么水平也不行，我也顺理成章的陷入了迷茫，老是思考，我学历这么差，又没技术，是考研还是就业，就业又该做什么，有人会要吗，反正奇奇怪怪。看到了就业和失业的文章，也知道留给自己的时间不多了，但是为什么我还是选择娱乐和放纵，哈哈。😶‍🌫️😶‍🌫️😶‍🌫️</p>
-<p>因为我觉得从小到大，我基本上都在做我认为正确的选择或者他人认为正确的选择，可是是否真的正确，在现在的我看来，并非如此。所以本质上，同时空同条件下的我，会做的选择，与隔时空的我很难相同，也自然没有正确与否。所以我打算让自己也做一个快乐的决定，最起码身为大学生和大二的我来说，沉默成本可以接受。主要确实不想学，很不想学，所以自然而然就干脆随性一把。允许自己调整怎么能算一个错误呢，嘿嘿，大不了后面多努力些呗，虽然还可能摆，哈哈哈，但是应该不会像这么长了。</p>
-<p>这段时间我也大胆的进入了一个我从未涉猎的领域，至于什么领域，懂得都懂。我发掘人与人之间是不能强行建立联系的，主动的那一方往往要承担巨大的风险，总得来说感悟颇多，一生受益吧，但是自己内心的美好还是没有改变的，只不过是丰富自己的见识罢了，我还是那个热爱生活和充满热情的中二少年，哈哈哈哈。🤐🤐🤐</p>
-<p>写下这篇文章说明我也开始正常坐在陪伴我最久的伙伴面前，曾经流过口水的桌子，大一冷飕飕对着我寒暄的空调大哥，熟悉的环境，熟悉的码字，开始展望未来的日子，虽然马上放暑假了，爽，哈哈哈。</p>
-<p>后续的计划吧，把想学的东西都学了，管他有没有用，未来怎么样，在过程中清晰吧，但是有一点我越来越坚定了，我想优秀，想更有实力。</p>
-<p>好久操作hugo gitpages了，还得查查 哈哈哈😆😆😆</p>
-<p>要是有缘看到这篇文章，希望你的生活和事业如你所愿，健康喜乐！❣️❣️❣️</p>
-<p>✌️✌️✌️生活中的困难和不如意就是🤏🏼🤏🏼🤏🏼，加油，一切都在为美好铺垫🫵</p>
+      <h3 id="关于php文件上传和解析的tmp目录作用及问题">关于php文件上传和解析的tmp目录作用及问题<a href="#%e5%85%b3%e4%ba%8ephp%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%92%8c%e8%a7%a3%e6%9e%90%e7%9a%84tmp%e7%9b%ae%e5%bd%95%e4%bd%9c%e7%94%a8%e5%8f%8a%e9%97%ae%e9%a2%98" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="-什么是-_filesfiletmp_name">📌 什么是 <code>$_FILES['file']['tmp_name']</code>？<a href="#-%e4%bb%80%e4%b9%88%e6%98%af-_filesfiletmp_name" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件<strong>先保存到服务器的一个临时目录中</strong>，这个路径就是：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]
+</span></span></code></pre></div><h5 id="示例说明">示例说明：<a href="#%e7%a4%ba%e4%be%8b%e8%af%b4%e6%98%8e" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>假设你有一个上传表单：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">enctype</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;上传&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div><p>用户选择了文件 <code>shell.php</code> 并提交后，在 PHP 脚本中你可以这样访问它：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($_FILES[<span style="color:#e6db74">&#39;file&#39;</span>]) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">echo</span> $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;name&#39;</span>];     <span style="color:#75715e">// shell.php（客户端原始文件名）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]; <span style="color:#75715e">// /tmp/phpABC123（服务器上的临时路径）
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><hr>
+<h4 id="-临时文件路径的作用是什么">🔁 临时文件路径的作用是什么？<a href="#-%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84%e7%9a%84%e4%bd%9c%e7%94%a8%e6%98%af%e4%bb%80%e4%b9%88" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>✅ 1. <strong>上传文件的临时存储位置</strong></p>
+<ul>
+<li>当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 <code>/tmp</code>）。</li>
+<li>这是为了防止上传过程中服务器资源被长期占用。</li>
+<li>如果你不处理这个临时文件（比如没有调用 <code>move_uploaded_file()</code>），那么上传完成后，这个文件会被自动删除。</li>
+</ul>
+<p>✅ 2. <strong>用于后续操作：移动、重命名、检查内容等</strong></p>
+<p>一旦你得到了临时路径，就可以对文件进行各种操作：</p>
+<h5 id="-移动文件到指定目录">✅ 移动文件到指定目录<a href="#-%e7%a7%bb%e5%8a%a8%e6%96%87%e4%bb%b6%e5%88%b0%e6%8c%87%e5%ae%9a%e7%9b%ae%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$upload_dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uploads/&#39;</span>;
+</span></span><span style="display:flex;"><span>$tmp_name   <span style="color:#f92672">=</span> $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>];
+</span></span><span style="display:flex;"><span>$target     <span style="color:#f92672">=</span> $upload_dir <span style="color:#f92672">.</span> <span style="color:#a6e22e">basename</span>($_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;name&#39;</span>]);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is_uploaded_file</span>($tmp_name)) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">move_uploaded_file</span>($tmp_name, $target);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="-检查文件内容如是否包含-php-代码">✅ 检查文件内容（如是否包含 PHP 代码）<a href="#-%e6%a3%80%e6%9f%a5%e6%96%87%e4%bb%b6%e5%86%85%e5%ae%b9%e5%a6%82%e6%98%af%e5%90%a6%e5%8c%85%e5%90%ab-php-%e4%bb%a3%e7%a0%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$content <span style="color:#f92672">=</span> <span style="color:#a6e22e">file_get_contents</span>($_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($content, <span style="color:#e6db74">&#39;&lt;?php&#39;</span>) <span style="color:#f92672">!==</span> <span style="color:#66d9ef">false</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;不允许上传 PHP 文件！&#39;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h5 id="-获取-mime-类型或图片信息">✅ 获取 MIME 类型或图片信息<a href="#-%e8%8e%b7%e5%8f%96-mime-%e7%b1%bb%e5%9e%8b%e6%88%96%e5%9b%be%e7%89%87%e4%bf%a1%e6%81%af" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$finfo <span style="color:#f92672">=</span> <span style="color:#a6e22e">finfo_open</span>(<span style="color:#a6e22e">FILEINFO_MIME_TYPE</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">finfo_file</span>($finfo, $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]);
+</span></span></code></pre></div><hr>
+<h5 id="-举个比喻帮助理解">🧠 举个比喻帮助理解<a href="#-%e4%b8%be%e4%b8%aa%e6%af%94%e5%96%bb%e5%b8%ae%e5%8a%a9%e7%90%86%e8%a7%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>你可以把 <code>$_FILES['file']['tmp_name']</code> 看作是：</p>
+<blockquote>
+<p><strong>快递员把你网购的商品放到了小区门口的快递柜里，快递柜的编号就是 tmp_name。</strong></p>
+<p>你需要去快递柜取货（读取/移动文件），否则过一段时间快递柜会自动清空（PHP 删除临时文件）。</p>
+</blockquote>
+<hr>
+<h5 id="-注意事项">⚠️ 注意事项<a href="#-%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<ul>
+<li><strong>临时文件只在当前请求期间有效</strong>。如果你不及时处理（比如 move 或 read），PHP 会在脚本执行结束后自动删除它。</li>
+<li><strong>不要直接使用 tmp_name 作为最终文件路径</strong>，必须手动将其移动到安全目录。</li>
+<li><strong>确保目标目录有写权限</strong>，否则 <code>move_uploaded_file()</code> 会失败。</li>
+<li><strong>不要信任客户端提供的文件名</strong>（<code>$_FILES['file']['name']</code>），攻击者可以伪造任意名称。</li>
+</ul>
+<hr>
+<h5 id="-总结一句话">✅ 总结一句话：<a href="#-%e6%80%bb%e7%bb%93%e4%b8%80%e5%8f%a5%e8%af%9d" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<blockquote>
+<p><code>$_FILES['file']['tmp_name']</code> 是 PHP 在接收到上传文件后，<strong>在服务器上创建的一个临时文件路径</strong>。它的作用是让你能够在这个请求周期内读取、检查或移动上传的文件。如果不及时处理，这个文件会在请求结束时被自动删除。</p>
+</blockquote>
+<h4 id="tmp-php">/tmp +php<a href="#tmp-php" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<blockquote>
+<p>/tmp` 目录下通常不会触发恶意代码执行，而必须将其移动到 Web 可访问的目录下才行。</p>
+</blockquote>
+<h5 id="1-web-服务器的工作原理">1. <strong>Web 服务器的工作原理</strong><a href="#1-web-%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>Web 服务器（如 Apache、Nginx）是通过 HTTP 请求来提供服务的。当用户通过浏览器请求一个 URL 时，Web 服务器会根据配置查找对应的文件，并将其内容返回给客户端。如果这个文件是一个 PHP 文件，Web 服务器会首先将它传递给 PHP 解释器处理，然后将输出结果返回给客户端。</p>
+<ul>
+<li><strong>关键点</strong>：只有位于 Web 服务器配置中指定的文档根目录（通常是 <code>/var/www/html/</code> 或类似的路径）及其子目录下的文件才能通过 HTTP 请求被访问。</li>
+<li><strong>/tmp 目录</strong>：默认情况下，<code>/tmp</code> 目录并不在 Web 服务器的文档根目录内，因此无法直接通过 HTTP 请求访问该目录中的文件。</li>
+</ul>
+<h5 id="2-php-处理机制">2. <strong>PHP 处理机制</strong><a href="#2-php-%e5%a4%84%e7%90%86%e6%9c%ba%e5%88%b6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>当 PHP 接收到一个文件上传时，它会先将文件存储在一个临时位置（通常是 <code>/tmp</code> 目录），直到你在脚本中显式地处理这个文件（例如移动到其他地方或删除）。即使上传的是一个 PHP 脚本，只要它停留在 <code>/tmp</code> 目录下，Web 服务器也不会自动将其作为可执行脚本处理。</p>
+<ul>
+<li><strong>临时文件的安全性</strong>：PHP 在处理完请求后，会自动清理这些临时文件，除非你在脚本中明确地将它们移动到持久存储位置。</li>
+</ul>
+<h5 id="3-安全防护措施">3. <strong>安全防护措施</strong><a href="#3-%e5%ae%89%e5%85%a8%e9%98%b2%e6%8a%a4%e6%8e%aa%e6%96%bd" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<h5 id="web-服务器配置限制"><strong>Web 服务器配置限制</strong><a href="#web-%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae%e9%99%90%e5%88%b6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>大多数 Web 服务器配置都会禁止对某些敏感目录（如 <code>/tmp</code>）的直接访问。例如：</p>
+<ul>
+<li><strong>Apache</strong>: 通过 <code>.htaccess</code> 文件或主配置文件可以设置不允许访问特定目录。</li>
+<li><strong>Nginx</strong>: 同样可以通过配置文件禁止访问非文档根目录下的路径。</li>
+</ul>
+<p>这意味着即使攻击者知道了一个上传到 <code>/tmp</code> 目录下的文件的确切路径，也无法通过浏览器直接请求并触发其执行。</p>
+<h5 id="php-配置限制"><strong>PHP 配置限制</strong><a href="#php-%e9%85%8d%e7%bd%ae%e9%99%90%e5%88%b6" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<ul>
+<li><strong>open_basedir</strong>: 如果设置了 <code>open_basedir</code>，则 PHP 脚本只能访问指定目录下的文件，这进一步限制了对 <code>/tmp</code> 目录的访问。</li>
+<li><strong>disable_functions 和 disable_classes</strong>: 禁用某些危险函数（如 <code>exec</code>, <code>system</code>, <code>passthru</code> 等），减少攻击面。</li>
+</ul>
+<h5 id="4-为何需要移动到-web-可访问的目录">4. <strong>为何需要移动到 Web 可访问的目录？</strong><a href="#4-%e4%b8%ba%e4%bd%95%e9%9c%80%e8%a6%81%e7%a7%bb%e5%8a%a8%e5%88%b0-web-%e5%8f%af%e8%ae%bf%e9%97%ae%e7%9a%84%e7%9b%ae%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>为了让上传的 PHP 文件能够被执行，攻击者需要确保：</p>
+<ul>
+<li><strong>文件位于 Web 文档根目录下</strong>：这样才能通过 HTTP 请求访问该文件。</li>
+<li><strong>文件具有正确的扩展名</strong>：例如 <code>.php</code>，这样 Web 服务器才会将其传递给 PHP 解释器处理。</li>
+<li><strong>适当的权限</strong>：文件所在目录和文件本身必须具有足够的权限，使得 Web 服务器进程能够读取并执行它。</li>
+</ul>
+<h5 id="示例">示例<a href="#%e7%a4%ba%e4%be%8b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<p>假设攻击者上传了一个包含以下内容的一句话木马：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span> <span style="color:#f92672">@</span><span style="color:#66d9ef">eval</span>($_POST[<span style="color:#e6db74">&#39;cmd&#39;</span>]); <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><p>如果这个文件被保存为 <code>/tmp/shell.php</code>，那么：</p>
+<ul>
+<li><strong>无法通过 HTTP 访问</strong>：因为 <code>/tmp</code> 目录不在 Web 文档根目录内，尝试访问 <code>http://example.com/tmp/shell.php</code> 会导致 404 错误。</li>
+</ul>
+<p>但如果攻击者能够利用服务器端的漏洞将此文件移动到 <code>/var/www/html/uploads/shell.php</code>，并且 Web 服务器允许访问该路径，则攻击者可以通过访问 <code>http://example.com/uploads/shell.php</code> 来执行任意命令。</p>
+<h5 id="总结">总结<a href="#%e6%80%bb%e7%bb%93" class="post-heading__anchor" aria-hidden="true">#</a>
+</h5>
+<ul>
+<li><strong>/tmp 目录</strong>：默认情况下，Web 服务器不会公开访问 <code>/tmp</code> 目录中的文件，因此即使上传了一句话木马，也不能直接通过 HTTP 触发执行。</li>
+<li><strong>需移动到 Web 可访问目录</strong>：为了使恶意代码生效，攻击者需要找到方法将文件从临时目录移动到 Web 文档根目录下的某个位置，并且确保该位置允许执行 PHP 脚本。</li>
+<li><strong>加强安全措施</strong>：开发者应严格验证上传文件的内容和类型，避免将文件移动到不安全的位置，并采取其他必要的安全防护措施。</li>
+</ul>
 
     </div>
 
@@ -2114,7 +2219,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F"
+        href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2129,7 +2234,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F&amp;title=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5"
+        href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;title=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
         target="_blank"
         rel="noreferrer"
       >
@@ -2144,7 +2249,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://x.com/intent/post?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F&amp;text=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5"
+        href="https://x.com/intent/post?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;text=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
         target="_blank"
         rel="noreferrer"
       >
@@ -2159,7 +2264,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2174,7 +2279,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="whatsapp://send/?text=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5%20http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F"
+        href="whatsapp://send/?text=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98%20http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2189,7 +2294,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F&amp;title=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5&amp;caption=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;title=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98&amp;caption=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
         target="_blank"
         rel="noreferrer"
       >
@@ -2204,7 +2309,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F"
+        href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2219,7 +2324,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://news.ycombinator.com/submitlink?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F&amp;t=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5"
+        href="https://news.ycombinator.com/submitlink?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;t=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
         target="_blank"
         rel="noreferrer"
       >
@@ -2234,7 +2339,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="http://vk.com/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F&amp;title=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5&amp;comment=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5"
+        href="http://vk.com/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;title=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98&amp;comment=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
         target="_blank"
         rel="noreferrer"
       >
@@ -2249,7 +2354,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.xing.com/spi/shares/new?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F"
+        href="https://www.xing.com/spi/shares/new?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2264,7 +2369,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://telegram.me/share/url?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F&amp;text=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5"
+        href="https://telegram.me/share/url?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;text=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
         target="_blank"
         rel="noreferrer"
       >
@@ -2279,7 +2384,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="mailto:?subject=%E4%BD%8E%E8%BF%B7%E4%B8%AD%E8%B5%B0%E6%9D%A5&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E4%25BD%258E%25E8%25BF%25B7%25E4%25B8%25AD%25E8%25B5%25B0%25E6%259D%25A5%2F"
+        href="mailto:?subject=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2322,7 +2427,15 @@ aside.toc ul {
       <aside class="toc">
         <nav>
           <p class="sidebar__heading">Table Of Contents</p>
-          <nav id="TableOfContents"></nav>
+          <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#关于php文件上传和解析的tmp目录作用及问题">关于php文件上传和解析的tmp目录作用及问题</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
         </nav>
       </aside>
       <hr />

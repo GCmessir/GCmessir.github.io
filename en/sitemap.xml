@@ -6,13 +6,13 @@
     <lastmod>2024-11-18T18:00:00+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/blog/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/blog/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/categories/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -24,17 +24,8 @@
                 href="http://localhost:1313/categories/"
                 />
   </url><url>
-    <loc>http://localhost:1313/tags/deploy/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/categories/deploy/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -46,8 +37,14 @@
                 href="http://localhost:1313/"
                 />
   </url><url>
+    <loc>http://localhost:1313/categories/php/</loc>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/php/</loc>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="de"
@@ -58,6 +55,18 @@
                 hreflang="zh-CN"
                 href="http://localhost:1313/tags/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2025-06-05T22:00:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/deploy/</loc>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/deploy/</loc>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/</loc>
+    <lastmod>2025-06-03T20:50:04+08:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/feeling_thought/</loc>
     <lastmod>2025-05-24T18:13:04+08:00</lastmod>
