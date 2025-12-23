@@ -61,66 +61,62 @@
 
 
 
-<title>关于php文件上传和解析的tmp目录作用及问题</title>
+<title>出题小记</title>
 
 <meta
   name="description"
-  content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
-$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
-&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
-if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
-当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
-一旦你得到了临时路径，就可以对文件进行各种操作：
-✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：
+  content="开篇📜📜📜# 迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间
+首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。 一✒️# 准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE
+然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。好在成功出出来了，没有白费功夫。 既然都说到这儿了，下面就对一些网络命令进行整理
+网络命令进行整理# 在 Linux 中，测试 网络是否通、目标主机是否可达、端口是否开放 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：
+🔹 1. ping —— 测试主机是否可达（ICMP 层）# ping 192.168.1.100 ✅ 优点：快速判断目标主机是否在线 ❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 ping 不通 ≠ 主机宕机
+🔹 2. telnet —— 测试 TCP 端口是否开放（最经典）# telnet 192.168.1.100 4444 如果连接成功（出现空白或提示符）→ ✅ 端口开放 如果提示 Connection refused → ❌ 端口关闭（服务没开） 如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了） 💡 安装 telnet（如未安装）：
 "
 />
 
-<link rel="canonical" href="http://localhost:1313/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/" />
+<link rel="canonical" href="http://localhost:1313/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/" />
 
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="关于php文件上传和解析的tmp目录作用及问题">
-  <meta name="twitter:description" content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
-$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
-&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
-if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
-当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
-一旦你得到了临时路径，就可以对文件进行各种操作：
-✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：">
+  <meta name="twitter:title" content="出题小记">
+  <meta name="twitter:description" content="开篇📜📜📜# 迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间
+首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。 一✒️# 准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE
+然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。好在成功出出来了，没有白费功夫。 既然都说到这儿了，下面就对一些网络命令进行整理
+网络命令进行整理# 在 Linux 中，测试 网络是否通、目标主机是否可达、端口是否开放 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：
+🔹 1. ping —— 测试主机是否可达（ICMP 层）# ping 192.168.1.100 ✅ 优点：快速判断目标主机是否在线 ❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 ping 不通 ≠ 主机宕机
+🔹 2. telnet —— 测试 TCP 端口是否开放（最经典）# telnet 192.168.1.100 4444 如果连接成功（出现空白或提示符）→ ✅ 端口开放 如果提示 Connection refused → ❌ 端口关闭（服务没开） 如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了） 💡 安装 telnet（如未安装）：">
 
-<meta property="og:url" content="http://localhost:1313/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/">
+<meta property="og:url" content="http://localhost:1313/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/">
   <meta property="og:site_name" content="Documenting the journey ^_^">
-  <meta property="og:title" content="关于php文件上传和解析的tmp目录作用及问题">
-  <meta property="og:description" content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
-$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
-&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
-if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
-当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
-一旦你得到了临时路径，就可以对文件进行各种操作：
-✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：">
+  <meta property="og:title" content="出题小记">
+  <meta property="og:description" content="开篇📜📜📜# 迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间
+首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。 一✒️# 准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE
+然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。好在成功出出来了，没有白费功夫。 既然都说到这儿了，下面就对一些网络命令进行整理
+网络命令进行整理# 在 Linux 中，测试 网络是否通、目标主机是否可达、端口是否开放 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：
+🔹 1. ping —— 测试主机是否可达（ICMP 层）# ping 192.168.1.100 ✅ 优点：快速判断目标主机是否在线 ❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 ping 不通 ≠ 主机宕机
+🔹 2. telnet —— 测试 TCP 端口是否开放（最经典）# telnet 192.168.1.100 4444 如果连接成功（出现空白或提示符）→ ✅ 端口开放 如果提示 Connection refused → ❌ 端口关闭（服务没开） 如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了） 💡 安装 telnet（如未安装）：">
   <meta property="og:locale" content="zh_CN">
   <meta property="og:type" content="article">
     <meta property="article:section" content="blog">
-    <meta property="article:published_time" content="2025-06-05T22:00:04+08:00">
-    <meta property="article:modified_time" content="2025-06-05T22:00:04+08:00">
+    <meta property="article:published_time" content="2025-10-29T15:35:00+08:00">
+    <meta property="article:modified_time" content="2025-10-29T15:35:00+08:00">
     <meta property="article:tag" content="Blog">
-    <meta property="article:tag" content="PHP">
+    <meta property="article:tag" content="Practice">
 
 
-  <meta itemprop="name" content="关于php文件上传和解析的tmp目录作用及问题">
-  <meta itemprop="description" content="关于php文件上传和解析的tmp目录作用及问题# 📌 什么是 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]？# 在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件先保存到服务器的一个临时目录中，这个路径就是：
-$_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 示例说明：# 假设你有一个上传表单：
-&lt;form method=&#34;post&#34; enctype=&#34;multipart/form-data&#34;&gt; &lt;input type=&#34;file&#34; name=&#34;file&#34;&gt; &lt;input type=&#34;submit&#34; value=&#34;上传&#34;&gt; &lt;/form&gt; 用户选择了文件 shell.php 并提交后，在 PHP 脚本中你可以这样访问它：
-if ($_FILES[&#39;file&#39;]) { echo $_FILES[&#39;file&#39;][&#39;name&#39;]; // shell.php（客户端原始文件名） echo $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; // /tmp/phpABC123（服务器上的临时路径） } 🔁 临时文件路径的作用是什么？# ✅ 1. 上传文件的临时存储位置
-当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 /tmp）。 这是为了防止上传过程中服务器资源被长期占用。 如果你不处理这个临时文件（比如没有调用 move_uploaded_file()），那么上传完成后，这个文件会被自动删除。 ✅ 2. 用于后续操作：移动、重命名、检查内容等
-一旦你得到了临时路径，就可以对文件进行各种操作：
-✅ 移动文件到指定目录# $upload_dir = &#39;uploads/&#39;; $tmp_name = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]; $target = $upload_dir . basename($_FILES[&#39;file&#39;][&#39;name&#39;]); if (is_uploaded_file($tmp_name)) { move_uploaded_file($tmp_name, $target); } ✅ 检查文件内容（如是否包含 PHP 代码）# $content = file_get_contents($_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); if (strpos($content, &#39;&lt;?php&#39;) !== false) { die(&#39;不允许上传 PHP 文件！&#39;); } ✅ 获取 MIME 类型或图片信息# $finfo = finfo_open(FILEINFO_MIME_TYPE); echo finfo_file($finfo, $_FILES[&#39;file&#39;][&#39;tmp_name&#39;]); 🧠 举个比喻帮助理解# 你可以把 $_FILES[&#39;file&#39;][&#39;tmp_name&#39;] 看作是：">
-  <meta itemprop="datePublished" content="2025-06-05T22:00:04+08:00">
-  <meta itemprop="dateModified" content="2025-06-05T22:00:04+08:00">
-  <meta itemprop="wordCount" content="276">
-  <meta itemprop="keywords" content="Blog,PHP">
+  <meta itemprop="name" content="出题小记">
+  <meta itemprop="description" content="开篇📜📜📜# 迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间
+首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。 一✒️# 准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE
+然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。好在成功出出来了，没有白费功夫。 既然都说到这儿了，下面就对一些网络命令进行整理
+网络命令进行整理# 在 Linux 中，测试 网络是否通、目标主机是否可达、端口是否开放 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：
+🔹 1. ping —— 测试主机是否可达（ICMP 层）# ping 192.168.1.100 ✅ 优点：快速判断目标主机是否在线 ❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 ping 不通 ≠ 主机宕机
+🔹 2. telnet —— 测试 TCP 端口是否开放（最经典）# telnet 192.168.1.100 4444 如果连接成功（出现空白或提示符）→ ✅ 端口开放 如果提示 Connection refused → ❌ 端口关闭（服务没开） 如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了） 💡 安装 telnet（如未安装）：">
+  <meta itemprop="datePublished" content="2025-10-29T15:35:00+08:00">
+  <meta itemprop="dateModified" content="2025-10-29T15:35:00+08:00">
+  <meta itemprop="wordCount" content="621">
+  <meta itemprop="keywords" content="Blog,Practice">
 
 
 
@@ -1970,10 +1966,10 @@ aside.toc ul {
           
   <article class="post">
     <div class="post-header">
-      <h1>关于php文件上传和解析的tmp目录作用及问题</h1>
-      <div class="post-meta"><span>2025-06-05</span>
+      <h1>出题小记</h1>
+      <div class="post-meta"><span>2025-10-29</span>
     <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/php">php</a>
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/practice">practice</a>
     </div>
   
 
@@ -2048,18 +2044,18 @@ aside.toc ul {
     <picture>
       <source
         type="image/webp"
-        srcset="/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu4015533741167660605.webp 300w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu15852244649050414549.webp 500w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu7470260727466904231.webp 700w"
+        srcset="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu32492082504527907.webp 300w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu2071601085357944412.webp 500w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu7994927149473207218.webp 700w"
         sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
       />
       <img
-        src="/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe.jpg"
-        srcset="/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu11263231422385152778.jpg 300w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu1948112064160216433.jpg 500w,/blog/%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98/cafe_hu2210139070416764498.jpg 700w"
+        src="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black.png"
+        srcset="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu16320864176941436530.png 300w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu8095533745583795684.png 500w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu12697816628675722368.png 700w"
         sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
         alt=""
         
         
-        width="1920"
-        height="1080"
+        width="1306"
+        height="736"
       />
     </picture>
   
@@ -2075,136 +2071,374 @@ aside.toc ul {
     </div>
 
     <div class="post-content">
-      <h3 id="关于php文件上传和解析的tmp目录作用及问题">关于php文件上传和解析的tmp目录作用及问题<a href="#%e5%85%b3%e4%ba%8ephp%e6%96%87%e4%bb%b6%e4%b8%8a%e4%bc%a0%e5%92%8c%e8%a7%a3%e6%9e%90%e7%9a%84tmp%e7%9b%ae%e5%bd%95%e4%bd%9c%e7%94%a8%e5%8f%8a%e9%97%ae%e9%a2%98" class="post-heading__anchor" aria-hidden="true">#</a>
+      <h2 id="开篇">开篇📜📜📜<a href="#%e5%bc%80%e7%af%87" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间</p>
+</blockquote>
+<pre tabindex="0"><code>首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。
+然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。
+</code></pre><h2 id="一">一✒️<a href="#%e4%b8%80" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE</p>
+</blockquote>
+<pre tabindex="0"><code>然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。
+好在成功出出来了，没有白费功夫。
+</code></pre><blockquote>
+<p>既然都说到这儿了，下面就对一些网络命令进行整理</p>
+</blockquote>
+<h3 id="网络命令进行整理">网络命令进行整理<a href="#%e7%bd%91%e7%bb%9c%e5%91%bd%e4%bb%a4%e8%bf%9b%e8%a1%8c%e6%95%b4%e7%90%86" class="post-heading__anchor" aria-hidden="true">#</a>
 </h3>
-<h4 id="-什么是-_filesfiletmp_name">📌 什么是 <code>$_FILES['file']['tmp_name']</code>？<a href="#-%e4%bb%80%e4%b9%88%e6%98%af-_filesfiletmp_name" class="post-heading__anchor" aria-hidden="true">#</a>
+<p>在 Linux 中，测试 <strong>网络是否通</strong>、<strong>目标主机是否可达</strong>、<strong>端口是否开放</strong> 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：</p>
+<hr>
+<h4 id="-1-ping--测试主机是否可达icmp-层">🔹 1. <code>ping</code> —— 测试主机是否可达（ICMP 层）<a href="#-1-ping--%e6%b5%8b%e8%af%95%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%8f%af%e8%be%beicmp-%e5%b1%82" class="post-heading__anchor" aria-hidden="true">#</a>
 </h4>
-<p>在 PHP 中，当你通过 HTML 表单上传一个文件时，PHP 会将这个上传的文件<strong>先保存到服务器的一个临时目录中</strong>，这个路径就是：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]
-</span></span></code></pre></div><h5 id="示例说明">示例说明：<a href="#%e7%a4%ba%e4%be%8b%e8%af%b4%e6%98%8e" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>假设你有一个上传表单：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;post&#34;</span> <span style="color:#a6e22e">enctype</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;multipart/form-data&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;file&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#a6e22e">value</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;上传&#34;</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
-</span></span></code></pre></div><p>用户选择了文件 <code>shell.php</code> 并提交后，在 PHP 脚本中你可以这样访问它：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ($_FILES[<span style="color:#e6db74">&#39;file&#39;</span>]) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">echo</span> $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;name&#39;</span>];     <span style="color:#75715e">// shell.php（客户端原始文件名）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">echo</span> $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]; <span style="color:#75715e">// /tmp/phpABC123（服务器上的临时路径）
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
-</span></span></code></pre></div><hr>
-<h4 id="-临时文件路径的作用是什么">🔁 临时文件路径的作用是什么？<a href="#-%e4%b8%b4%e6%97%b6%e6%96%87%e4%bb%b6%e8%b7%af%e5%be%84%e7%9a%84%e4%bd%9c%e7%94%a8%e6%98%af%e4%bb%80%e4%b9%88" class="post-heading__anchor" aria-hidden="true">#</a>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ping 192.168.1.100
+</span></span></code></pre></div><p>✅ 优点：快速判断目标主机是否在线
+❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 <strong>ping 不通 ≠ 主机宕机</strong></p>
+<hr>
+<h4 id="-2-telnet--测试-tcp-端口是否开放最经典">🔹 2. <code>telnet</code> —— 测试 TCP 端口是否开放（最经典）<a href="#-2-telnet--%e6%b5%8b%e8%af%95-tcp-%e7%ab%af%e5%8f%a3%e6%98%af%e5%90%a6%e5%bc%80%e6%94%be%e6%9c%80%e7%bb%8f%e5%85%b8" class="post-heading__anchor" aria-hidden="true">#</a>
 </h4>
-<p>✅ 1. <strong>上传文件的临时存储位置</strong></p>
-<ul>
-<li>当浏览器上传文件到服务器时，PHP 会先把文件写入一个临时目录（通常是 <code>/tmp</code>）。</li>
-<li>这是为了防止上传过程中服务器资源被长期占用。</li>
-<li>如果你不处理这个临时文件（比如没有调用 <code>move_uploaded_file()</code>），那么上传完成后，这个文件会被自动删除。</li>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>telnet 192.168.1.100 <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><ul>
+<li>如果连接成功（出现空白或提示符）→ ✅ 端口开放</li>
+<li>如果提示 <code>Connection refused</code> → ❌ 端口关闭（服务没开）</li>
+<li>如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了）</li>
 </ul>
-<p>✅ 2. <strong>用于后续操作：移动、重命名、检查内容等</strong></p>
-<p>一旦你得到了临时路径，就可以对文件进行各种操作：</p>
-<h5 id="-移动文件到指定目录">✅ 移动文件到指定目录<a href="#-%e7%a7%bb%e5%8a%a8%e6%96%87%e4%bb%b6%e5%88%b0%e6%8c%87%e5%ae%9a%e7%9b%ae%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$upload_dir <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;uploads/&#39;</span>;
-</span></span><span style="display:flex;"><span>$tmp_name   <span style="color:#f92672">=</span> $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>];
-</span></span><span style="display:flex;"><span>$target     <span style="color:#f92672">=</span> $upload_dir <span style="color:#f92672">.</span> <span style="color:#a6e22e">basename</span>($_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;name&#39;</span>]);
+<blockquote>
+<p>💡 安装 telnet（如未安装）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install telnet -y
+</span></span></code></pre></div></blockquote>
+<hr>
+<h4 id="-3-ncnetcat-更灵活的端口探测工具">🔹 3. <code>nc</code>（netcat）—— 更灵活的端口探测工具<a href="#-3-ncnetcat-%e6%9b%b4%e7%81%b5%e6%b4%bb%e7%9a%84%e7%ab%af%e5%8f%a3%e6%8e%a2%e6%b5%8b%e5%b7%a5%e5%85%b7" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>测试 TCP 端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -zv 192.168.1.100 <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><ul>
+<li><code>-z</code>：只扫描，不发送数据</li>
+<li><code>-v</code>：显示详细信息</li>
+</ul>
+<p>输出示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#a6e22e">Connection to 192.168.1.100 4444 port [tcp/*] succeeded!</span>
+</span></span></code></pre></div><p>扫描多个端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -zv 192.168.1.100 <span style="color:#ae81ff">4444</span> <span style="color:#ae81ff">4445</span> <span style="color:#ae81ff">8080</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或范围</span>
+</span></span><span style="display:flex;"><span>nc -zv 192.168.1.100 4440-4450
+</span></span></code></pre></div><blockquote>
+<p>💡 安装 netcat：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install netcat -y   <span style="color:#75715e"># Ubuntu/Debian</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或</span>
+</span></span><span style="display:flex;"><span>sudo yum install nc -y       <span style="color:#75715e"># CentOS/RHEL</span>
+</span></span></code></pre></div></blockquote>
+<hr>
+<h4 id="-4-nmap--专业端口扫描工具功能最强">🔹 4. <code>nmap</code> —— 专业端口扫描工具（功能最强）<a href="#-4-nmap--%e4%b8%93%e4%b8%9a%e7%ab%af%e5%8f%a3%e6%89%ab%e6%8f%8f%e5%b7%a5%e5%85%b7%e5%8a%9f%e8%83%bd%e6%9c%80%e5%bc%ba" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>扫描单个端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p <span style="color:#ae81ff">4444</span> 192.168.1.100
+</span></span></code></pre></div><p>扫描多个端口：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p 4444,4445,8080 192.168.1.100
+</span></span></code></pre></div><p>扫描全端口（慎用）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nmap -p- 192.168.1.100
+</span></span></code></pre></div><p>输出解读：</p>
+<ul>
+<li><code>open</code> → 端口开放</li>
+<li><code>closed</code> → 端口关闭（服务没监听）</li>
+<li><code>filtered</code> → 被防火墙过滤（不确定是否开放）</li>
+</ul>
+<blockquote>
+<p>💡 安装 nmap：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo apt install nmap -y
+</span></span></code></pre></div></blockquote>
+<hr>
+<h4 id="-5-curl--wget--测试-https-服务">🔹 5. <code>curl</code> / <code>wget</code> —— 测试 HTTP(S) 服务<a href="#-5-curl--wget--%e6%b5%8b%e8%af%95-https-%e6%9c%8d%e5%8a%a1" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>适用于 Web 服务（80/443/8080 等）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -v http://192.168.1.100:8080
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或</span>
+</span></span><span style="display:flex;"><span>wget --spider http://192.168.1.100:8080
+</span></span></code></pre></div><ul>
+<li>能返回 HTML 或状态码 → ✅ 服务正常</li>
+<li>连接超时 → 端口不通或服务未响应</li>
+</ul>
+<hr>
+<h4 id="-6-ss--netstat--查看本机监听端口本地诊断">🔹 6. <code>ss</code> / <code>netstat</code> —— 查看本机监听端口（本地诊断）<a href="#-6-ss--netstat--%e6%9f%a5%e7%9c%8b%e6%9c%ac%e6%9c%ba%e7%9b%91%e5%90%ac%e7%ab%af%e5%8f%a3%e6%9c%ac%e5%9c%b0%e8%af%8a%e6%96%ad" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p>查看本机是否在监听 4444：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ss -tuln | grep <span style="color:#ae81ff">4444</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或</span>
+</span></span><span style="display:flex;"><span>netstat -tuln | grep <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><p>输出示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#a6e22e">tcp  0  0 0.0.0.0:4444  0.0.0.0:*  LISTEN</span>
+</span></span></code></pre></div><p>✅ 表示本机确实在监听 4444 端口。</p>
+<blockquote>
+<p>💡 <code>ss</code> 比 <code>netstat</code> 更快，推荐使用。</p>
+</blockquote>
+<hr>
+<p>🧪 实战组合建议</p>
+<table>
+  <thead>
+      <tr>
+          <th>场景</th>
+          <th>推荐命令</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>快速测端口通不通</td>
+          <td><code>nc -zv ip port</code></td>
+      </tr>
+      <tr>
+          <td>判断是“关了”还是“被拦了”</td>
+          <td><code>telnet ip port</code> + <code>nmap -p port ip</code></td>
+      </tr>
+      <tr>
+          <td>本机服务是否监听</td>
+          <td>`ss -tuln</td>
+      </tr>
+      <tr>
+          <td>Web 服务测试</td>
+          <td><code>curl -v http://ip:port</code></td>
+      </tr>
+  </tbody>
+</table>
+<hr>
+<p>❗ 注意事项</p>
+<ul>
+<li><strong>UDP 端口</strong> 很难准确探测（无连接机制），需用 <code>nc -uvz</code> 或专用工具。</li>
+<li>有些服务（如反弹 shell 监听）<strong>只接受连接但不回显</strong>，此时 <code>nc</code> 连上后无输出是正常的。</li>
+<li>防火墙/NAT 可能导致“本地能连，外部不能连”，务必从攻击者视角测试。</li>
+</ul>
+<hr>
+<p>✅ 总结一句话：</p>
+<blockquote>
+<p><strong>测端口通不通，首选 <code>nc -zv</code> 或 <code>telnet</code>；查本机监听用 <code>ss</code>；批量扫描用 <code>nmap</code>。</strong></p>
+</blockquote>
+<p>假设你在本机或远程有一台机器正在 <strong>监听 TCP 4445 端口</strong>（比如用 <code>nc -lvp 4445</code>），你可以用以下任一方式发送数据：</p>
+<h3 id="输出到监听端口">输出到监听端口<a href="#%e8%be%93%e5%87%ba%e5%88%b0%e7%9b%91%e5%90%ac%e7%ab%af%e5%8f%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="方法-1使用-echo--nc推荐">方法 1：使用 <code>echo + nc</code>（推荐）<a href="#%e6%96%b9%e6%b3%95-1%e4%bd%bf%e7%94%a8-echo--nc%e6%8e%a8%e8%8d%90" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hello from client!&#34;</span> | nc 127.0.0.1 <span style="color:#ae81ff">4445</span>
+</span></span></code></pre></div><blockquote>
+<p>✅ 适用于测试反弹 shell、Log4j 回显、自定义协议等场景</p>
+</blockquote>
+<h4 id="方法-2使用-telnet交互式">方法 2：使用 <code>telnet</code>（交互式）<a href="#%e6%96%b9%e6%b3%95-2%e4%bd%bf%e7%94%a8-telnet%e4%ba%a4%e4%ba%92%e5%bc%8f" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>telnet 127.0.0.1 <span style="color:#ae81ff">4445</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 然后手动输入：</span>
+</span></span><span style="display:flex;"><span>Hello from telnet!
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 按 Ctrl+] 再按 q 退出</span>
+</span></span></code></pre></div><h4 id="方法-3使用-bash-原生-tcp无需安装工具">方法 3：使用 <code>bash</code> 原生 TCP（无需安装工具）<a href="#%e6%96%b9%e6%b3%95-3%e4%bd%bf%e7%94%a8-bash-%e5%8e%9f%e7%94%9f-tcp%e6%97%a0%e9%9c%80%e5%ae%89%e8%a3%85%e5%b7%a5%e5%85%b7" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Hello via bash!&#34;</span> &gt; /dev/tcp/127.0.0.1/4445
+</span></span></code></pre></div><blockquote>
+<p>⚠️ 要求 bash 支持 <code>/dev/tcp</code>（大多数 Linux 默认支持）</p>
+</blockquote>
+<h4 id="方法-4python-发送灵活">方法 4：Python 发送（灵活）<a href="#%e6%96%b9%e6%b3%95-4python-%e5%8f%91%e9%80%81%e7%81%b5%e6%b4%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>python3 <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>socket()
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>connect((<span style="color:#e6db74">&#39;127.0.0.1&#39;</span>, <span style="color:#ae81ff">4445</span>))
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>send(<span style="color:#e6db74">b</span><span style="color:#e6db74">&#39;Hello from Python!&#39;</span>)
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><hr>
+<h3 id="监听">监听<a href="#%e7%9b%91%e5%90%ac" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="-a-临时监听非持久化-关闭终端即停止">🔹 A. 临时监听（非持久化）—— 关闭终端即停止<a href="#-a-%e4%b8%b4%e6%97%b6%e7%9b%91%e5%90%ac%e9%9d%9e%e6%8c%81%e4%b9%85%e5%8c%96-%e5%85%b3%e9%97%ad%e7%bb%88%e7%ab%af%e5%8d%b3%e5%81%9c%e6%ad%a2" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li>使用 <code>nc</code>（netcat）监听（最常用）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 监听 4445，每收到一次连接就退出</span>
+</span></span><span style="display:flex;"><span>nc -lvnp <span style="color:#ae81ff">4445</span>
 </span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">is_uploaded_file</span>($tmp_name)) {
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">move_uploaded_file</span>($tmp_name, $target);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h5 id="-检查文件内容如是否包含-php-代码">✅ 检查文件内容（如是否包含 PHP 代码）<a href="#-%e6%a3%80%e6%9f%a5%e6%96%87%e4%bb%b6%e5%86%85%e5%ae%b9%e5%a6%82%e6%98%af%e5%90%a6%e5%8c%85%e5%90%ab-php-%e4%bb%a3%e7%a0%81" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$content <span style="color:#f92672">=</span> <span style="color:#a6e22e">file_get_contents</span>($_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">strpos</span>($content, <span style="color:#e6db74">&#39;&lt;?php&#39;</span>) <span style="color:#f92672">!==</span> <span style="color:#66d9ef">false</span>) {
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">die</span>(<span style="color:#e6db74">&#39;不允许上传 PHP 文件！&#39;</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h5 id="-获取-mime-类型或图片信息">✅ 获取 MIME 类型或图片信息<a href="#-%e8%8e%b7%e5%8f%96-mime-%e7%b1%bb%e5%9e%8b%e6%88%96%e5%9b%be%e7%89%87%e4%bf%a1%e6%81%af" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span>$finfo <span style="color:#f92672">=</span> <span style="color:#a6e22e">finfo_open</span>(<span style="color:#a6e22e">FILEINFO_MIME_TYPE</span>);
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">finfo_file</span>($finfo, $_FILES[<span style="color:#e6db74">&#39;file&#39;</span>][<span style="color:#e6db74">&#39;tmp_name&#39;</span>]);
-</span></span></code></pre></div><hr>
-<h5 id="-举个比喻帮助理解">🧠 举个比喻帮助理解<a href="#-%e4%b8%be%e4%b8%aa%e6%af%94%e5%96%bb%e5%b8%ae%e5%8a%a9%e7%90%86%e8%a7%a3" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>你可以把 <code>$_FILES['file']['tmp_name']</code> 看作是：</p>
-<blockquote>
-<p><strong>快递员把你网购的商品放到了小区门口的快递柜里，快递柜的编号就是 tmp_name。</strong></p>
-<p>你需要去快递柜取货（读取/移动文件），否则过一段时间快递柜会自动清空（PHP 删除临时文件）。</p>
-</blockquote>
-<hr>
-<h5 id="-注意事项">⚠️ 注意事项<a href="#-%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 持续监听（每次连接后继续等待下一次）</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span> nc -lvnp 4445; <span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>参数说明：</p>
 <ul>
-<li><strong>临时文件只在当前请求期间有效</strong>。如果你不及时处理（比如 move 或 read），PHP 会在脚本执行结束后自动删除它。</li>
-<li><strong>不要直接使用 tmp_name 作为最终文件路径</strong>，必须手动将其移动到安全目录。</li>
-<li><strong>确保目标目录有写权限</strong>，否则 <code>move_uploaded_file()</code> 会失败。</li>
-<li><strong>不要信任客户端提供的文件名</strong>（<code>$_FILES['file']['name']</code>），攻击者可以伪造任意名称。</li>
+<li><code>-l</code>：listen（监听）</li>
+<li><code>-v</code>：verbose（显示连接信息）</li>
+<li><code>-n</code>：不解析 DNS（加快速度）</li>
+<li><code>-p</code>：指定端口</li>
 </ul>
-<hr>
-<h5 id="-总结一句话">✅ 总结一句话：<a href="#-%e6%80%bb%e7%bb%93%e4%b8%80%e5%8f%a5%e8%af%9d" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
 <blockquote>
-<p><code>$_FILES['file']['tmp_name']</code> 是 PHP 在接收到上传文件后，<strong>在服务器上创建的一个临时文件路径</strong>。它的作用是让你能够在这个请求周期内读取、检查或移动上传的文件。如果不及时处理，这个文件会在请求结束时被自动删除。</p>
+<p>💡 收到数据后，内容会直接打印在终端上！</p>
 </blockquote>
-<h4 id="tmp-php">/tmp +php<a href="#tmp-php" class="post-heading__anchor" aria-hidden="true">#</a>
+<ol start="2">
+<li>使用 <code>socat</code>（功能更强）</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>socat TCP-LISTEN:4445,fork STDOUT
+</span></span></code></pre></div><ul>
+<li><code>fork</code>：允许多次连接</li>
+<li>数据会回显到终端</li>
+</ul>
+<ol start="3">
+<li>Python 快速监听</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>python3 <span style="color:#f92672">-</span>c <span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket
+</span></span><span style="display:flex;"><span>s <span style="color:#f92672">=</span> socket<span style="color:#f92672">.</span>socket()
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>bind((<span style="color:#e6db74">&#39;0.0.0.0&#39;</span>, <span style="color:#ae81ff">4445</span>))
+</span></span><span style="display:flex;"><span>s<span style="color:#f92672">.</span>listen(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;Listening on 0.0.0.0:4445&#39;</span>)
+</span></span><span style="display:flex;"><span>conn, addr <span style="color:#f92672">=</span> s<span style="color:#f92672">.</span>accept()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#39;Connected by&#39;</span>, addr)
+</span></span><span style="display:flex;"><span>print(conn<span style="color:#f92672">.</span>recv(<span style="color:#ae81ff">1024</span>)<span style="color:#f92672">.</span>decode())
+</span></span><span style="display:flex;"><span>conn<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><hr>
+<h4 id="-b-持久化监听开机自启--后台常驻">🔹 B. 持久化监听（开机自启 / 后台常驻）<a href="#-b-%e6%8c%81%e4%b9%85%e5%8c%96%e7%9b%91%e5%90%ac%e5%bc%80%e6%9c%ba%e8%87%aa%e5%90%af--%e5%90%8e%e5%8f%b0%e5%b8%b8%e9%a9%bb" class="post-heading__anchor" aria-hidden="true">#</a>
 </h4>
 <blockquote>
-<p>/tmp` 目录下通常不会触发恶意代码执行，而必须将其移动到 Web 可访问的目录下才行。</p>
+<p>适用于需要长期监听的场景（如 CTF 靶机、反弹 shell 接收器）</p>
 </blockquote>
-<h5 id="1-web-服务器的工作原理">1. <strong>Web 服务器的工作原理</strong><a href="#1-web-%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>Web 服务器（如 Apache、Nginx）是通过 HTTP 请求来提供服务的。当用户通过浏览器请求一个 URL 时，Web 服务器会根据配置查找对应的文件，并将其内容返回给客户端。如果这个文件是一个 PHP 文件，Web 服务器会首先将它传递给 PHP 解释器处理，然后将输出结果返回给客户端。</p>
-<ul>
-<li><strong>关键点</strong>：只有位于 Web 服务器配置中指定的文档根目录（通常是 <code>/var/www/html/</code> 或类似的路径）及其子目录下的文件才能通过 HTTP 请求被访问。</li>
-<li><strong>/tmp 目录</strong>：默认情况下，<code>/tmp</code> 目录并不在 Web 服务器的文档根目录内，因此无法直接通过 HTTP 请求访问该目录中的文件。</li>
-</ul>
-<h5 id="2-php-处理机制">2. <strong>PHP 处理机制</strong><a href="#2-php-%e5%a4%84%e7%90%86%e6%9c%ba%e5%88%b6" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>当 PHP 接收到一个文件上传时，它会先将文件存储在一个临时位置（通常是 <code>/tmp</code> 目录），直到你在脚本中显式地处理这个文件（例如移动到其他地方或删除）。即使上传的是一个 PHP 脚本，只要它停留在 <code>/tmp</code> 目录下，Web 服务器也不会自动将其作为可执行脚本处理。</p>
-<ul>
-<li><strong>临时文件的安全性</strong>：PHP 在处理完请求后，会自动清理这些临时文件，除非你在脚本中明确地将它们移动到持久存储位置。</li>
-</ul>
-<h5 id="3-安全防护措施">3. <strong>安全防护措施</strong><a href="#3-%e5%ae%89%e5%85%a8%e9%98%b2%e6%8a%a4%e6%8e%aa%e6%96%bd" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<h5 id="web-服务器配置限制"><strong>Web 服务器配置限制</strong><a href="#web-%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae%e9%99%90%e5%88%b6" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>大多数 Web 服务器配置都会禁止对某些敏感目录（如 <code>/tmp</code>）的直接访问。例如：</p>
-<ul>
-<li><strong>Apache</strong>: 通过 <code>.htaccess</code> 文件或主配置文件可以设置不允许访问特定目录。</li>
-<li><strong>Nginx</strong>: 同样可以通过配置文件禁止访问非文档根目录下的路径。</li>
-</ul>
-<p>这意味着即使攻击者知道了一个上传到 <code>/tmp</code> 目录下的文件的确切路径，也无法通过浏览器直接请求并触发其执行。</p>
-<h5 id="php-配置限制"><strong>PHP 配置限制</strong><a href="#php-%e9%85%8d%e7%bd%ae%e9%99%90%e5%88%b6" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<ul>
-<li><strong>open_basedir</strong>: 如果设置了 <code>open_basedir</code>，则 PHP 脚本只能访问指定目录下的文件，这进一步限制了对 <code>/tmp</code> 目录的访问。</li>
-<li><strong>disable_functions 和 disable_classes</strong>: 禁用某些危险函数（如 <code>exec</code>, <code>system</code>, <code>passthru</code> 等），减少攻击面。</li>
-</ul>
-<h5 id="4-为何需要移动到-web-可访问的目录">4. <strong>为何需要移动到 Web 可访问的目录？</strong><a href="#4-%e4%b8%ba%e4%bd%95%e9%9c%80%e8%a6%81%e7%a7%bb%e5%8a%a8%e5%88%b0-web-%e5%8f%af%e8%ae%bf%e9%97%ae%e7%9a%84%e7%9b%ae%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>为了让上传的 PHP 文件能够被执行，攻击者需要确保：</p>
-<ul>
-<li><strong>文件位于 Web 文档根目录下</strong>：这样才能通过 HTTP 请求访问该文件。</li>
-<li><strong>文件具有正确的扩展名</strong>：例如 <code>.php</code>，这样 Web 服务器才会将其传递给 PHP 解释器处理。</li>
-<li><strong>适当的权限</strong>：文件所在目录和文件本身必须具有足够的权限，使得 Web 服务器进程能够读取并执行它。</li>
-</ul>
-<h5 id="示例">示例<a href="#%e7%a4%ba%e4%be%8b" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<p>假设攻击者上传了一个包含以下内容的一句话木马：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#f92672">&lt;?</span><span style="color:#a6e22e">php</span> <span style="color:#f92672">@</span><span style="color:#66d9ef">eval</span>($_POST[<span style="color:#e6db74">&#39;cmd&#39;</span>]); <span style="color:#75715e">?&gt;</span><span style="color:#960050;background-color:#1e0010">
-</span></span></span></code></pre></div><p>如果这个文件被保存为 <code>/tmp/shell.php</code>，那么：</p>
-<ul>
-<li><strong>无法通过 HTTP 访问</strong>：因为 <code>/tmp</code> 目录不在 Web 文档根目录内，尝试访问 <code>http://example.com/tmp/shell.php</code> 会导致 404 错误。</li>
-</ul>
-<p>但如果攻击者能够利用服务器端的漏洞将此文件移动到 <code>/var/www/html/uploads/shell.php</code>，并且 Web 服务器允许访问该路径，则攻击者可以通过访问 <code>http://example.com/uploads/shell.php</code> 来执行任意命令。</p>
-<h5 id="总结">总结<a href="#%e6%80%bb%e7%bb%93" class="post-heading__anchor" aria-hidden="true">#</a>
-</h5>
-<ul>
-<li><strong>/tmp 目录</strong>：默认情况下，Web 服务器不会公开访问 <code>/tmp</code> 目录中的文件，因此即使上传了一句话木马，也不能直接通过 HTTP 触发执行。</li>
-<li><strong>需移动到 Web 可访问目录</strong>：为了使恶意代码生效，攻击者需要找到方法将文件从临时目录移动到 Web 文档根目录下的某个位置，并且确保该位置允许执行 PHP 脚本。</li>
-<li><strong>加强安全措施</strong>：开发者应严格验证上传文件的内容和类型，避免将文件移动到不安全的位置，并采取其他必要的安全防护措施。</li>
-</ul>
-
+<p>方案 1：用 <code>systemd</code> 创建服务（推荐，现代 Linux）</p>
+<ol>
+<li>创建服务文件：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo nano /etc/systemd/system/listen4445.service
+</span></span></code></pre></div><ol>
+<li>内容如下：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#66d9ef">[Unit]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Description</span><span style="color:#f92672">=</span><span style="color:#e6db74">Listen on port 4445 for CTF</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">After</span><span style="color:#f92672">=</span><span style="color:#e6db74">network.target</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Service]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ExecStart</span><span style="color:#f92672">=</span><span style="color:#e6db74">/usr/bin/nc -k -l -p 4445</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Restart</span><span style="color:#f92672">=</span><span style="color:#e6db74">always</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">User</span><span style="color:#f92672">=</span><span style="color:#e6db74">root</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">StandardOutput</span><span style="color:#f92672">=</span><span style="color:#e6db74">journal</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">StandardError</span><span style="color:#f92672">=</span><span style="color:#e6db74">journal</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">[Install]</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">WantedBy</span><span style="color:#f92672">=</span><span style="color:#e6db74">multi-user.target</span>
+</span></span></code></pre></div><blockquote>
+<p>⚠️ 注意：部分 <code>nc</code> 版本不支持 <code>-k</code>（保持监听），可改用 <code>socat</code> 或 while 循环脚本</p>
+</blockquote>
+<ol>
+<li>启用并启动服务：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo systemctl daemon-reload
+</span></span><span style="display:flex;"><span>sudo systemctl enable --now listen4445.service
+</span></span></code></pre></div><ol>
+<li>查看日志：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>journalctl -u listen4445 -f
+</span></span></code></pre></div><p>方案 2：用 <code>screen</code> 或 <code>tmux</code> 后台运行（简单粗暴）</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装 screen</span>
+</span></span><span style="display:flex;"><span>sudo apt install screen -y
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动后台会话</span>
+</span></span><span style="display:flex;"><span>screen -dmS listener nc -k -l -p <span style="color:#ae81ff">4445</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看输出</span>
+</span></span><span style="display:flex;"><span>screen -r listener
+</span></span></code></pre></div><blockquote>
+<p>优点：简单；缺点：重启后不会自动恢复</p>
+</blockquote>
+<p>方案 3：写一个守护脚本 + cron（兼容老系统）</p>
+<ol>
+<li>创建脚本 <code>/root/listen.sh</code>：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    nc -lvnp <span style="color:#ae81ff">4445</span> &gt;&gt; /var/log/listen4445.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><ol>
+<li>赋予执行权限：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod +x /root/listen.sh
+</span></span></code></pre></div><ol>
+<li>添加开机启动（通过 crontab）：</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#f92672">(</span>crontab -l 2&gt;/dev/null; echo <span style="color:#e6db74">&#34;@reboot /root/listen.sh &amp;&#34;</span><span style="color:#f92672">)</span> | crontab -
+</span></span></code></pre></div><hr>
+<h3 id="-测试全流程示例">🧪 测试全流程示例<a href="#-%e6%b5%8b%e8%af%95%e5%85%a8%e6%b5%81%e7%a8%8b%e7%a4%ba%e4%be%8b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="终端-1监听">终端 1：监听<a href="#%e7%bb%88%e7%ab%af-1%e7%9b%91%e5%90%ac" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>nc -lvnp <span style="color:#ae81ff">4445</span>
+</span></span></code></pre></div><h4 id="终端-2发送">终端 2：发送<a href="#%e7%bb%88%e7%ab%af-2%e5%8f%91%e9%80%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Test message&#34;</span> | nc 127.0.0.1 <span style="color:#ae81ff">4445</span>
+</span></span></code></pre></div><p>✅ 终端 1 会立即显示：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>Test message
+</span></span></code></pre></div><hr>
+<h4 id="-总结对比">✅ 总结对比<a href="#-%e6%80%bb%e7%bb%93%e5%af%b9%e6%af%94" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<table>
+  <thead>
+      <tr>
+          <th>类型</th>
+          <th>命令</th>
+          <th>是否持久</th>
+          <th>适用场景</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td><strong>临时监听</strong></td>
+          <td><code>nc -lvnp 4445</code></td>
+          <td>❌ 否</td>
+          <td>快速测试、CTF 临时接收</td>
+      </tr>
+      <tr>
+          <td><strong>持久监听</strong></td>
+          <td><code>systemd</code> 服务</td>
+          <td>✅ 是</td>
+          <td>长期运行、生产环境</td>
+      </tr>
+      <tr>
+          <td><strong>半持久</strong></td>
+          <td><code>screen</code> / <code>tmux</code></td>
+          <td>⚠️ 重启失效</td>
+          <td>调试、临时后台</td>
+      </tr>
+      <tr>
+          <td><strong>发送数据</strong></td>
+          <td>`echo &ldquo;xxx&rdquo;</td>
+          <td>nc ip port`</td>
+          <td>—</td>
+      </tr>
+  </tbody>
+</table>
+<pre tabindex="0"><code>  然后于开赛的当周，突然就又有了灵感，想把这道题完善一下，不能说明明显显就留了个接口告诉选手，漏洞在这儿直接打吧，于是我加了很多接口和功能，然后增加了三种身份，游客登入、普通用户登入，管理员登入，管理员的账号密码泄露在文档的json数据示例中。因为是临时加工，前后端不分离，使用的是thymeleaf，不熟，所以在ai的帮助下依旧难受，哈哈，看不太懂，尤其是模板layout，会出现版本啊格式啊，兼容渲染覆盖等等问题...
+  但是如果前后端分离，我怕来不及，所以就凑合着用吧。
+</code></pre><h2 id="二">二✒️<a href="#%e4%ba%8c" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>接下来想搞一个CMS,找一找有没有有趣有东西一点的</p>
+</blockquote>
+<pre tabindex="0"><code>一开始想找个开源的CMS但是，同为出题的其他师傅觉得开源的CMS漏洞公开比较多，觉得可能比较简单，然后比较容易吧，于是乎建议我看看有没有自己写的那种项目进行漏洞设计，这个就是全新未开源的代码审计加上漏洞利用了，感觉上很有搞头。但是由于是新生赛，我这也就还剩一道题，得搞道送分签到题，有意思一点，这个思路等以后有机会再去实现吧。
+</code></pre><pre tabindex="0"><code>这道题是我朋友搞的，我发现我们其实挺有默契的，想法差不多，他也是CMS，而且也是受到了我们之前去打红队的时候遇到的思路的启发诞生出来了这道题，利用前后端校验逻辑问题，修改密码+python沙箱栈帧逃逸
+</code></pre><h2 id="三">三✒️<a href="#%e4%b8%89" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>送分大福利题，主打一个来就有，目的还是希望出的有趣</p>
+</blockquote>
+<pre tabindex="0"><code>收到最近打的一个铸剑杯的启发，感觉可以出一个游戏的送分题，因为我去年实际上也出了个游戏的送分题，不过那个属于游戏的类型，实际上flag就在源码里边，然后只要对base64有点熟悉的人就会很容易在一个js的文件中发现flag，那道题在赛后反馈中有些师傅说玩的挺开心的，于是今年我又来整一个游戏题吧，也是送分，算是延续自己的初心，哈哈哈。于是我就想着出个什么游戏，去逛逛老牌4399游戏，发现黄金矿工确实很经典，本身自己从小到大就很喜欢玩游戏，哈哈
+</code></pre><h2 id="四">四✒️<a href="#%e5%9b%9b" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>php反序列化的pop链板子题，这个是最早出出来的，对于新手想秒还是不太容易</p>
+</blockquote>
+<h2 id="五">五✒️<a href="#%e4%ba%94" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>出了个简单题，毕竟是新生赛性质，一个简单抓包越权+jwt伪造</p>
+<p>背景虽然给的也是游戏，但是这个跟游戏没什么关系，就是打着游戏的背景进行一个web基础题的出题。</p>
+</blockquote>
+<p>✌✌✌</p>
+<h2 id="结语">结语🚩<a href="#%e7%bb%93%e8%af%ad" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<pre tabindex="0"><code>  说实话换到去年我可能没怎么能有想法和干劲，哈哈，一是实力不够，二是这是我最后一次为咱们出题了，明年真的不好说了，还是想多留下点东西，虽然没什么好成绩留下给战队，其中自己的原因更大吧，迷茫使然，现在我清晰了，但是却失去了最好的时间。把战队的比赛官网在AI的帮助下重做了一下，尽一点绵薄之力。然后把尽心的把新生和小登们引导进来，web手可是不能缺少的部分，未来是他们的，我的下一站需要一年的磨砺了，以后继续当赛棍，哈哈哈哈。接触安全包括中途摆烂很久的那段时间也就一年多，差不多两年不到。受益匪浅，成长可谓巨大。
+  我该去走我自己的下一段路了，这里立一个flag，待我凯旋，重新好好专研一下，继续ctf，然后学习渗透。
+  而且这个hugo搭建的博客还有一些问题需要花时间去补充，比如友链，标签不支持中文,about页面（关于自己）等等... 等我忙完这个人生最重要的事情之一，利用ai去把这个学习，整一整
+</code></pre>
     </div>
 
     
@@ -2219,7 +2453,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
+        href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2234,7 +2468,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;title=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
+        href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F&amp;title=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0"
         target="_blank"
         rel="noreferrer"
       >
@@ -2249,7 +2483,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://x.com/intent/post?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;text=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
+        href="https://x.com/intent/post?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F&amp;text=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0"
         target="_blank"
         rel="noreferrer"
       >
@@ -2264,7 +2498,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2279,7 +2513,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="whatsapp://send/?text=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98%20http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
+        href="whatsapp://send/?text=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0%20http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2294,7 +2528,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;title=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98&amp;caption=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F&amp;title=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0&amp;caption=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0"
         target="_blank"
         rel="noreferrer"
       >
@@ -2309,7 +2543,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
+        href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2324,7 +2558,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://news.ycombinator.com/submitlink?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;t=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
+        href="https://news.ycombinator.com/submitlink?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F&amp;t=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0"
         target="_blank"
         rel="noreferrer"
       >
@@ -2339,7 +2573,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="http://vk.com/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;title=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98&amp;comment=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
+        href="http://vk.com/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F&amp;title=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0&amp;comment=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0"
         target="_blank"
         rel="noreferrer"
       >
@@ -2354,7 +2588,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://www.xing.com/spi/shares/new?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
+        href="https://www.xing.com/spi/shares/new?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2369,7 +2603,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="https://telegram.me/share/url?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F&amp;text=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98"
+        href="https://telegram.me/share/url?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F&amp;text=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0"
         target="_blank"
         rel="noreferrer"
       >
@@ -2384,7 +2618,7 @@ aside.toc ul {
       
       <a
         class="social-share__item"
-        href="mailto:?subject=%E5%85%B3%E4%BA%8Ephp%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0%E5%92%8C%E8%A7%A3%E6%9E%90%E7%9A%84tmp%E7%9B%AE%E5%BD%95%E4%BD%9C%E7%94%A8%E5%8F%8A%E9%97%AE%E9%A2%98&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2585%25B3%25E4%25BA%258Ephp%25E6%2596%2587%25E4%25BB%25B6%25E4%25B8%258A%25E4%25BC%25A0%25E5%2592%258C%25E8%25A7%25A3%25E6%259E%2590%25E7%259A%2584tmp%25E7%259B%25AE%25E5%25BD%2595%25E4%25BD%259C%25E7%2594%25A8%25E5%258F%258A%25E9%2597%25AE%25E9%25A2%2598%2F"
+        href="mailto:?subject=%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fblog%2F%25E5%2587%25BA%25E9%25A2%2598%25E5%25B0%258F%25E8%25AE%25B0%2F"
         target="_blank"
         rel="noreferrer"
       >
@@ -2429,11 +2663,20 @@ aside.toc ul {
           <p class="sidebar__heading">Table Of Contents</p>
           <nav id="TableOfContents">
   <ul>
-    <li>
+    <li><a href="#开篇">开篇📜📜📜</a></li>
+    <li><a href="#一">一✒️</a>
       <ul>
-        <li><a href="#关于php文件上传和解析的tmp目录作用及问题">关于php文件上传和解析的tmp目录作用及问题</a></li>
+        <li><a href="#网络命令进行整理">网络命令进行整理</a></li>
+        <li><a href="#输出到监听端口">输出到监听端口</a></li>
+        <li><a href="#监听">监听</a></li>
+        <li><a href="#-测试全流程示例">🧪 测试全流程示例</a></li>
       </ul>
     </li>
+    <li><a href="#二">二✒️</a></li>
+    <li><a href="#三">三✒️</a></li>
+    <li><a href="#四">四✒️</a></li>
+    <li><a href="#五">五✒️</a></li>
+    <li><a href="#结语">结语🚩</a></li>
   </ul>
 </nav>
         </nav>
@@ -2694,10 +2937,10 @@ aside.toc ul {
       
       
       <a
-        href="/tags/%E5%AE%9E%E8%B7%B5"
+        href="/tags/practice"
         style="font-size:0.8rem"
         class="tag-cloud__tag"
-        >实践</a
+        >practice</a
       >
     
   </div>

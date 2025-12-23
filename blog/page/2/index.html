@@ -88,8 +88,8 @@
 
   <meta itemprop="name" content="Blog">
   <meta itemprop="description" content="Check out my latest blog posts below. 👇">
-  <meta itemprop="datePublished" content="2025-06-05T22:00:04+08:00">
-  <meta itemprop="dateModified" content="2025-06-05T22:00:04+08:00">
+  <meta itemprop="datePublished" content="2025-10-29T15:35:00+08:00">
+  <meta itemprop="dateModified" content="2025-10-29T15:35:00+08:00">
   <meta itemprop="wordCount" content="8">
 
 
@@ -1956,6 +1956,219 @@ aside.toc ul {
   <article class="post">
     <div class="post-header">
       <h2>
+        <a href="/blog/java_base/">Java Base</a>
+      </h2>
+      <div class="post-meta"><span>2024-11-17</span>
+    <div class="post-tags">
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/java_base">java_base</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/java_base/tianqi_hu14614646162389604959.webp 300w,/blog/java_base/tianqi_hu1220691003197479028.webp 500w,/blog/java_base/tianqi_hu13138204193734874843.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/java_base/tianqi.png"
+        srcset="/blog/java_base/tianqi_hu15652377758934521664.png 300w,/blog/java_base/tianqi_hu2355889855711734465.png 500w,/blog/java_base/tianqi_hu17797375527159893925.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="1024"
+        height="576"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <h2 id="java文件结构快速了解">java文件结构快速了解<a href="#java%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84%e5%bf%ab%e9%80%9f%e4%ba%86%e8%a7%a3" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="java-文件的基本结构">Java 文件的基本结构<a href="#java-%e6%96%87%e4%bb%b6%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>一个简单的Java文件通常包含以下几个部分：</p>
+<ol>
+<li>
+<p><strong>包声明</strong>：</p>
+<ul>
+<li>每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。</li>
+<li>示例：<code>package com.example;</code></li>
+</ul>
+</li>
+<li>
+<p><strong>导入语句</strong>：</p>
+<ul>
+<li>导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。</li>
+<li>示例：<code>import java.util.ArrayList;</code></li>
+</ul>
+</li>
+<li>
+<p><strong>类声明</strong>：</p>
+<ul>
+<li>
+<p>类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorld</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 类体</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>构造方法</strong>：</p>
+<ul>
+<li>
+<p>构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">HelloWorld</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化代码</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>属性（成员变量）</strong>：</p>
+<ul>
+<li>
+<p>属性是类中存储数据的变量。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String name;
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>方法</strong>：</p>
+<ul>
+<li>
+<p>方法是执行特定任务的代码块。</p>
+</li>
+<li>
+<p>示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span>() {
+</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+<li>
+<p><strong>主方法（main方法）</strong>：</p>
+<ul>
+<li>
+<p>主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。</p>
+</li>
+<li>
+<p>示例：</p>
+<p>java深色版本</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
+</span></span><span style="display:flex;"><span>    HelloWorld hello <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HelloWorld();
+</span></span><span style="display:flex;"><span>    hello.<span style="color:#a6e22e">sayHello</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h3 id="示例代码">示例代码<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>以下是一个完整的Java文件示例，结合了上述各个部分：</p>
+        
+          <div class="post-content__read-more">
+            <a href="/blog/java_base/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-header">
+      <h2>
         <a href="/blog/hello/">Hello</a>
       </h2>
       <div class="post-meta"><span>2024-11-16</span>
@@ -2262,7 +2475,7 @@ aside.toc ul {
       
       <a
         href="/tags/blog"
-        style="font-size:1.952303081346953rem"
+        style="font-size:1.9579808551776126rem"
         class="tag-cloud__tag"
         >blog</a
       >
@@ -2272,7 +2485,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-misc"
-        style="font-size:1.3497882919895914rem"
+        style="font-size:1.3305369304372885rem"
         class="tag-cloud__tag"
         >ctf-misc</a
       >
@@ -2312,7 +2525,7 @@ aside.toc ul {
       
       <a
         href="/tags/java-application-programming"
-        style="font-size:1.1468777915814654rem"
+        style="font-size:1.1347315347813558rem"
         class="tag-cloud__tag"
         >java application programming</a
       >
@@ -2335,6 +2548,16 @@ aside.toc ul {
         style="font-size:0.8rem"
         class="tag-cloud__tag"
         >php</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/practice"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >practice</a
       >
     
   </div>
