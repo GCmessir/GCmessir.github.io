@@ -87,8 +87,8 @@
 
   <meta itemprop="name" content="Blog">
   <meta itemprop="description" content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.">
-  <meta itemprop="datePublished" content="2025-10-29T15:35:00+08:00">
-  <meta itemprop="dateModified" content="2025-10-29T15:35:00+08:00">
+  <meta itemprop="datePublished" content="2025-12-31T18:35:00+08:00">
+  <meta itemprop="dateModified" content="2025-12-31T18:35:00+08:00">
 
 
 
@@ -1943,11 +1943,213 @@ aside.toc ul {
       <main>
         <div class="content">
           
-  <div class="content-section">
-    <h1>Blog</h1>
-    
-  </div>
+<div class="content-section">
+  <h1>Blog</h1>
   
+  
+  
+    
+    
+    
+  <article class="post">
+    <div class="post-header">
+      <h2>
+        <a href="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/">Java常用类库</a>
+      </h2>
+      <div class="post-meta"><span>2024-11-20</span>
+    <div class="post-tags">
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/java-application-programming">java&#8209;application&#8209;programming</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu11387229181239917172.webp 300w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu1033959072380204644.webp 500w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu17364754635159706089.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p.jpg"
+        srcset="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu9105139214722916338.jpg 300w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu4536757057634326593.jpg 500w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu4875381675648750973.jpg 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="2872"
+        height="1616"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <h2 id="stringbuffer类">StringBuffer类<a href="#stringbuffer%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h4 id="string和stringbuffer的区别">String和StringBuffer的区别<a href="#string%e5%92%8cstringbuffer%e7%9a%84%e5%8c%ba%e5%88%ab" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p><strong>String</strong></p>
+<ul>
+<li><strong>不可变性</strong>：<code>String</code> 类是不可变的，这意味着一旦创建了一个 <code>String</code> 对象，其值就不能改变。每次对 <code>String</code> 进行修改（如连接、替换等操作）都会产生新的 <code>String</code> 对象，原来的对象不会被改变。</li>
+<li><strong>线程安全性</strong>：由于 <code>String</code> 的不可变性，它是线程安全的，可以被多个线程共享而无需担心数据一致性的问题。</li>
+<li><strong>性能</strong>：因为每次修改都会创建新的对象，所以在频繁进行字符串操作时，<code>String</code> 的效率较低。</li>
+</ul>
+<p><strong>StringBuffer</strong></p>
+<ul>
+<li><strong>可变性</strong>：<code>StringBuffer</code> 是一个可变的字符序列，可以被多次修改而不创建新的对象。这意味着如果需要对字符串进行大量的修改操作，使用 <code>StringBuffer</code> 比使用 <code>String</code> 更加高效。</li>
+<li><strong>线程安全性</strong>：<code>StringBuffer</code> 是线程安全的。它的方法都是同步的（即加了 <code>synchronized</code> 关键字），这使得 <code>StringBuffer</code> 可以在多线程环境中安全地使用，但是也导致了它的性能相比非线程安全的 <code>StringBuilder</code> 要差一些。</li>
+<li><strong>性能</strong>：当需要在一个单线程环境下进行大量字符串操作时，<code>StringBuffer</code> 仍然不是最优选择，因为它的线程安全特性会带来额外的开销。在这种情况下，应该考虑使用 <code>StringBuilder</code>。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li><strong>使用 <code>String</code></strong>：当你不需要修改字符串内容时，或者修改次数非常少的时候，使用 <code>String</code> 是合适的。此外，<code>String</code> 的不可变性和线程安全性使其成为多线程环境中的首选。</li>
+<li><strong>使用 <code>StringBuffer</code></strong>：如果你的应用程序需要在多线程环境中频繁地修改字符串，那么 <code>StringBuffer</code> 是一个很好的选择，因为它提供了线程安全的操作。</li>
+<li><strong>使用 <code>StringBuilder</code></strong>：对于单线程环境下的频繁字符串操作，推荐使用 <code>StringBuilder</code>，因为它比 <code>StringBuffer</code> 性能更高，同时又保持了可变性的优点。</li>
+</ul>
+<h4 id="stringbuffer介绍">StringBuffer介绍<a href="#stringbuffer%e4%bb%8b%e7%bb%8d" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<blockquote>
+<p>String类自身有一个最大的缺陷：内容一旦声明则不可改变，JDK为了方便用户修改字符串内容提供了StringBuffer类</p>
+</blockquote>
+<blockquote>
+<p>StringBuffer类不像String类那样可以直接通过声明字符串常量方式进行实例化，而是必须像普通类对象使用一样，首先通过构造方法进行对象实例化，而后才可以调用方法进行处理。</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public StringBuffer()</td>
+          <td>构造</td>
+          <td>创建一个空的StringBuffer对象</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public StringBuffer(String str)</td>
+          <td>构造</td>
+          <td>将接受到的String内容变为StringBuffer内容</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public StringBuffer append(数据类型 变量)</td>
+          <td>普通</td>
+          <td>内容连接，等价于String中：”+”操作</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public StringBuffer insert(int offset,数据类型 变量)</td>
+          <td>普通</td>
+          <td>在指定索引位置处插入数据</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public StringBuffer delete(int start,int end)</td>
+          <td>普通</td>
+          <td>删除指定索引范围之内的数据</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>public StringBuffer reverse()</td>
+          <td>普通</td>
+          <td>内容反转</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>示例</p>
+        
+          <div class="post-content__read-more">
+            <a href="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
   <article class="post">
     <div class="post-header">
       <h2>
@@ -2175,6 +2377,266 @@ aside.toc ul {
 </div>
 
 
+  
+</div>
+
+<style>
+ 
+.categories-overview {
+  margin-top: 2rem;
+}
+
+.category-overview-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-overview-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.category-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .category-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.category-name {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.category-name::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.category-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.category-name a:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 8px rgba(251, 184, 41, 0.4);
+}
+
+.category-name a:hover::before {
+  content: '» ';
+  opacity: 0.8;
+}
+
+.recent-posts {
+  margin-top: 1rem;
+}
+
+.recent-posts h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.recent-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.recent-posts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recent-posts li:last-child {
+  border-bottom: none;
+}
+
+.recent-posts a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.recent-posts a:hover {
+  color: var(--accent-color);
+}
+
+.post-date {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.view-all {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+ 
+.category-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-item strong {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.article-quick-list {
+  margin-top: 2rem;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.article-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .article-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.article-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.article-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  color: var(--accent-color);
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.tag {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.article-description {
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.read-more {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+</style>
 
         </div>
         <div class="sidebar">
@@ -2353,7 +2815,7 @@ aside.toc ul {
       
       <a
         href="/tags/blog"
-        style="font-size:1.9579808551776126rem"
+        style="font-size:1.9625523798632412rem"
         class="tag-cloud__tag"
         >blog</a
       >
@@ -2363,7 +2825,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-misc"
-        style="font-size:1.3305369304372885rem"
+        style="font-size:1.3139808092376737rem"
         class="tag-cloud__tag"
         >ctf-misc</a
       >
@@ -2373,7 +2835,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-web"
-        style="font-size:0.8rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >ctf-web</a
       >
@@ -2403,7 +2865,7 @@ aside.toc ul {
       
       <a
         href="/tags/java-application-programming"
-        style="font-size:1.1347315347813558rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >java application programming</a
       >

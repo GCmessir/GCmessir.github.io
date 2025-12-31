@@ -98,8 +98,8 @@ I am delighted to meet you all here on my blog, where I will share what I have l
   <meta itemprop="name" content="Glad to meet with you!">
   <meta itemprop="description" content="很高兴可以在博客与未曾谋面的大家相遇，在这里我将分享我的日常所学和思考，后续有时间机会将会完善博客功能，与大家交流，共同进步。
 I am delighted to meet you all here on my blog, where I will share what I have learned and thought about on a daily basis. In the future, I will improve the functionality of my blog and communicate with you to promote mutual progress.🤓🥳">
-  <meta itemprop="datePublished" content="2025-10-29T15:35:00+08:00">
-  <meta itemprop="dateModified" content="2025-10-29T15:35:00+08:00">
+  <meta itemprop="datePublished" content="2025-12-31T18:35:00+08:00">
+  <meta itemprop="dateModified" content="2025-12-31T18:35:00+08:00">
   <meta itemprop="wordCount" content="46">
 
 
@@ -1970,6 +1970,205 @@ aside.toc ul {
   <article class="post">
     <div class="post-header">
       <h2>
+        <a href="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/">Java常用类库</a>
+      </h2>
+      <div class="post-meta"><span>2024-11-20</span>
+    <div class="post-tags">
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/java-application-programming">java&#8209;application&#8209;programming</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu11387229181239917172.webp 300w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu1033959072380204644.webp 500w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu17364754635159706089.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p.jpg"
+        srcset="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu9105139214722916338.jpg 300w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu4536757057634326593.jpg 500w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu4875381675648750973.jpg 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="2872"
+        height="1616"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <h2 id="stringbuffer类">StringBuffer类<a href="#stringbuffer%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<h4 id="string和stringbuffer的区别">String和StringBuffer的区别<a href="#string%e5%92%8cstringbuffer%e7%9a%84%e5%8c%ba%e5%88%ab" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<p><strong>String</strong></p>
+<ul>
+<li><strong>不可变性</strong>：<code>String</code> 类是不可变的，这意味着一旦创建了一个 <code>String</code> 对象，其值就不能改变。每次对 <code>String</code> 进行修改（如连接、替换等操作）都会产生新的 <code>String</code> 对象，原来的对象不会被改变。</li>
+<li><strong>线程安全性</strong>：由于 <code>String</code> 的不可变性，它是线程安全的，可以被多个线程共享而无需担心数据一致性的问题。</li>
+<li><strong>性能</strong>：因为每次修改都会创建新的对象，所以在频繁进行字符串操作时，<code>String</code> 的效率较低。</li>
+</ul>
+<p><strong>StringBuffer</strong></p>
+<ul>
+<li><strong>可变性</strong>：<code>StringBuffer</code> 是一个可变的字符序列，可以被多次修改而不创建新的对象。这意味着如果需要对字符串进行大量的修改操作，使用 <code>StringBuffer</code> 比使用 <code>String</code> 更加高效。</li>
+<li><strong>线程安全性</strong>：<code>StringBuffer</code> 是线程安全的。它的方法都是同步的（即加了 <code>synchronized</code> 关键字），这使得 <code>StringBuffer</code> 可以在多线程环境中安全地使用，但是也导致了它的性能相比非线程安全的 <code>StringBuilder</code> 要差一些。</li>
+<li><strong>性能</strong>：当需要在一个单线程环境下进行大量字符串操作时，<code>StringBuffer</code> 仍然不是最优选择，因为它的线程安全特性会带来额外的开销。在这种情况下，应该考虑使用 <code>StringBuilder</code>。</li>
+</ul>
+<p><strong>使用场景</strong></p>
+<ul>
+<li><strong>使用 <code>String</code></strong>：当你不需要修改字符串内容时，或者修改次数非常少的时候，使用 <code>String</code> 是合适的。此外，<code>String</code> 的不可变性和线程安全性使其成为多线程环境中的首选。</li>
+<li><strong>使用 <code>StringBuffer</code></strong>：如果你的应用程序需要在多线程环境中频繁地修改字符串，那么 <code>StringBuffer</code> 是一个很好的选择，因为它提供了线程安全的操作。</li>
+<li><strong>使用 <code>StringBuilder</code></strong>：对于单线程环境下的频繁字符串操作，推荐使用 <code>StringBuilder</code>，因为它比 <code>StringBuffer</code> 性能更高，同时又保持了可变性的优点。</li>
+</ul>
+<h4 id="stringbuffer介绍">StringBuffer介绍<a href="#stringbuffer%e4%bb%8b%e7%bb%8d" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<blockquote>
+<p>String类自身有一个最大的缺陷：内容一旦声明则不可改变，JDK为了方便用户修改字符串内容提供了StringBuffer类</p>
+</blockquote>
+<blockquote>
+<p>StringBuffer类不像String类那样可以直接通过声明字符串常量方式进行实例化，而是必须像普通类对象使用一样，首先通过构造方法进行对象实例化，而后才可以调用方法进行处理。</p>
+</blockquote>
+<table>
+  <thead>
+      <tr>
+          <th>No.</th>
+          <th>方法</th>
+          <th>类型</th>
+          <th>描述</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td>1</td>
+          <td>public StringBuffer()</td>
+          <td>构造</td>
+          <td>创建一个空的StringBuffer对象</td>
+      </tr>
+      <tr>
+          <td>2</td>
+          <td>public StringBuffer(String str)</td>
+          <td>构造</td>
+          <td>将接受到的String内容变为StringBuffer内容</td>
+      </tr>
+      <tr>
+          <td>3</td>
+          <td>public StringBuffer append(数据类型 变量)</td>
+          <td>普通</td>
+          <td>内容连接，等价于String中：”+”操作</td>
+      </tr>
+      <tr>
+          <td>4</td>
+          <td>public StringBuffer insert(int offset,数据类型 变量)</td>
+          <td>普通</td>
+          <td>在指定索引位置处插入数据</td>
+      </tr>
+      <tr>
+          <td>5</td>
+          <td>public StringBuffer delete(int start,int end)</td>
+          <td>普通</td>
+          <td>删除指定索引范围之内的数据</td>
+      </tr>
+      <tr>
+          <td>6</td>
+          <td>public StringBuffer reverse()</td>
+          <td>普通</td>
+          <td>内容反转</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p>示例</p>
+        
+          <div class="post-content__read-more">
+            <a href="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-header">
+      <h2>
         <a href="/blog/java_base/">Java Base</a>
       </h2>
       <div class="post-meta"><span>2024-11-17</span>
@@ -2267,7 +2466,7 @@ aside.toc ul {
         sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
         alt=""
         
-        
+        loading="lazy"
         width="1920"
         height="1024"
       />
@@ -2489,7 +2688,7 @@ aside.toc ul {
       
       <a
         href="/tags/blog"
-        style="font-size:1.9579808551776126rem"
+        style="font-size:1.9625523798632412rem"
         class="tag-cloud__tag"
         >blog</a
       >
@@ -2499,7 +2698,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-misc"
-        style="font-size:1.3305369304372885rem"
+        style="font-size:1.3139808092376737rem"
         class="tag-cloud__tag"
         >ctf-misc</a
       >
@@ -2509,7 +2708,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-web"
-        style="font-size:0.8rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >ctf-web</a
       >
@@ -2539,7 +2738,7 @@ aside.toc ul {
       
       <a
         href="/tags/java-application-programming"
-        style="font-size:1.1347315347813558rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >java application programming</a
       >

@@ -1943,205 +1943,318 @@ aside.toc ul {
       <main>
         <div class="content">
           
-  <div class="content-section">
-    <h1>Deploy</h1>
-    
-  </div>
-  
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/">docker容器部署简单php和nginx相关目录</a>
-      </h2>
-      <div class="post-meta"><span>2025-06-03</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/deploy">deploy</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
+<div class="content-section">
+  <h1>Deploy</h1>
   
   
   
-  
-  
-  
-    
-    
-    
     
     
     
       
-    
-    
-
-    
-    
-    
-    
+      <div class="category-info">
+        <div class="category-stats">
+          <span class="stat-item">
+            <strong>1</strong> 篇文章
+          </span>
+          
+          <span class="stat-item">
+            最近更新: 2025-06-03
+          </span>
+          
+        </div>
+      </div>
       
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
       
-    
-      
-    
-      
-    
-      
-        
+      <div class="article-quick-list">
+        <h2>文章列表</h2>
+        <div class="articles-grid">
           
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/bebg4_hu16565669560509735285.webp 300w,/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/bebg4_hu15587944937192869790.webp 414w"
-        sizes="(max-width: 499px) 300px,414px"
-      />
-      <img
-        src="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/bebg4.jpg"
-        srcset="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/bebg4_hu6587108999962942795.jpg 300w,/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/bebg4_hu10649648574418703806.jpg 414w"
-        sizes="(max-width: 499px) 300px,414px"
-        alt=""
-        
-        
-        width="414"
-        height="234"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <h2 id="docker容器部署简单php和nginx相关目录">docker容器部署简单php和nginx相关目录<a href="#docker%e5%ae%b9%e5%99%a8%e9%83%a8%e7%bd%b2%e7%ae%80%e5%8d%95php%e5%92%8cnginx%e7%9b%b8%e5%85%b3%e7%9b%ae%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<p>在 Docker 容器中，目录结构的设计通常取决于基础镜像以及应用程序的需求。不过，有一些常见的目录和文件是许多容器都会用到的。以下是这些常见目录及其功能的概述：</p>
-<h3 id="常见目录结构">常见目录结构<a href="#%e5%b8%b8%e8%a7%81%e7%9b%ae%e5%bd%95%e7%bb%93%e6%9e%84" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<ol>
-<li>
-<p><strong><code>/var/www/html</code> 或 <code>/usr/share/nginx/html</code></strong></p>
-<ul>
-<li><strong>用途</strong>: 用于存放 Web 应用程序的静态资源（如 HTML 文件、CSS、JavaScript 和图片等）。</li>
-<li><strong>示例</strong>: 在基于 Nginx 的容器中，静态网站内容通常放在 <code>/usr/share/nginx/html</code> 下；而对于 PHP 应用，可能会映射到 <code>/var/www/html</code>。</li>
-</ul>
-</li>
-<li>
-<p><strong><code>/etc/nginx</code></strong></p>
-<ul>
-<li>
-<p><strong>用途</strong>: 存储 Nginx 的配置文件。</p>
-</li>
-<li>
-<p>子目录与文件：</p>
-<ul>
-<li><code>nginx.conf</code>: 主配置文件，定义了 Nginx 的全局设置。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><code>conf.d/</code>: 包含额外的配置文件，通常是针对不同站点或服务的配置片段。
-<ul>
-<li><code>sites-available/</code> 和 <code>sites-enabled/</code>: 类似于 Apache 的配置管理方式，前者存储所有可用的站点配置，后者通过符号链接指向启用的站点配置。</li>
-</ul>
-</li>
-</ul>
-<ol start="3">
-<li>
-<p><strong><code>/etc/php</code> 或 <code>/usr/local/etc/php</code></strong></p>
-<ul>
-<li>
-<p><strong>用途</strong>: 存储 PHP 的配置文件。</p>
-</li>
-<li>
-<p>子目录与文件：</p>
-<ul>
-<li><code>php.ini</code>: PHP 的主要配置文件，控制 PHP 的运行时行为。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><code>conf.d/</code>: 包含其他 PHP 扩展的配置文件。</li>
-</ul>
-<ol start="4">
-<li>
-<p><strong><code>/var/log/nginx</code> 或 <code>/var/log/php-fpm</code></strong></p>
-<ul>
-<li>
-<p><strong>用途</strong>: 存储日志文件。</p>
-</li>
-<li>
-<p>示例：</p>
-<ul>
-<li><code>access.log</code>: 记录所有的访问请求。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ol>
-<ul>
-<li><code>error.log</code>: 记录错误信息。</li>
-</ul>
-<ol start="5">
-<li>
-<p><strong><code>/usr/src</code> 或 <code>/opt</code></strong></p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/">Read more &gt;</a>
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/">docker容器部署简单php和nginx相关目录</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2025-06-03</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">Deploy</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">docker容器部署简单php和nginx相关目录# 在 Docker 容器中，目录结构的设计通常取决于基础镜像以及应用程序的需求。不过，有一些常见的目录和文件是许多容器都会用到的。以下是这些常见目录 …</p>
+            
+            <a href="/blog/docker%E5%AE%B9%E5%99%A8%E9%83%A8%E7%BD%B2%E7%AE%80%E5%8D%95php%E5%92%8Cnginx%E7%9B%B8%E5%85%B3%E7%9B%AE%E5%BD%95/" class="read-more">阅读全文 →</a>
           </div>
-        
-      
-    </div>
-  </article>
-
-
-<div class="pagination">
-  
+          
+        </div>
+      </div>
+    
   
 </div>
 
+<style>
+ 
+.categories-overview {
+  margin-top: 2rem;
+}
 
+.category-overview-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-overview-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.category-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .category-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.category-name {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.category-name::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.category-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.category-name a:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 8px rgba(251, 184, 41, 0.4);
+}
+
+.category-name a:hover::before {
+  content: '» ';
+  opacity: 0.8;
+}
+
+.recent-posts {
+  margin-top: 1rem;
+}
+
+.recent-posts h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.recent-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.recent-posts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recent-posts li:last-child {
+  border-bottom: none;
+}
+
+.recent-posts a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.recent-posts a:hover {
+  color: var(--accent-color);
+}
+
+.post-date {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.view-all {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+ 
+.category-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-item strong {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.article-quick-list {
+  margin-top: 2rem;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.article-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .article-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.article-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.article-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  color: var(--accent-color);
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.tag {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.article-description {
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.read-more {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+</style>
 
         </div>
         <div class="sidebar">
@@ -2320,7 +2433,7 @@ aside.toc ul {
       
       <a
         href="/tags/blog"
-        style="font-size:1.9579808551776126rem"
+        style="font-size:1.9625523798632412rem"
         class="tag-cloud__tag"
         >blog</a
       >
@@ -2330,7 +2443,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-misc"
-        style="font-size:1.3305369304372885rem"
+        style="font-size:1.3139808092376737rem"
         class="tag-cloud__tag"
         >ctf-misc</a
       >
@@ -2340,7 +2453,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-web"
-        style="font-size:0.8rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >ctf-web</a
       >
@@ -2370,7 +2483,7 @@ aside.toc ul {
       
       <a
         href="/tags/java-application-programming"
-        style="font-size:1.1347315347813558rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >java application programming</a
       >
@@ -2399,10 +2512,10 @@ aside.toc ul {
       
       
       <a
-        href="/tags/%E5%AE%9E%E8%B7%B5"
+        href="/tags/practice"
         style="font-size:0.8rem"
         class="tag-cloud__tag"
-        >实践</a
+        >practice</a
       >
     
   </div>

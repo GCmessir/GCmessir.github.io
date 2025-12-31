@@ -87,8 +87,8 @@
 
   <meta itemprop="name" content="Blog">
   <meta itemprop="description" content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.">
-  <meta itemprop="datePublished" content="2025-06-05T22:00:04+08:00">
-  <meta itemprop="dateModified" content="2025-06-05T22:00:04+08:00">
+  <meta itemprop="datePublished" content="2025-12-31T18:35:00+08:00">
+  <meta itemprop="dateModified" content="2025-12-31T18:35:00+08:00">
 
 
 
@@ -1943,11 +1943,334 @@ aside.toc ul {
       <main>
         <div class="content">
           
-  <div class="content-section">
-    <h1>Blog</h1>
-    
-  </div>
+<div class="content-section">
+  <h1>Blog</h1>
   
+  
+  
+    
+    
+    
+  <article class="post">
+    <div class="post-header">
+      <h2>
+        <a href="/blog/2025ciscn%E5%A4%8D%E7%9B%98/">2025ciscn复盘</a>
+      </h2>
+      <div class="post-meta"><span>2025-12-31</span>
+    <div class="post-tags">
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/ctf-web">ctf&#8209;web</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake_hu10744406384547582573.webp 300w,/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake_hu11401213823104058790.webp 500w,/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake_hu16074891980200371505.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake.jpg"
+        srcset="/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake_hu8554817207069340024.jpg 300w,/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake_hu16171131812067014008.jpg 500w,/blog/2025ciscn%E5%A4%8D%E7%9B%98/bridge_lake_hu12308894059631795342.jpg 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="2400"
+        height="1600"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <h1 id="ai-waf">AI-WAF<a href="#ai-waf" class="post-heading__anchor" aria-hidden="true">#</a>
+</h1>
+<blockquote>
+<p>这道题不难，由于我有段时间没有看sql了，当时做题的时候先跑了一下fuzz，发现过滤了很多很多东西，注入不了，由于环境开不了，当时也想到了可能是mysql的新特性，但是没有继续研究，可惜了。</p>
+</blockquote>
+<p>总结一下被过滤的东西，它不区分大小写，select,sleep,having,or,as,and,end.case,union,group,concat,order,where等等。</p>
+<h3 id="table-statement">TABLE statement<a href="#table-statement" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>找了个数据库试了一下</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">select</span> <span style="color:#f92672">*</span> <span style="color:#66d9ef">from</span> movies;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----+-------------------------------------------------------+------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------+---------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">|</span> id <span style="color:#f92672">|</span> title                                                 <span style="color:#f92672">|</span> date       <span style="color:#f92672">|</span> star                                                     <span style="color:#f92672">|</span> img                                                                                                                            <span style="color:#f92672">|</span> wish   <span style="color:#f92672">|</span> created_at          <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----+-------------------------------------------------------+------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------+---------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">|</span> <span style="color:#ae81ff">31</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">咱们结婚吧</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">高圆圆</span>,<span style="color:#960050;background-color:#1e0010">姜武</span>,<span style="color:#960050;background-color:#1e0010">李晨</span>                                         <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mmdb<span style="color:#f92672">/</span>d2dad592b12f2a7e12f0ee28e025fa1e196be.webp<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>thumbnail<span style="color:#f92672">/</span><span style="color:#ae81ff">2500</span>x2500<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>E                           <span style="color:#f92672">|</span>  <span style="color:#ae81ff">53763</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">一只绣花鞋</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">刘超</span>,<span style="color:#960050;background-color:#1e0010">陶德燕</span>,<span style="color:#960050;background-color:#1e0010">王迎奇</span>                                       <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c5beea409c3160dda0672055f58c06.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>  <span style="color:#ae81ff">21886</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">33</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">洛桑的家事</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">金巴</span>,<span style="color:#960050;background-color:#1e0010">加华草</span>,<span style="color:#960050;background-color:#1e0010">扎西</span>                                         <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3349a3d605119bf01e862d9f89854d430d.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>   <span style="color:#ae81ff">1803</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">34</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">鬼灭之刃：无限城篇</span> <span style="color:#960050;background-color:#1e0010">第一章</span> <span style="color:#960050;background-color:#1e0010">猗窝座再袭</span>                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">花江夏树</span>,<span style="color:#960050;background-color:#1e0010">鬼头明里</span>,<span style="color:#960050;background-color:#1e0010">下野纮</span>                                 <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c4ea4a13cbcea40a9c28f600953fb0.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span> <span style="color:#ae81ff">682243</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">35</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">惊天魔盗团</span><span style="color:#ae81ff">3</span>                                           <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">杰西·艾森伯格</span>,<span style="color:#960050;background-color:#1e0010">伍迪·哈里森</span>,<span style="color:#960050;background-color:#1e0010">戴夫·弗兰科</span>                    <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3346ec8b5c28014ea40fa03778d33581ed.jpeg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">313487</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">36</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">寻砖</span>                                                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">张亮</span>,<span style="color:#960050;background-color:#1e0010">鄂靖文</span>,<span style="color:#960050;background-color:#1e0010">刘俊孝</span>                                       <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3346e7f0c8b72a99a13cc1bd1e4fb34de7.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>    <span style="color:#ae81ff">348</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">37</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">三滴血</span>                                                <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">胡歌</span>,<span style="color:#960050;background-color:#1e0010">文淇</span>,<span style="color:#960050;background-color:#1e0010">高子淇</span>                                         <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c5be14d01e84ea98a1029117b73f44.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>  <span style="color:#ae81ff">18726</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">38</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">菜肉馄饨</span>                                              <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">周野芒</span>,<span style="color:#960050;background-color:#1e0010">潘虹</span>,<span style="color:#960050;background-color:#1e0010">茅善玉</span>                                       <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345cbf877e3f6701e8dd4bb320ef8ce12.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>   <span style="color:#ae81ff">7794</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">红豆</span>                                                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">任达华</span>,<span style="color:#960050;background-color:#1e0010">邓丽欣</span>,<span style="color:#960050;background-color:#1e0010">魏浚笙</span>                                     <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>bigdata_mmdb_mmdbtask<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c4ea6e3392a1faefd45763cd8794f3.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>thumbnail<span style="color:#f92672">/</span><span style="color:#ae81ff">2500</span>x2500<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>E <span style="color:#f92672">|</span>    <span style="color:#ae81ff">752</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">40</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">次仁的夏天</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">16</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">巴金旺甲</span>,<span style="color:#960050;background-color:#1e0010">伍金尼玛</span>,<span style="color:#960050;background-color:#1e0010">南措卓玛</span>                               <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c25c77e78b13f67eab8b5610418fc5.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>    <span style="color:#ae81ff">155</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----+-------------------------------------------------------+------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------+---------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">rows</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">00</span> sec)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mysql<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">table</span> movies;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----+-------------------------------------------------------+------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------+---------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">|</span> id <span style="color:#f92672">|</span> title                                                 <span style="color:#f92672">|</span> date       <span style="color:#f92672">|</span> star                                                     <span style="color:#f92672">|</span> img                                                                                                                            <span style="color:#f92672">|</span> wish   <span style="color:#f92672">|</span> created_at          <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----+-------------------------------------------------------+------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------+---------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#f92672">|</span> <span style="color:#ae81ff">31</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">咱们结婚吧</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">高圆圆</span>,<span style="color:#960050;background-color:#1e0010">姜武</span>,<span style="color:#960050;background-color:#1e0010">李晨</span>                                         <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mmdb<span style="color:#f92672">/</span>d2dad592b12f2a7e12f0ee28e025fa1e196be.webp<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>thumbnail<span style="color:#f92672">/</span><span style="color:#ae81ff">2500</span>x2500<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>E                           <span style="color:#f92672">|</span>  <span style="color:#ae81ff">53763</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">32</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">一只绣花鞋</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">刘超</span>,<span style="color:#960050;background-color:#1e0010">陶德燕</span>,<span style="color:#960050;background-color:#1e0010">王迎奇</span>                                       <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c5beea409c3160dda0672055f58c06.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>  <span style="color:#ae81ff">21886</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">33</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">洛桑的家事</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">金巴</span>,<span style="color:#960050;background-color:#1e0010">加华草</span>,<span style="color:#960050;background-color:#1e0010">扎西</span>                                         <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3349a3d605119bf01e862d9f89854d430d.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>   <span style="color:#ae81ff">1803</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">34</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">鬼灭之刃：无限城篇</span> <span style="color:#960050;background-color:#1e0010">第一章</span> <span style="color:#960050;background-color:#1e0010">猗窝座再袭</span>                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">花江夏树</span>,<span style="color:#960050;background-color:#1e0010">鬼头明里</span>,<span style="color:#960050;background-color:#1e0010">下野纮</span>                                 <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c4ea4a13cbcea40a9c28f600953fb0.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span> <span style="color:#ae81ff">682243</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">35</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">惊天魔盗团</span><span style="color:#ae81ff">3</span>                                           <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">杰西·艾森伯格</span>,<span style="color:#960050;background-color:#1e0010">伍迪·哈里森</span>,<span style="color:#960050;background-color:#1e0010">戴夫·弗兰科</span>                    <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3346ec8b5c28014ea40fa03778d33581ed.jpeg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">313487</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">36</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">寻砖</span>                                                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">14</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">张亮</span>,<span style="color:#960050;background-color:#1e0010">鄂靖文</span>,<span style="color:#960050;background-color:#1e0010">刘俊孝</span>                                       <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3346e7f0c8b72a99a13cc1bd1e4fb34de7.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>    <span style="color:#ae81ff">348</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">37</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">三滴血</span>                                                <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">胡歌</span>,<span style="color:#960050;background-color:#1e0010">文淇</span>,<span style="color:#960050;background-color:#1e0010">高子淇</span>                                         <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c5be14d01e84ea98a1029117b73f44.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>  <span style="color:#ae81ff">18726</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">38</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">菜肉馄饨</span>                                              <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">周野芒</span>,<span style="color:#960050;background-color:#1e0010">潘虹</span>,<span style="color:#960050;background-color:#1e0010">茅善玉</span>                                       <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345cbf877e3f6701e8dd4bb320ef8ce12.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>   <span style="color:#ae81ff">7794</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">39</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">红豆</span>                                                  <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">15</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">任达华</span>,<span style="color:#960050;background-color:#1e0010">邓丽欣</span>,<span style="color:#960050;background-color:#1e0010">魏浚笙</span>                                     <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>bigdata_mmdb_mmdbtask<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c4ea6e3392a1faefd45763cd8794f3.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>thumbnail<span style="color:#f92672">/</span><span style="color:#ae81ff">2500</span>x2500<span style="color:#f92672">%</span><span style="color:#ae81ff">3</span>E <span style="color:#f92672">|</span>    <span style="color:#ae81ff">752</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> <span style="color:#ae81ff">40</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">次仁的夏天</span>                                            <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">16</span> <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">巴金旺甲</span>,<span style="color:#960050;background-color:#1e0010">伍金尼玛</span>,<span style="color:#960050;background-color:#1e0010">南措卓玛</span>                               <span style="color:#f92672">|</span> https:<span style="color:#f92672">//</span>p0.pipi.cn<span style="color:#f92672">/</span>mediaplus<span style="color:#f92672">/</span>friday_image_fe<span style="color:#f92672">/</span><span style="color:#ae81ff">0</span>fa3345c25c77e78b13f67eab8b5610418fc5.jpg<span style="color:#f92672">?</span>imageMogr2<span style="color:#f92672">/</span>quality<span style="color:#f92672">/</span><span style="color:#ae81ff">80</span>                   <span style="color:#f92672">|</span>    <span style="color:#ae81ff">155</span> <span style="color:#f92672">|</span> <span style="color:#ae81ff">2025</span><span style="color:#f92672">-</span><span style="color:#ae81ff">11</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span> <span style="color:#ae81ff">16</span>:<span style="color:#ae81ff">25</span>:<span style="color:#ae81ff">54</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">+</span><span style="color:#75715e">----+-------------------------------------------------------+------------+----------------------------------------------------------+--------------------------------------------------------------------------------------------------------------------------------+--------+---------------------+
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#ae81ff">10</span> <span style="color:#66d9ef">rows</span> <span style="color:#66d9ef">in</span> <span style="color:#66d9ef">set</span> (<span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">01</span> sec)
+</span></span></code></pre></div><p>效果一模一样。</p>
+        
+          <div class="post-content__read-more">
+            <a href="/blog/2025ciscn%E5%A4%8D%E7%9B%98/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
+  <article class="post">
+    <div class="post-header">
+      <h2>
+        <a href="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/">出题小记</a>
+      </h2>
+      <div class="post-meta"><span>2025-10-29</span>
+    <div class="post-tags">
+      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/practice">practice</a>
+    </div>
+  
+
+  
+    
+    
+    
+
+
+
+  
+  
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+      
+        
+          
+        
+        
+        
+        
+          
+          
+          
+        
+      
+    
+
+
+    <picture>
+      <source
+        type="image/webp"
+        srcset="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu32492082504527907.webp 300w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu2071601085357944412.webp 500w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu7994927149473207218.webp 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+      />
+      <img
+        src="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black.png"
+        srcset="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu16320864176941436530.png 300w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu8095533745583795684.png 500w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu12697816628675722368.png 700w"
+        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
+        alt=""
+        
+        
+        width="1306"
+        height="736"
+      />
+    </picture>
+  
+
+
+
+
+
+
+  
+</div>
+
+    </div>
+
+    <div class="post-content">
+      
+        <h2 id="开篇">开篇📜📜📜<a href="#%e5%bc%80%e7%af%87" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间</p>
+</blockquote>
+<pre tabindex="0"><code>首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。
+然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。
+</code></pre><h2 id="一">一✒️<a href="#%e4%b8%80" class="post-heading__anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE</p>
+</blockquote>
+<pre tabindex="0"><code>然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。
+好在成功出出来了，没有白费功夫。
+</code></pre><blockquote>
+<p>既然都说到这儿了，下面就对一些网络命令进行整理</p>
+</blockquote>
+<h3 id="网络命令进行整理">网络命令进行整理<a href="#%e7%bd%91%e7%bb%9c%e5%91%bd%e4%bb%a4%e8%bf%9b%e8%a1%8c%e6%95%b4%e7%90%86" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<p>在 Linux 中，测试 <strong>网络是否通</strong>、<strong>目标主机是否可达</strong>、<strong>端口是否开放</strong> 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：</p>
+<hr>
+<h4 id="-1-ping--测试主机是否可达icmp-层">🔹 1. <code>ping</code> —— 测试主机是否可达（ICMP 层）<a href="#-1-ping--%e6%b5%8b%e8%af%95%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%8f%af%e8%be%beicmp-%e5%b1%82" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ping 192.168.1.100
+</span></span></code></pre></div><p>✅ 优点：快速判断目标主机是否在线
+❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 <strong>ping 不通 ≠ 主机宕机</strong></p>
+<hr>
+<h4 id="-2-telnet--测试-tcp-端口是否开放最经典">🔹 2. <code>telnet</code> —— 测试 TCP 端口是否开放（最经典）<a href="#-2-telnet--%e6%b5%8b%e8%af%95-tcp-%e7%ab%af%e5%8f%a3%e6%98%af%e5%90%a6%e5%bc%80%e6%94%be%e6%9c%80%e7%bb%8f%e5%85%b8" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>telnet 192.168.1.100 <span style="color:#ae81ff">4444</span>
+</span></span></code></pre></div><ul>
+<li>如果连接成功（出现空白或提示符）→ ✅ 端口开放</li>
+<li>如果提示 <code>Connection refused</code> → ❌ 端口关闭（服务没开）</li>
+<li>如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了）</li>
+</ul>
+<blockquote>
+<p>💡 安装 telnet（如未安装）：</p>
+        
+          <div class="post-content__read-more">
+            <a href="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/">Read more &gt;</a>
+          </div>
+        
+      
+    </div>
+  </article>
+
   <article class="post">
     <div class="post-header">
       <h2>
@@ -2039,7 +2362,7 @@ aside.toc ul {
         sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
         alt=""
         
-        
+        loading="lazy"
         width="1920"
         height="1080"
       />
@@ -2202,7 +2525,7 @@ aside.toc ul {
         sizes="(max-width: 499px) 300px,414px"
         alt=""
         
-        
+        loading="lazy"
         width="414"
         height="234"
       />
@@ -4061,425 +4384,277 @@ aside.toc ul {
     </div>
   </article>
 
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/">Java常用类库</a>
-      </h2>
-      <div class="post-meta"><span>2024-11-20</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/java-application-programming">java&#8209;application&#8209;programming</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu11387229181239917172.webp 300w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu1033959072380204644.webp 500w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu17364754635159706089.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p.jpg"
-        srcset="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu9105139214722916338.jpg 300w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu4536757057634326593.jpg 500w,/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/p_hu4875381675648750973.jpg 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt=""
-        
-        loading="lazy"
-        width="2872"
-        height="1616"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <h2 id="stringbuffer类">StringBuffer类<a href="#stringbuffer%e7%b1%bb" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<h4 id="string和stringbuffer的区别">String和StringBuffer的区别<a href="#string%e5%92%8cstringbuffer%e7%9a%84%e5%8c%ba%e5%88%ab" class="post-heading__anchor" aria-hidden="true">#</a>
-</h4>
-<p><strong>String</strong></p>
-<ul>
-<li><strong>不可变性</strong>：<code>String</code> 类是不可变的，这意味着一旦创建了一个 <code>String</code> 对象，其值就不能改变。每次对 <code>String</code> 进行修改（如连接、替换等操作）都会产生新的 <code>String</code> 对象，原来的对象不会被改变。</li>
-<li><strong>线程安全性</strong>：由于 <code>String</code> 的不可变性，它是线程安全的，可以被多个线程共享而无需担心数据一致性的问题。</li>
-<li><strong>性能</strong>：因为每次修改都会创建新的对象，所以在频繁进行字符串操作时，<code>String</code> 的效率较低。</li>
-</ul>
-<p><strong>StringBuffer</strong></p>
-<ul>
-<li><strong>可变性</strong>：<code>StringBuffer</code> 是一个可变的字符序列，可以被多次修改而不创建新的对象。这意味着如果需要对字符串进行大量的修改操作，使用 <code>StringBuffer</code> 比使用 <code>String</code> 更加高效。</li>
-<li><strong>线程安全性</strong>：<code>StringBuffer</code> 是线程安全的。它的方法都是同步的（即加了 <code>synchronized</code> 关键字），这使得 <code>StringBuffer</code> 可以在多线程环境中安全地使用，但是也导致了它的性能相比非线程安全的 <code>StringBuilder</code> 要差一些。</li>
-<li><strong>性能</strong>：当需要在一个单线程环境下进行大量字符串操作时，<code>StringBuffer</code> 仍然不是最优选择，因为它的线程安全特性会带来额外的开销。在这种情况下，应该考虑使用 <code>StringBuilder</code>。</li>
-</ul>
-<p><strong>使用场景</strong></p>
-<ul>
-<li><strong>使用 <code>String</code></strong>：当你不需要修改字符串内容时，或者修改次数非常少的时候，使用 <code>String</code> 是合适的。此外，<code>String</code> 的不可变性和线程安全性使其成为多线程环境中的首选。</li>
-<li><strong>使用 <code>StringBuffer</code></strong>：如果你的应用程序需要在多线程环境中频繁地修改字符串，那么 <code>StringBuffer</code> 是一个很好的选择，因为它提供了线程安全的操作。</li>
-<li><strong>使用 <code>StringBuilder</code></strong>：对于单线程环境下的频繁字符串操作，推荐使用 <code>StringBuilder</code>，因为它比 <code>StringBuffer</code> 性能更高，同时又保持了可变性的优点。</li>
-</ul>
-<h4 id="stringbuffer介绍">StringBuffer介绍<a href="#stringbuffer%e4%bb%8b%e7%bb%8d" class="post-heading__anchor" aria-hidden="true">#</a>
-</h4>
-<blockquote>
-<p>String类自身有一个最大的缺陷：内容一旦声明则不可改变，JDK为了方便用户修改字符串内容提供了StringBuffer类</p>
-</blockquote>
-<blockquote>
-<p>StringBuffer类不像String类那样可以直接通过声明字符串常量方式进行实例化，而是必须像普通类对象使用一样，首先通过构造方法进行对象实例化，而后才可以调用方法进行处理。</p>
-</blockquote>
-<table>
-  <thead>
-      <tr>
-          <th>No.</th>
-          <th>方法</th>
-          <th>类型</th>
-          <th>描述</th>
-      </tr>
-  </thead>
-  <tbody>
-      <tr>
-          <td>1</td>
-          <td>public StringBuffer()</td>
-          <td>构造</td>
-          <td>创建一个空的StringBuffer对象</td>
-      </tr>
-      <tr>
-          <td>2</td>
-          <td>public StringBuffer(String str)</td>
-          <td>构造</td>
-          <td>将接受到的String内容变为StringBuffer内容</td>
-      </tr>
-      <tr>
-          <td>3</td>
-          <td>public StringBuffer append(数据类型 变量)</td>
-          <td>普通</td>
-          <td>内容连接，等价于String中：”+”操作</td>
-      </tr>
-      <tr>
-          <td>4</td>
-          <td>public StringBuffer insert(int offset,数据类型 变量)</td>
-          <td>普通</td>
-          <td>在指定索引位置处插入数据</td>
-      </tr>
-      <tr>
-          <td>5</td>
-          <td>public StringBuffer delete(int start,int end)</td>
-          <td>普通</td>
-          <td>删除指定索引范围之内的数据</td>
-      </tr>
-      <tr>
-          <td>6</td>
-          <td>public StringBuffer reverse()</td>
-          <td>普通</td>
-          <td>内容反转</td>
-      </tr>
-  </tbody>
-</table>
-<blockquote>
-<p>示例</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/java%E5%B8%B8%E7%94%A8%E7%B1%BB%E5%BA%93/">Read more &gt;</a>
-          </div>
-        
-      
-    </div>
-  </article>
-
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/java_base/">Java Base</a>
-      </h2>
-      <div class="post-meta"><span>2024-11-17</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/java_base">java_base</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/java_base/tianqi_hu14614646162389604959.webp 300w,/blog/java_base/tianqi_hu1220691003197479028.webp 500w,/blog/java_base/tianqi_hu13138204193734874843.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/java_base/tianqi.png"
-        srcset="/blog/java_base/tianqi_hu15652377758934521664.png 300w,/blog/java_base/tianqi_hu2355889855711734465.png 500w,/blog/java_base/tianqi_hu17797375527159893925.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt=""
-        
-        loading="lazy"
-        width="1024"
-        height="576"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <h2 id="java文件结构快速了解">java文件结构快速了解<a href="#java%e6%96%87%e4%bb%b6%e7%bb%93%e6%9e%84%e5%bf%ab%e9%80%9f%e4%ba%86%e8%a7%a3" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<h3 id="java-文件的基本结构">Java 文件的基本结构<a href="#java-%e6%96%87%e4%bb%b6%e7%9a%84%e5%9f%ba%e6%9c%ac%e7%bb%93%e6%9e%84" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<p>一个简单的Java文件通常包含以下几个部分：</p>
-<ol>
-<li>
-<p><strong>包声明</strong>：</p>
-<ul>
-<li>每个Java源文件都属于某个包。包的作用类似于文件夹，用于组织和分类相关的类。</li>
-<li>示例：<code>package com.example;</code></li>
-</ul>
-</li>
-<li>
-<p><strong>导入语句</strong>：</p>
-<ul>
-<li>导入语句用于引入其他包中的类或接口，这样可以在当前文件中直接使用这些类或接口。</li>
-<li>示例：<code>import java.util.ArrayList;</code></li>
-</ul>
-</li>
-<li>
-<p><strong>类声明</strong>：</p>
-<ul>
-<li>
-<p>类是Java程序的基本构建块。每个类定义了一组属性（变量）和方法（函数）。</p>
-</li>
-<li>
-<p>示例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HelloWorld</span> {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 类体</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-</li>
-<li>
-<p><strong>构造方法</strong>：</p>
-<ul>
-<li>
-<p>构造方法是一种特殊的方法，用于创建类的新实例时初始化对象。</p>
-</li>
-<li>
-<p>示例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#a6e22e">HelloWorld</span>() {
-</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 初始化代码</span>
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-</li>
-<li>
-<p><strong>属性（成员变量）</strong>：</p>
-<ul>
-<li>
-<p>属性是类中存储数据的变量。</p>
-</li>
-<li>
-<p>示例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">private</span> String name;
-</span></span></code></pre></div></li>
-</ul>
-</li>
-<li>
-<p><strong>方法</strong>：</p>
-<ul>
-<li>
-<p>方法是执行特定任务的代码块。</p>
-</li>
-<li>
-<p>示例：</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">sayHello</span>() {
-</span></span><span style="display:flex;"><span>    System.<span style="color:#a6e22e">out</span>.<span style="color:#a6e22e">println</span>(<span style="color:#e6db74">&#34;Hello, World!&#34;</span>);
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-</li>
-<li>
-<p><strong>主方法（main方法）</strong>：</p>
-<ul>
-<li>
-<p>主方法是Java应用程序的入口点。当程序启动时，JVM会寻找并执行这个方法。</p>
-</li>
-<li>
-<p>示例：</p>
-<p>java深色版本</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-java" data-lang="java"><span style="display:flex;"><span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">main</span>(String<span style="color:#f92672">[]</span> args) {
-</span></span><span style="display:flex;"><span>    HelloWorld hello <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> HelloWorld();
-</span></span><span style="display:flex;"><span>    hello.<span style="color:#a6e22e">sayHello</span>();
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div></li>
-</ul>
-</li>
-</ol>
-<h3 id="示例代码">示例代码<a href="#%e7%a4%ba%e4%be%8b%e4%bb%a3%e7%a0%81" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<p>以下是一个完整的Java文件示例，结合了上述各个部分：</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/java_base/">Read more &gt;</a>
-          </div>
-        
-      
-    </div>
-  </article>
-
 
 <div class="pagination">
   
   
+    <span class="pagination__button pagination__button--next">
+      <a href="/tags/blog/page/2/">Older Posts &gt;</a>
+    </span>
+  
 </div>
 
 
+  
+</div>
+
+<style>
+ 
+.categories-overview {
+  margin-top: 2rem;
+}
+
+.category-overview-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-overview-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.category-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .category-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.category-name {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.category-name::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.category-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.category-name a:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 8px rgba(251, 184, 41, 0.4);
+}
+
+.category-name a:hover::before {
+  content: '» ';
+  opacity: 0.8;
+}
+
+.recent-posts {
+  margin-top: 1rem;
+}
+
+.recent-posts h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.recent-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.recent-posts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recent-posts li:last-child {
+  border-bottom: none;
+}
+
+.recent-posts a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.recent-posts a:hover {
+  color: var(--accent-color);
+}
+
+.post-date {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.view-all {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+ 
+.category-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-item strong {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.article-quick-list {
+  margin-top: 2rem;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.article-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .article-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.article-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.article-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  color: var(--accent-color);
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.tag {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.article-description {
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.read-more {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+</style>
 
         </div>
         <div class="sidebar">
@@ -4658,7 +4833,7 @@ aside.toc ul {
       
       <a
         href="/tags/blog"
-        style="font-size:1.952303081346953rem"
+        style="font-size:1.9625523798632412rem"
         class="tag-cloud__tag"
         >blog</a
       >
@@ -4668,7 +4843,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-misc"
-        style="font-size:1.3497882919895914rem"
+        style="font-size:1.3139808092376737rem"
         class="tag-cloud__tag"
         >ctf-misc</a
       >
@@ -4678,7 +4853,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-web"
-        style="font-size:0.8rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >ctf-web</a
       >
@@ -4708,7 +4883,7 @@ aside.toc ul {
       
       <a
         href="/tags/java-application-programming"
-        style="font-size:1.1468777915814654rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >java application programming</a
       >
@@ -4731,6 +4906,16 @@ aside.toc ul {
         style="font-size:0.8rem"
         class="tag-cloud__tag"
         >php</a
+      >
+    
+      
+      
+      
+      <a
+        href="/tags/practice"
+        style="font-size:0.8rem"
+        class="tag-cloud__tag"
+        >practice</a
       >
     
   </div>

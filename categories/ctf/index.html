@@ -87,8 +87,8 @@
 
   <meta itemprop="name" content="CTF">
   <meta itemprop="description" content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.">
-  <meta itemprop="datePublished" content="2025-10-29T15:35:00+08:00">
-  <meta itemprop="dateModified" content="2025-10-29T15:35:00+08:00">
+  <meta itemprop="datePublished" content="2025-12-31T18:35:00+08:00">
+  <meta itemprop="dateModified" content="2025-12-31T18:35:00+08:00">
 
 
 
@@ -1943,1606 +1943,442 @@ aside.toc ul {
       <main>
         <div class="content">
           
-  <div class="content-section">
-    <h1>CTF</h1>
-    
-  </div>
-  
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/">出题小记</a>
-      </h2>
-      <div class="post-meta"><span>2025-10-29</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/%E5%AE%9E%E8%B7%B5">%E5%AE%9E%E8%B7%B5</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
+<div class="content-section">
+  <h1>CTF</h1>
   
   
   
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
     
     
     
       
-        
+      <div class="category-info">
+        <div class="category-stats">
+          <span class="stat-item">
+            <strong>6</strong> 篇文章
+          </span>
           
+          <span class="stat-item">
+            最近更新: 2025-12-31
+          </span>
           
-        
-        
-        
-        
-          
-          
-          
-        
+        </div>
+      </div>
       
-    
       
-        
+      <div class="article-quick-list">
+        <h2>文章列表</h2>
+        <div class="articles-grid">
           
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu32492082504527907.webp 300w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu2071601085357944412.webp 500w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu7994927149473207218.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black.png"
-        srcset="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu16320864176941436530.png 300w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu8095533745583795684.png 500w,/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/cat_black_hu12697816628675722368.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt=""
-        
-        
-        width="1306"
-        height="736"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <h2 id="开篇">开篇📜📜📜<a href="#%e5%bc%80%e7%af%87" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<blockquote>
-<p>迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方案。不过依旧因为自己的粗心和大意容易浪费时间</p>
-</blockquote>
-<pre tabindex="0"><code>首先就是前一两天测好的东西，然后再看就打不通了，有时候人真的会无语，哈哈。然后就捯饬捯饬，重新又搞了一遍。发现心态也越来越好了，哈哈，以前搞不好还会有点热，当然现在也会有点热。
-然后就是写了个重复的代码，然后一直测试测试，因为忘记打开报错了，就啥也没显示，我以为打开了，反反复复就是不是想要的效果，所以吃一堑长一智。
-</code></pre><h2 id="一">一✒️<a href="#%e4%b8%80" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<blockquote>
-<p>准备第一次出java语言的漏洞题目，其实也就是个log4j的CVE</p>
-</blockquote>
-<pre tabindex="0"><code>然后也是一个星期左右吧，在AI的帮助下其实实现起来轻松很多。这里其实最令我无语的是还是环境的问题，这个题目的出题经历让我认识到了，在需要多服务和网络跨来跨去的时候，一定要先确定网络是否能通，端口是否正常。我这里涉及到一个端口问题，这个问题让我百思不得其解然后折磨了一整个下午。我基本上把所有问题排除了，但是这个题目还是没有达到我想要的回显效果，我监听了4444端口，起的http服务下的资源也转发下载成功了，然后docker中的配置和java版本等等，pom.xml等等确定了无数次，反反复复得docker-compose up -d到docker-compose down，然后docker rmi ID 得十几次，就是不停换不停测，就是不行。然后我想是不是端口问题，然后echo了一个语句到4444没有反应，然后又起了一个4445监听，同样echo一个语句有反应，这时我立马就傻了。。。无语死了，随后换成了4445端口，就回显了有了反应，不知道为什么，并不是什么安全组问题，端口都是开放的。算是吃一堑长一智吧。
-好在成功出出来了，没有白费功夫。
-</code></pre><blockquote>
-<p>既然都说到这儿了，下面就对一些网络命令进行整理</p>
-</blockquote>
-<h3 id="网络命令进行整理">网络命令进行整理<a href="#%e7%bd%91%e7%bb%9c%e5%91%bd%e4%bb%a4%e8%bf%9b%e8%a1%8c%e6%95%b4%e7%90%86" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<p>在 Linux 中，测试 <strong>网络是否通</strong>、<strong>目标主机是否可达</strong>、<strong>端口是否开放</strong> 是日常运维和渗透测试中的常见操作。以下是几个最常用、实用的命令：</p>
-<hr>
-<h4 id="-1-ping--测试主机是否可达icmp-层">🔹 1. <code>ping</code> —— 测试主机是否可达（ICMP 层）<a href="#-1-ping--%e6%b5%8b%e8%af%95%e4%b8%bb%e6%9c%ba%e6%98%af%e5%90%a6%e5%8f%af%e8%be%beicmp-%e5%b1%82" class="post-heading__anchor" aria-hidden="true">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ping 192.168.1.100
-</span></span></code></pre></div><p>✅ 优点：快速判断目标主机是否在线
-❌ 缺点：很多服务器禁 ping（防火墙过滤 ICMP），所以 <strong>ping 不通 ≠ 主机宕机</strong></p>
-<hr>
-<h4 id="-2-telnet--测试-tcp-端口是否开放最经典">🔹 2. <code>telnet</code> —— 测试 TCP 端口是否开放（最经典）<a href="#-2-telnet--%e6%b5%8b%e8%af%95-tcp-%e7%ab%af%e5%8f%a3%e6%98%af%e5%90%a6%e5%bc%80%e6%94%be%e6%9c%80%e7%bb%8f%e5%85%b8" class="post-heading__anchor" aria-hidden="true">#</a>
-</h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>telnet 192.168.1.100 <span style="color:#ae81ff">4444</span>
-</span></span></code></pre></div><ul>
-<li>如果连接成功（出现空白或提示符）→ ✅ 端口开放</li>
-<li>如果提示 <code>Connection refused</code> → ❌ 端口关闭（服务没开）</li>
-<li>如果卡住/超时 → ⚠️ 端口被防火墙过滤（可能开放但屏蔽了）</li>
-</ul>
-<blockquote>
-<p>💡 安装 telnet（如未安装）：</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/">Read more &gt;</a>
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/2025ciscn%E5%A4%8D%E7%9B%98/">2025ciscn复盘</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2025-12-31</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">CTF-Web</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">AI-WAF# 这道题不难，由于我有段时间没有看sql了，当时做题的时候先跑了一下fuzz，发现过滤了很多很多东西，注入不了，由于环境开不了，当时也想到了可能是mysql的新特性，但是没有继续研究，可 …</p>
+            
+            <a href="/blog/2025ciscn%E5%A4%8D%E7%9B%98/" class="read-more">阅读全文 →</a>
           </div>
-        
-      
-    </div>
-  </article>
-
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/2024hectfweb/">2024HECTFweb</a>
-      </h2>
-      <div class="post-meta"><span>2024-12-16</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/ctf-web">ctf&#8209;web</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
           
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024hectfweb/bebg_hu9065409635257778728.webp 300w,/blog/2024hectfweb/bebg_hu1622276915715072607.webp 500w,/blog/2024hectfweb/bebg_hu12733844838215291416.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024hectfweb/bebg.jpg"
-        srcset="/blog/2024hectfweb/bebg_hu8462539530475522748.jpg 300w,/blog/2024hectfweb/bebg_hu8394032078038349116.jpg 500w,/blog/2024hectfweb/bebg_hu3324996320108891004.jpg 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt=""
-        
-        
-        width="1680"
-        height="1050"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <h1 id="2024hectfweb">2024HECTFweb<a href="#2024hectfweb" class="post-heading__anchor" aria-hidden="true">#</a>
-</h1>
-<h2 id="babysql">babysql<a href="#babysql" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<blockquote>
-<p>直接万能密码过</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630_hu7129979628805987394.webp 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630_hu16623659448366792228.webp 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630_hu801815491881403654.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630.png"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630_hu13345525625795529318.png 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630_hu4392563079442751551.png 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124649630_hu13042221095231394094.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241208124649630"
-        
-        loading="lazy"
-        width="1200"
-        height="823"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-<blockquote>
-<p>进入查询后台</p>
-<p>测试发现是盲注，可以使用布尔盲注，这里采用时间盲注</p>
-<p>接下来就是脚本</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291_hu16310235919522741092.webp 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291_hu202512053264655128.webp 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291_hu8119386271814471794.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291.png"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291_hu1708066541185859064.png 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291_hu16113545783487368779.png 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208124958291_hu296809548464660367.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241208124958291"
-        
-        loading="lazy"
-        width="822"
-        height="419"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-<blockquote>
-<p>首先跑一个fuzz字典看有哪儿些东西被过滤了</p>
-<p>可以看到有些重要的东西也被过滤了，像空格,information_schema</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929_hu372131954917275911.webp 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929_hu232870981980390063.webp 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929_hu7369218618061124027.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929.png"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929_hu6355181893279876814.png 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929_hu12999260361634750985.png 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208133152929_hu7966856940146321777.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241208133152929"
-        
-        loading="lazy"
-        width="1275"
-        height="201"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-<blockquote>
-<p>测试</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> requests <span style="color:#f92672">import</span> post
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>base_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;xxx/worker.php&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>payload <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1&#39;/**/or/**/if((select/**/database())like/**/database(),sleep(3),0)#&#34;</span>
-</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;name&#34;</span>:payload}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_time</span>(data):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>:
-</span></span><span style="display:flex;"><span>        res<span style="color:#f92672">=</span>post(base_url, data<span style="color:#f92672">=</span>data,timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#如果没有超时说明失败了</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;failure&#34;</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span>:
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;success&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(check_time(data))
-</span></span></code></pre></div><p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513_hu4180779274746082471.webp 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513_hu17860974523619803728.webp 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513_hu3538534255196413055.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513.png"
-        srcset="/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513_hu11139517299302771596.png 300w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513_hu7595250934671060737.png 500w,/blog/2024hectfweb/2024HECTFweb.assets/image-20241208141019513_hu8570992913003434491.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241208141019513"
-        
-        loading="lazy"
-        width="856"
-        height="233"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/2024hectfweb/">Read more &gt;</a>
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/">出题小记</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2025-10-29</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">practice</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">开篇📜📜📜# 迄今已经是我第二次参与出题，这次跟上次最大的不同就是对环境熟悉多了，对知识也清晰了些，解决问题的能力在ai的辅助下有了质的飞跃，还记得当时查博客，查的网页数都数不过来，还不一定有解决方 …</p>
+            
+            <a href="/blog/%E5%87%BA%E9%A2%98%E5%B0%8F%E8%AE%B0/" class="read-more">阅读全文 →</a>
           </div>
-        
-      
-    </div>
-  </article>
-
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/2024hectfmisc/">2024HECTFmisc</a>
-      </h2>
-      <div class="post-meta"><span>2024-12-13</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/ctf-misc">ctf&#8209;misc</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
           
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/2024hectfweb/">2024HECTFweb</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2024-12-16</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">CTF-Web</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">2024HECTFweb# babysql# 直接万能密码过
+进入查询后台
+测试发现是盲注，可以使用布尔盲注，这里采用时间盲注
+接下来就是脚本
+首先跑一个fuzz字典看有哪儿些东西被过滤了
+可以看到有 …</p>
+            
+            <a href="/blog/2024hectfweb/" class="read-more">阅读全文 →</a>
+          </div>
           
-        
-        
-        
-        
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/2024hectfmisc/">2024HECTFmisc</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2024-12-13</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">CTF-Misc</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">2024HECTFmisc# 恶势力的聊天记录# vol3参考文档
+Volatility 3 — Volatility 3 2.11.0 documentation
+vol3 …</p>
+            
+            <a href="/blog/2024hectfmisc/" class="read-more">阅读全文 →</a>
+          </div>
           
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/">2024强网杯-Misc-Pickle jail</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2024-12-03</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">CTF-Misc</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">2024强网杯-Misc-Pickle jail# 第一次遇到jail类型的题目，而且还是在大赛上，并且还是这么难的情况，努力理解复现吧。
+附件😣😰🥹：# pickle_jail.py …</p>
+            
+            <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/" class="read-more">阅读全文 →</a>
+          </div>
           
+          <div class="article-card">
+            <h3 class="article-title">
+              <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/">2024强网杯—谍影重重5.0</a>
+            </h3>
+            <div class="article-meta">
+              <span class="article-date">2024-11-21</span>
+              
+              <span class="article-tags">
+                
+                <span class="tag">Blog</span>
+                
+                <span class="tag">CTF-Misc</span>
+                
+              </span>
+              
+            </div>
+            
+            <p class="article-description">😉🌃⛅😉
+乍一看，有arp、smb、tls等协议流量
+先过滤出smb2流量看看
+smb协议主要用于在计算机间共享文件、打印机、串口等
+NTLM是一种身份验证机制
+smb2爆破
+Wireshark分 …</p>
+            
+            <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/" class="read-more">阅读全文 →</a>
+          </div>
           
-        
-      
+        </div>
+      </div>
     
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024hectfmisc/jk_hu2053481494412847142.webp 300w,/blog/2024hectfmisc/jk_hu6793141996882245837.webp 500w,/blog/2024hectfmisc/jk_hu2169335617417575160.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024hectfmisc/jk.jpg"
-        srcset="/blog/2024hectfmisc/jk_hu5894162609101197966.jpg 300w,/blog/2024hectfmisc/jk_hu8371155154008871039.jpg 500w,/blog/2024hectfmisc/jk_hu12010008222656428702.jpg 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt=""
-        
-        loading="lazy"
-        width="4000"
-        height="2614"
-      />
-    </picture>
-  
-
-
-
-
-
-
   
 </div>
 
-    </div>
-
-    <div class="post-content">
-      
-        <h2 id="2024hectfmisc">2024HECTFmisc<a href="#2024hectfmisc" class="post-heading__anchor" aria-hidden="true">#</a>
-</h2>
-<h3 id="恶势力的聊天记录">恶势力的聊天记录<a href="#%e6%81%b6%e5%8a%bf%e5%8a%9b%e7%9a%84%e8%81%8a%e5%a4%a9%e8%ae%b0%e5%bd%95" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<blockquote>
-<p>vol3参考文档</p>
-<p><a
-  href="https://volatility3.readthedocs.io/en/latest/"
-  
-  
-    class="link--external" target="_blank" rel="noreferrer"
-  
->Volatility 3 — Volatility 3 2.11.0 documentation</a></p>
-<p>vol3使用参考</p>
-<p><a
-  href="https://blog.csdn.net/Aluxian_/article/details/127064750"
-  
-  
-    class="link--external" target="_blank" rel="noreferrer"
-  
->Volatility3内存取证工具使用详解-CSDN博客</a></p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-shell" data-lang="shell"><span style="display:flex;"><span>vol2命令格式： volatility -f <span style="color:#f92672">[</span>image<span style="color:#f92672">]</span> --profile<span style="color:#f92672">=[</span>profile<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>plugin<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>这里需要注意 ：Volatility3和Volatility2用法差不多，但不需要指定profile ，只是插件调用方式改变，特定的操作系统有特定的插件
-</span></span></code></pre></div><pre tabindex="0"><code>python3 vol.py [plugin] -f [image]
+<style>
  
-常用插件：
-    layerwriter：列出内存镜像platform信息
-    linux.bash：从内存中恢复bash命令历史记录
-    linux.check_afinfo：验证网络协议的操作功能指针
-    linux.check_syscall：检查系统调用表中的挂钩
-    linux.elfs：列出所有进程的所有内存映射ELF文件
-    linux.lsmod：列出加载的内核模块
-    linux.lsof：列出所有进程的所有内存映射
-    linux.malfind：列出可能包含注入代码的进程内存范围
-    linux.proc：列出所有进程的所有内存映射
-    linux.pslist：列出linux内存映像中存在的进程
-    linux.pstree：列出进程树
-    mac.bash：从内存中恢复bash命令历史记录
-    mac.check_syscall：检查系统调用表中的挂钩
-    mac.check_sysctl：检查sysctl处理程序的挂钩
-    mac.check_trap_table：检查trap表中的挂钩
-    mac.ifconfig：列出网卡信息
-    mac.lsmod：列出加载的内核模块
-    mac.lsof：列出所有进程的所有内存映射
-    mac.malfind：列出可能包含注入代码的进程内存范围
-    mac.netstat：列出所有进程的所有网络连接
-    mac.psaux：恢复程序命令行参数
-    mac.pslist：列出linux内存映像中存在的进程
-    mac.pstree：列出进程树
-    mac.tasks：列出Mac内存映像中存在的进程
-    windows.info：显示正在分析的内存样本的OS和内核详细信息
-    windows.callbacks：列出内核回调和通知例程
-    windows.cmdline：列出进程命令行参数
-    windows.dlldump：将进程内存范围DLL转储
-    windows.dlllist：列出Windows内存映像中已加载的dll模块
-    windows.driverirp：在Windows内存映像中列出驱动程序的IRP
-    windows.driverscan：扫描Windows内存映像中存在的驱动程序
-    windows.filescan：扫描Windows内存映像中存在的文件对象
-    windows.handles：列出进程打开的句柄
-    windows.malfind：列出可能包含注入代码的进程内存范围
-    windows.moddump：转储内核模块
-    windows.modscan：扫描Windows内存映像中存在的模块
-    windows.mutantscan：扫描Windows内存映像中存在的互斥锁
-    windows.pslist：列出Windows内存映像中存在的进程
-    windows.psscan：扫描Windows内存映像中存在的进程
-    windows.pstree：列出进程树
-    windows.procdump：转储处理可执行映像
-    windows.registry.certificates：列出注册表中存储的证书
-    windows.registry.hivelist：列出内存映像中存在的注册表配置单元
-    windows.registry.hivescan：扫描Windows内存映像中存在的注册表配置单元
-    windows.registry.printkey：在配置单元或特定键值下列出注册表项
-    windows.registry.userassist：打印用户助手注册表项和信息
-    windows.ssdt：列出系统调用表
-    windows.strings：读取字符串命令的输出，并指示每个字符串属于哪个进程
-    windows.svcscan：扫描Windows服务
-    windows.symlinkscan：扫描Windows内存映像中存在的链接
-</code></pre><pre tabindex="0"><code>──(root㉿kali)-[/home/messi/Desktop/vol3]
-└─# sudo ln -s /home/messi/Desktop/vol3/vol.py /usr/local/bin/vol3
-//添加一个软连接方便使用
-</code></pre><blockquote>
-<p>列出所有进程</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/2024hectfmisc/">Read more &gt;</a>
-          </div>
-        
-      
-    </div>
-  </article>
+.categories-overview {
+  margin-top: 2rem;
+}
 
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/">2024强网杯-Misc-Pickle jail</a>
-      </h2>
-      <div class="post-meta"><span>2024-12-03</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/ctf-misc">ctf&#8209;misc</a>
-    </div>
+.category-overview-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-overview-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.category-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.category-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .category-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.category-name {
+  margin: 0 0 1rem 0;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  position: relative;
+  padding-bottom: 0.5rem;
+}
+
+.category-name::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: var(--accent-color);
+  border-radius: 2px;
+}
+
+.category-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.category-name a:hover {
+  color: var(--text-primary);
+  text-shadow: 0 0 8px rgba(251, 184, 41, 0.4);
+}
+
+.category-name a:hover::before {
+  content: '» ';
+  opacity: 0.8;
+}
+
+.recent-posts {
+  margin-top: 1rem;
+}
+
+.recent-posts h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.recent-posts ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.recent-posts li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.recent-posts li:last-child {
+  border-bottom: none;
+}
+
+.recent-posts a {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.9rem;
+  flex: 1;
+}
+
+.recent-posts a:hover {
+  color: var(--accent-color);
+}
+
+.post-date {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  white-space: nowrap;
+}
+
+.view-all {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.view-all:hover {
+  text-decoration: underline;
+}
+
+ 
+.category-info {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+}
+
+.category-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.stat-item strong {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.article-quick-list {
+  margin-top: 2rem;
+}
+
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.article-card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.article-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+ 
+[data-theme="dark"] .article-card:hover {
+    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
+}
+
+.article-title {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.article-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.article-title a:hover {
+  color: var(--accent-color);
+}
+
+.article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.3rem;
+}
+
+.tag {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.article-description {
+  color: var(--text-secondary);
+  line-height: 1.4;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.read-more {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.read-more:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .articles-grid {
+    grid-template-columns: 1fr;
+  }
   
-
-  
-    
-    
-    
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA_hu5313843992918884340.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA_hu12892215151992089047.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA_hu852026466969896408.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA.jpg"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA_hu13922217167376215448.jpg 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA_hu16375662817786578563.jpg 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/%E7%8B%AC%E8%87%AA_hu7578602280754038387.jpg 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt=""
-        
-        loading="lazy"
-        width="1500"
-        height="1031"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <h1 id="2024强网杯-misc-pickle-jail">2024强网杯-Misc-Pickle jail<a href="#2024%e5%bc%ba%e7%bd%91%e6%9d%af-misc-pickle-jail" class="post-heading__anchor" aria-hidden="true">#</a>
-</h1>
-<p>第一次遇到jail类型的题目，而且还是在大赛上，并且还是这么难的情况，努力理解复现吧。</p>
-<h3 id="附件">附件😣😰🥹：<a href="#%e9%99%84%e4%bb%b6" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<blockquote>
-<p>pickle_jail.py 的文件</p>
-</blockquote>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e">#!/usr/local/bin/python</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> io <span style="color:#f92672">import</span> BytesIO
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> os <span style="color:#f92672">import</span> _exit
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pathlib <span style="color:#f92672">import</span> Path
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pickle <span style="color:#f92672">import</span> Pickler, Unpickler
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> sys <span style="color:#f92672">import</span> stderr, stdin, stdout
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> time <span style="color:#f92672">import</span> time
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> faker <span style="color:#f92672">import</span> Faker
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Faker<span style="color:#f92672">.</span>seed(time())
-</span></span><span style="display:flex;"><span>fake <span style="color:#f92672">=</span> Faker(<span style="color:#e6db74">&#34;en_US&#34;</span>)
-</span></span><span style="display:flex;"><span>flag <span style="color:#f92672">=</span> Path(<span style="color:#e6db74">&#34;flag&#34;</span>)<span style="color:#f92672">.</span>read_text()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">print</span>(_):
-</span></span><span style="display:flex;"><span>    stdout<span style="color:#f92672">.</span>buffer<span style="color:#f92672">.</span>write(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>_<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>encode())
-</span></span><span style="display:flex;"><span>    stdout<span style="color:#f92672">.</span>buffer<span style="color:#f92672">.</span>flush()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">input</span>(_<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>, limit: int <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> _:
-</span></span><span style="display:flex;"><span>        print(_)
-</span></span><span style="display:flex;"><span>    _ <span style="color:#f92672">=</span> stdin<span style="color:#f92672">.</span>buffer<span style="color:#f92672">.</span>readline(limit)
-</span></span><span style="display:flex;"><span>    stdin<span style="color:#f92672">.</span>buffer<span style="color:#f92672">.</span>flush()
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> _
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bye</span>(_):
-</span></span><span style="display:flex;"><span>    print(_)
-</span></span><span style="display:flex;"><span>    _exit(<span style="color:#ae81ff">0</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>players <span style="color:#f92672">=</span> [fake<span style="color:#f92672">.</span>unique<span style="color:#f92672">.</span>first_name()<span style="color:#f92672">.</span>encode() <span style="color:#66d9ef">for</span> _ <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">50</span>)]
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Welcome to this jail game!&#34;</span>)
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Play this game to get the flag with these players: </span><span style="color:#e6db74">{</span>players<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>)
-</span></span><span style="display:flex;"><span>name <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;So... What&#39;s your name?&#34;</span>, <span style="color:#ae81ff">300</span>)<span style="color:#f92672">.</span>strip()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> name <span style="color:#f92672">not</span> <span style="color:#f92672">in</span> players, <span style="color:#e6db74">&#34;You are already joined!&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Welcome </span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">!&#34;</span>)
-</span></span><span style="display:flex;"><span>players<span style="color:#f92672">.</span>append(name)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>biox <span style="color:#f92672">=</span> BytesIO()
-</span></span><span style="display:flex;"><span>Pickler(biox)<span style="color:#f92672">.</span>dump(
-</span></span><span style="display:flex;"><span>    (
-</span></span><span style="display:flex;"><span>        name,
-</span></span><span style="display:flex;"><span>        players,
-</span></span><span style="display:flex;"><span>        flag,
-</span></span><span style="display:flex;"><span>    )
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>data <span style="color:#f92672">=</span> bytearray(biox<span style="color:#f92672">.</span>getvalue())
-</span></span><span style="display:flex;"><span>num <span style="color:#f92672">=</span> input(<span style="color:#e6db74">&#34;Enter a random number to win: &#34;</span>, <span style="color:#ae81ff">1</span>)[<span style="color:#ae81ff">0</span>]
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">assert</span> num <span style="color:#f92672">&lt;</span> len(data), <span style="color:#e6db74">&#34;You are not allowed to win!&#34;</span>
-</span></span><span style="display:flex;"><span>data[num] <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>data[num] <span style="color:#f92672">%=</span> <span style="color:#ae81ff">0xFF</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">del</span> name, players, flag
-</span></span><span style="display:flex;"><span>biox<span style="color:#f92672">.</span>close()
-</span></span><span style="display:flex;"><span>stderr<span style="color:#f92672">.</span>close()
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">try</span>:
-</span></span><span style="display:flex;"><span>    safe_dic <span style="color:#f92672">=</span> {
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;__builtins__&#34;</span>: <span style="color:#66d9ef">None</span>,
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;n&#34;</span>: BytesIO(data),
-</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;F&#34;</span>: type(<span style="color:#e6db74">&#34;f&#34;</span>, (Unpickler,), {<span style="color:#e6db74">&#34;find_class&#34;</span>: <span style="color:#66d9ef">lambda</span> <span style="color:#f92672">*</span>_: <span style="color:#e6db74">&#34;H4cker&#34;</span>}),
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>    name, players, _ <span style="color:#f92672">=</span> eval(<span style="color:#e6db74">&#34;F(n).load()&#34;</span>, safe_dic, {})
-</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> name <span style="color:#f92672">in</span> players:
-</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">del</span> _
-</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74"> joined this game, but here is no flag!&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span>:
-</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;What happened? IDK...&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">finally</span>:
-</span></span><span style="display:flex;"><span>    bye(<span style="color:#e6db74">&#34;Break this jail to get the flag!&#34;</span>)
-</span></span></code></pre></div><h3 id="分析附件">分析附件：<a href="#%e5%88%86%e6%9e%90%e9%99%84%e4%bb%b6" class="post-heading__anchor" aria-hidden="true">#</a>
-</h3>
-<blockquote>
-<p>一上来这个代码就给我看懵了，对于python基本功不是很扎实的我，没看懂逻辑，一边拿ai一边分析。</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF-misc-pickle_jail/">Read more &gt;</a>
-          </div>
-        
-      
-    </div>
-  </article>
-
-  <article class="post">
-    <div class="post-header">
-      <h2>
-        <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/">2024强网杯—谍影重重5.0</a>
-      </h2>
-      <div class="post-meta"><span>2024-11-21</span>
-    <div class="post-tags">
-      <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/ctf-misc">ctf&#8209;misc</a>
-    </div>
-  
-
-  
-    
-    
-    
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-      
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu1128527911040115714.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu12626052780210173620.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu16155201250812360378.webp 600w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,600px"
-      />
-      <img
-        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home.png"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu10425704511572553079.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu14942826716200947533.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/home_hu2788887792218887448.png 600w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,600px"
-        alt=""
-        
-        loading="lazy"
-        width="600"
-        height="338"
-      />
-    </picture>
-  
-
-
-
-
-
-
-  
-</div>
-
-    </div>
-
-    <div class="post-content">
-      
-        <p>😉🌃⛅😉</p>
-<blockquote>
-<p>乍一看，有arp、smb、tls等协议流量</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu9800888644822544776.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu578084286021447862.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu10969375510139454078.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496.png"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu16682716559524951807.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu3434879189039180929.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130102444496_hu9006378844287911329.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241130102444496"
-        
-        loading="lazy"
-        width="1302"
-        height="694"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-<blockquote>
-<p>先过滤出smb2流量看看</p>
-<p>smb协议主要用于在计算机间共享文件、打印机、串口等</p>
-<p>NTLM是一种身份验证机制</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu15785230462260875486.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu16541133201433629481.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu1219271686193763935.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093.png"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu5481919004509919801.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu10706498272393430346.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130104443093_hu4095339330437139116.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241130104443093"
-        
-        loading="lazy"
-        width="1872"
-        height="649"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-<blockquote>
-<p>smb2爆破</p>
-</blockquote>
-<p><a
-  href="https://blog.csdn.net/hapenl/article/details/126816047"
-  
-  
-    class="link--external" target="_blank" rel="noreferrer"
-  
->Wireshark分析&ndash;SMB2协议包及hashcat爆破_wireshark smb-CSDN博客</a></p>
-<blockquote>
-<p>通过文章了解到需要构造hash文件</p>
-</blockquote>
-<pre tabindex="0"><code>username::domain:NTLM Server Challenge:ntproofstr:不包含ntproofstr的ntlmv2_response值
-</code></pre><blockquote>
-<p>双击打开这条流量</p>
-</blockquote>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu5240127376476489642.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu1714473045441225181.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu12160618999275977680.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945.png"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu16294083744582567603.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu2879443338579072657.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130105942945_hu4709346995297581058.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241130105942945"
-        
-        loading="lazy"
-        width="1826"
-        height="96"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-<p>
-
-
-
-  
-  
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-      
-        
-          
-        
-        
-        
-        
-          
-          
-          
-        
-      
-    
-
-
-    <picture>
-      <source
-        type="image/webp"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu13144594974813083868.webp 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu7226058592492524996.webp 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu950800830555805390.webp 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-      />
-      <img
-        src="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833.png"
-        srcset="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu12742039100656728641.png 300w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu17576869531687489967.png 500w,/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E2%80%94%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0.assets/image-20241130111843833_hu2283354835065216942.png 700w"
-        sizes="(max-width: 499px) 300px,(max-width: 699px) 500px,700px"
-        alt="image-20241130111843833"
-        
-        loading="lazy"
-        width="1822"
-        height="800"
-      />
-    </picture>
-  
-
-
-
-
-
-
-</p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/2024%E5%BC%BA%E7%BD%91%E6%9D%AF%E8%B0%8D%E5%BD%B1%E9%87%8D%E9%87%8D5.0/">Read more &gt;</a>
-          </div>
-        
-      
-    </div>
-  </article>
-
-
-<div class="pagination">
-  
-  
-</div>
-
-
+  .article-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+}
+</style>
 
         </div>
         <div class="sidebar">
@@ -3721,7 +2557,7 @@ aside.toc ul {
       
       <a
         href="/tags/blog"
-        style="font-size:1.9579808551776126rem"
+        style="font-size:1.9625523798632412rem"
         class="tag-cloud__tag"
         >blog</a
       >
@@ -3731,7 +2567,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-misc"
-        style="font-size:1.3305369304372885rem"
+        style="font-size:1.3139808092376737rem"
         class="tag-cloud__tag"
         >ctf-misc</a
       >
@@ -3741,7 +2577,7 @@ aside.toc ul {
       
       <a
         href="/tags/ctf-web"
-        style="font-size:0.8rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >ctf-web</a
       >
@@ -3771,7 +2607,7 @@ aside.toc ul {
       
       <a
         href="/tags/java-application-programming"
-        style="font-size:1.1347315347813558rem"
+        style="font-size:1.1242857853127837rem"
         class="tag-cloud__tag"
         >java application programming</a
       >
@@ -3800,10 +2636,10 @@ aside.toc ul {
       
       
       <a
-        href="/tags/%E5%AE%9E%E8%B7%B5"
+        href="/tags/practice"
         style="font-size:0.8rem"
         class="tag-cloud__tag"
-        >实践</a
+        >practice</a
       >
     
   </div>
