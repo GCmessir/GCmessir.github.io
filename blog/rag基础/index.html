@@ -61,45 +61,70 @@
 
 
 
-<title>AI-Application</title>
+<title>RAG基础</title>
 
 <meta
   name="description"
-  content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes."
+  content=" RAG 是一种结合 “检索” &#43; “大语言模型生成” 的技术框架。它的核心思想是：
+在回答用户问题前，先从大量文档中找出最相关的片段，再把这些片段喂给大模型，让它基于真实信息生成答案。
+这样可以避免大模型“胡说八道”（幻觉），提高回答的准确性。
+RAG 分为两个阶段：
+离线阶段（Offline / Indexing Phase） —— 提前准备数据 在线阶段（Online / Inference Phase） —— 实时响应用户 离线阶段（Offline / Indexing Phase）# 流程步骤：
+步骤 名称 作用 输出 1 数据采集 从 PDF、网页、数据库等获取原始文档 原始文本集合 2 数据清洗 去除 HTML 标签、广告、乱码、重复内容等 干净文本 3 数据分块（Chunking） 将长文本切分为适合模型处理的小段（如 256～1024 tokens） 文本块列表（chunks） 4 向量化（Embedding） 用 Embedding 模型将每个文本块转为高维向量 向量列表（embeddings） 5 存入向量数据库 将 &lt;文本块, 向量&gt; 对存储到向量数据库（如 FAISS、Milvus、Pinecone） 可检索的向量索引 关键输出：一个向量数据库，里面存着所有知识的“数学表示”。
+在线阶段（Online / Inference Phase）# 流程步骤：
+"
 />
 
-<link rel="canonical" href="http://localhost:1313/tags/ai-application/" />
+<link rel="canonical" href="http://localhost:1313/blog/rag%E5%9F%BA%E7%A1%80/" />
 
 
 
 
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="AI-Application">
-  <meta name="twitter:description" content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.">
+  <meta name="twitter:title" content="RAG基础">
+  <meta name="twitter:description" content="RAG 是一种结合 “检索” &#43; “大语言模型生成” 的技术框架。它的核心思想是：
+在回答用户问题前，先从大量文档中找出最相关的片段，再把这些片段喂给大模型，让它基于真实信息生成答案。
+这样可以避免大模型“胡说八道”（幻觉），提高回答的准确性。
+RAG 分为两个阶段：
+离线阶段（Offline / Indexing Phase） —— 提前准备数据 在线阶段（Online / Inference Phase） —— 实时响应用户 离线阶段（Offline / Indexing Phase）# 流程步骤：
+步骤 名称 作用 输出 1 数据采集 从 PDF、网页、数据库等获取原始文档 原始文本集合 2 数据清洗 去除 HTML 标签、广告、乱码、重复内容等 干净文本 3 数据分块（Chunking） 将长文本切分为适合模型处理的小段（如 256～1024 tokens） 文本块列表（chunks） 4 向量化（Embedding） 用 Embedding 模型将每个文本块转为高维向量 向量列表（embeddings） 5 存入向量数据库 将 &lt;文本块, 向量&gt; 对存储到向量数据库（如 FAISS、Milvus、Pinecone） 可检索的向量索引 关键输出：一个向量数据库，里面存着所有知识的“数学表示”。
+在线阶段（Online / Inference Phase）# 流程步骤：">
 
-<meta property="og:url" content="http://localhost:1313/tags/ai-application/">
+<meta property="og:url" content="http://localhost:1313/blog/rag%E5%9F%BA%E7%A1%80/">
   <meta property="og:site_name" content="Documenting the journey ^_^">
-  <meta property="og:title" content="AI-Application">
-  <meta property="og:description" content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.">
+  <meta property="og:title" content="RAG基础">
+  <meta property="og:description" content="RAG 是一种结合 “检索” &#43; “大语言模型生成” 的技术框架。它的核心思想是：
+在回答用户问题前，先从大量文档中找出最相关的片段，再把这些片段喂给大模型，让它基于真实信息生成答案。
+这样可以避免大模型“胡说八道”（幻觉），提高回答的准确性。
+RAG 分为两个阶段：
+离线阶段（Offline / Indexing Phase） —— 提前准备数据 在线阶段（Online / Inference Phase） —— 实时响应用户 离线阶段（Offline / Indexing Phase）# 流程步骤：
+步骤 名称 作用 输出 1 数据采集 从 PDF、网页、数据库等获取原始文档 原始文本集合 2 数据清洗 去除 HTML 标签、广告、乱码、重复内容等 干净文本 3 数据分块（Chunking） 将长文本切分为适合模型处理的小段（如 256～1024 tokens） 文本块列表（chunks） 4 向量化（Embedding） 用 Embedding 模型将每个文本块转为高维向量 向量列表（embeddings） 5 存入向量数据库 将 &lt;文本块, 向量&gt; 对存储到向量数据库（如 FAISS、Milvus、Pinecone） 可检索的向量索引 关键输出：一个向量数据库，里面存着所有知识的“数学表示”。
+在线阶段（Online / Inference Phase）# 流程步骤：">
   <meta property="og:locale" content="zh_CN">
-  <meta property="og:type" content="website">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="blog">
+    <meta property="article:published_time" content="2026-01-09T19:15:00+08:00">
+    <meta property="article:modified_time" content="2026-01-09T19:15:00+08:00">
+    <meta property="article:tag" content="Blog">
+    <meta property="article:tag" content="AI-Application">
 
 
-  <meta itemprop="name" content="AI-Application">
-  <meta itemprop="description" content="A retro-looking Hugo theme inspired by gruvbox. The pastel colors are high contrast, easily distinguishable, pleasing to the eye, and feature light and dark color palettes.">
+  <meta itemprop="name" content="RAG基础">
+  <meta itemprop="description" content="RAG 是一种结合 “检索” &#43; “大语言模型生成” 的技术框架。它的核心思想是：
+在回答用户问题前，先从大量文档中找出最相关的片段，再把这些片段喂给大模型，让它基于真实信息生成答案。
+这样可以避免大模型“胡说八道”（幻觉），提高回答的准确性。
+RAG 分为两个阶段：
+离线阶段（Offline / Indexing Phase） —— 提前准备数据 在线阶段（Online / Inference Phase） —— 实时响应用户 离线阶段（Offline / Indexing Phase）# 流程步骤：
+步骤 名称 作用 输出 1 数据采集 从 PDF、网页、数据库等获取原始文档 原始文本集合 2 数据清洗 去除 HTML 标签、广告、乱码、重复内容等 干净文本 3 数据分块（Chunking） 将长文本切分为适合模型处理的小段（如 256～1024 tokens） 文本块列表（chunks） 4 向量化（Embedding） 用 Embedding 模型将每个文本块转为高维向量 向量列表（embeddings） 5 存入向量数据库 将 &lt;文本块, 向量&gt; 对存储到向量数据库（如 FAISS、Milvus、Pinecone） 可检索的向量索引 关键输出：一个向量数据库，里面存着所有知识的“数学表示”。
+在线阶段（Online / Inference Phase）# 流程步骤：">
   <meta itemprop="datePublished" content="2026-01-09T19:15:00+08:00">
   <meta itemprop="dateModified" content="2026-01-09T19:15:00+08:00">
+  <meta itemprop="wordCount" content="226">
+  <meta itemprop="keywords" content="Blog,AI-Application">
 
 
 
 
-
-  <link
-    rel="alternate"
-    type="application/rss&#43;xml"
-    href="/tags/ai-application/index.xml"
-    title="Documenting the journey ^_^"
-  />
 
 
 
@@ -1943,19 +1968,9 @@ aside.toc ul {
       <main>
         <div class="content">
           
-<div class="content-section">
-  <h1>AI-Application</h1>
-  
-  
-  
-    
-    
-    
   <article class="post">
     <div class="post-header">
-      <h2>
-        <a href="/blog/rag%E5%9F%BA%E7%A1%80/">RAG基础</a>
-      </h2>
+      <h1>RAG基础</h1>
       <div class="post-meta"><span>2026-01-09</span>
     <div class="post-tags">
       <a class="post-tag" href="http://localhost:1313/tags/blog">blog</a><a class="post-tag" href="http://localhost:1313/tags/ai-application">ai&#8209;application</a>
@@ -2060,8 +2075,7 @@ aside.toc ul {
     </div>
 
     <div class="post-content">
-      
-        <blockquote>
+      <blockquote>
 <p>RAG 是一种结合 <strong>“检索” + “大语言模型生成”</strong> 的技术框架。它的核心思想是：</p>
 <blockquote>
 <p>在回答用户问题前，先从大量文档中<strong>找出最相关的片段</strong>，再把这些片段喂给大模型，让它基于真实信息生成答案。</p>
@@ -2124,285 +2138,378 @@ aside.toc ul {
 <h3 id="在线阶段online--inference-phase">在线阶段（Online / Inference Phase）<a href="#%e5%9c%a8%e7%ba%bf%e9%98%b6%e6%ae%b5online--inference-phase" class="post-heading__anchor" aria-hidden="true">#</a>
 </h3>
 <p><strong>流程步骤：</strong></p>
-        
-          <div class="post-content__read-more">
-            <a href="/blog/rag%E5%9F%BA%E7%A1%80/">Read more &gt;</a>
-          </div>
-        
-      
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">步骤</th>
+          <th style="text-align: left">名称</th>
+          <th style="text-align: left">作用</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">1</td>
+          <td style="text-align: left"><strong>接收用户问题</strong></td>
+          <td style="text-align: left">如：“什么是 RAG？”</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">2</td>
+          <td style="text-align: left"><strong>问题向量化</strong></td>
+          <td style="text-align: left">用<strong>同一个 Embedding 模型</strong>将问题转为向量</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">3</td>
+          <td style="text-align: left"><strong>向量检索（Similarity Search）</strong></td>
+          <td style="text-align: left">在向量数据库中找与问题向量最相似的 Top-K 文本块</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">4</td>
+          <td style="text-align: left"><strong>构建 Prompt</strong></td>
+          <td style="text-align: left">将检索到的文本块 + 用户问题 组合成提示： “根据以下资料回答：[资料]&hellip; 问题：[用户问题]”</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">5</td>
+          <td style="text-align: left"><strong>大模型生成答案</strong></td>
+          <td style="text-align: left">将 Prompt 输入 LLM（如 GPT、Llama），生成最终回答</td>
+      </tr>
+      <tr>
+          <td style="text-align: left">6</td>
+          <td style="text-align: left"><strong>返回结果给用户</strong></td>
+          <td style="text-align: left">展示自然语言答案</td>
+      </tr>
+  </tbody>
+</table>
+<blockquote>
+<p><strong>关键特点</strong>：整个过程通常在 <strong>1～3 秒内完成</strong>。</p>
+</blockquote>
+<h3 id="embedding-模型是怎么工作的">Embedding 模型是怎么工作的<a href="#embedding-%e6%a8%a1%e5%9e%8b%e6%98%af%e6%80%8e%e4%b9%88%e5%b7%a5%e4%bd%9c%e7%9a%84" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<blockquote>
+<p>把<strong>一段文字</strong>映射成一个<strong>固定长度的数字向量</strong>（如 768 维）。</p>
+<p>向量能<strong>捕捉语义信息</strong>：语义越相近，向量在空间中越靠近。</p>
+</blockquote>
+<h4 id="工作原理简化">工作原理（简化）：<a href="#%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e7%ae%80%e5%8c%96" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ol>
+<li>
+<p><strong>输入</strong>：一段文本（如 “猫喜欢抓老鼠”）</p>
+</li>
+<li>
+<p><strong>分词</strong>：拆成 token（如 <code>[&quot;猫&quot;, &quot;喜欢&quot;, &quot;抓&quot;, &quot;老鼠&quot;]</code>）</p>
+</li>
+<li>
+<p><strong>神经网络编码</strong>：通过预训练的语言模型（如 BERT、Sentence-BERT、text-embedding-ada-002）计算上下文语义</p>
+</li>
+<li>
+<p><strong>输出</strong>：一个稠密向量（dense vector），例如：</p>
+<pre tabindex="0"><code>[0.82, -0.34, 1.21, ..., 0.05]  # 长度 768
+</code></pre></li>
+</ol>
+<h4 id="为什么能表示语义">为什么能表示语义？<a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e8%83%bd%e8%a1%a8%e7%a4%ba%e8%af%ad%e4%b9%89" class="post-heading__anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>模型在训练时学习了“哪些词经常一起出现”、“句子之间的逻辑关系”等。</li>
+<li>例如：
+<ul>
+<li>“狗” 和 “猫” 的向量距离很近（都是宠物）</li>
+<li>“狗” 和 “汽车” 的向量距离较远</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>关键点</strong>：<strong>必须用同一个 Embedding 模型处理“问题”和“知识库”</strong>，否则向量空间不一致，无法比较！</p>
+</blockquote>
+<h3 id="完整-rag-流程图">完整 RAG 流程图<a href="#%e5%ae%8c%e6%95%b4-rag-%e6%b5%81%e7%a8%8b%e5%9b%be" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<pre tabindex="0"><code>         ┌──────────────────────┐
+         │   离线阶段 (Offline) │
+         └──────────┬───────────┘
+                    ↓
+      原始文档 → 清洗 → 分块 → Embedding → 存入向量数据库
+                                          ↑
+                                          │ (向量 + 原文)
+                    ┌─────────────────────┴─────────────────────┐
+                    │                                           │
+         ┌──────────▼───────────┐                ┌─────────────▼─────────────┐
+         │   在线阶段 (Online)  │                │     向量数据库 (e.g., FAISS) │
+         └──────────┬───────────┘                └─────────────────────────────┘
+                    ↓
+           用户提问：“XXX？”
+                    ↓
+            问题 → Embedding
+                    ↓
+        向量检索 → Top-K 相关文本块
+                    ↓
+        构建 Prompt：[资料]+[问题]
+                    ↓
+          LLM 生成自然语言答案
+                    ↓
+               返回给用户 ✅
+</code></pre><hr>
+<h3 id="常见工具链">常见工具链<a href="#%e5%b8%b8%e8%a7%81%e5%b7%a5%e5%85%b7%e9%93%be" class="post-heading__anchor" aria-hidden="true">#</a>
+</h3>
+<table>
+  <thead>
+      <tr>
+          <th style="text-align: left">功能</th>
+          <th style="text-align: left">工具示例</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left"><strong>Embedding 模型</strong></td>
+          <td style="text-align: left">OpenAI text-embedding-ada-002, BGE, m3e, Sentence-BERT</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>向量数据库</strong></td>
+          <td style="text-align: left">FAISS（Meta）、Milvus、Pinecone、Weaviate、Qdrant</td>
+      </tr>
+      <tr>
+          <td style="text-align: left"><strong>RAG 框架</strong></td>
+          <td style="text-align: left">LangChain, LlamaIndex, Haystack</td>
+      </tr>
+  </tbody>
+</table>
+
     </div>
+
+    
+      
+
+
+  <div class="social-share">
+    <strong class="social-share__heading">Share this post: </strong>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Facebook</title><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://reddit.com/submit?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F&amp;title=RAG%E5%9F%BA%E7%A1%80"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Reddit</title><path d="M12 0C5.373 0 0 5.373 0 12c0 3.314 1.343 6.314 3.515 8.485l-2.286 2.286C.775 23.225 1.097 24 1.738 24H12c6.627 0 12-5.373 12-12S18.627 0 12 0Zm4.388 3.199c1.104 0 1.999.895 1.999 1.999 0 1.105-.895 2-1.999 2-.946 0-1.739-.657-1.947-1.539v.002c-1.147.162-2.032 1.15-2.032 2.341v.007c1.776.067 3.4.567 4.686 1.363.473-.363 1.064-.58 1.707-.58 1.547 0 2.802 1.254 2.802 2.802 0 1.117-.655 2.081-1.601 2.531-.088 3.256-3.637 5.876-7.997 5.876-4.361 0-7.905-2.617-7.998-5.87-.954-.447-1.614-1.415-1.614-2.538 0-1.548 1.255-2.802 2.803-2.802.645 0 1.239.218 1.712.585 1.275-.79 2.881-1.291 4.64-1.365v-.01c0-1.663 1.263-3.034 2.88-3.207.188-.911.993-1.595 1.959-1.595Zm-8.085 8.376c-.784 0-1.459.78-1.506 1.797-.047 1.016.64 1.429 1.426 1.429.786 0 1.371-.369 1.418-1.385.047-1.017-.553-1.841-1.338-1.841Zm7.406 0c-.786 0-1.385.824-1.338 1.841.047 1.017.634 1.385 1.418 1.385.785 0 1.473-.413 1.426-1.429-.046-1.017-.721-1.797-1.506-1.797Zm-3.703 4.013c-.974 0-1.907.048-2.77.135-.147.015-.241.168-.183.305.483 1.154 1.622 1.964 2.953 1.964 1.33 0 2.47-.81 2.953-1.964.057-.137-.037-.29-.184-.305-.863-.087-1.795-.135-2.769-.135Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://x.com/intent/post?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F&amp;text=RAG%E5%9F%BA%E7%A1%80"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>X</title><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.linkedin.com/sharing/share-offsite/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>LinkedIn</title><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="whatsapp://send/?text=RAG%E5%9F%BA%E7%A1%80%20http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>WhatsApp</title><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F&amp;title=RAG%E5%9F%BA%E7%A1%80&amp;caption=RAG%E5%9F%BA%E7%A1%80"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Tumblr</title><path d="M14.563 24c-5.093 0-7.031-3.756-7.031-6.411V9.747H5.116V6.648c3.63-1.313 4.512-4.596 4.71-6.469C9.84.051 9.941 0 9.999 0h3.517v6.114h4.801v3.633h-4.82v7.47c.016 1.001.375 2.371 2.207 2.371h.09c.631-.02 1.486-.205 1.936-.419l1.156 3.425c-.436.636-2.4 1.374-4.156 1.404h-.178l.011.002z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Pinterest</title><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://news.ycombinator.com/submitlink?u=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F&amp;t=RAG%E5%9F%BA%E7%A1%80"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Y Combinator</title><path d="M0 24V0h24v24H0zM6.951 5.896l4.112 7.708v5.064h1.583v-4.972l4.148-7.799h-1.749l-2.457 4.875c-.372.745-.688 1.434-.688 1.434s-.297-.708-.651-1.434L8.831 5.896h-1.88z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="http://vk.com/share.php?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F&amp;title=RAG%E5%9F%BA%E7%A1%80&amp;comment=RAG%E5%9F%BA%E7%A1%80"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>VK</title><path d="m9.489.004.729-.003h3.564l.73.003.914.01.433.007.418.011.403.014.388.016.374.021.36.025.345.03.333.033c1.74.196 2.933.616 3.833 1.516.9.9 1.32 2.092 1.516 3.833l.034.333.029.346.025.36.02.373.025.588.012.41.013.644.009.915.004.98-.001 3.313-.003.73-.01.914-.007.433-.011.418-.014.403-.016.388-.021.374-.025.36-.03.345-.033.333c-.196 1.74-.616 2.933-1.516 3.833-.9.9-2.092 1.32-3.833 1.516l-.333.034-.346.029-.36.025-.373.02-.588.025-.41.012-.644.013-.915.009-.98.004-3.313-.001-.73-.003-.914-.01-.433-.007-.418-.011-.403-.014-.388-.016-.374-.021-.36-.025-.345-.03-.333-.033c-1.74-.196-2.933-.616-3.833-1.516-.9-.9-1.32-2.092-1.516-3.833l-.034-.333-.029-.346-.025-.36-.02-.373-.025-.588-.012-.41-.013-.644-.009-.915-.004-.98.001-3.313.003-.73.01-.914.007-.433.011-.418.014-.403.016-.388.021-.374.025-.36.03-.345.033-.333c.196-1.74.616-2.933 1.516-3.833.9-.9 2.092-1.32 3.833-1.516l.333-.034.346-.029.36-.025.373-.02.588-.025.41-.012.644-.013.915-.009ZM6.79 7.3H4.05c.13 6.24 3.25 9.99 8.72 9.99h.31v-3.57c2.01.2 3.53 1.67 4.14 3.57h2.84c-.78-2.84-2.83-4.41-4.11-5.01 1.28-.74 3.08-2.54 3.51-4.98h-2.58c-.56 1.98-2.22 3.78-3.8 3.95V7.3H10.5v6.92c-1.6-.4-3.62-2.34-3.71-6.92Z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://www.xing.com/spi/shares/new?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Xing</title><path d="M18.188 0c-.517 0-.741.325-.927.66 0 0-7.455 13.224-7.702 13.657.015.024 4.919 9.023 4.919 9.023.17.308.436.66.967.66h3.454c.211 0 .375-.078.463-.22.089-.151.089-.346-.009-.536l-4.879-8.916c-.004-.006-.004-.016 0-.022L22.139.756c.095-.191.097-.387.006-.535C22.056.078 21.894 0 21.686 0h-3.498zM3.648 4.74c-.211 0-.385.074-.473.216-.09.149-.078.339.02.531l2.34 4.05c.004.01.004.016 0 .021L1.86 16.051c-.099.188-.093.381 0 .529.085.142.239.234.45.234h3.461c.518 0 .766-.348.945-.667l3.734-6.609-2.378-4.155c-.172-.315-.434-.659-.962-.659H3.648v.016z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="https://telegram.me/share/url?url=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F&amp;text=RAG%E5%9F%BA%E7%A1%80"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>Telegram</title><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+
+
+      </a>
+    
+      
+      
+      
+      <a
+        class="social-share__item"
+        href="mailto:?subject=RAG%E5%9F%BA%E7%A1%80&amp;body=http%3A%2F%2Flocalhost%3A1313%2Fblog%2Frag%25E5%259F%25BA%25E7%25A1%2580%2F"
+        target="_blank"
+        rel="noreferrer"
+      >
+        
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  class="icon icon-tabler icons-tabler-outline icon-tabler-mail"
+>
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M3 7a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v10a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2v-10z" />
+  <path d="M3 7l9 6l9 -6" />
+</svg>
+
+
+      </a>
+    
+  </div>
+
+
+    
+
+    
+      
+
+    
   </article>
-
-
-<div class="pagination">
-  
-  
-</div>
-
-
-  
-</div>
-
-<style>
- 
-.categories-overview {
-  margin-top: 2rem;
-}
-
-.category-overview-info {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-}
-
-.category-overview-stats {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.category-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.category-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
- 
-[data-theme="dark"] .category-card:hover {
-    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
-}
-
-.category-name {
-  margin: 0 0 1rem 0;
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--accent-color);
-  position: relative;
-  padding-bottom: 0.5rem;
-}
-
-.category-name::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 40px;
-  height: 3px;
-  background: var(--accent-color);
-  border-radius: 2px;
-}
-
-.category-name a {
-  color: inherit;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
-
-.category-name a:hover {
-  color: var(--text-primary);
-  text-shadow: 0 0 8px rgba(251, 184, 41, 0.4);
-}
-
-.category-name a:hover::before {
-  content: '» ';
-  opacity: 0.8;
-}
-
-.recent-posts {
-  margin-top: 1rem;
-}
-
-.recent-posts h4 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1rem;
-  color: var(--text-secondary);
-}
-
-.recent-posts ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 1rem 0;
-}
-
-.recent-posts li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-  padding: 0.3rem 0;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.recent-posts li:last-child {
-  border-bottom: none;
-}
-
-.recent-posts a {
-  color: var(--text-primary);
-  text-decoration: none;
-  font-size: 0.9rem;
-  flex: 1;
-}
-
-.recent-posts a:hover {
-  color: var(--accent-color);
-}
-
-.post-date {
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  white-space: nowrap;
-}
-
-.view-all {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.view-all:hover {
-  text-decoration: underline;
-}
-
- 
-.category-info {
-  margin: 1.5rem 0;
-  padding: 1rem;
-  background: var(--bg-secondary);
-  border-radius: 8px;
-}
-
-.category-stats {
-  display: flex;
-  gap: 2rem;
-  flex-wrap: wrap;
-}
-
-.stat-item {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-}
-
-.stat-item strong {
-  color: var(--text-primary);
-  font-size: 1.1rem;
-}
-
-.article-quick-list {
-  margin-top: 2rem;
-}
-
-.articles-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 1.5rem;
-  margin-top: 1rem;
-}
-
-.article-card {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.article-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
- 
-[data-theme="dark"] .article-card:hover {
-    box-shadow: 0 4px 12px rgba(251, 184, 41, 0.3) !important;
-}
-
-.article-title {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
-  line-height: 1.3;
-}
-
-.article-title a {
-  color: var(--text-primary);
-  text-decoration: none;
-}
-
-.article-title a:hover {
-  color: var(--accent-color);
-}
-
-.article-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.8rem;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.article-tags {
-  display: flex;
-  gap: 0.3rem;
-}
-
-.tag {
-  background: var(--accent-color);
-  color: white;
-  padding: 0.2rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.75rem;
-}
-
-.article-description {
-  color: var(--text-secondary);
-  line-height: 1.4;
-  margin-bottom: 1rem;
-  font-size: 0.9rem;
-}
-
-.read-more {
-  color: var(--accent-color);
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
-@media (max-width: 768px) {
-  .articles-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .article-meta {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
-  }
-}
-</style>
 
         </div>
         <div class="sidebar">
+  
+    
+      <aside class="toc">
+        <nav>
+          <p class="sidebar__heading">Table Of Contents</p>
+          <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#离线阶段offline--indexing-phase">离线阶段（Offline / Indexing Phase）</a></li>
+        <li><a href="#在线阶段online--inference-phase">在线阶段（Online / Inference Phase）</a></li>
+        <li><a href="#embedding-模型是怎么工作的">Embedding 模型是怎么工作的</a></li>
+        <li><a href="#完整-rag-流程图">完整 RAG 流程图</a></li>
+        <li><a href="#常见工具链">常见工具链</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+        </nav>
+      </aside>
+      <hr />
+    
   
 
   
